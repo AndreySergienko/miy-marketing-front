@@ -1,6 +1,6 @@
 <template>
   <div>
-    Авторизация
+    Личный кабинет
     <br>
     <NuxtLink to="/">на Главную</NuxtLink>
   </div>
