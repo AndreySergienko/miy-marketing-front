@@ -2,6 +2,7 @@
 <template>
   <div>
     Главная страница
+    <FormVTextInput />
     <RegistrationForm />
     <NuxtLink to="/auth">Авторизация</NuxtLink>
     <br>

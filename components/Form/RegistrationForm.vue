@@ -62,6 +62,7 @@ const registration = async () => {
   } 
 }
 </script>
+  
 
 <style scooped>
 .registration {

@@ -5,14 +5,5 @@ export default defineNuxtConfig ({
     '@pinia/nuxt',
     '@vee-validate/nuxt',
   ],
-  devtools: { enabled: true },
-  veeValidate: {
-    autoImports: true,
-    componentNames: {
-      Form: 'VeeForm',
-      Field: 'VeeField',
-      FieldArray: 'VeeFieldArray',
-      ErrorMessage: 'VeeErrorMessage',
-    },
-  },
+  devtools: { enabled: true }
 })
