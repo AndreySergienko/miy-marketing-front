@@ -56,7 +56,18 @@ const registration = async () => {
   try{
     const response = await fetch('/api/registration')
     const data = await response.json();
-    router.push('/auth')
+    // router.push('/auth')
+    // alert(`На ${form.email} высланно письмо с кодом`)
+    const message = document.createElement('div');
+    message.classList.add('message')
+    message.textContent = `На ${form.email} высланно письмо с кодом`
+    document.body.appendChild(message)
+    setTimeout(() => {
+      message.style.display = 'none';
+    }, 2000);
+    setTimeout(() => {
+      router.push('/auth')
+    }, 3000)
   } catch (error) {
     consol.log(error);
   } 
@@ -72,5 +83,13 @@ const registration = async () => {
 }
 input {
   margin-bottom: 10px;
+}
+.message {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 20px 400px;
+  border: 2px blue solid;
+  border-radius: 15px;
 }
 </style>
