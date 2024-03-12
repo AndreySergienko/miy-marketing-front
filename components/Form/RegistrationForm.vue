@@ -85,10 +85,9 @@ input {
   margin-bottom: 10px;
 }
 .message {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: 20px 400px;
+  display: inline-flex;
+  padding: 5px 25px;
+  margin-left: 1050px;
   border: 2px blue solid;
   border-radius: 15px;
 }
