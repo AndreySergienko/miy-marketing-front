@@ -1,9 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig ({
-  modules: [
-    '@pinia/nuxt',
-    '@vee-validate/nuxt',
-  ],
-  devtools: { enabled: true }
+  modules: ['@pinia/nuxt', '@vee-validate/nuxt', "@nuxt/image", 'nuxt-icons'],
+  css: ['~/assets/styles/main.scss'],
+  devtools: { enabled: true },
 })
