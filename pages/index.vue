@@ -47,13 +47,16 @@
               v-for="index in 9" :key="index"  
               
               button-text= "Купить"
-              people="12 000"
-              advertising="1/24"
-              new-people="376" 
+              people= "12000"
+              advertising= "1/24"
+              new-people= "376" 
             />
           </div>
         </div>
       </div>
+    </div>
+    <div class="FAQ">
+      <VAccordion />
     </div>
   </div>
 </template>
@@ -63,6 +66,7 @@
   import Card from '../components/Card/VCard.vue'
   import VTitle from '../components/Title/VTitle.vue'
   import VText from '../components/Text/VText.vue'
+  import VAccordion from '../components/Accordion/VAccordion.vue'
 </script>
 
 <style scoped>

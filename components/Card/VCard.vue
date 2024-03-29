@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card__inner">
-      <img src="../../tg.png" :alt="title" />
+      <img src="../../tg.png" />
       <VCardTitle><span style="color: var(--color-blue)">Еaque</span> ipsa <br> 300 р </VCardTitle>
       <VCardText>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, 
         eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
@@ -35,11 +35,9 @@
   import VCardText from './VCardText.vue'
 
   const props = defineProps({
-    // title: String,
-    // text: String,
-    people: Number,
-    advertising: Number,
-    newPeople: Number,
+    people: String,
+    advertising: String,
+    newPeople: String,
     buttonText: String,
   })
 </script>
