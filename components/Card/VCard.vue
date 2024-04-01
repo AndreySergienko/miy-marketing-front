@@ -1,30 +1,39 @@
 <template>
   <div class="card">
     <div class="card__inner">
-      <img src="../../tg.png" />
-      <VCardTitle><span style="color: var(--color-blue)">Еaque</span> ipsa <br> 300 р </VCardTitle>
-      <VCardText>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, 
-        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-      </VCardText>
+      <img class="card__img" src="../../tg.png" />
+      <VCardTitle class="card__title"/>
+      <VCardText />
       <div class="card__icons">
-        <div class="card__icons-people">
-          {{ people }}
-          <nuxt-icon name="people" />
+        <div class="card__icon">
+          <div class="card__icon-text">
+            {{ people }}
+          </div>
+          <nuxt-icon name="people"/>
         </div>
-        <div class="card__icons-advertising">
-          {{ advertising }}
+        <div class="card__icon">
+          <div class="card__icon-text">
+            {{ advertising }}
+          </div>
           <nuxt-icon name="advertising"/>
         </div>
-        <div class="card__icons-new__people">
-          {{ newPeople }}
+        <div class="card__icon">
+          <div class="card__icon-text">
+            {{ newPeople }}
+          </div>
           <nuxt-icon name="newPeople"/>
         </div>
       </div>
       <div class="card__calendar">
-        <p class="card__calendar-text">Календарь</p>
-        <nuxt-icon name="calendar"/>
+        <div class="card__calendar-text">
+          <p>Календарь</p>
+        </div>
+        <nuxt-icon class="card__calendar-icon" name="calendar"/>
       </div>
-      <button class="card__button">{{ buttonText }}</button>
+      <button class="card__button">
+        <p class="card__button-text">{{ buttonText }}</p>
+        <nuxt-icon class="card__button-icon" name="chevron" />
+      </button>
     </div>
   </div>
 </template>
@@ -40,54 +49,96 @@
     newPeople: String,
     buttonText: String,
   })
+
+  // const cardTitle = ref()
+  // const cardText = ref()
+
+  // const fetchData = async () => {
+  //   const response = await fetch('')
+  //   const data = await response.json();
+  //   cardTitle.value = data.title;
+  //   cardText.value = data.text;
+  // }
+
+  // fetchData()
+
 </script>
 
-<style scoped>
+<style lang="scss" lscoped>
   .card {
-    width: 80%;
     margin-bottom: var(--ident-xs);
-  }
-  .card__inner {
-    padding: 64px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    &__inner {
+      padding: var(--ident-xs) var(--ident-xxl) 146px;
 
-    border: 1px solid rgba(169, 169, 169, 0.5);
-    border-radius: 25px;
-  }
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
-  img {
-    width: 70%;
-  }
+      border: 1px solid var(--color-light-gray);
+      border-radius: 25px;
+    }
 
-  .card__icons {
-    display: flex;
-    justify-content: space-between;
-    width: 90%;
-    margin-bottom: var(--ident-l);
-  }
+    &__title {
+      width: 63%;
+    }
 
-  .card__calendar {
-    display: flex;
-    justify-content: space-between;
-    width: 35%;
-    margin-bottom: var(--ident-xs);
-  }
+    &__icons {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      margin-bottom: var(--ident-l);
+    }
 
-  .card__calendar-text {
-    font-size: var(--font-size-m);
-    font-weight: var(--font-weight-semi-bold);
-  }
+    &__icon {
+      display: flex;
+      align-items: center;
 
-  .card__button {
-    width: 100%;
-    padding: 12px 0px;
-    border-radius: 10px;
-    color: var(--color-white);
-    background-color: var(--color-blue);
+      &-text {
+        font-size: var( --font-size-m);
+        font-weight: var(--font-weight-semi-bold);
+        margin-right: var(--ident-s);
+      }
+    }
 
+    &__calendar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 35%;
+      margin-bottom: var(--ident-xs);
+
+      &-text {
+        font-size: var(--font-size-m);
+        font-weight: var(--font-weight-semi-bold);
+        margin-right: var(--ident-s);
+      }
+
+      &-icon {
+        font-size: 24px;
+      }
+    }
+
+    &__button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 12px 0px;
+      border-radius: 10px;
+      border-color: var(--color-blue);
+      color: var(--color-white);
+      background-color: var(--color-blue);
+
+      &-text {
+        font-size: var(--font-size-m);
+        font-weight: var(--font-weight-semi-bold);
+      }
+
+      &-icon {
+        font-size: 24px;
+      }
+    }
   }
 </style>

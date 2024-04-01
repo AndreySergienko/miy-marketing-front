@@ -2,9 +2,9 @@
   <div class="benefit__list">
     <div 
     class="benefit__item" 
-    v-for="(benItem, index) in benList" :key="benItem.text"
+    v-for="(benItem, index, id) in benefitList" :key="id"
     >
-      <div :class="[`${ index === 0 || index === 2 ? 'white' : 'black'}__text`]">
+      <div :class="correctClass(index)">
         <div class="benefit__text">{{ benItem.text }}</div>
         <div class="benefit__number">{{ benItem.number }}</div>
       </div>
@@ -15,12 +15,19 @@
 
 
 <script setup>
-  import {benList} from './Benefit.data';
+  import {benefitList} from './Benefit.data';
+  import { computed } from 'vue';
+
+  const correctClass = computed(() => {
+    return (index) => {
+      return index === 0 || index === 2 ? 'text__white' : 'text__black'
+    }
+  })
 </script>
 
-<style scoped>
-  .white__text, .black__text {
-    margin-bottom: 15px;
+<style lang="scss" scoped>
+  .text__white, .text__black {
+    margin-bottom: var(--ident-xs);
     
     display: flex;
     align-items: center;
@@ -30,30 +37,44 @@
   }
 
   .benefit__text {
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-medium);
     width: 50%;
   }
+  
   .benefit__number {
-    font-size: 80px;
+    font-size: var(--font-size-xxl);
+    font-weight: var(--font-weight-bold);
   }
 
-  .white__text {
-    color: white;
-    background: black;
+  .text__white {
+    color: var(--color-white);
+    background-color: var(--color-black);
+    
+    .benefit__text {
+      order: 0;
+      margin-left: var(--ident-xs);
+    }
+
+    .benefit__number {
+      order: 1;
+      margin-right: var(--ident-xs);
+    }
   }
 
-  .black__text {
-    color: black;
-    background: white;
-    border: 1px solid grey;
-  }
+  .text__black {
+    color: var(--color-black);
+    background: var(--color-white);
+    border: 1px solid var(--color-light-gray);
 
-  .white__text .benefit__text, .black__text .benefit__number {
-    order: 0;
-    margin-left: 20px;
-  }
+    .benefit__text {
+      order: 1;
+      margin-right: var(--ident-xs);
+    }
 
-  .white__text .benefit__number, .black__text .benefit__text {
-    order: 1;
-    margin-right: 20px;
+    .benefit__number {
+      order: 0;
+      margin-left: var(--ident-xs);
+    }
   }
 </style>

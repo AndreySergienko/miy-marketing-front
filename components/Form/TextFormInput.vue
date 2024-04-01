@@ -11,7 +11,7 @@
     </Field>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
   import {Field, ErrorMessage} from 'vee-validate'
 
   const props = defineProps({

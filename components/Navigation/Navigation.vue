@@ -1,10 +1,10 @@
 <template>
   <nav>
     <ul class="navigation">
-      <li v-for="navItem in navList" :key="navItem.text">
-        <nuxt-link class="navigation__item">
+      <li v-for="(navItem, id) in navList" :key="id">
+        <div class="navigation__item">
           {{ navItem.text }}
-        </nuxt-link>
+        </div>
       </li>
     </ul>
   </nav>

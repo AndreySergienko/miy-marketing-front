@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
-    <div v-for="(accordItem, id) in accordList" :key="id" class="accordion__box">
-      <div class="accord__title">
+  <div class="accordion">
+    <div v-for="(accordItem, id) in accordList" :key="id" class="accordion__inner">
+      <div class="accordion__title">
         <h3> {{ accordItem.title }}</h3>
         <nuxt-icon @click="accordion(accordItem)" :name="accordItem.isOpen ? 'minus' : 'plus'" filled></nuxt-icon>
       </div>
@@ -21,9 +21,28 @@
   
 
 </script>
-<style scoped>
-  .accord__title{
-    display: flex;
+<style lang="scss" scoped>
+  .accordion {
+    &__inner {
+      padding: var(--ident-xs);
+    }
+
+    &__title {
+      margin-bottom: var(--ident-xl);
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      font-size: var(--font-size-l);
+      font-weight: var(--font-weight-semi-bold);
+    }
+
+    &__text {
+      font-size: var(--font-size-m);
+      font-weight: var(--font-weight-medium);
+    }
   }
+  
 </style>
 

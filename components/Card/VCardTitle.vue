@@ -1,8 +1,17 @@
 <template>
   <div>
-    <h1 class="title"><slot/></h1>
+    <h3 class="title">{{ title }}</h3>
   </div>
 </template>
+
+<script setup>
+  const props = defineProps({
+    title: {
+      type:String,
+      default: 'Еaque ipsa 300 р'
+    }
+  })
+</script>
 
 <style scoped>
   .title {
