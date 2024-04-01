@@ -78,6 +78,9 @@
         </div>
       </div>
     </div>
+    <div class="footer">
+      <VFooter />
+    </div>
   </div>
 </template>
 <script setup>
@@ -88,6 +91,7 @@
   import VText from '../components/Text/VText.vue'
   import VAccordion from '../components/Accordion/VAccordion.vue'
   import VContacts from '../components/Contacts/VContacts.vue';
+  import VFooter from '../components/Footer/VFooter.vue'
 </script>
 
 <style lang="scss" scoped>
@@ -179,6 +183,7 @@
   .contacts {
     &__inner {
       display: flex;
+      margin-bottom: 200px;
     }
 
     &__map {
