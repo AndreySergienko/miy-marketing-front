@@ -13,7 +13,9 @@
 </template>
 <script setup>
   import { accordList } from './Accordion.data.ts';
-  
+  import {ref} from 'vue';
+
+  const iconName = ref('plus')
 
   const accordion = (item) => {
     item.isOpen = !item.isOpen

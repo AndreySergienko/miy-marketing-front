@@ -17,7 +17,7 @@
   .text {
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-medium);
-    padding: 5px;
+    padding: var(--ident-s);
     margin-bottom: var(--ident-l);
     text-align: center;
   }

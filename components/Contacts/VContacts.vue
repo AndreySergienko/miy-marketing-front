@@ -1,26 +1,26 @@
 <template>
-  <div class="contacts">
-    <div class="contacts__inner">
-      <div class="contacts__intro">
-        <div class="contacts__title">
+  <div class="contact">
+    <div class="contact__inner">
+      <div class="contact__intro">
+        <div class="contact__title">
           <VTitle>Контакты</VTitle>
           <VText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </VText>
         </div>
-        <div class="contacts__items">
-          <div class="contacts__item">
-            <h3 class="contacts__item-title">Email</h3>
+        <div class="contact__items">
+          <div class="contact__item">
+            <h3 class="contact__item-title">Email</h3>
             <VText>ON-Developer@gmail.com</VText>
           </div>
-          <div class="contacts__item">
-            <h3 class="contacts__item-title">Тг канал</h3>
+          <div class="contact__item">
+            <h3 class="contact__item-title">Тг канал</h3>
             <VText>https://t.me/ON-Developer</VText>
           </div>
-          <div class="contacts__item">
-            <h3 class="contacts__item-title">Адрес</h3>
+          <div class="contact__item">
+            <h3 class="contact__item-title">Адрес</h3>
             <VText>Вятская улица, 47с2А, Москва, 127015</VText>
           </div>
-          <div class="contacts__item">
-            <h3 class="contacts__item-title">ИНН</h3>
+          <div class="contact__item">
+            <h3 class="contact__item-title">ИНН</h3>
             <VText>902729038037</VText>
           </div>
         </div>
@@ -35,7 +35,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .contacts {
+  .contact {
     &__intro {
       display: flex;
       flex-direction: column;
@@ -45,7 +45,6 @@
     &__items {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      width: 100%;
     }
 
     &__item-title {

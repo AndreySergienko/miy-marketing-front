@@ -12,18 +12,19 @@
         </div>
       </div>
     </div>
+    <VCategories />
   </div>
 </template>
 <script setup>
   import VButtonLogIn from '../Buttons/Header buttons/VButtonLogIn.vue'
   import VButtonRegistration from '../Buttons/Header buttons/VBUttonRegistration.vue'
   import VNavigation from '../Navigation/VNavigation.vue'
+  import VCategories from '../Categories/VCategories.vue';
 </script>
 
 <style lang="scss" scoped>
   
   .header {
-    margin-bottom: var(--ident-xxxl);
     border-bottom: 1px solid var(--color-light-gray);
 
     &__container {
