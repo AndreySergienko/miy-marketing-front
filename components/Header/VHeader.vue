@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="header">
-      <div class="header__container">
+      <div class="container">
         <div class="header__inner">
           <h1 class="header__title">ON DEVELOPER</h1>
           <VNavigation />
@@ -10,9 +10,9 @@
             <VButtonRegistration />
           </div>
         </div>
+        <VCategories />
       </div>
     </div>
-    <VCategories />
   </div>
 </template>
 <script setup>
@@ -25,12 +25,7 @@
 <style lang="scss" scoped>
   
   .header {
-    border-bottom: 1px solid var(--color-light-gray);
-
-    &__container {
-      max-width: 1600px;
-      margin: 0 auto;
-    }
+    margin-bottom: var(--ident-xxxl);
 
     &__inner {
       display: flex;

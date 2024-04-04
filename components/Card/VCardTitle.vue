@@ -8,7 +8,7 @@
   const props = defineProps({
     title: {
       type:String,
-      default: 'Еaque ipsa 300 р'
+      default: 'Еaque ipsa'
     }
   })
 </script>

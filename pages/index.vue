@@ -1,7 +1,9 @@
 
 <template>
   <div class="main">
-    <VHeader />
+    <div class="header">
+      <VHeader />
+    </div>
     <NuxtImg class="logo" src="../public/Dragon.png" />
     <div class="intro">
       <div class="container">
@@ -32,7 +34,7 @@
         </div>
       </div>
     </div>
-    <div calss="tg">
+    <div class="tg">
       <div class="container">
         <div class="tg__inner">
           <div class="tg__text">
@@ -46,7 +48,7 @@
             <Card
               v-for="index in 9" :key="index"  
               
-              button-text= "Купить"
+              price="300 р"
               people= "12 000"
               advertising= "1/24"
               new-people= "376" 
@@ -57,7 +59,7 @@
     </div>
     <div class="more">
       <p class="more__text">Смотреть еще</p>
-      <nuxt-icon class="more__icon" name="arrow" />
+      <nuxt-icon class="more__icon" name="arrow" filled/>
     </div>
     <div class="FAQ">
       <div class="container">
@@ -107,13 +109,14 @@
     width: 55%;
     left: 1120px;
     top: 140px;
-    transform: rotate(-16deg);
+    transform: rotate(-17deg);
   }
 
   .intro {
-    margin-bottom: 265px;
+    margin-bottom: 200px;
 
     &__inner {
+      padding: 64px 0px;
       width: 55%;
     }
   }
@@ -122,16 +125,20 @@
     margin-bottom: 200px;
 
     &__inner {
+      padding: 80px 0px;
       display: flex;
       justify-content: space-between;
     }
 
     &__text {
       width: 80%;
+      margin-bottom: var(--ident-xxl);
     }
   }
 
   .tg {
+    margin-bottom: 120px;
+
     &__inner {
       display: flex;
       flex-direction: column;
@@ -153,10 +160,12 @@
   }
 
   .more {
+    margin-bottom: 200px;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 200px;
+    cursor: pointer;
 
     &__text {
       font-size: var( --font-size-m);
@@ -177,6 +186,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      margin-bottom: var(--ident-xxl);
     }
   }
 
@@ -186,11 +196,12 @@
     &__inner {
       display: flex;
       align-items: center;
+      padding: 80px 0px;
     }
 
     &__map {
       border: 1px solid var(--color-light-gray);
-      border-radius: 25px; 
+      border-radius: 50px; 
       width: 100%;
     }
   }

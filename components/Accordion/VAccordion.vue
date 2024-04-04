@@ -1,12 +1,14 @@
 <template>
   <div class="accordion">
     <div v-for="(accordItem, id) in accordList" :key="id" class="accordion__inner">
-      <div class="accordion__title">
-        <h3> {{ accordItem.title }}</h3>
-        <nuxt-icon @click="accordion(accordItem)" :name="accordItem.isOpen ? 'minus' : 'plus'" filled></nuxt-icon>
-      </div>
-      <div v-if="accordItem.isOpen" class="accordion__text">
-        <p>{{ accordItem.text }}</p>
+      <div class="accordion__item">
+        <div class="accordion__title">
+          <span> {{ accordItem.title }}</span>
+          <nuxt-icon class="accordion__icon" @click="accordion(accordItem)" :name="accordItem.isOpen ? 'minus' : 'plus'" filled></nuxt-icon>
+        </div>
+        <div v-if="accordItem.isOpen" class="accordion__text">
+          <p>{{ accordItem.text }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -25,13 +27,15 @@
 </script>
 <style lang="scss" scoped>
   .accordion {
-    &__inner {
-      padding: var(--ident-xs);
+
+    &__item {
+      padding: 24px;
+      border: 1px solid var(--color-light-gray);
+      border-radius: 25px;
+      margin-bottom: 48px;
     }
 
     &__title {
-      margin-bottom: var(--ident-xl);
-
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -41,8 +45,13 @@
     }
 
     &__text {
+      margin-top: 60px;
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
+    }
+
+    &__icon {
+      cursor: pointer;
     }
   }
   

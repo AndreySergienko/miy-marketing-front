@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <div class="footer__container">
+    <div class="container">
       <div class="footer__inner">
         <div class="footer__nav">
           <VNavigation />
@@ -34,11 +34,6 @@
 <style lang="scss" scoped>
   .footer {
     border-top: 1px solid var(--color-light-gray);
-
-    &__container {
-      max-width: 1600px;
-      margin: 0 auto;
-    }
 
     &__inner {
       padding: 48px 0px var(--ident-xs);
