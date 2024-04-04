@@ -1,16 +1,13 @@
 <template>
   <div>
     <div class="header">
-      <div class="container">
-        <div class="header__inner">
-          <h1 class="header__title">ON DEVELOPER</h1>
-          <VNavigation />
-          <div class="header__button">
-            <VButtonLogIn />
-            <VButtonRegistration />
-          </div>
+      <div class="header__inner">
+        <h1 class="header__title">ON DEVELOPER</h1>
+        <VNavigation />
+        <div class="header__button">
+          <VButtonLogIn />
+          <VButtonRegistration />
         </div>
-        <VCategories />
       </div>
     </div>
   </div>
@@ -25,7 +22,7 @@
 <style lang="scss" scoped>
   
   .header {
-    margin-bottom: var(--ident-xxxl);
+    margin-bottom: var(--ident-xs);
 
     &__inner {
       display: flex;

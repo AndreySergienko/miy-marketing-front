@@ -2,7 +2,12 @@
 <template>
   <div class="main">
     <div class="header">
-      <VHeader />
+      <div class="container">
+        <div class="header__inner">
+          <VHeader />
+          <VCategories />
+        </div>
+      </div>
     </div>
     <NuxtImg class="logo" src="../public/Dragon.png" />
     <div class="intro">
@@ -94,6 +99,7 @@
   import VAccordion from '../components/Accordion/VAccordion.vue'
   import VContacts from '../components/Contacts/VContacts.vue';
   import VFooter from '../components/Footer/VFooter.vue'
+  import VCategories from '../components/Categories/VCategories.vue';
 </script>
 
 <style lang="scss" scoped>
