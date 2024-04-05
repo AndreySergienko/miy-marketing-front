@@ -46,6 +46,7 @@
 </script>
 
 <style lang="scss" scoped>
+  
   .auth {
     position: relative;
 

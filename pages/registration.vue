@@ -96,7 +96,7 @@
     }
 
     &__text {
-      padding: 32px 86px;
+      padding: 65px 86px;
     }
 
     &__title {
@@ -117,8 +117,10 @@
       margin-bottom: var(--ident-xs);
 
       &-login {
-        position: relative;
         margin-right: var(--ident-xs);
+      }
+
+      &-registration {
         color: var(--color-blue);
       }
     }
