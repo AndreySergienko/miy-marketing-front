@@ -118,6 +118,8 @@
 
       &-login {
         margin-right: var(--ident-xs);
+        color: var(--color-black);
+        text-decoration: none;
       }
 
       &-registration {

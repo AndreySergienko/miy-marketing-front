@@ -15,8 +15,8 @@
             <h3 class="auth__title">Добро пожаловать в ON DEVELOPER</h3>
             <div class="auth__form">
               <div class="auth__link">
-                <nuxt-link class="auth__link-login" to="">Войти</nuxt-link>
-                <nuxt-link class="auth__link-registration" to="./registration">Регистрация</nuxt-link>
+                <nuxt-link class="auth__link-login" to="/auth">Войти</nuxt-link>
+                <nuxt-link class="auth__link-registration" to="/registration">Регистрация</nuxt-link>
               </div>
               <div class="auth__input">
                 <div class="auth__input-item">
@@ -96,19 +96,13 @@
       margin-bottom: var(--ident-xs);
 
       &-login {
-        position: relative;
         margin-right: var(--ident-xs);
         color: var(--color-blue);
+      }
 
-        // &::after {
-        //   content: "";
-        //   width: 60px;
-        //   height: 2px;
-        //   background-color: blue;
-        //   position: absolute;
-        //   top: 30px;
-        //   left: 0px;
-        // }
+      &-registration {
+        color: var(--color-black);
+        text-decoration: none;
       }
     }
 
