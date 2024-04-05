@@ -5,8 +5,8 @@
         <h1 class="header__title">ON DEVELOPER</h1>
         <VNavigation />
         <div class="header__button">
-          <VButtonLogIn />
-          <VButtonRegistration />
+          <VButtonLogIn @click="signin" />
+          <VButtonRegistration @click="signup"/>
         </div>
       </div>
     </div>
@@ -14,9 +14,16 @@
 </template>
 <script setup>
   import VButtonLogIn from '../Buttons/Header buttons/VButtonLogIn.vue'
-  import VButtonRegistration from '../Buttons/Header buttons/VBUttonRegistration.vue'
+  import VButtonRegistration from '../Buttons/Header buttons/VButtonRegistration.vue'
   import VNavigation from '../Navigation/VNavigation.vue'
-  import VCategories from '../Categories/VCategories.vue';
+
+  const router = useRouter()
+  const signup = () => {
+    router.push('/registration')
+  }
+  const signin = () => {
+    router.push('/auth')
+  }
 </script>
 
 <style lang="scss" scoped>

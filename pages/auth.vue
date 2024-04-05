@@ -16,7 +16,7 @@
             <div class="auth__form">
               <div class="auth__link">
                 <nuxt-link class="auth__link-login" to="">Войти</nuxt-link>
-                <nuxt-link class="auth__link-registration" to="">Регистрация</nuxt-link>
+                <nuxt-link class="auth__link-registration" to="./registration">Регистрация</nuxt-link>
               </div>
               <div class="auth__input">
                 <div class="auth__input-item">
@@ -35,11 +35,9 @@
               </div>
             </div>
           </div>
-          
         </div>
       </div>
     </div>
-    
   </div>
 </template>
 
@@ -53,7 +51,7 @@
 
     &__inner {
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
     }
 
     &__logo {
@@ -101,15 +99,15 @@
         margin-right: var(--ident-xs);
         color: var(--color-blue);
 
-        &::after {
-          content: "";
-          width: 60px;
-          height: 2px;
-          background-color: blue;
-          position: absolute;
-          top: 30px;
-          left: 0px;
-        }
+        // &::after {
+        //   content: "";
+        //   width: 60px;
+        //   height: 2px;
+        //   background-color: blue;
+        //   position: absolute;
+        //   top: 30px;
+        //   left: 0px;
+        // }
       }
     }
 
