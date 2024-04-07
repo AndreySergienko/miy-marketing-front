@@ -3,10 +3,12 @@
     <div class="header">
       <div class="header__inner">
         <h1 class="header__title">ON DEVELOPER</h1>
-        <VNavigation />
+        <slot name="navigation" />
         <div class="header__button">
-          <VButtonLogIn @click="signin" />
-          <VButtonRegistration @click="signup"/>
+          <VButton size="s">Логин</VButton>
+          <VButton size="s">Регистрация</VButton>
+<!--          <VButtonLogIn @click="signin" />-->
+<!--          <VButtonRegistration @click="signup"/>-->
         </div>
       </div>
     </div>

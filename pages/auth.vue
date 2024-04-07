@@ -1,10 +1,4 @@
 <template>
-  <div class="main">
-    <div class="header">
-      <div class="container">
-        <VHeader />
-      </div>
-    </div>
     <div class="auth">
       <div class="auth__inner">
         <div class="auth__logo">
@@ -38,7 +32,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script setup>
