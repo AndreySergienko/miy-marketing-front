@@ -67,7 +67,6 @@
 
 <style lang="scss" scoped>
   .card {
-    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);
     border-radius: 25px;
     margin-bottom: var(--ident-xs);
 
