@@ -6,7 +6,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 .container {
-  max-width: 1600px;
+  max-width: 1630px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0px 160px;
+  padding: 0 15px;
+}
+
+.animation {
+  transition: transform 500ms linear, opacity 500ms linear;
+
+  &-hide {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
 }

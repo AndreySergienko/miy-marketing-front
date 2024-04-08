@@ -12,31 +12,35 @@
     <NuxtImg class="logo" src="../public/Dragon.png" />
     <div class="intro">
       <div class="container">
-        <div class="intro__inner">
-          <VTitle> Ut enim ad minim veniam, quis nostrud exercitation </VTitle>
-          <VText> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut <br>
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco <br>
-            laboris nisi ut aliquip ex ea commodo consequat.</VText>
-        </div>
+        <shared-animation>
+          <div class="intro__inner">
+            <VTitle> Ut enim ad minim veniam, quis nostrud exercitation </VTitle>
+            <VText> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut <br>
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco <br>
+              laboris nisi ut aliquip ex ea commodo consequat.</VText>
+          </div>
+        </shared-animation>
       </div>
     </div>
     <div class="benefit">
       <div class="container">
-        <div class="benefit__inner">
-          <div class="benefit__text">
-            <VTitle> Наши преимущества </VTitle>
-            <VText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod <br> 
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <br>
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo <br>
-              consequat.
-            </VText>
-            <VText>Lorem ipsum dolor sit amet, consectetur dipiscing elit, sed do eiusmod tempor <br>
-               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <br> 
-               nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </VText>
+        <shared-animation>
+          <div class="benefit__inner">
+            <div class="benefit__text">
+              <VTitle> Наши преимущества </VTitle>
+              <VText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod <br>
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <br>
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo <br>
+                consequat.
+              </VText>
+              <VText>Lorem ipsum dolor sit amet, consectetur dipiscing elit, sed do eiusmod tempor <br>
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <br>
+                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </VText>
+            </div>
+            <Benefit />
           </div>
-          <Benefit />
-        </div>
+        </shared-animation>
       </div>
     </div>
     <div class="tg">
@@ -100,6 +104,7 @@
   import VContacts from '../components/Contacts/VContacts.vue';
   import VFooter from '../components/Footer/VFooter.vue'
   import VCategories from '../components/Categories/VCategories.vue';
+  import SharedAnimation from "../components/SharedAnimation/SharedAnimation.vue";
 </script>
 
 <style lang="scss" scoped>
@@ -129,9 +134,9 @@
 
   .benefit {
     margin-bottom: 200px;
+    padding: 80px 0;
 
     &__inner {
-      padding: 80px 0px;
       display: flex;
       justify-content: space-between;
     }
