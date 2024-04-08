@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-  import VNavigation from '../components/Navigation/VNavigation.vue'
+  import VNavigation from '../components/VNavigation/VNavigation.vue'
 </script>
 
 <style lang="scss" scoped>

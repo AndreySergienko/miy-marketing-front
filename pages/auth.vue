@@ -1,14 +1,9 @@
 <template>
   <div class="main">
-    <div class="header">
-      <div class="container">
-        <VHeader />
-      </div>
-    </div>
     <div class="auth">
       <div class="auth__inner">
         <div class="auth__logo">
-          <NuxtImg class="auth__img" src="../public/DragonAuth.png" />
+           <NuxtImg class="auth__img" src="../public/DragonAuth.png" /> 
         </div>
         <div class="auth__intro">
           <div class="auth__text">
@@ -40,10 +35,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-  import VHeader from '../components/Header/VHeader.vue';
-</script>
 
 <style lang="scss" scoped>
   
@@ -155,8 +146,5 @@
       cursor: pointer;
       box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);
     }
-  }
-  
-
-  
+  } 
 </style>

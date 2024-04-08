@@ -1,4 +1,4 @@
-import { IBenefitItem } from "./Benefit.type";
+import { IBenefitItem } from "./VBenefit.type";
 
 export const benefitList: IBenefitItem[]= [
   {text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', number: '10K'},

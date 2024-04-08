@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-  import {categoriesList} from './Categories.data'
+  import {categoriesList} from './VCategories.data'
   import {ref} from 'vue'
 
   const isOpen = ref(false)
@@ -38,6 +38,8 @@
 <style lang="scss" scoped>
 
   .categories {
+    margin-bottom: var(--ident-xxxl);
+
     &__container {
       max-width: 1600px;
       margin: 0 auto;

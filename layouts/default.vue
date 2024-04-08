@@ -1,9 +1,12 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="layout">
-
-    <main class="layout__main">
-      <slot></slot>
-    </main>
+  <div class="container">
+    <AppHeader />
+  </div>
+  <div>
+    <slot/>
   </div>
 </template>
+
+<script setup>
+  import AppHeader from '../components/AppHeader/AppHeader.vue';
+</script>

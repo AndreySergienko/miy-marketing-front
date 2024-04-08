@@ -1,10 +1,5 @@
 <template>
   <div class="main">
-    <div class="header">
-      <div class="container">
-        <VHeader />
-      </div>
-    </div>
     <div class="registration">
       <div class="registration__inner">
         <div class="registration__logo">
@@ -62,10 +57,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-  import VHeader from '../components/Header/VHeader.vue';
-</script>
 
 <style lang="scss" scoped>
   .registration {
