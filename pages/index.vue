@@ -45,19 +45,19 @@
         <div class="tg__inner">
           <div class="tg__text">
             <VTitle>ТГ-каналы</VTitle>
-            <VText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+            <VText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                 laboris nisi ut aliquip ex ea commodo consequat.
             </VText>
           </div>
           <div class="card__list">
             <VCard
-              v-for="index in 9" :key="index"  
-              
+              v-for="index in 9" :key="index"
+
               price="300 р"
               people= "12 000"
               advertising= "1/24"
-              new-people= "376" 
+              new-people= "376"
             />
           </div>
         </div>
@@ -91,16 +91,6 @@
     </div>
   </div>
 </template>
-<script setup>
-  import VBenefit from '../components/VBenefit/VBenefit.vue';
-  import VCard from '../components/VCard/VCard.vue';
-  import VTitle from '../components/VTitle/Vtitle.vue';
-  import VText from '../components/VText/VText.vue';
-  import VAccordion from '../components/VAccordion/VAccordion.vue';
-  import VContacts from '../components/VContacts/VContacts.vue';
-  import VFooter from '../components/VFooter/VFooter.vue'
-  import VCategories from '../components/VCategories/VCategories.vue';
-</script>
 
 <style lang="scss" scoped>
   .main {
@@ -198,7 +188,7 @@
 
   .contacts {
     margin-bottom: 200px;
-    
+
     &__inner {
       display: flex;
       align-items: center;
@@ -207,7 +197,7 @@
 
     &__map {
       border: 1px solid var(--color-light-gray);
-      border-radius: 50px; 
+      border-radius: 50px;
       width: 100%;
     }
   }
