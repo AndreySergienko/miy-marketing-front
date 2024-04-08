@@ -4,7 +4,6 @@
     <div class="header">
       <div class="container">
         <div class="header__inner">
-          <VHeader />
           <VCategories />
         </div>
       </div>
@@ -35,7 +34,7 @@
                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </VText>
           </div>
-          <Benefit />
+          <VBenefit />
         </div>
       </div>
     </div>
@@ -50,7 +49,7 @@
             </VText>
           </div>
           <div class="card__list">
-            <Card
+            <VCard
               v-for="index in 9" :key="index"  
               
               price="300 р"
@@ -91,15 +90,14 @@
   </div>
 </template>
 <script setup>
-  import VHeader from '../components/Header/VHeader.vue';
-  import Benefit from '../components/Benefit/Benefit.vue';
-  import Card from '../components/Card/VCard.vue'
-  import VTitle from '../components/Title/VTitle.vue'
-  import VText from '../components/Text/VText.vue'
-  import VAccordion from '../components/Accordion/VAccordion.vue'
-  import VContacts from '../components/Contacts/VContacts.vue';
-  import VFooter from '../components/Footer/VFooter.vue'
-  import VCategories from '../components/Categories/VCategories.vue';
+  import VBenefit from '../components/VBenefit/VBenefit.vue';
+  import VCard from '../components/VCard/VCard.vue';
+  import VTitle from '../components/VTitle/Vtitle.vue';
+  import VText from '../components/VText/VText.vue';
+  import VAccordion from '../components/VAccordion/VAccordion.vue';
+  import VContacts from '../components/VContacts/VContacts.vue';
+  import VFooter from '../components/VFooter/VFooter.vue'
+  import VCategories from '../components/VCategories/VCategories.vue';
 </script>
 
 <style lang="scss" scoped>
@@ -114,7 +112,7 @@
     z-index: -1;
     width: 55%;
     left: 1120px;
-    top: 140px;
+    top: 60px;
     transform: rotate(-17deg);
   }
 

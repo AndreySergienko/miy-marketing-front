@@ -30,8 +30,8 @@
 </template>
 
 <script setup>
-  import VTitle from '../Title/VTitle.vue';
-  import VText from '../Text/VText.vue';
+  import VTitle from '../VTitle/VTitle.vue';
+  import VText from '../VText/VText.vue';
 </script>
 
 <style lang="scss" scoped>

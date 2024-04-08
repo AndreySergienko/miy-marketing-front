@@ -1,4 +1,4 @@
-import { ICategoriesItem } from "./Categories.type";
+import { ICategoriesItem } from "./VCategories.type";
 
 export const categoriesList: ICategoriesItem[]= [
   {text: 'Блоги', number: '12.4k'},

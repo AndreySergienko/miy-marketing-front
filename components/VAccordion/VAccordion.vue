@@ -14,7 +14,7 @@
   </div>
 </template>
 <script setup>
-  import { accordList } from './Accordion.data.ts';
+  import { accordList } from './VAccordion.data.ts';
   import {ref} from 'vue';
 
   const iconName = ref('plus')
