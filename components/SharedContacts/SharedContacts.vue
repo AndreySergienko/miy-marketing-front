@@ -3,25 +3,25 @@
     <div class="contact__inner">
       <div class="contact__intro">
         <div class="contact__title">
-          <VTitle>Контакты</VTitle>
-          <VText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </VText>
+          <SharedTitle>Контакты</SharedTitle>
+          <SharedText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </SharedText>
         </div>
         <div class="contact__items">
           <div class="contact__item">
             <h3 class="contact__item-title">Email</h3>
-            <VText>ON-Developer@gmail.com</VText>
+            <SharedText>ON-Developer@gmail.com</SharedText>
           </div>
           <div class="contact__item">
             <h3 class="contact__item-title">Тг канал</h3>
-            <VText>https://t.me/ON-Developer</VText>
+            <SharedText>https://t.me/ON-Developer</SharedText>
           </div>
           <div class="contact__item">
             <h3 class="contact__item-title">Адрес</h3>
-            <VText>Вятская улица, 47с2А, Москва, 127015</VText>
+            <SharedText>Вятская улица, 47с2А, Москва, 127015</SharedText>
           </div>
           <div class="contact__item">
             <h3 class="contact__item-title">ИНН</h3>
-            <VText>902729038037</VText>
+            <SharedText>902729038037</SharedText>
           </div>
         </div>
       </div>
@@ -30,8 +30,8 @@
 </template>
 
 <script setup>
-  import VTitle from '../VTitle/VTitle.vue';
-  import VText from '../VText/VText.vue';
+  import SharedTitle from '../SharedTitle/SharedTitle.vue';
+  import SharedText from '../SharedText/SharedText.vue';
 </script>
 
 <style lang="scss" scoped>

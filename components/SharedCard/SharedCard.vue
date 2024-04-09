@@ -2,9 +2,9 @@
   <div class="card">
     <div class="card__inner">
       <img class="card__img" src="../../public/tg.png" />
-      <VCardTitle class="card__title"/>
+      <SharedCardTitle class="card__title"/>
       <div class="card__price">{{ price }}</div>
-      <VCardText />
+      <SharedCardText />
       <div class="card__icons">
         <div class="card__icon">
           <div class="card__icon-text">
@@ -41,8 +41,8 @@
 
 <script setup>
 
-  import VCardTitle from './VCardTitle.vue';
-  import VCardText from './VCardText.vue'
+  import SharedCardTitle from './SharedCardTitle.vue';
+  import SharedCardText from './SharedCardText.vue'
 
   const props = defineProps({
     price: String,
@@ -67,9 +67,13 @@
 
 <style lang="scss" scoped>
   .card {
-    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);
     border-radius: 25px;
     margin-bottom: var(--ident-xs);
+    transition: box-shadow 0.3ms;
+
+    &:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
 
     &__inner {
       padding: var(--ident-xs) var(--ident-xxl) 146px;
@@ -98,7 +102,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      // padding: 8px 24px;
       gap: 10px;
 
       &-text {

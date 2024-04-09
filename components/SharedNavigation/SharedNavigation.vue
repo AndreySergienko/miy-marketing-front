@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-  import { navList } from './VNavigation.data';
+  import { navList } from './SharedNavigation.data';
 </script>
 
 <style scoped>

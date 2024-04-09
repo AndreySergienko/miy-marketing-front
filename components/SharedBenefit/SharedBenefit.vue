@@ -15,7 +15,7 @@
 
 
 <script setup>
-  import {benefitList} from './VBenefit.data';
+  import {benefitList} from './SharedBenefit.data';
   import { computed } from 'vue';
 
   const correctClass = computed(() => {

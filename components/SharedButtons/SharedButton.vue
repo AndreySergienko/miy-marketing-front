@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-  import { TClass } from '../../types/Index';
+  import { TClass } from '~/types/index.ts';
 
   type TButtonClass = Record<TClass, string>
   const props = defineProps({

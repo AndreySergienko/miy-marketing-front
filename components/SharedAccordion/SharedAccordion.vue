@@ -14,7 +14,7 @@
   </div>
 </template>
 <script setup>
-  import { accordList } from './VAccordion.data.ts';
+  import { accordList } from './SharedAccordion.data.ts';
   import {ref} from 'vue';
 
   const iconName = ref('plus')
@@ -27,7 +27,7 @@
 </script>
 <style lang="scss" scoped>
   .accordion {
-
+  
     &__item {
       padding: 24px;
       border: 1px solid var(--color-light-gray);
