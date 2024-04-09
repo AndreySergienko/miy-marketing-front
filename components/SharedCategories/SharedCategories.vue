@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-  import {categoriesList} from './VCategories.data'
+  import {categoriesList} from './SharedCategories.data'
   import {ref} from 'vue'
 
   const isOpen = ref(false)

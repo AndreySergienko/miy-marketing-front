@@ -3,7 +3,7 @@
     <div class="container">
       <div class="footer__inner">
         <div class="footer__nav">
-          <VNavigation />
+          <SharedNavigation />
         </div>
         <div class="footer__intro">
           <div class="footer__intro-title">
@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-  import VNavigation from '../components/VNavigation/VNavigation.vue'
+  import SharedNavigation from '../components/SharedNavigation/SharedNavigation.vue'
 </script>
 
 <style lang="scss" scoped>

@@ -1,4 +1,4 @@
-import { IAccordItem } from "~/components/Accordion/Accordion.type";
+import { IAccordItem } from "../../components/SharedAccordion/SharedAccordion.type";
 import {ref} from 'vue'
 
 export const accordList: IAccordItem[] = ref([

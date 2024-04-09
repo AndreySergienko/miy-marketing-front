@@ -1,4 +1,4 @@
-import { ICategoriesItem } from "./VCategories.type";
+import { ICategoriesItem } from "./SharedCategories.type";
 
 export const categoriesList: ICategoriesItem[]= [
   {text: 'Блоги', number: '12.4k'},

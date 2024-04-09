@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1 class="title"><slot/></h1>
+  <div class="title">
+    <span><slot/></span>
   </div>
 </template>
 

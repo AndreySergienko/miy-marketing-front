@@ -1,4 +1,4 @@
-import { INavItem } from "~/components/Navigation/Navigation.type";
+import { INavItem } from "../SharedNavigation/SharedNavigation.type";
 
 export const navList: INavItem[] = [
   {link:'', text: 'Преимущества'},

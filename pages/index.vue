@@ -4,7 +4,7 @@
     <div class="header">
       <div class="container">
         <div class="header__inner">
-          <VCategories />
+          <SharedCategories />
         </div>
       </div>
     </div>
@@ -13,10 +13,10 @@
       <div class="container">
         <shared-animation>
           <div class="intro__inner">
-            <VTitle> Ut enim ad minim veniam, quis nostrud exercitation </VTitle>
-            <VText> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut <br>
+            <SharedTitle> Ut enim ad minim veniam, quis nostrud exercitation </SharedTitle>
+            <SharedText> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut <br>
               labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco <br>
-              laboris nisi ut aliquip ex ea commodo consequat.</VText>
+              laboris nisi ut aliquip ex ea commodo consequat.</SharedText>
           </div>
         </shared-animation>
       </div>
@@ -26,18 +26,18 @@
         <shared-animation>
           <div class="benefit__inner">
             <div class="benefit__text">
-              <VTitle> Наши преимущества </VTitle>
-              <VText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod <br>
+              <SharedTitle> Наши преимущества </SharedTitle>
+              <SharedText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod <br>
                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <br>
                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo <br>
                 consequat.
-              </VText>
-              <VText>Lorem ipsum dolor sit amet, consectetur dipiscing elit, sed do eiusmod tempor <br>
+              </SharedText>
+              <SharedText>Lorem ipsum dolor sit amet, consectetur dipiscing elit, sed do eiusmod tempor <br>
                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <br>
                 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </VText>
+              </SharedText>
             </div>
-            <VBenefit />
+            <SharedBenefit />
           </div>
         </shared-animation>
       </div>
@@ -47,14 +47,14 @@
         <shared-animation>
           <div class="tg__inner">
             <div class="tg__text">
-              <VTitle>ТГ-каналы</VTitle>
-              <VText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+              <SharedTitle>ТГ-каналы</SharedTitle>
+              <SharedText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                   labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                   laboris nisi ut aliquip ex ea commodo consequat.
-              </VText>
+              </SharedText>
             </div>
             <div class="card__list">
-              <VCard
+              <SharedCard
                 v-for="index in 9" :key="index"
 
                 price="300 р"
@@ -76,10 +76,10 @@
         <shared-animation>
           <div class="FAQ__inner">
             <div class="FAQ__text">
-              <VTitle>FAQ</VTitle>
-              <VText>Часто задоваемые нам вопросы на которые уже есть ответы</VText>
+              <SharedTitle>FAQ</SharedTitle>
+              <SharedText>Часто задоваемые нам вопросы на которые уже есть ответы</SharedText>
             </div>
-            <VAccordion />
+            <SharedAccordion />
           </div>
         </shared-animation>
       </div>
@@ -88,14 +88,14 @@
       <div class="container">
         <shared-animation>
           <div class="contacts__inner">
-            <VContacts />
+            <SharedContacts />
             <iframe class="contacts__map" src="https://yandex.ru/map-widget/v1/?um=constructor%3A0ac83c30029fc4deea7465f04dbaec8f68c6459c2bdfc053d2e1d31405ed4ec8&amp;source=constructor" width="900" height="500" frameborder="0"></iframe>
           </div>
         </shared-animation>
       </div>
     </div>
     <div class="footer">
-      <VFooter />
+      <AppFooter />
     </div>
   </div>
 </template>
