@@ -6,8 +6,8 @@
         <span class="attention__title">Нужна авторизация</span>
         <span class="attention__text">Для дальнейшего посещения сайта просим вас авторизироваться, или войти в свой аккаунт</span>
         <div class="attention__btn">
-          <VButton className="l"> Войти </VButton>
-          <VButton className="r"> Зарегистрироваться </VButton>
+          <SharedButton className="l"> Войти </SharedButton>
+          <SharedButton className="r"> Зарегистрироваться </SharedButton>
         </div>
       </div>
     </div>
@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-  import VButton from '../components/VButtons/VButton.vue';
+  import SharedButton from '../components/SharedButtons/SharedButton.vue';
 </script>
 
 <style lang="scss" scoped>

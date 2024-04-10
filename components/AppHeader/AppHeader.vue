@@ -5,8 +5,8 @@
         <h1 class="header__title">ON DEVELOPER</h1>
         <SharedNavigation />
         <div class="header__button">
-          <SharedButton className="l" @click="signin">Войти</SharedButton>
-          <SharedButton className="r" @click="signup">Зарегистрироваться</SharedButton>
+          <SharedButton color="white" @click="signin">Войти</SharedButton>
+          <SharedButton color="blue" @click="signup">Зарегистрироваться</SharedButton>
         </div>
       </div>
     </div>

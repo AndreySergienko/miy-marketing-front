@@ -1,19 +1,16 @@
 <template>
-  <button :class="['btn', buttonClass[className]]" ><slot /></button>
+  <button :class="['btn', buttonColor[color]]" ><slot /></button>
 </template>
 
 <script setup lang="ts">
-  import { TClass } from '~/types/index.ts';
+  import {buttonColor} from './SharedButtons.types';
 
-  type TButtonClass = Record<TClass, string>
   const props = defineProps({
-    className: String
+    color: String,
   })
 
-  const buttonClass: TButtonClass = {
-    l:'btn__login',
-    r:'btn__registration'
-  }
+  
+  
 
 </script>
 
@@ -28,7 +25,7 @@
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);
     cursor: pointer;
 
-    &__login {
+    &__white {
       margin-right: var(--ident-xs);
       padding: var(--ident-m) var(--ident-xs);
       
@@ -37,7 +34,7 @@
       border: 1px solid var(--color-white) ;
     }
 
-    &__registration {
+    &__blue {
       padding: 12px var(--ident-xs);
 
       color: var(--color-white);
