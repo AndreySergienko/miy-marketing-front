@@ -14,10 +14,6 @@
   </div>
 </template>
 
-<script setup>
-  import VButton from '../components/VButtons/VButton.vue';
-</script>
-
 <style lang="scss" scoped>
 .main {
   display: flex;
@@ -33,7 +29,7 @@
     border-radius: 30px;
 
     &__inner {
-      padding: 0px 48px 48px;
+      padding: 0 48px 48px;
       display: flex;
       align-items: center;
       flex-direction: column;
