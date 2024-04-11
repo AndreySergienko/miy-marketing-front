@@ -41,6 +41,18 @@
       background-color: var(--color-blue);
       border: 1px solid var(--color-blue) ;
     }
+
+    &__blue-bold {
+      padding: 16px 212px;
+      width: 500px;
+
+      font-size: 24px;
+      font-weight: var(--font-weight-semi-bold);
+      color: var(--color-white);
+      background-color: var(--color-blue);
+      border: 1px solid transparent;
+      border-radius: 12px;
+    }
   }
     
 </style>

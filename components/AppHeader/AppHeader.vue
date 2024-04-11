@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <div class="header">
-      <div class="header__inner">
-        <h1 class="header__title">ON DEVELOPER</h1>
-        <SharedNavigation />
-        <div class="header__button">
-          <SharedButton color="white" @click="signin">Войти</SharedButton>
-          <SharedButton color="blue" @click="signup">Зарегистрироваться</SharedButton>
-        </div>
+  <div class="header">
+    <div class="header__inner">
+      <h1 class="header__title">ON DEVELOPER</h1>
+      <SharedNavigation />
+      <div class="header__button">
+        <SharedButton color="white" @click="signin">Войти</SharedButton>
+        <SharedButton color="blue" @click="signup">Зарегистрироваться</SharedButton>
       </div>
     </div>
   </div>
@@ -18,10 +16,10 @@
 
   const router = useRouter()
   const signup = () => {
-    router.push('/registration')
+    router.push('/authentication/registration')
   }
   const signin = () => {
-    router.push('/auth')
+    router.push('/authentication/auth')
   }
 </script>
 

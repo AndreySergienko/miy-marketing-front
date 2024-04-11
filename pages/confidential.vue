@@ -6,8 +6,8 @@
         <span class="attention__title">Нужна авторизация</span>
         <span class="attention__text">Для дальнейшего посещения сайта просим вас авторизироваться, или войти в свой аккаунт</span>
         <div class="attention__btn">
-          <SharedButton className="l"> Войти </SharedButton>
-          <SharedButton className="r"> Зарегистрироваться </SharedButton>
+          <SharedButton color="white"> Войти </SharedButton>
+          <SharedButton color="blue"> Зарегистрироваться </SharedButton>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@
     border-radius: 30px;
 
     &__inner {
-      padding: 0px 48px 48px;
+      padding: 0 48px 48px;
       display: flex;
       align-items: center;
       flex-direction: column;
