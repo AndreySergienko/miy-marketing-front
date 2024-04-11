@@ -27,7 +27,7 @@ export default class FetchMapper {
     }
 
     public reverseMapDataKeys<T extends Record<string, unknown>>(data: T) {
-        const convertedObj: TObjectWithStirngKey = {};
+        const convertedObj: TObjectWithStringKey = {};
 
         if (!data) return;
 

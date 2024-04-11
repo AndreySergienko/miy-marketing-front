@@ -1,2 +1,2 @@
-export const authHeaders = {}
-export const defaultHeaders = {}
+export const authHeaders: HeadersInit = {}
+export const defaultHeaders: HeadersInit = {}
