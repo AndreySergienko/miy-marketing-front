@@ -2,9 +2,9 @@
   <div class="navigation">
     <div class="container">
       <div class="navigation__inner">
-        <nuxt-link class="navigation__item" to="">Мой профиль</nuxt-link>
+        <nuxt-link class="navigation__item" to="/personal/profile">Мой профиль</nuxt-link>
         <nuxt-link class="navigation__item" to="">Размещение Тг-каналов</nuxt-link>
-        <nuxt-link class="navigation__item" to="">История операций</nuxt-link>
+        <nuxt-link class="navigation__item" to="/personal/history">История операций</nuxt-link>
       </div>
     </div>
   </div>
@@ -22,9 +22,6 @@
     &__item {
       font-size: 24px;
       font-weight: var(--font-weight-medium);
-    }
-    &__item:first-child {
-      text-decoration: underline var(--color-blue);
     }
   }
 </style>

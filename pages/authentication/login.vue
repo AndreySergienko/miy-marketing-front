@@ -7,7 +7,7 @@
             <h3 class="auth__title">Добро пожаловать в ON DEVELOPER</h3>
             <div class="auth__form">
               <div class="auth__link">
-                <nuxt-link class="auth__link-login" to="/authentication/auth">Войти</nuxt-link>
+                <nuxt-link class="auth__link-login" to="/authentication/login">Войти</nuxt-link>
                 <nuxt-link class="auth__link-registration" to="/authentication/registration">Регистрация</nuxt-link>
               </div>
               <div class="auth__input">

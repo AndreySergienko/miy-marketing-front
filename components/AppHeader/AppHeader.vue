@@ -19,7 +19,7 @@
     router.push('/authentication/registration')
   }
   const signin = () => {
-    router.push('/authentication/auth')
+    router.push('/authentication/login')
   }
 </script>
 
