@@ -2,9 +2,7 @@
   <div class="container">
     <AppHeader />
   </div>
-  <div>
-    <slot/>
-  </div>
+  <slot/>
 </template>
 
 <script setup>

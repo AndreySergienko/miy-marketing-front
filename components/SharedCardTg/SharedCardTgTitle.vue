@@ -6,15 +6,13 @@
   const props = defineProps({
     title: {
       type:String,
-      default: 'Еaque ipsa'
+      default: 'Наименование Тг-канала'
     }
   })
 </script>
-
-<style scoped>
+<style lang="scss" scoped>
   .title {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-l);
     font-weight: var(--font-weight-semi-bold);
-    text-align: center;
   }
 </style>

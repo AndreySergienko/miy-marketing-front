@@ -2,32 +2,27 @@
   <div class="main">
     <div class="auth">
       <div class="auth__inner">
-        <div class="auth__logo">
-           <NuxtImg class="auth__img" src="../public/DragonAuth.png" /> 
-        </div>
         <div class="auth__intro">
           <div class="auth__text">
             <h3 class="auth__title">Добро пожаловать в ON DEVELOPER</h3>
             <div class="auth__form">
               <div class="auth__link">
-                <nuxt-link class="auth__link-login" to="/auth">Войти</nuxt-link>
-                <nuxt-link class="auth__link-registration" to="/registration">Регистрация</nuxt-link>
+                <nuxt-link class="auth__link-login" to="/authentication/login">Войти</nuxt-link>
+                <nuxt-link class="auth__link-registration" to="/authentication/registration">Регистрация</nuxt-link>
               </div>
               <div class="auth__input">
                 <div class="auth__input-item">
-                  <span class="auth__input-item__title">Email</span>
-                  <input class="auth__input-item__text" type="email">
+                  <SharedInput>Email</SharedInput>
                 </div>
                 <div class="auth__input-item">
-                  <span class="auth__input-item__title">пароль</span>
-                  <input class="auth__input-item__text" type="password">
+                  <SharedInput>Пароль</SharedInput>
                   <div class="auth__error">
-                    <span class="auth__error-text">Забыли пароль</span>
+                    <span class="auth__error-text">Забыл пароль</span>
                     <nuxt-icon class="auth__error-icon" name="lock" filled></nuxt-icon>
                   </div>  
                 </div>
-                <button class="auth__button">Войти</button>
               </div>
+              <SharedButton color="blueBold">Войти</SharedButton>
             </div>
           </div>
         </div>
@@ -35,6 +30,14 @@
     </div>
   </div>
 </template>
+
+<script setup>
+  import SharedButton from '~/components/SharedButtons/SharedButton.vue';
+
+  definePageMeta({
+    layout: 'authentication'
+  })
+</script>
 
 <style lang="scss" scoped>
   
@@ -44,18 +47,6 @@
     &__inner {
       display: flex;
       justify-content: flex-end;
-    }
-
-    &__logo {
-      position: absolute;
-      background-color: var(--color-blue);
-      z-index: -1;
-      width: 1920px;
-      height: 854px;
-    }
-
-    &__img {
-      width: 50%;
     }
 
     &__intro {
@@ -100,25 +91,10 @@
     &__input {
       display: flex;
       flex-direction: column;
+      gap: 16px;
 
       &-item {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: var(--ident-l);
-
-        &__title {
-          margin-bottom: var(--ident-m);
-
-          font-size: var(--font-size-m);
-          font-weight: var(--font-weight-medium);
-        }
-
-        &__text {
-          height: 50px;
-          width: 500px;
-          border: 1px solid var(--color-light-gray);
-          border-radius: 12px;
-        }
+        width: 500px;
       }
     }
 
@@ -131,20 +107,6 @@
         color: var(--color-blue);
         margin-right: var(--ident-m);
       }
-    }
-
-    &__button {
-      padding: 16px 212px;
-      width: 500px;
-
-      font-size: 24px;
-      font-weight: var(--font-weight-semi-bold);
-      color: var(--color-white);
-      background-color: var(--color-blue);
-      border: 1px solid transparent;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);
     }
   } 
 </style>
