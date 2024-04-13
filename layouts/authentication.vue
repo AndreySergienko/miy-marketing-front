@@ -14,9 +14,6 @@ import AuthController from "~/controllers/AuthController/AuthController.vue";
 
 </script>
 <style lang="scss" scoped>
-template {
-  position: relative;
-}
   .logo {
     position: absolute;
     background-color: var(--color-blue);

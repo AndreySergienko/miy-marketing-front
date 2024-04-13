@@ -39,7 +39,7 @@
 
       color: var(--color-white);
       background-color: var(--color-blue);
-      border: 1px solid var(--color-blue) ;
+      border: 1px solid var(--color-blue);
     }
 
     &__blue-bold {

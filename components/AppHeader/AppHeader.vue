@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header__inner">
-      <h1 class="header__title">ON DEVELOPER</h1>
+      <nuxt-link class="header__link" to="/"><h1 class="header__title">ON DEVELOPER</h1></nuxt-link>
       <SharedNavigation />
       <div class="header__button">
         <SharedButton color="white" @click="signin">Войти</SharedButton>
@@ -26,6 +26,7 @@
 <style lang="scss" scoped>
   
   .header {
+
     margin-bottom: var(--ident-xs);
 
     &__inner {
@@ -33,6 +34,11 @@
       justify-content: space-between;
       align-items: center;
       margin: var(--ident-xs) 0px;
+    }
+
+    &__link {
+      text-decoration: none;
+      color: var(--color-black);
     }
 
     &__title {

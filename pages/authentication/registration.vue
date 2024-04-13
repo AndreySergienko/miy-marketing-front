@@ -14,7 +14,18 @@
                 <SharedInput> ФИО </SharedInput>
                 <div class="registration__input-items">
                   <SharedInput> Уникальный id 
-                    <nuxt-icon name="question" filled/>
+                    <nuxt-icon class="registration__icon" name="question" filled/>
+                    <div class="registration__icon-subtitle">
+                      <div class="registration__icon-subtitle__inner">
+                        <span class="registration__icon-subtitle__title">Уникальный id</span>
+                        <div class="registration__icon-subtitle__text">
+                          Вы сможете получить уникальный id через нашего
+                          <nuxt-link to="/">тг бота</nuxt-link>. Для начала напишите в строке “/start”. 
+                          Убедительная просьба использовать один аккаунт при получении id и при будущеи осуществлении рекламы. 
+                          В обязательно порядке при размещении рекламы в тг каналах вы должны быть админом.
+                        </div>
+                      </div>
+                    </div>  
                   </SharedInput>
                   <SharedInput> ИНН </SharedInput>
                   <SharedInput> Email </SharedInput>
@@ -108,6 +119,44 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 16px;
         
+      }
+    }
+
+    &__icon {
+      &-subtitle {
+        position: absolute;
+        transform: translateX(-50%);
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.5s;
+        background-color: var(--color-white);
+        border: 1px solid var(--color-light-gray);
+        border-radius: 24px;
+        width: 480px;
+        right: 0;
+
+        &__inner {
+          padding: var(--ident-l);
+          display: flex;
+          flex-direction: column;
+          font-size: 14px;
+          font-weight: var(--font-weight-medium);
+        }
+
+        &__title {
+          font-size: var(--font-size-s);
+          font-weight: var(--font-weight-medium);
+          margin-bottom: var(--ident-m);
+        }
+
+        &.active {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+      &:hover + &-subtitle {
+        visibility: visible;
+        opacity: 1;
       }
     }
 
