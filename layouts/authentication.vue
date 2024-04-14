@@ -12,9 +12,6 @@
       </main>
     </div>
   </section>
-  <main>
-    <slot />
-  </main>
 </template>
 <script setup lang="ts">
 </script>
