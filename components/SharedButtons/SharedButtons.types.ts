@@ -1,5 +1,5 @@
 export type TColorBtn = 'blue' | 'white'
-export type TSizeBtn = 'l' | 'm'
+export type TSizeBtn = 'l' | 'm' | 's'
 
 
 export interface ISharedButtonProps {
@@ -7,9 +7,5 @@ export interface ISharedButtonProps {
   color: TColorBtn;
 }
 
-type TButtonColorClass = Record<TColorBtn, string>
-
-export const buttonColor: TButtonColorClass = {
-  white: 'btn__white',
-  blue: 'btn__blue',
-}
+export type TButtonColorClass = Record<TColorBtn, string>
+export type TButtonSizeClass = Record<TSizeBtn, string>

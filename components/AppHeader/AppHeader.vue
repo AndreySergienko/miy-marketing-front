@@ -4,8 +4,8 @@
       <nuxt-link class="header__link" to="/"><h1 class="header__title">ON DEVELOPER</h1></nuxt-link>
       <SharedNavigation />
       <div class="header__button">
-        <SharedButton color="white" @click="signin">Войти</SharedButton>
-        <SharedButton color="blue" @click="signup">Зарегистрироваться</SharedButton>
+        <SharedButton size="s" color="white" @click="signin">Войти</SharedButton>
+        <SharedButton size="m" color="blue" @click="signup">Зарегистрироваться</SharedButton>
       </div>
     </div>
   </div>

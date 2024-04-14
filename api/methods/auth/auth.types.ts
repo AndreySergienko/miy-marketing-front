@@ -11,7 +11,7 @@ export interface ILoginResponse {
 
 export interface IRegistrationRequest {
     email: string;
-    inn: number;
+    inn: number | null;
     lastname: string;
     name: string;
     password: string;

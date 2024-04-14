@@ -21,6 +21,11 @@
       height: 50px;
       border: 1px solid var(--color-light-gray);
       border-radius: 12px;
+
+      &:focus {
+        border: 1px solid var(--color-blue);
+        outline: none;
+      }
     }
   }
 </style>
