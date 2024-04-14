@@ -3,15 +3,11 @@
 </template>
 
 <script setup lang="ts">
-  import {buttonColor} from './SharedButtons.types';
+  import {buttonColor} from './SharedButton.types';
 
   const props = defineProps({
     color: String,
   })
-
-  
-  
-
 </script>
 
 <style scoped lang="scss">
@@ -28,7 +24,7 @@
     &__white {
       margin-right: var(--ident-xs);
       padding: var(--ident-m) var(--ident-xs);
-      
+
       color: var(--color-blue);
       background-color: var(--color-white);
       border: 1px solid var(--color-white) ;
@@ -54,6 +50,6 @@
       border-radius: 12px;
     }
   }
-    
+
 </style>
 

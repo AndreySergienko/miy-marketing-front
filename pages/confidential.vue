@@ -15,7 +15,6 @@
 </template>
 
 <script setup>
-  import SharedButton from '../components/SharedButtons/SharedButton.vue';
 </script>
 
 <style lang="scss" scoped>

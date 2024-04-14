@@ -1,140 +1,37 @@
 <template>
-  <div class="main">
-    <div class="registration">
-      <div class="registration__inner">
-        <div class="registration__intro">
-          <div class="registration__text">
-            <h3 class="registration__title">Добро пожаловать в ON DEVELOPER</h3>
-            <div class="registration__form">
-              <div class="registration__link">
-                <nuxt-link class="registration__link-login" to="/authentication/login">Войти</nuxt-link>
-                <nuxt-link class="registration__link-registration" to="/authentication/registration">Регистрация</nuxt-link>
-              </div>
-              <div class="registration__input">
-                <SharedInput> ФИО </SharedInput>
-                <div class="registration__input-items">
-                  <SharedInput> Уникальный id 
-                    <nuxt-icon name="question" filled/>
-                  </SharedInput>
-                  <SharedInput> ИНН </SharedInput>
-                  <SharedInput> Email </SharedInput>
-                  <SharedInput> Пароль </SharedInput> 
-                </div>
-                <div class="registration__checkbox">
-                  <span class="registration__checkbox-title">Работа публикации в группе</span>
-                  <div class="registration__checkbox-order">
-                    <div class="redistration__checkbox-order__item">
-                      <input class="checkbox" type="checkbox">В увидомительном порядке
-                    </div>
-                    <div class="redistration__checkbox-order__item">
-                      <input class="checkbox" type="checkbox"> В автоматическом порядке
-                    </div>
-                  </div>
-                  <input class="checkbox" type="checkbox">Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности</nuxt-link>
-                </div>
-                <SharedButton color="blueBold">Войти</SharedButton>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <AuthController>
+    <template #default="{ registrationRules, registrationData, sendRegistration }">
+      <AuthContainer>
+        <template #title>Логин</template>
+        <template #form>
+          <VeeForm v-slot="{ errors, meta }" @submit="sendRegistration" :validation-schema="registrationRules">
+            mail
+            <SharedInput name="email" v-model="registrationData.email" type="text" :error="errors.email" />
+            ps
+            <SharedInput name="password" v-model="registrationData.password" type="text" :error="errors.password" />
+            name
+            <SharedInput name="name" v-model="registrationData.name" type="text" :error="errors.name" />
+            surname
+            <SharedInput name="surname" v-model="registrationData.surname" type="text" :error="errors.surname" />
+            <SharedInput name="lastname" v-model="registrationData.lastname" type="text" :error="errors.lastname" />
+            unqi
+            <SharedInput name="uniqueBotId" v-model="registrationData.uniqueBotId" type="text" :error="errors.uniqueBotId" />
+            inn
+            <SharedInput name="inn" v-model="registrationData.inn" type="text" :error="errors.inn" />
+<!--            <SharedButton :disabled="!meta.valid">Submit</SharedButton>-->
+            <SharedButton>Submit</SharedButton>
+          </VeeForm>
+        </template>
+      </AuthContainer>
+    </template>
+  </AuthController>
 </template>
 
-<script setup>
-  import SharedButton from '~/components/SharedButtons/SharedButton.vue';
+<script setup lang="ts">
+import AuthController from "~/controllers/AuthController/AuthController.vue";
 
-  definePageMeta({
-    layout: 'authentication'
-  })
+
+definePageMeta({
+  layout: 'authentication'
+})
 </script>
-
-<style lang="scss" scoped>
-  .registration {
-    position: relative;
-
-    &__inner {
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    &__intro {
-      border-radius: 25px 0px 0px 25px;
-      background-color: var(--color-white);
-      width: 50%;
-      height: 854px;
-    }
-
-    &__text {
-      padding: 65px 86px;
-    }
-
-    &__title {
-      width: 60%;
-      font-size: var(--font-size-xl);
-      font-weight: var(--font-weight-semi-bold);
-      margin-bottom: var(--ident-xm);
-    }
-
-    &__form {
-      display: flex;
-      flex-direction: column;
-    }
-
-    &__link {
-      font-size: var(--font-size-m);
-      font-weight: var(--font-weight-medium);
-      margin-bottom: var(--ident-xs);
-
-      &-login {
-        margin-right: var(--ident-xs);
-        color: var(--color-black);
-        text-decoration: none;
-      }
-
-      &-registration {
-        color: var(--color-blue);
-      }
-    }
-
-    &__input {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-
-      &-items {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-        
-      }
-    }
-
-    &__checkbox {
-      margin-bottom: var(--ident-xs);
-
-      font-size: 14px;
-      font-weight: var(--font-weight-medium);
-
-      &-title {
-        font-size: var(--font-size-m);
-        font-weight: var(--font-weight-medium);
-      }
-
-      &-order {
-        margin: 8px 0px var(--ident-xs) 0px;
-        display: flex;
-        gap: 220px;
-
-        &__item {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-      }
-    }
-  }
-
-  
-</style>

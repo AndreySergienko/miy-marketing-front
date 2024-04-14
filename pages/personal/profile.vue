@@ -41,7 +41,7 @@
                       <input class="personal__card-form__input" type="number">
                       <nuxt-icon class="personal__card-form__icon" name="password" filled/>
                     </div>
-                    
+
                   </div>
                 </div>
                 <div class="personal__card-form__item">
@@ -53,15 +53,13 @@
           </div>
           <SharedButton class="personal__button" color="blue">Редактировать</SharedButton>
         </div>
-        <NuxtImg class="personal__img" src="../public/Dragon.png" />  
+        <NuxtImg class="personal__img" src="../public/Dragon.png" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-  import SharedButton from '~/components/SharedButtons/SharedButton.vue'
-
   definePageMeta({
     layout: 'personal'
   })
@@ -158,7 +156,7 @@
 
         &__text {
          display: flex;
-         justify-content: space-between; 
+         justify-content: space-between;
         }
 
         &__name {

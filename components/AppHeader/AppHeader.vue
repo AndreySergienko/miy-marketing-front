@@ -11,9 +11,6 @@
   </div>
 </template>
 <script setup>
-  import SharedNavigation from '../SharedNavigation/SharedNavigation.vue'
-  import SharedButton from '../SharedButtons/SharedButton.vue';
-
   const router = useRouter()
   const signup = () => {
     router.push('/authentication/registration')
@@ -24,7 +21,7 @@
 </script>
 
 <style lang="scss" scoped>
-  
+
   .header {
     margin-bottom: var(--ident-xs);
 
