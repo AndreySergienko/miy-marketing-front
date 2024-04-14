@@ -33,11 +33,11 @@
   </div>
 </template>
  <script setup>
-  import AppBenefit from '../components/Partials/AppBenefit.vue';
-  import AppContacts from '../components/Partials/AppContacts.vue';
-  import AppFAQ from '../components/Partials/AppFAQ.vue';
-  import AppIntro from '../components/Partials/AppIntro.vue';
-  import AppTelegram from '../components/Partials/AppTelegram.vue';
+  import AppBenefit from '../src/Partials/AppBenefit.vue';
+  import AppContacts from '../src/Partials/AppContacts.vue';
+  import AppFAQ from '../src/Partials/AppFAQ.vue';
+  import AppIntro from '../src/Partials/AppIntro.vue';
+  import AppTelegram from '../src/Partials/AppTelegram.vue';
 </script>
 
 <style lang="scss" scoped>
