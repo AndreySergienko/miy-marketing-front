@@ -12,7 +12,7 @@
 </template>
 <script setup>
   import SharedNavigation from '../SharedNavigation/SharedNavigation.vue'
-  import SharedButton from '../SharedButtons/SharedButton.vue';
+  import SharedButton from '../SharedButton/SharedButton.vue';
 
   const router = useRouter()
   const signup = () => {

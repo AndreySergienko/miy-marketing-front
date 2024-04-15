@@ -54,7 +54,7 @@
 </template>
 
 <script setup>
-  import SharedButton from '~/components/SharedButtons/SharedButton.vue';
+  import SharedButton from '~/components/SharedButton/SharedButton.vue';
 
   definePageMeta({
     layout: 'authentication'

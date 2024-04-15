@@ -1,15 +1,11 @@
 import { defineRule } from "vee-validate";
-// import { required, email, min } from '@vee-validate/rules';
-import * as rules from "@vee-validate/rules";
+import * as AllRules from "@vee-validate/rules";
 
-export default defineNuxtPlugin((nuxtApp) => {
-  // defineRule('required', required);
-  // defineRule('email', email);
-  // defineRule('min', min);
-  Object.keys(rules)
+export default defineNuxtPlugin(() => {
+  Object.keys(AllRules)
     .filter((k) => k !== "default")
     .forEach((rule) => {
-      defineRule(rule, rules[rule]);
-      // console.log(rule);
+      // @ts-ignore
+      defineRule(rule, AllRules[rule]);
     });
 });

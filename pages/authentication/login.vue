@@ -1,6 +1,6 @@
 <template>
-    <AuthController ref="$authController">
-        <template #default="{ login, sendLogin }">
+    <AuthController>
+        <template #default="{ loginData, loginRules, sendLogin }">
           <AuthContainer>
             <template #title>Добро пожаловать в ON-DEVELOPER</template>
             <template #link>
@@ -8,13 +8,11 @@
               <nuxt-link class="link__registration" to="/authentication/registration">Регистрация</nuxt-link>
             </template>
             <template #form>
-              <SharedInput v-model="login.email">Почта</SharedInput>
-              <SharedInput v-model="login.password">Пароль</SharedInput>
-              <div class="help__password">
-                <span>Забыл Пароль</span>
-                <NuxtIcon name="lock" filled/>
-              </div>
-              <SharedButton size="l" color="blue" @click="sendLogin">Войти</SharedButton>
+              <VeeForm  v-slot="{ errors, meta }" @submit="sendLogin" :validation-schema="loginRules">
+                  <SharedInput name="email" v-model="loginData.email" type="text" :error="errors.email">Почта</SharedInput>
+                  <SharedInput name="password" v-model="loginData.password" type="text" :error="errors.password">Пароль</SharedInput>
+                  <SharedButton :disabled="meta.valid">Войти</SharedButton>
+              </VeeForm>
             </template>
           </AuthContainer>
         </template>
@@ -23,7 +21,6 @@
 
 <script setup lang="ts">
 import AuthController from "~/controllers/AuthController/AuthController.vue";
-import SharedButton from "~/components/SharedButtons/SharedButton.vue";
 
 definePageMeta({
     layout: 'authentication'
