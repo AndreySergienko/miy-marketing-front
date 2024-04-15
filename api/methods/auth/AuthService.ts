@@ -10,7 +10,7 @@ export default class AuthService extends ApiService {
   private readonly authUrl: string;
   constructor() {
     super();
-    this.authUrl = this.url + 'auth/'
+    this.authUrl = 'auth/'
   }
   async login(data: ILoginRequest): Promise<ILoginResponse> {
     return await this.$api(this.authUrl + 'login', {

@@ -8,6 +8,16 @@ export default class ApiBuilder {
         this.mapper = new FetchMapper()
     }
 
+  private createBaseUrl() {
+    const config = useRuntimeConfig()
+    let url = config.public.baseUrlApi
+
+    if (url && url[url.length - 1] !== '/') {
+      url += '/'
+    }
+    return url
+  }
+
     private createOnResponse(context: FetchContext & {
         response: FetchResponse<ResponseType> }) {
         return this.mapper.mapDataKeys(context.response)
@@ -16,6 +26,6 @@ export default class ApiBuilder {
     public create(headers: HeadersInit): $Fetch {
         const onResponse = this.createOnResponse
         // @ts-ignore
-        return ofetch.create({ headers})
+        return ofetch.create({ baseURL: this.createBaseUrl(), headers, onResponse})
     }
 }
