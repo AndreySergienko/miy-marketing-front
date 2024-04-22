@@ -2,58 +2,34 @@
   <div class="personal">
     <div class="container">
       <div class="personal__inner">
-        <div class="personal__text">
+        <div class="personal__intro">
           <h3 class="personal__title">Общая информация</h3>
           <div class="personal__form">
+            <SharedInput>ФИО</SharedInput>
             <div class="personal__form-item">
-              <span class="personal__form-name">Фио</span>
-              <input class="personal__form-input" type="text">
-            </div>
-            <div class="personal__form-documention">
-              <div class="personal__form-item">
-                <span class="personal__form-name">ИНН</span>
-                <input class="personal__form-input" type="number">
-              </div>
-              <div class="personal__form-item">
-                <span class="personal__form-name">Email</span>
-                <input class="personal__form-input" type="email">
-              </div>
+              <SharedInput>ИНН</SharedInput>
+              <SharedInput>Почта</SharedInput>
             </div>
           </div>
           <div class="personal__card">
             <div class="personal__card-inner">
               <h3 class="personal__card-title">Привязанная карта</h3>
               <div class="personal__card-form">
-                <div class="personal__card-form__item">
-                  <span class="personal__card-form__name">Номер карты</span>
-                  <input class="personal__card-form__input" type="number">
-                </div>
-                <div class="personal__card-date">
+                <SharedInput>Номер карты</SharedInput>
+                <div class="personal__card-form__items">
+                  <SharedInput>Дата</SharedInput>
                   <div class="personal__card-form__item">
-                    <span class="personal__card-form__name">Дата</span>
-                    <input class="personal__card-form__input" type="date">
-                  </div>
-                  <div class="personal__card-form__item">
-                    <div class="personal__card-form__title">
-                      <span class="personal__card-form__name">CCV/CVC</span>
-                    </div>
-                    <div class="personal__card-form__text">
-                      <input class="personal__card-form__input" type="number">
-                      <nuxt-icon class="personal__card-form__icon" name="password" filled/>
-                    </div>
-
+                    <SharedInput class=" personal__card-form__input__password">CCV/CVC</SharedInput>
+                    <nuxt-icon class="personal__icon" name="password" filled/>
                   </div>
                 </div>
-                <div class="personal__card-form__item">
-                  <span class="personal__card-form__name">Предпочтение модерации</span>
-                  <input class="personal__card-form__input" type="number">
-                </div>
+                <SharedInput>Предпочтение модерации</SharedInput>
               </div>
             </div>
           </div>
-          <SharedButton class="personal__button" color="blue">Редактировать</SharedButton>
+          <SharedButton class="personal__button" size="m" color="blue">Редактировать</SharedButton>
         </div>
-        <NuxtImg class="personal__img" src="../public/Dragon.png" />
+        <div class="personal__img"/>
       </div>
     </div>
   </div>
@@ -64,7 +40,7 @@
     layout: 'personal'
   })
 </script>
-<style lang="scss">
+<style lang="scss" scoped >
   .personal {
     position: relative;
     overflow: hidden;
@@ -72,18 +48,18 @@
 
     &__inner {
       display: flex;
+      gap: 95px;
     }
 
     &__img {
       position: absolute;
-      z-index: -1;
-      background-size: cover;
-      width: 55%;
-      top: 0;
+      background: url(../../public/Dragon.png) no-repeat;
+      width: 100%;
+      height: 100%;
       left: 925px;
     }
 
-    &__text {
+    &__intro {
       width: 45%;
     }
 
@@ -96,30 +72,15 @@
     &__form {
       display: flex;
       flex-direction: column;
+      gap: var(--ident-xs);
       margin-bottom: var(--ident-xm);
 
-      &-documention {
+      &-item {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-      }
-
-      &-item {
-        display: flex;
-        flex-direction: column;
-      }
-
-      &-name {
-        font-size: var(--font-size-m);
-        font-weight: var(--font-weight-medium);
-      }
-
-      &-input {
-        margin-bottom: 24px;
-        height: 50px;
-        border: 1px solid var(--color-light-gray);
-        border-radius: 12px;
-      }
+        gap: var(--ident-xs);
+        margin-bottom: var(--ident-xm);
+      } 
     }
 
     &__card {
@@ -130,63 +91,47 @@
       margin-bottom: var(--ident-xm);
 
       &-inner {
-        padding: 24px;
+        padding: var(--ident-xs);
       }
 
       &-title {
         font-size: var(--font-size-l);
         font-weight: var(--font-weight-semi-bold);
-        margin-bottom: 18px;
+        margin-bottom: var(--ident-l);
       }
 
       &-form {
         display: flex;
+        gap: var(--ident-l);
         flex-direction: column;
 
 
+        &__items {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: var(--ident-l);
+        }
+
         &__item {
           display: flex;
-          flex-direction: column;
-          margin-bottom: 18px;
         }
 
-        &__title {
-          margin-bottom: var(--ident-m);
-        }
-
-        &__text {
-         display: flex;
-         justify-content: space-between;
-        }
-
-        &__name {
-          font-size: var(--font-size-m);
-          font-weight: var(--font-weight-medium);
-          margin-bottom: var(--ident-m);
-        }
-
-        &__input {
-          height: 50px;
+        &__input__password {
           width: 100%;
-          border: 1px solid var(--color-light-gray);
-          border-radius: 12px;
-          margin-right: var(--ident-m);
         }
-
-        &__icon {
-          font-size: 50px;
-        }
-      }
-
-      &-date {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
       }
     }
 
+    &__icon {
+      margin: var(--ident-xs) 0 0 var(--ident-m);
+      padding: 0;
+      box-sizing: border-box;
+      font-size: 50px;
+    }
+
     &__button {
-      margin-bottom: 237px;
+      border-radius: 13px;
+      margin-bottom: var(--ident-xxxl);
     }
   }
 </style>

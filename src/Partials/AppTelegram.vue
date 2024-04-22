@@ -4,7 +4,7 @@
       <shared-animation>
         <div class="tg__inner">
           <div class="tg__text">
-            <SharedTitle>ТГ-каналы</SharedTitle>
+            <SharedTitle>Telegram-каналы</SharedTitle>
             <SharedText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                 laboris nisi ut aliquip ex ea commodo consequat.
@@ -27,8 +27,9 @@
 </template>
 
 <style scoped lang="scss">
+   @use 'assets/styles/media';
   .tg {
-    margin-bottom: 120px;
+    margin-bottom: var(--ident-xxl);
 
     &__inner {
       display: flex;
@@ -41,6 +42,10 @@
       width: 50%;
       text-align: center;
       margin-bottom: var(--ident-xxl);
+
+      @include media.media-breakpoint-down(sm) {
+        width: 95%;
+      }
     }
   }
 
@@ -48,5 +53,22 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--ident-xm);
+
+    @include media.media-breakpoint-down(xl) {
+      gap: var(--ident-s);
+    }
+    
+    @include media.media-breakpoint-down(l) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include media.media-breakpoint-down(md) {
+      padding: 0 var(--ident-xxl);
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    @include media.media-breakpoint-down(sm) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 </style>

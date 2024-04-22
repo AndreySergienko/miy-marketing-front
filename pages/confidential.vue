@@ -6,16 +6,13 @@
         <span class="attention__title">Нужна авторизация</span>
         <span class="attention__text">Для дальнейшего посещения сайта просим вас авторизироваться, или войти в свой аккаунт</span>
         <div class="attention__btn">
-          <SharedButton color="white"> Войти </SharedButton>
-          <SharedButton color="blue"> Зарегистрироваться </SharedButton>
+          <SharedButton size="s" color="white"> Войти </SharedButton>
+          <SharedButton size="m" color="blue"> Зарегистрироваться </SharedButton>
         </div>
       </div>
     </div>
   </div>
 </template>
-
-<script setup>
-</script>
 
 <style lang="scss" scoped>
 .main {
@@ -32,12 +29,12 @@
     border-radius: 30px;
 
     &__inner {
-      padding: 0 48px 48px;
+      padding: 0 var(--ident-adaptive-xl) var(--ident-adaptive-xl);
       display: flex;
       align-items: center;
       flex-direction: column;
       text-align: center;
-      gap: 48px;
+      gap: var(--ident-adaptive-xl);
     }
 
     &__icon {

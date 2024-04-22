@@ -1,5 +1,6 @@
 <template>
     <div class="field">
+        <span class="field__name" ><slot /></span>
         <VeeField class="field__input" v-model="input" :name="name" :type="type" />
         <span class="field__error" v-if="error">{{ error }}</span>
     </div>
@@ -23,7 +24,8 @@ const input = computed({
 </script>
 
 <style scoped lang="scss">
-  .input {
+  @use 'assets/styles/media';
+  .field {
     display: flex;
     flex-direction: column;
 
@@ -32,12 +34,21 @@ const input = computed({
 
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
+
+      @include media.media-breakpoint-down(sm) {
+        font-size: var(--font-size-s);
+      }
     }
 
-    &__form {
+    &__input {
       height: 50px;
       border: 1px solid var(--color-light-gray);
       border-radius: 12px;
+
+      &:focus {
+        border: 1px solid var(--color-blue);
+        outline: none;
+      }
     }
   }
 </style>

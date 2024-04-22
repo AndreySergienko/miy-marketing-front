@@ -2,6 +2,7 @@
 @use 'colors';
 @use 'fonts';
 @use 'idents';
+@use 'assets/styles/media';
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
@@ -9,7 +10,6 @@
   max-width: 1630px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 15px;
 }
 
 .animation {

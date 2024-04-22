@@ -66,6 +66,8 @@
 </script>
 
 <style lang="scss" scoped>
+  @use 'assets/styles/media';
+
   .card {
     border-radius: 25px;
     margin-bottom: var(--ident-xs);
@@ -76,8 +78,8 @@
     }
 
     &__inner {
-      padding: var(--ident-xs) var(--ident-xxl) 146px;
-      gap: 13px;
+      padding: var(--ident-xs) var(--ident-xl) 146px;
+      gap: var(--ident-mx);
 
       display: flex;
       flex-direction: column;
@@ -91,30 +93,49 @@
     &__price {
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-semi-bold);
+
+      @include media.media-breakpoint-down(sm) {
+        font-size: var(--font-size-mx);
+      }
     }
 
     &__icons {
       display: flex;
-      gap: 60px;
+      gap: var(--ident-xxl);
+      @include media.media-breakpoint-down(sm) {
+          gap: var( --ident-xm);
+        }
     }
 
     &__icon {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: var( --ident-ml);
 
       &-text {
         font-size: var( --font-size-m);
         font-weight: var(--font-weight-semi-bold);
+
+        @include media.media-breakpoint-down(sm) {
+          font-size: var(--font-size-sm);
+        }
       }
 
       &-img {
         &__people, &__newPeople {
-          font-size: 21px;
+          font-size: var(--font-size-m);
+
+          @include media.media-breakpoint-down(sm) {
+            font-size: var(--font-size-sm);
+          }
         }
         &__advertising {
-          font-size: 24px;
+          font-size: var(--font-size-ml);
+
+          @include media.media-breakpoint-down(sm) {
+            font-size: var(--font-size-sm);
+          }
         }
       }
     }
@@ -124,16 +145,23 @@
       justify-content: space-between;
       align-items: center;
       width: 35%;
-      margin-bottom: 16px;
-      gap: 10px;
+      margin-bottom: var(--ident-l);
+      gap: var(--ident-ml);
 
       &-text {
         font-size: var(--font-size-m);
         font-weight: var(--font-weight-semi-bold);
+
+        @include media.media-breakpoint-down(sm) {
+          font-size: var(--font-size-sm);
+        }
       }
 
       &-icon {
-        font-size: 34px;
+        font-size: var(--font-size-l);
+        @include media.media-breakpoint-down(sm) {
+          font-size: var(--font-size-m);
+        }
       }
     }
 
@@ -143,8 +171,8 @@
       align-items: center;
 
       width: 100%;
-      padding: 12px 0px;
-      gap: 10px;
+      padding: var(--ident-mx) 0;
+      gap: var(--ident-ml);
 
       font-size: var(--font-size-m);
 
@@ -153,8 +181,17 @@
       color: var(--color-white);
       background-color: var(--color-blue);
 
+      @include media.media-breakpoint-down(sm) {
+          font-size: var(--font-size-sm);
+          gap: var(--ident-s);
+        }
+
       &-icon {
-        font-size: 24px;
+        font-size: var(--font-size-ml);
+
+        @include media.media-breakpoint-down(sm) {
+          font-size: var(--font-size-s);
+        }
       }
     }
   }

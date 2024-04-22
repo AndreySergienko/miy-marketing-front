@@ -18,7 +18,7 @@ export const useAuthStore = defineStore('global/auth', () => {
             const res= await authService.login(data)
             if (res) token.value = res.token
         } catch (e) {
-            console.log(e)
+            
         }
     }
 
