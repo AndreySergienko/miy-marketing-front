@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <ul class="navigation">
+    <ul :class="['navigation', navDirection[position] ]">
       <li v-for="(navItem, id) in navList" :key="id">
         <div class="navigation__item">
           {{ navItem.text }}
@@ -10,15 +10,54 @@
   </nav>
 </template>
 
-<script setup>
+<script setup lang="ts">
   import { navList } from './SharedNavigation.data';
+  import type { TNavBurger } from './SharedNavigation.type';
+
+  const navDirection: TNavBurger = {
+    column: 'navigation__column'
+  }
+  const props = defineProps({
+    position: String,
+  })
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  @use 'assets/styles/media';
+
   .navigation {
     display: flex;
     cursor: pointer;
-    gap: 50px;
+    gap: var(--ident-adaptive-xl);
+
+    @include media.media-breakpoint-down(sm) {
+      display: flex;
+      flex-direction: column;
+      gap: var( --ident-l);
+    }
+
+    &__column {
+      display: flex;
+      flex-direction: column;
+
+      @include media.media-breakpoint-down(xl) {
+        padding-right: var(--ident-xs);
+      }
+
+      @include media.media-breakpoint-down(l) {
+        padding-right: var(--ident-xs);
+      }
+
+      @include media.media-breakpoint-down(sm) {
+        padding-left: var(--ident-m);
+        margin-bottom: var(--ident-adaptive-xl);
+      }
+
+      @include media.media-breakpoint-down(md) {
+        padding-left: var(--ident-xs);
+      }
+
+    }
   }
   li {
     list-style: none;
@@ -26,5 +65,9 @@
   .navigation__item {
     font-size: var(--font-size-m);
     font-weight: var(--font-weight-medium);
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: var(--font-size-s);
+    }
   }
 </style>

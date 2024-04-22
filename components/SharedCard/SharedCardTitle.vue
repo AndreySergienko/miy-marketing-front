@@ -11,10 +11,16 @@
   })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  @use 'assets/styles/media';
+
   .title {
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-semi-bold);
     text-align: center;
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: var(--font-size-mx);
+    }
   }
 </style>

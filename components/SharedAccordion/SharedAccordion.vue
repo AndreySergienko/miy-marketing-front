@@ -26,13 +26,16 @@
 
 </script>
 <style lang="scss" scoped>
+  @use 'assets/styles/media';
   .accordion {
-  
+    @include media.media-breakpoint-down(xl) {
+      padding: 0 var(--ident-lx);
+    }
     &__item {
-      padding: 24px;
+      padding: var(--ident-xs);
       border: 1px solid var(--color-light-gray);
       border-radius: 25px;
-      margin-bottom: 48px;
+      margin-bottom: var(--ident-adaptive-xl);
     }
 
     &__title {
@@ -42,12 +45,24 @@
 
       font-size: var(--font-size-l);
       font-weight: var(--font-weight-semi-bold);
+
+      @include media.media-breakpoint-down(md) {
+        font-size: var(--font-size-m);
+      }
+      
+      @include media.media-breakpoint-down(sm) {
+        font-size: var(--font-size-m);
+      }
     }
 
     &__text {
-      margin-top: 60px;
+      margin-top: var(--ident-xxl);
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
+
+      @include media.media-breakpoint-down(sm) {
+        font-size: var(--font-size-s);
+      }
     }
 
     &__icon {

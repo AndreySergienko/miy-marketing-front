@@ -1,13 +1,19 @@
 :root {
+  --font-size-ss: 12px;
+  --font-size-sm: 14px;
   --font-size-s: 16px;
   --font-size-m: 20px;
+  --font-size-ml: 24px;
+  --font-size-mx: 30px;
   --font-size-l: 36px;
+  --font-size-xm: 40px;
   --font-size-xl: 48px;
   --font-size-xxl: 80px;
 
   --font-weight-medium: 400;
   --font-weight-semi-bold: 600;
   --font-weight-bold: 700;
+  --font-weight-boldest: 800;
 
   --font-open-sans: 'Open sans', sans-serif;
 }

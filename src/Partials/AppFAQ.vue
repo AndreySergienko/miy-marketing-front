@@ -15,8 +15,9 @@
 </template>
 
 <style scoped lang="scss">
+  @use 'assets/styles/media';
   .FAQ {
-    margin-bottom: 200px;
+    margin-bottom: var(--ident-xxls);
 
     &__text{
       display: flex;
@@ -24,6 +25,11 @@
       justify-content: center;
       align-items: center;
       margin-bottom: var(--ident-xxl);
+
+      @include media.media-breakpoint-down(sm) {
+        text-align: center;
+        padding: 0 var(--ident-l);
+      }
     }
   }
 </style>
