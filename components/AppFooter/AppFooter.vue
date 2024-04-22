@@ -6,10 +6,14 @@
           <SharedNavigation />
         </div>
         <div class="footer__intro">
-          <div class="footer__intro-title">
-            <h3>ОN DEVELOPER</h3>
-            <p>Разработка сайта <span class="studio">Я</span>Р студия</p>
-            <p>© ОN DEVELOPERс 2021-2024</p>
+          <div class="footer__intro-inner">
+            <div class="footer__intro-title">
+              <span>ОN DEVELOPER</span>
+            </div>
+            <div class="footer__intro-text">
+              <p>Разработка сайта <span class="studio">Я</span>Р студия</p>
+              <p>© ОN DEVELOPERс 2021-2024</p>
+            </div>
           </div>
           <div class="footer__intro-contacts">
             <div class="footer__intro-contacts__email">
@@ -32,6 +36,7 @@
 </script>
 
 <style lang="scss" scoped>
+  @use 'assets/styles/media';
   .footer {
     border-top: 1px solid var(--color-light-gray);
 
@@ -41,16 +46,70 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
+      @include media.media-breakpoint-down(xl) {
+        padding: 40px;
+      }
+
+      @include media.media-breakpoint-down(sm) {
+        padding: 0 0 0 var(--ident-m);
+        margin-top: var(--ident-l);
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
 
     &__nav {
       margin-bottom: var(--ident-xl);
+
+      @include media.media-breakpoint-down(sm) {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: var(--ident-xm);
+      }
     }
 
     &__intro {
       display: flex;
       justify-content: space-between;
       width: 100%;
+
+      @include media.media-breakpoint-down(sm) {
+        flex-direction: column;
+      }
+
+      &-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        @include media.media-breakpoint-down(sm) {
+          order:2;
+        }
+      }
+
+      &-title {
+        font-size: var(--font-size-l);
+        font-weight: var(--font-weight-bold);
+
+        @include  media.media-breakpoint-down(sm) {
+          font-size: 20px;
+          font-weight: var(--font-weight-bold);
+        }
+      }
+
+      &-text {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: var(--font-size-s);
+        font-weight: var(--font-weight-medium);
+
+        @include media.media-breakpoint-down(sm) {
+          font-size: 12px;
+          font-weight: var(--font-weight-medium);
+        }
+      }
 
       &-contacts {
         display: flex;
@@ -61,10 +120,20 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
+
+          @include media.media-breakpoint-down(sm) {
+            justify-content: unset;
+          }
         }
 
         &__email {
           margin-bottom: 2px;
+        }
+
+        &__web {
+          @include media.media-breakpoint-down(sm) {
+            margin-bottom: var(--ident-xm);
+          }
         }
       }
     }
@@ -72,28 +141,21 @@
     &__icon {
       font-size: 24px;
       margin-right: 10px;
+
+      @include media.media-breakpoint-down(sm) {
+        font-size: 20px;
+      }
     }
 
     &__icon-text {
       font-size: var(--font-size-m);
       font-weight: var(-font-weight-medium);
+      @include media.media-breakpoint-down(sm) {
+        font-size: 12px;
+      }
+      
     }
   }
-
-  h3, p {
-    margin-bottom: 10px;
-  }
-
-  h3 {
-    font-size: var(--font-size-l);
-    font-weight: var(--font-weight-bold);
-  }
-
-  p {
-    font-size: var(--font-size-s);
-    font-weight: var(--font-weight-medium);
-  }
-
   .studio {
     color: red;
   }

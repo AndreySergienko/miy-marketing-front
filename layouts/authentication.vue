@@ -15,11 +15,21 @@
 <script setup lang="ts">
 </script>
 <style lang="scss" scoped>
+  @use 'assets/styles/media';
   .authentication{ 
 
     &__inner {
+      position: relative;
       display: flex;
       justify-content: flex-end;
+
+      @include media.media-breakpoint-down(xl) {
+        justify-content: flex-start;
+      }
+
+      @include media.media-breakpoint-down(l) {
+        justify-content: flex-start;
+      }
     }
 
     &__logo {
@@ -29,17 +39,35 @@
       z-index: -1;
       width: 1920px;
       height: 854px;
+
+      @include media.media-breakpoint-down(xl) {
+        display: none;
+      }
+
+      @include media.media-breakpoint-down(l) {
+        display: none;
+      }
     }
 
     &__info {
-      padding-left: 86px;
+      padding: 0 86px;
       display: flex;
       align-items: center;
       border: 1px solid transparent;
       border-radius: 48px 0 0 48px;
       background-color: var(--color-white);
-      width: 45%;
       height: 854px;
+      width: 40%;
+
+      @include media.media-breakpoint-down(l) {
+        width: 70%;
+        padding: 0 40px;
+      }
+
+      @include media.media-breakpoint-down(sm) {
+        height: 100%;
+        padding: 0 var(--ident-l);
+      }
     }
   }
 </style>

@@ -6,17 +6,13 @@
         <span class="attention__title">Нужна авторизация</span>
         <span class="attention__text">Для дальнейшего посещения сайта просим вас авторизироваться, или войти в свой аккаунт</span>
         <div class="attention__btn">
-          <SharedButton color="white"> Войти </SharedButton>
-          <SharedButton color="blue"> Зарегистрироваться </SharedButton>
+          <SharedButton size="s" color="white"> Войти </SharedButton>
+          <SharedButton size="m" color="blue"> Зарегистрироваться </SharedButton>
         </div>
       </div>
     </div>
   </div>
 </template>
-
-<script setup>
-  import SharedButton from '../components/SharedButton/SharedButton.vue';
-</script>
 
 <style lang="scss" scoped>
 .main {

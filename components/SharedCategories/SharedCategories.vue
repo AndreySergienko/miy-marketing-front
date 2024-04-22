@@ -36,9 +36,13 @@
 </script>
 
 <style lang="scss" scoped>
-
+  @use 'assets/styles/media';
   .categories {
     margin-bottom: var(--ident-xxxl);
+
+    @include media.media-breakpoint-down(sm) {
+      margin-bottom: 48px;
+    }
 
     &__container {
       max-width: 1600px;
@@ -49,6 +53,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+
+      @include media.media-breakpoint-down(l) {
+        padding: 0 40px;
+      }
+      
+      @include media.media-breakpoint-down(sm) {
+          padding: 0 var(--ident-l);
+        }
     }
 
     &__list {
@@ -69,6 +81,14 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
       margin-bottom: 48px;
+
+      @include media.media-breakpoint-down(l) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include media.media-breakpoint-down(sm) {
+          grid-template-columns: repeat(1, 1fr);
+        }
     }
 
     &__item {

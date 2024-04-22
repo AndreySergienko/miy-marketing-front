@@ -13,12 +13,18 @@
   })
 </script>
 
-<style scoped>
+<style  lang="scss" scoped>
+  @use 'assets/styles/media';
+
   .text {
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-medium);
     padding: var(--ident-s);
     margin-bottom: var(--ident-l);
     text-align: center;
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: 12px;
+    }
   }
 </style>

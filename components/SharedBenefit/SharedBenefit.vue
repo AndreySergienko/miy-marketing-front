@@ -26,6 +26,8 @@
 </script>
 
 <style lang="scss" scoped>
+  @use 'assets/styles/media';
+
   .text__white, .text__black {
     margin-bottom: var(--ident-xs);
     
@@ -34,17 +36,30 @@
     justify-content: space-between;
     height: 150px;
     border-radius: 45px;
+
+    @include media.media-breakpoint-down(xl) {
+      width: 98%;
+    }
   }
 
   .benefit__text {
     font-size: var(--font-size-m);
     font-weight: var(--font-weight-medium);
     width: 50%;
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: var(--font-size-s);
+      width: 65%;
+    }
   }
   
   .benefit__number {
-    font-size: var(--font-size-xxl);
+    font-size: var(--font-size-xl);
     font-weight: var(--font-weight-bold);
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: 30px;
+    }
   }
 
   .text__white {

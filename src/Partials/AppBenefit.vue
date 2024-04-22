@@ -23,18 +23,38 @@
 </template>
 
 <style scoped lang="scss">
+  @use 'assets/styles/media';
   .benefit {
-    margin-bottom: 200px;
+    margin-bottom: 100px;
 
     &__inner {
       padding: 80px 0px;
       display: flex;
       justify-content: space-between;
+
+      @include media.media-breakpoint-down(md) {
+        padding: 0;
+      }
+
+      @include media.media-breakpoint-down(sm) {
+        padding: 0 20px;
+      }
     }
 
     &__text {
       width: 80%;
       margin-bottom: var(--ident-xxl);
+
+      @include media.media-breakpoint-down(sm) {
+        width: 95%;
+      }
+    }
+
+    @include media.media-breakpoint-down(xl) {
+      &__inner {
+        flex-direction: column;
+        padding-left: 20px;
+      }  
     }
   }
 </style>

@@ -66,6 +66,8 @@
 </script>
 
 <style lang="scss" scoped>
+  @use 'assets/styles/media';
+
   .card {
     border-radius: 25px;
     margin-bottom: var(--ident-xs);
@@ -76,7 +78,7 @@
     }
 
     &__inner {
-      padding: var(--ident-xs) var(--ident-xxl) 146px;
+      padding: var(--ident-xs) var(--ident-xl) 146px;
       gap: 13px;
 
       display: flex;
@@ -91,11 +93,18 @@
     &__price {
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-semi-bold);
+
+      @include media.media-breakpoint-down(sm) {
+        font-size: 30px;
+      }
     }
 
     &__icons {
       display: flex;
       gap: 60px;
+      @include media.media-breakpoint-down(sm) {
+          gap: 30px;
+        }
     }
 
     &__icon {
@@ -107,14 +116,26 @@
       &-text {
         font-size: var( --font-size-m);
         font-weight: var(--font-weight-semi-bold);
+
+        @include media.media-breakpoint-down(sm) {
+          font-size: 14px;
+        }
       }
 
       &-img {
         &__people, &__newPeople {
           font-size: 21px;
+
+          @include media.media-breakpoint-down(sm) {
+            font-size: 14px;
+          }
         }
         &__advertising {
           font-size: 24px;
+
+          @include media.media-breakpoint-down(sm) {
+            font-size: 14px;
+          }
         }
       }
     }
@@ -130,10 +151,17 @@
       &-text {
         font-size: var(--font-size-m);
         font-weight: var(--font-weight-semi-bold);
+
+        @include media.media-breakpoint-down(sm) {
+          font-size: 14px;
+        }
       }
 
       &-icon {
         font-size: 34px;
+        @include media.media-breakpoint-down(sm) {
+          font-size: 22px;
+        }
       }
     }
 
@@ -153,8 +181,17 @@
       color: var(--color-white);
       background-color: var(--color-blue);
 
+      @include media.media-breakpoint-down(sm) {
+          font-size: 14px;
+          gap: var(--ident-s);
+        }
+
       &-icon {
         font-size: 24px;
+
+        @include media.media-breakpoint-down(sm) {
+          font-size: 16px;
+        }
       }
     }
   }

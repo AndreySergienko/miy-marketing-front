@@ -7,7 +7,7 @@
         </div>
       </div>
     </div>
-    <NuxtImg class="logo" src="../public/Dragon.png" />
+    <div class="logo" />
     <div class="intro">
       <AppIntro />
     </div>
@@ -41,6 +41,8 @@
 </script>
 
 <style lang="scss" scoped>
+  @use 'assets/styles/media';
+
   .main {
     position: relative;
     overflow: hidden;
@@ -48,16 +50,37 @@
 
   .logo {
     position: absolute;
-    background-size: cover;
+    background: url(../public/dragon_1.png) no-repeat;
     z-index: -1;
-    width: 55%;
-    left: 1120px;
-    top: 60px;
-    transform: rotate(-17deg);
+    width: 100%;
+    height: 100%;
+    left: 990px;
+    top: -25px;
+    
+
+    @include media.media-breakpoint-down(xl) {
+      top: -10px;
+      left: 680px;
+      background-size: 60%;
+    }
+
+    @include media.media-breakpoint-down(l) {
+      top: 90px;
+      left: 525px;
+      background-size: 50%;
+    }
+
+    @include media.media-breakpoint-down(sm) {
+      display: none;
+    }
+
+    @include media.media-breakpoint-down(md) {
+        display: none;
+      }
   }
 
   .more {
-    margin-bottom: 200px;
+    margin-bottom: 100px;
 
     display: flex;
     justify-content: center;
@@ -68,6 +91,10 @@
       font-size: var( --font-size-m);
       font-weight: var(--font-weight-medium);
       margin-right: var(--ident-m);
+
+      @include media.media-breakpoint-down(sm) {
+        font-size: 14px;
+      }
     }
 
     &__icon {

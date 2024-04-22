@@ -4,10 +4,15 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+  @use 'assets/styles/media';
   .text {
     font-size: var(--font-size-m);
     font-weight: var(--font-weight-medium);
     margin-bottom: var( --ident-xm);
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: var(--font-size-s);
+    }
   }
 </style>

@@ -12,19 +12,34 @@
 </template>
 
 <style scoped lang="scss">
+  @use 'assets/styles/media';
   .contacts {
-    margin-bottom: 200px;
+    margin-bottom: 100px;
 
     &__inner {
       display: flex;
       align-items: center;
       padding: 80px 0px;
+
+      @include media.media-breakpoint-down(xl) {
+        padding: 0 20px;
+        flex-direction: column;
+      }
     }
 
     &__map {
       border: 1px solid var(--color-light-gray);
       border-radius: 50px;
       width: 100%;
+
+      @include media.media-breakpoint-down(xl) {
+        width: 90%;
+      }
+
+      @include media.media-breakpoint-down(sm) {
+        width: 328px;
+        height: 264px;
+      }
     }
   }
 </style>

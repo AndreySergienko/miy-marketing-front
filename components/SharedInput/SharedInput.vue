@@ -24,6 +24,7 @@ const input = computed({
 </script>
 
 <style scoped lang="scss">
+  @use 'assets/styles/media';
   .field {
     display: flex;
     flex-direction: column;
@@ -33,6 +34,10 @@ const input = computed({
 
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
+
+      @include media.media-breakpoint-down(sm) {
+        font-size: var(--font-size-s);
+      }
     }
 
     &__input {
