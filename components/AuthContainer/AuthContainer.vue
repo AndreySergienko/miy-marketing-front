@@ -47,14 +47,14 @@
       }
 
       @include media.media-breakpoint-down(sm) {
-        font-size: 30px;
+        font-size: var(--font-size-mx);
         width: 90%;
       }
     }
 
     &__link {
       display: flex;
-      gap: 24px;
+      gap: var(--ident-xs);
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
       margin-bottom: var(--ident-xs);

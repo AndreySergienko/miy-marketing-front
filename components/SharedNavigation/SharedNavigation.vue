@@ -28,12 +28,12 @@
   .navigation {
     display: flex;
     cursor: pointer;
-    gap: 50px;
+    gap: var(--ident-adaptive-xl);
 
     @include media.media-breakpoint-down(sm) {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: var( --ident-l);
     }
 
     &__column {
@@ -50,7 +50,7 @@
 
       @include media.media-breakpoint-down(sm) {
         padding-left: var(--ident-m);
-        margin-bottom: 50px;
+        margin-bottom: var(--ident-adaptive-xl);
       }
 
       @include media.media-breakpoint-down(md) {

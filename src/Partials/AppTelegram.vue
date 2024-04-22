@@ -4,7 +4,7 @@
       <shared-animation>
         <div class="tg__inner">
           <div class="tg__text">
-            <SharedTitle>Тг-каналы</SharedTitle>
+            <SharedTitle>Telegram-каналы</SharedTitle>
             <SharedText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                 laboris nisi ut aliquip ex ea commodo consequat.
@@ -29,7 +29,7 @@
 <style scoped lang="scss">
    @use 'assets/styles/media';
   .tg {
-    margin-bottom: 60px;
+    margin-bottom: var(--ident-xxl);
 
     &__inner {
       display: flex;

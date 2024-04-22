@@ -41,14 +41,14 @@
     border-top: 1px solid var(--color-light-gray);
 
     &__inner {
-      padding: 48px 0px var(--ident-xs);
+      padding: var(--ident-adaptive-xl) 0px var(--ident-xs);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
 
       @include media.media-breakpoint-down(xl) {
-        padding: 40px;
+        padding: var(--ident-adaptive-xl);
       }
 
       @include media.media-breakpoint-down(sm) {
@@ -81,7 +81,7 @@
       &-inner {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: var(--ident-ml);
 
         @include media.media-breakpoint-down(sm) {
           order:2;
@@ -93,7 +93,7 @@
         font-weight: var(--font-weight-bold);
 
         @include  media.media-breakpoint-down(sm) {
-          font-size: 20px;
+          font-size: var(--font-size-m);
           font-weight: var(--font-weight-bold);
         }
       }
@@ -101,12 +101,12 @@
       &-text {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: var(--ident-ml);
         font-size: var(--font-size-s);
         font-weight: var(--font-weight-medium);
 
         @include media.media-breakpoint-down(sm) {
-          font-size: 12px;
+          font-size: var(--font-size-ss);
           font-weight: var(--font-weight-medium);
         }
       }
@@ -139,11 +139,11 @@
     }
 
     &__icon {
-      font-size: 24px;
-      margin-right: 10px;
+      font-size: var(--font-size-ml);
+      margin-right: var(--ident-ml);
 
       @include media.media-breakpoint-down(sm) {
-        font-size: 20px;
+        font-size: var(--font-size-m);
       }
     }
 
@@ -151,7 +151,7 @@
       font-size: var(--font-size-m);
       font-weight: var(-font-weight-medium);
       @include media.media-breakpoint-down(sm) {
-        font-size: 12px;
+        font-size: var(--font-size-ss)
       }
       
     }

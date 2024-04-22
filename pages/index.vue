@@ -88,17 +88,17 @@
     cursor: pointer;
 
     &__text {
-      font-size: var( --font-size-m);
+      font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
       margin-right: var(--ident-m);
 
       @include media.media-breakpoint-down(sm) {
-        font-size: 14px;
+        font-size: var(--font-size-sm);
       }
     }
 
     &__icon {
-      font-size: 24px;
+      font-size: var(--font-size-ml);
     }
   }
 </style>

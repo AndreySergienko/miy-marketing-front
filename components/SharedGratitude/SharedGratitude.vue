@@ -15,7 +15,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 36px;
+      gap: var(--ident-xm);
     }
 
     &__icon {
@@ -26,7 +26,7 @@
       display: flex;
       flex-direction: column;
       text-align: center;
-      gap: 24px;
+      gap: var(--ident-xs);
     }
 
     &__title {

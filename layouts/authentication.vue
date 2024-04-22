@@ -50,7 +50,7 @@
     }
 
     &__info {
-      padding: 0 86px;
+      padding: 0 var(--ident-adaptive-xxxl);
       display: flex;
       align-items: center;
       border: 1px solid transparent;
@@ -61,7 +61,7 @@
 
       @include media.media-breakpoint-down(l) {
         width: 70%;
-        padding: 0 40px;
+        padding: 0 var( --ident-adaptive-xm);
       }
 
       @include media.media-breakpoint-down(sm) {

@@ -15,14 +15,14 @@
 <style scoped lang="scss">
   @use 'assets/styles/media';
   .intro {
-    margin-bottom: 100px;
+    margin-bottom: var(--ident-xxls);
 
     @include media.media-breakpoint-down(xl) {
-      padding: 0 20px;
+      padding: 0 var(--ident-lx);
     }
 
     &__inner {
-      padding: 64px 0px;
+      padding: --ident-xxl 0;
       width: 55%;
 
       @include media.media-breakpoint-down(md) {
@@ -43,7 +43,7 @@
       }
 
       @include media.media-breakpoint-down(sm) {
-        font-size: 30px;
+        font-size: var(--font-size-mx);
         font-weight: var(--font-weight-bold);
       }
     }

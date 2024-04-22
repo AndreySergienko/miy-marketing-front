@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header__inner">
-      <nuxt-link class="header__link" to="/"><h1 class="header__title">ON DEVELOPER</h1></nuxt-link>
+      <nuxt-link class="header__link" to="/"><h1 class="header__title">ON-DEVELOPER</h1></nuxt-link>
       <SharedNavigation class="header__navigation" />
       <div class="header__button">
         <SharedButton size="s" color="white" @click="signin">Войти</SharedButton>
@@ -34,11 +34,11 @@
       margin: var(--ident-xs) 0px;
 
       @include media.media-breakpoint-down(xl) {
-        padding: 0 80px;
+        padding: 0 var(--ident-adaptive-xxl);
       }
 
       @include media.media-breakpoint-down(l) {
-        padding: 0 40px;
+        padding: 0 var(--ident-adaptive-xm);
         justify-content: space-between;
       }
 
@@ -67,8 +67,8 @@
       text-decoration: none;
 
       @include media.media-breakpoint-down(sm) {
-        font-size: 24px;
-        font-weight: 800;
+        font-size: var(--font-size-ml);
+        font-weight: var(--font-weight-boldest);
       }
     }
 

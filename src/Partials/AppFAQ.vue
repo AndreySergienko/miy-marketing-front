@@ -17,7 +17,7 @@
 <style scoped lang="scss">
   @use 'assets/styles/media';
   .FAQ {
-    margin-bottom: 100px;
+    margin-bottom: var(--ident-xxls);
 
     &__text{
       display: flex;
@@ -28,7 +28,7 @@
 
       @include media.media-breakpoint-down(sm) {
         text-align: center;
-        padding: 0 16px;
+        padding: 0 var(--ident-l);
       }
     }
   }

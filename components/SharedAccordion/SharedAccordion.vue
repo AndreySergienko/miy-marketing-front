@@ -29,13 +29,13 @@
   @use 'assets/styles/media';
   .accordion {
     @include media.media-breakpoint-down(xl) {
-      padding: 0 20px;
+      padding: 0 var(--ident-lx);
     }
     &__item {
-      padding: 24px;
+      padding: var(--ident-xs);
       border: 1px solid var(--color-light-gray);
       border-radius: 25px;
-      margin-bottom: 48px;
+      margin-bottom: var(--ident-adaptive-xl);
     }
 
     &__title {
@@ -56,7 +56,7 @@
     }
 
     &__text {
-      margin-top: 60px;
+      margin-top: var(--ident-xxl);
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
 

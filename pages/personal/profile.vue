@@ -72,13 +72,13 @@
     &__form {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: var(--ident-xs);
       margin-bottom: var(--ident-xm);
 
       &-item {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
+        gap: var(--ident-xs);
         margin-bottom: var(--ident-xm);
       } 
     }
@@ -91,25 +91,25 @@
       margin-bottom: var(--ident-xm);
 
       &-inner {
-        padding: 24px;
+        padding: var(--ident-xs);
       }
 
       &-title {
         font-size: var(--font-size-l);
         font-weight: var(--font-weight-semi-bold);
-        margin-bottom: 18px;
+        margin-bottom: var(--ident-l);
       }
 
       &-form {
         display: flex;
-        gap: 18px;
+        gap: var(--ident-l);
         flex-direction: column;
 
 
         &__items {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 18px;
+          gap: var(--ident-l);
         }
 
         &__item {
@@ -123,7 +123,7 @@
     }
 
     &__icon {
-      margin: 25px 0 0 var(--ident-m);
+      margin: var(--ident-xs) 0 0 var(--ident-m);
       padding: 0;
       box-sizing: border-box;
       font-size: 50px;
@@ -131,7 +131,7 @@
 
     &__button {
       border-radius: 13px;
-      margin-bottom: 180px;
+      margin-bottom: var(--ident-xxxl);
     }
   }
 </style>

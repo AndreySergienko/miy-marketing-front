@@ -20,7 +20,7 @@
     text-align: center;
 
     @include media.media-breakpoint-down(sm) {
-      font-size: 30px;
+      font-size: var(--font-size-mx);
     }
   }
 </style>

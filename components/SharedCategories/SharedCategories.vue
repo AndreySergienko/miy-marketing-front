@@ -41,7 +41,7 @@
     margin-bottom: var(--ident-xxxl);
 
     @include media.media-breakpoint-down(sm) {
-      margin-bottom: 48px;
+      margin-bottom: var(--ident-adaptive-xl);
     }
 
     &__container {
@@ -55,7 +55,7 @@
       align-items: center;
 
       @include media.media-breakpoint-down(l) {
-        padding: 0 40px;
+        padding: 0 var(--ident-adaptive-xm);
       }
       
       @include media.media-breakpoint-down(sm) {
@@ -79,8 +79,8 @@
       width: 100%;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-bottom: 48px;
+      gap: var(--ident-ml);
+      margin-bottom: var(--ident-adaptive-xl);
 
       @include media.media-breakpoint-down(l) {
         grid-template-columns: repeat(2, 1fr);
@@ -115,8 +115,8 @@
       justify-content: center;
 
       &-text {
-        padding: 8px 24px;
-        gap: 10px;
+        padding: var(--ident-m) var(--ident-xs);
+        gap: var(--ident-ml);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -132,7 +132,7 @@
       }
 
       &-icon {
-        font-size: 34px;
+        font-size: var(--font-size-l);
       }
     }
   }

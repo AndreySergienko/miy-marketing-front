@@ -12,12 +12,12 @@
 <style lang="scss" scoped>
   .navigation {
     border-top: 1px solid var(--color-light-gray);
-    padding-top: 64px;
+    padding-top: var(--ident-xxl);
 
     &__inner {
       display: flex;
-      gap: 64px;
-      font-size: 24px;
+      gap: var(--ident-xxl);
+      font-size: var(--font-size-ml);
       font-weight: var(--font-weight-medium);
 
       a {

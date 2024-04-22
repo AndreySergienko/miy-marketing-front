@@ -22,11 +22,11 @@
 </script>
 <style scoped lang="scss">
   .history {
-    margin-top: 85px;
+    margin-top: var(--ident-adaptive-xxxl);
     &__list {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 50px;
+      gap: var(--ident-adaptive-xl);
     }
 
     &__inner {

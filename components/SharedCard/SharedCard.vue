@@ -79,7 +79,7 @@
 
     &__inner {
       padding: var(--ident-xs) var(--ident-xl) 146px;
-      gap: 13px;
+      gap: var(--ident-mx);
 
       display: flex;
       flex-direction: column;
@@ -95,15 +95,15 @@
       font-weight: var(--font-weight-semi-bold);
 
       @include media.media-breakpoint-down(sm) {
-        font-size: 30px;
+        font-size: var(--font-size-mx);
       }
     }
 
     &__icons {
       display: flex;
-      gap: 60px;
+      gap: var(--ident-xxl);
       @include media.media-breakpoint-down(sm) {
-          gap: 30px;
+          gap: var( --ident-xm);
         }
     }
 
@@ -111,30 +111,30 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: var( --ident-ml);
 
       &-text {
         font-size: var( --font-size-m);
         font-weight: var(--font-weight-semi-bold);
 
         @include media.media-breakpoint-down(sm) {
-          font-size: 14px;
+          font-size: var(--font-size-sm);
         }
       }
 
       &-img {
         &__people, &__newPeople {
-          font-size: 21px;
+          font-size: var(--font-size-m);
 
           @include media.media-breakpoint-down(sm) {
-            font-size: 14px;
+            font-size: var(--font-size-sm);
           }
         }
         &__advertising {
-          font-size: 24px;
+          font-size: var(--font-size-ml);
 
           @include media.media-breakpoint-down(sm) {
-            font-size: 14px;
+            font-size: var(--font-size-sm);
           }
         }
       }
@@ -145,22 +145,22 @@
       justify-content: space-between;
       align-items: center;
       width: 35%;
-      margin-bottom: 16px;
-      gap: 10px;
+      margin-bottom: var(--ident-l);
+      gap: var(--ident-ml);
 
       &-text {
         font-size: var(--font-size-m);
         font-weight: var(--font-weight-semi-bold);
 
         @include media.media-breakpoint-down(sm) {
-          font-size: 14px;
+          font-size: var(--font-size-sm);
         }
       }
 
       &-icon {
-        font-size: 34px;
+        font-size: var(--font-size-l);
         @include media.media-breakpoint-down(sm) {
-          font-size: 22px;
+          font-size: var(--font-size-m);
         }
       }
     }
@@ -171,8 +171,8 @@
       align-items: center;
 
       width: 100%;
-      padding: 12px 0px;
-      gap: 10px;
+      padding: var(--ident-mx) 0;
+      gap: var(--ident-ml);
 
       font-size: var(--font-size-m);
 
@@ -182,15 +182,15 @@
       background-color: var(--color-blue);
 
       @include media.media-breakpoint-down(sm) {
-          font-size: 14px;
+          font-size: var(--font-size-sm);
           gap: var(--ident-s);
         }
 
       &-icon {
-        font-size: 24px;
+        font-size: var(--font-size-ml);
 
         @include media.media-breakpoint-down(sm) {
-          font-size: 16px;
+          font-size: var(--font-size-s);
         }
       }
     }

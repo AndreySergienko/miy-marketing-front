@@ -58,7 +58,7 @@
     font-weight: var(--font-weight-bold);
 
     @include media.media-breakpoint-down(sm) {
-      font-size: 30px;
+      font-size: var(--font-size-mx);
     }
   }
 

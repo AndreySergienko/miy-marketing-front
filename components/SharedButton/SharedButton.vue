@@ -37,16 +37,16 @@
       padding: var(--ident-m) var(--ident-xs);
     }
     &__medium {
-      padding: 12px var(--ident-xs);
+      padding: var(--ident-mx) var(--ident-xs);
     }
     &__large {
-      padding: 16px 212px;
-      font-size: 24px;
+      padding: var(--font-size-s) 212px;
+      font-size: var(-font-size-ml);
       font-weight: var(--font-weight-semi-bold);
       border-radius: 12px;
 
       @include media.media-breakpoint-down(sm) {
-        padding: 12px 138px;
+        padding: var(--ident-mx) 138px;
         font-size: var(--font-size-s);
       }
     }

@@ -67,12 +67,12 @@
   .form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--ident-l);
 
     &__item {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap: var(--ident-l);
 
       @include media.media-breakpoint-down(sm) {
         display: flex;
@@ -83,7 +83,7 @@
     &__checkbox {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: var(--ident-m);
 
       &-title {
         font-size: var(--font-size-m);
@@ -97,25 +97,25 @@
       &-items {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
+        gap: var(--ident-m);
       }
 
       &-item {
-        font-size: 14px;
+        font-size: var(--font-size-sm);
         font-weight: var(--font-weight-medium);
 
         @include media.media-breakpoint-down(sm) {
           display: flex;
           align-items: flex-start;
-          font-size: 12px;
+          font-size: var(--font-size-ss);
         }
 
         &:not(:last-child) {
-          margin-bottom: 16px;
+          margin-bottom: var(--ident-l);
         }
       }
       &-confidential {
-        font-size: 12px;
+        font-size: var(--font-size-ss);
         font-weight: var(--font-weight-medium);
       }
     }
