@@ -4,14 +4,14 @@
       <h2 class="auth__title">Добро пожаловать в ON-DEVELOPER</h2>
       <div class="auth__link">
         <nuxt-link
-        to="/authentication/login"
-        :class="{active: $route.path === '/authentication/login'}" 
+          to="/authentication/login"
+          :class="{active: $route.path === '/authentication/login'}"
         >
           Войти
         </nuxt-link>
-        <nuxt-link 
-        to="/authentication/registration"
-        :class="{active: $route.path === '/authentication/registration'}"
+        <nuxt-link
+          to="/authentication/registration"
+          :class="{active: $route.path === '/authentication/registration'}"
         >
           Регистрация
         </nuxt-link>
@@ -34,21 +34,13 @@
       margin-bottom: var(--ident-xm);
       width: 60%;
 
-      @include media.media-breakpoint-down(xl) {
-        width: 100%;
-      }
-
       @include media.media-breakpoint-down(l) {
-        width: 65%;
+        width: 100%;
       }
 
       @include media.media-breakpoint-down(md) {
-        width: 100%;
-      }
-
-      @include media.media-breakpoint-down(sm) {
         font-size: var(--font-size-mx);
-        width: 90%;
+        width: 100%;
       }
     }
 
@@ -73,7 +65,7 @@
           color: var(--color-black);
           text-decoration: none;
         }
-      }  
+      }
     }
   }
 </style>

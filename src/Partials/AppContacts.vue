@@ -4,7 +4,13 @@
       <shared-animation>
         <div class="contacts__inner">
           <SharedContacts />
-          <iframe class="contacts__map" src="https://yandex.ru/map-widget/v1/?um=constructor%3A0ac83c30029fc4deea7465f04dbaec8f68c6459c2bdfc053d2e1d31405ed4ec8&amp;source=constructor" width="900" height="500" frameborder="0"></iframe>
+          <iframe
+            class="contacts__map"
+            src="https://yandex.ru/map-widget/v1/?um=constructor%3A0ac83c30029fc4deea7465f04dbaec8f68c6459c2bdfc053d2e1d31405ed4ec8&amp;source=constructor"
+            width="900"
+            height="500"
+            frameborder="0"
+          ></iframe>
         </div>
       </shared-animation>
     </div>
@@ -21,7 +27,7 @@
       align-items: center;
       padding: var(--ident-adaptive-xxl) 0px;
 
-      @include media.media-breakpoint-down(xl) {
+      @include media.media-breakpoint-down(l) {
         padding: 0 var(--ident-lx);
         flex-direction: column;
       }
@@ -32,11 +38,11 @@
       border-radius: 50px;
       width: 100%;
 
-      @include media.media-breakpoint-down(xl) {
+      @include media.media-breakpoint-down(l) {
         width: 90%;
       }
 
-      @include media.media-breakpoint-down(sm) {
+      @include media.media-breakpoint-down(md) {
         width: 328px;
         height: 264px;
       }

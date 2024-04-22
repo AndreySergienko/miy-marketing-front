@@ -1,0 +1,243 @@
+[33mcommit 1d18864250ea7d147223770adbba57cfc4e08c67[m[33m ([m[1;36mHEAD[m[33m)[m
+Author: Andrey Sergineko <getmessage@gmail.com>
+Date:   Sun Apr 14 16:44:13 2024 +0500
+
+    Обновление работы с api
+
+[33mcommit f6d9fbb5d51802064075954bf7cc0ba2b376cf3e[m
+Author: Andrey Sergineko <getmessage@gmail.com>
+Date:   Sun Apr 14 14:14:23 2024 +0500
+
+    Скорректировал работу валидации на странице login
+
+[33mcommit 6fe8e9290aa6ce10fae2ca43fecf622e4e56797d[m
+Merge: d22eed6 19bac91
+Author: AndreySergienko <86794579+AndreySergienko@users.noreply.github.com>
+Date:   Sun Apr 14 11:14:28 2024 +0500
+
+    Merge pull request #3 from AndreySergienko/fix-auth
+    
+    Пример отображение страницы login
+
+[33mcommit 19bac9123e57f6f317207d48d9423faa49266ef4[m[33m ([m[1;31morigin/fix-auth[m[33m)[m
+Author: Andrey <sergienko@tastyteam.cc>
+Date:   Sat Apr 13 14:45:06 2024 +0500
+
+    Пример отображение страницы login
+
+[33mcommit d22eed6cd9a590b5ea3b47489a3c003da3d0c97b[m
+Merge: cfbb358 ce08ad2
+Author: AndreySergienko <86794579+AndreySergienko@users.noreply.github.com>
+Date:   Sat Apr 13 12:42:35 2024 +0500
+
+    Merge pull request #2 from AndreySergienko/Refactoring
+    
+    Refactoring
+
+[33mcommit ce08ad21b965c170c9eed21d3afe52bc9088ea13[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Fri Apr 12 18:10:14 2024 +0500
+
+    created a page history of operation and a cards of tg chanels on this page
+
+[33mcommit e40a78697b5fcaa65bb26d9ea39e34adf8f2d141[m
+Merge: 7a8942e cfbb358
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Thu Apr 11 21:31:35 2024 +0500
+
+    fixed a sharedbutton, create a partials of index.vue, create a layout for auth and registration pages
+
+[33mcommit cfbb358485fc50851ebf601e24fa98d04538e2b0[m
+Author: Andrey <sergienko@tastyteam.cc>
+Date:   Thu Apr 11 06:27:53 2024 +0500
+
+    Добавил контроллер для работы с авторизацией
+
+[33mcommit eb37248f896757a3a07020915859fc6140ab6132[m
+Author: Andrey <sergienko@tastyteam.cc>
+Date:   Thu Apr 11 05:59:51 2024 +0500
+
+    ApiService release 1.0.0
+
+[33mcommit 7a8942ec8a7e7c9a9f9bc244b6bfdf975ff1a5bf[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Wed Apr 10 20:09:46 2024 +0500
+
+    fixed a button
+
+[33mcommit 3339453949ecfd94ac63a47157a526d341857c04[m
+Merge: 109e6a1 8363542
+Author: Andrey Sergineko <getmessage@gmail.com>
+Date:   Tue Apr 9 17:34:37 2024 +0500
+
+    Merge branch 'develop' of https://github.com/AndreySergienko/miy-marketing-front into develop
+
+[33mcommit 109e6a14d77b4875ff963bd6a0d17e43c7890392[m
+Author: Andrey Sergineko <getmessage@gmail.com>
+Date:   Tue Apr 9 17:34:11 2024 +0500
+
+    Переработка работы с api + конфиг для проекта
+
+[33mcommit 8363542afcb264bcc8ba6b2136dd3033915a691f[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Tue Apr 9 14:29:46 2024 +0500
+
+    rename a components in project and create a shadow box for cards
+
+[33mcommit e687d7869f18e7d547a329e43309cfb3603c4a30[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Mon Apr 8 23:13:19 2024 +0500
+
+    add animation in index
+
+[33mcommit bd6565c7a9fac11007aa33075c14d55a0bba0558[m
+Author: Andrey Sergineko <getmessage@gmail.com>
+Date:   Mon Apr 8 22:55:46 2024 +0500
+
+    убрал пачку импортов
+
+[33mcommit 1f6460d270a3178416b29e5e2596868ce5711b31[m
+Merge: 6508885 6cd176e
+Author: Andrey <sergienko@tastyteam.cc>
+Date:   Mon Apr 8 22:31:43 2024 +0500
+
+    Добавил анимацию появления блоков
+
+[33mcommit 6508885b5d636c3d03b802c46ed2f768265f3bd8[m
+Author: Andrey <sergienko@tastyteam.cc>
+Date:   Mon Apr 8 22:28:51 2024 +0500
+
+    Добавил анимацию появления блоков
+
+[33mcommit 6cd176e3ba5ec5c16d6343bcec75062616af4e61[m
+Merge: da65b5d 2b977cf
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Mon Apr 8 20:15:08 2024 +0500
+
+    create a attention block, rename a files, and fixed button
+
+[33mcommit da65b5d82cb239f4613131e9904948b228ddd85b[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Mon Apr 8 20:11:55 2024 +0500
+
+    create a attention block, rename a files, and fixed button
+
+[33mcommit 2b977cfeec8440bc08a849738300f48d5dc28e8a[m
+Author: Andrey <sergienko@tastyteam.cc>
+Date:   Sun Apr 7 12:18:19 2024 +0500
+
+    Добавил сторы + констркуктор для создания запросов
+
+[33mcommit 9071112bc22f97d8b9fbc8266e24f1e95d2292fb[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Fri Apr 5 20:56:47 2024 +0500
+
+    fixed a links on a page login and registration
+
+[33mcommit c56d64fd144d5072cfa12a7abe65f5bdc4771ef1[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Fri Apr 5 20:46:17 2024 +0500
+
+    styled a page registration
+
+[33mcommit 7af23257da8e6bf59805e47a7bd819cd853e0f7b[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Fri Apr 5 14:24:35 2024 +0500
+
+    create a page of registration and styled it
+
+[33mcommit 8f25a6fbe908161e5f42557360e1392140274125[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Fri Apr 5 01:10:22 2024 +0500
+
+    create and styled a auth page
+
+[33mcommit efb12d956dc950a626a92d3bc5b14e1f109c5e2b[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Thu Apr 4 18:57:26 2024 +0500
+
+    fix a idents in project and add elements style for buttons and cards
+
+[33mcommit c3fd6f7fc8b64442a525a72ca3462b7079912427[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Wed Apr 3 21:11:07 2024 +0500
+
+    add map on a main page
+
+[33mcommit 6e8f69e5f111be23ae4851a7b6b11000d7de32a4[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Tue Apr 2 03:11:17 2024 +0500
+
+    styled a FAQ, and create a footer
+
+[33mcommit 28f477dace0e7187ac7f08178dd526c40ed02d47[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Mon Apr 1 20:39:06 2024 +0500
+
+    fix a mistekes and create a contacts
+
+[33mcommit 11e8ebd6e4c2a354a02aae8ec0eca8fab631f062[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Fri Mar 29 22:59:30 2024 +0500
+
+    create a accordion
+
+[33mcommit 1d5d4f5fd2888f78ee16a72a34f5ee476e73fdad[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Thu Mar 28 18:27:47 2024 +0500
+
+    connect styles, create a main page
+
+[33mcommit cb651fad739ef3b5ac0894af88072ac44f2626c1[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Tue Mar 12 19:27:31 2024 +0500
+
+    create a little designe of alert
+
+[33mcommit 33e0880adc8f99a972f068d9da4b47003b0d9ea2[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Tue Mar 12 18:59:53 2024 +0500
+
+    create a little designe of alert
+
+[33mcommit 73546e70ad41ca9fa4e78d5add842e216b21deb6[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Sun Mar 10 17:50:34 2024 +0500
+
+    create a validation of page auth
+
+[33mcommit d12511874064d8e6b1d2ee7f83b8f30ae2954065[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Thu Mar 7 19:22:00 2024 +0500
+
+    configuration of vee-validate
+
+[33mcommit 0a1210ed18cb910eb07ef62b647aaf38122385d5[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Mon Mar 4 17:12:38 2024 +0500
+
+    connect the library of validation
+
+[33mcommit 10cc1d06ec1cef5b6da68b5c99c01df9612e51f0[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Mon Mar 4 16:13:45 2024 +0500
+
+    creat routing
+
+[33mcommit 4e21d07e07c5bd6577b241efe2e1d3465370f158[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Mon Mar 4 11:55:28 2024 +0500
+
+    reinstall pinia
+
+[33mcommit c64a1e8e0bb65e6750951017c99e90f0fe8c2037[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Mon Mar 4 11:39:27 2024 +0500
+
+    install pinia
+
+[33mcommit f3f0a5a5d60572deb3aa91fde9189e97ebeb9878[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Sunnalen <sunnalen@mail.ru>
+Date:   Sat Mar 2 15:21:51 2024 +0500
+
+    create registration form

@@ -1,10 +1,10 @@
 <template>
   <div class="shared__burger">
-    <input type="checkbox" id="burger-checkbox" class="burger-checkbox">
+    <input type="checkbox" id="burger-checkbox" class="burger-checkbox" />
     <label class="burger" for="burger-checkbox"></label>
     <div class="menu-list">
       <div class="menu-list__inner">
-        <SharedNavigation position="column"/>
+        <SharedNavigation position="column" />
         <div class="btn">
           <SharedButton size="s" color="white">Войти</SharedButton>
           <SharedButton size="m" color="blue">Зарегистрироваться</SharedButton>
@@ -13,15 +13,13 @@
     </div>
   </div>
 </template>
-<script setup>
-
-</script>
+<script setup></script>
 <style scoped lang="scss">
   @use 'assets/styles/media';
   .shared__burger {
     display: none;
 
-    @include media.media-breakpoint-down(xl) {
+    @include media.media-breakpoint-down(l) {
       display: block;
     }
   }
@@ -82,7 +80,7 @@
     background-color: var(--color-white);
     transition: .3s;
     z-index: 1;
-    
+
 
     @include media.media-breakpoint-down(sm) {
       top: 81px;

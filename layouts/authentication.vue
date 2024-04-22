@@ -12,18 +12,17 @@
     </div>
   </section>
 </template>
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 <style lang="scss" scoped>
   @use 'assets/styles/media';
-  .authentication{ 
+  .authentication{
 
     &__inner {
       position: relative;
       display: flex;
       justify-content: flex-end;
 
-      @include media.media-breakpoint-down(xl) {
+      @include media.media-breakpoint-down(l) {
         justify-content: flex-start;
       }
 
@@ -39,10 +38,6 @@
       z-index: -1;
       width: 1920px;
       height: 854px;
-
-      @include media.media-breakpoint-down(xl) {
-        display: none;
-      }
 
       @include media.media-breakpoint-down(l) {
         display: none;
@@ -60,11 +55,7 @@
       width: 40%;
 
       @include media.media-breakpoint-down(l) {
-        width: 70%;
-        padding: 0 var( --ident-adaptive-xm);
-      }
-
-      @include media.media-breakpoint-down(sm) {
+        width: 100%;
         height: 100%;
         padding: 0 var(--ident-l);
       }

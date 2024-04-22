@@ -1,33 +1,52 @@
 <template>
-    <AuthController>
-        <template #default="{ loginData, loginRules, sendLogin }">
-          <AuthContainer>
-            <template #form>
-                <VeeForm class="form" v-slot="{ errors, meta }" @submit="sendLogin" :validation-schema="loginRules">
-                  <div class="form__input">
-                    <SharedInput name="email" v-model="loginData.email" type="text" :error="errors.email">Почта</SharedInput>
-                    <SharedInput name="password" v-model="loginData.password" type="text" :error="errors.password">Пароль</SharedInput>
-                  </div>
-                  <div class="help__password">
-                    <span>Забыл Пароль</span>
-                    <NuxtIcon name="lock" filled/>
-                  </div>
-                  <div class="btn__login">
-                    <SharedButton color="blue" size="l" :disabled="!meta.valid">Войти</SharedButton >
-                  </div>
-                </VeeForm>
-            </template>
-          </AuthContainer>
+  <AuthController>
+    <template #default="{ loginData, loginRules, sendLogin }">
+      <AuthContainer>
+        <template #form>
+          <VeeForm
+            class="form"
+            v-slot="{ errors, meta }"
+            @submit="sendLogin"
+            :validation-schema="loginRules"
+          >
+            <div class="form__input">
+              <SharedInput
+                name="email"
+                v-model="loginData.email"
+                type="text"
+                :error="errors.email"
+                >Почта</SharedInput
+              >
+              <SharedInput
+                name="password"
+                v-model="loginData.password"
+                type="text"
+                :error="errors.password"
+                >Пароль</SharedInput
+              >
+            </div>
+            <div class="help__password">
+              <span>Забыл Пароль</span>
+              <NuxtIcon name="lock" filled />
+            </div>
+            <div class="btn__login">
+              <SharedButton color="blue" size="l" :disabled="!meta.valid"
+                >Войти</SharedButton
+              >
+            </div>
+          </VeeForm>
         </template>
-    </AuthController>
+      </AuthContainer>
+    </template>
+  </AuthController>
 </template>
 
 <script setup lang="ts">
-import AuthController from "~/controllers/AuthController/AuthController.vue";
+  import AuthController from "~/controllers/AuthController/AuthController.vue";
 
-definePageMeta({
-    layout: 'authentication'
-})
+  definePageMeta({
+      layout: 'authentication'
+  })
 </script>
 
 <style scoped lang="scss">
@@ -37,21 +56,13 @@ definePageMeta({
     display: flex;
     flex-direction: column;
     gap: var(--ident-xs);
-    width: 65%;
-
-    @include media.media-breakpoint-down(xl) {
-      width: 100%;
-    }
+    width: 100%;
 
     @include media.media-breakpoint-down(l) {
       width: 75%;
     }
 
     @include media.media-breakpoint-down(md) {
-      width: 100%;
-    }
-
-    @include media.media-breakpoint-down(sm) {
       width: 100%;
     }
 
@@ -74,4 +85,4 @@ definePageMeta({
       font-size: var(--font-size-sm);
     }
   }
-</style> 
+</style>

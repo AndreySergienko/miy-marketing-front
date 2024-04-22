@@ -1,38 +1,36 @@
 <template>
-  <div class="main">
-    <div class="categories">
-      <div class="container">
-        <div class="categories__inner">
-          <SharedCategories />
-        </div>
+  <div class="categories">
+    <div class="container">
+      <div class="categories__inner">
+        <SharedCategories />
       </div>
     </div>
-    <div class="logo" />
-    <div class="intro">
-      <AppIntro />
-    </div>
-    <div class="benefit">
-      <AppBenefit />
-    </div>
-    <div class="tg">
-      <AppTelegram />
-    </div>
-    <div class="more">
-      <p class="more__text">Смотреть еще</p>
-      <nuxt-icon class="more__icon" name="arrow" filled/>
-    </div>
-    <div class="FAQ">
-      <AppFAQ />
-    </div>
-    <div class="contacts">
-      <AppContacts />
-    </div>
-    <div class="footer">
-      <AppFooter />
-    </div>
+  </div>
+  <div class="logo" />
+  <div class="intro">
+    <AppIntro />
+  </div>
+  <div class="benefit">
+    <AppBenefit />
+  </div>
+  <div class="tg">
+    <AppTelegram />
+  </div>
+  <div class="more">
+    <p class="more__text">Смотреть еще</p>
+    <nuxt-icon class="more__icon" name="arrow" filled />
+  </div>
+  <div class="FAQ">
+    <AppFAQ />
+  </div>
+  <div class="contacts">
+    <AppContacts />
+  </div>
+  <div class="footer">
+    <AppFooter />
   </div>
 </template>
- <script setup>
+<script setup>
   import AppBenefit from '../src/Partials/AppBenefit.vue';
   import AppContacts from '../src/Partials/AppContacts.vue';
   import AppFAQ from '../src/Partials/AppFAQ.vue';
@@ -43,11 +41,6 @@
 <style lang="scss" scoped>
   @use 'assets/styles/media';
 
-  .main {
-    position: relative;
-    overflow: hidden;
-  }
-
   .logo {
     position: absolute;
     background: url(../public/dragon_1.png) no-repeat;
@@ -56,7 +49,7 @@
     height: 100%;
     left: 990px;
     top: -25px;
-    
+
 
     @include media.media-breakpoint-down(xl) {
       top: -10px;
@@ -65,18 +58,14 @@
     }
 
     @include media.media-breakpoint-down(l) {
-      top: 90px;
-      left: 525px;
-      background-size: 50%;
-    }
-
-    @include media.media-breakpoint-down(sm) {
-      display: none;
+      top: -10px;
+      left: 680px;
+      background-size: 60%;
     }
 
     @include media.media-breakpoint-down(md) {
         display: none;
-      }
+    }
   }
 
   .more {
