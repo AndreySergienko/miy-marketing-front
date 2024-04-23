@@ -1,11 +1,9 @@
-$media-vsm: 360px;
 $media-sm: 768px;
 $media-md: 1024px;
 $media-l: 1366px;
 $media-xl: 1920px;
 
 :root {
-  --media-vsm: #{$media-vsm};
   --media-sm: #{$media-sm};
   --media-md: #{$media-md};
   --media-l: #{$media-l};
@@ -13,7 +11,6 @@ $media-xl: 1920px;
 }
 
 $media-breakpoints: (
-  vsm: $media-vsm,
   sm: $media-sm,
   md: $media-md,
   l: $media-l,
