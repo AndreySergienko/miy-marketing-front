@@ -33,8 +33,8 @@
       border-radius: 50px;
       width: 90%;
 
-      @include media.media-breakpoint-down(md) {
-        height: 264px;
+      @include media.media-breakpoint-down(sm) {
+        height: 250px;
       }
     }
   }
