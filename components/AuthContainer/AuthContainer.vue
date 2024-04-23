@@ -32,21 +32,21 @@
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-semi-bold);
       margin-bottom: var(--ident-xm);
-      width: 60%;
-
-      @include media.media-breakpoint-down(xl) {
-        width: 100%;
-      }
+      width: 65%;
 
       @include media.media-breakpoint-down(l) {
-        width: 65%;
+        width: 55%;
       }
 
       @include media.media-breakpoint-down(md) {
-        width: 100%;
+        width: 65%;
       }
 
       @include media.media-breakpoint-down(sm) {
+        font-size: var(--font-size-mx);
+        width: 55%;
+      }
+      @include media.media-breakpoint-down(vsm) {
         font-size: var(--font-size-mx);
         width: 90%;
       }

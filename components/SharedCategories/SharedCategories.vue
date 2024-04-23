@@ -53,6 +53,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 15px;
 
       @include media.media-breakpoint-down(l) {
         padding: 0 var(--ident-adaptive-xm);
@@ -64,9 +65,13 @@
     }
 
     &__list {
+      padding: 15px;
       display: flex;
       flex-direction: column;
       width: 100%;
+      background-color: var(--color-white);
+      border: 1px solid var(--color-light-gray);
+      border-radius: 13px;
 
       &-title {
         font-size: var(--font-size-xl);

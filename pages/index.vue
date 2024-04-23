@@ -54,29 +54,22 @@
     z-index: -1;
     width: 100%;
     height: 100%;
+    top: -50px;
     left: 990px;
-    top: -25px;
     
-
-    @include media.media-breakpoint-down(xl) {
-      top: -10px;
-      left: 680px;
-      background-size: 60%;
-    }
-
     @include media.media-breakpoint-down(l) {
-      top: 90px;
-      left: 525px;
-      background-size: 50%;
-    }
-
-    @include media.media-breakpoint-down(sm) {
-      display: none;
+      top: -50px;
+      left: 700px;
+      background-size: 55%;
     }
 
     @include media.media-breakpoint-down(md) {
         display: none;
       }
+
+    @include media.media-breakpoint-down(sm) {
+      display: none;
+    }
   }
 
   .more {

@@ -33,9 +33,6 @@
       align-items: center;
       margin: var(--ident-xs) 0px;
 
-      @include media.media-breakpoint-down(xl) {
-        padding: 0 var(--ident-adaptive-xxl);
-      }
 
       @include media.media-breakpoint-down(l) {
         padding: 0 var(--ident-adaptive-xm);
@@ -56,7 +53,7 @@
     }
 
     &__navigation {
-      @include media.media-breakpoint-down(xl) {
+      @include media.media-breakpoint-down(l) {
       display: none;
       }
     }

@@ -41,15 +41,11 @@
     border-top: 1px solid var(--color-light-gray);
 
     &__inner {
-      padding: var(--ident-adaptive-xl) 0px var(--ident-xs);
+      padding: var(--ident-adaptive-xl) ;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-
-      @include media.media-breakpoint-down(xl) {
-        padding: var(--ident-adaptive-xl);
-      }
 
       @include media.media-breakpoint-down(sm) {
         padding: 0 0 0 var(--ident-m);

@@ -28,9 +28,8 @@
 <style lang="scss" scoped>
   @use 'assets/styles/media';
   .accordion {
-    @include media.media-breakpoint-down(xl) {
-      padding: 0 var(--ident-lx);
-    }
+    padding: 0 var(--ident-lx);
+    
     &__item {
       padding: var(--ident-xs);
       border: 1px solid var(--color-light-gray);

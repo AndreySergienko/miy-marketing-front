@@ -37,9 +37,6 @@
     height: 150px;
     border-radius: 45px;
 
-    @include media.media-breakpoint-down(xl) {
-      width: 98%;
-    }
   }
 
   .benefit__text {

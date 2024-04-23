@@ -14,6 +14,7 @@
 <style scoped lang="scss">
   @use 'assets/styles/media';
   .contacts {
+    padding: 0 15px;
     margin-bottom: var(--ident-xxls);
 
     &__inner {
@@ -21,7 +22,7 @@
       align-items: center;
       padding: var(--ident-adaptive-xxl) 0px;
 
-      @include media.media-breakpoint-down(xl) {
+      @include media.media-breakpoint-down(l) {
         padding: 0 var(--ident-lx);
         flex-direction: column;
       }
@@ -30,14 +31,9 @@
     &__map {
       border: 1px solid var(--color-light-gray);
       border-radius: 50px;
-      width: 100%;
+      width: 90%;
 
-      @include media.media-breakpoint-down(xl) {
-        width: 90%;
-      }
-
-      @include media.media-breakpoint-down(sm) {
-        width: 328px;
+      @include media.media-breakpoint-down(md) {
         height: 264px;
       }
     }

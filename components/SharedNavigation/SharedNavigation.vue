@@ -39,13 +39,10 @@
     &__column {
       display: flex;
       flex-direction: column;
-
-      @include media.media-breakpoint-down(xl) {
-        padding-right: var(--ident-xs);
-      }
-
+      padding-left: var(--ident-xs);
+      
       @include media.media-breakpoint-down(l) {
-        padding-right: var(--ident-xs);
+        padding-left: var(--ident-xs);
       }
 
       @include media.media-breakpoint-down(sm) {

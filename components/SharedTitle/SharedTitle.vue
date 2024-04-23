@@ -11,7 +11,7 @@
     font-weight: var(--font-weight-semi-bold);
     margin-bottom: var(--ident-xs);
 
-    @include media.media-breakpoint-down(md) {
+    @include media.media-breakpoint-down(l) {
       font-size: var(--font-size-xl);
     }
 
