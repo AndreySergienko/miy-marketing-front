@@ -31,9 +31,9 @@
     gap: var(--ident-adaptive-xl);
 
     @include media.media-breakpoint-down(sm) {
-      display: flex;
-      flex-direction: column;
       gap: var( --ident-l);
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     &__column {

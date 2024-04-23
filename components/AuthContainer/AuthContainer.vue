@@ -44,10 +44,6 @@
 
       @include media.media-breakpoint-down(sm) {
         font-size: var(--font-size-mx);
-        width: 55%;
-      }
-      @include media.media-breakpoint-down(vsm) {
-        font-size: var(--font-size-mx);
         width: 90%;
       }
     }

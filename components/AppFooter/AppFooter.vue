@@ -50,7 +50,9 @@
       @include media.media-breakpoint-down(sm) {
         padding: 0 0 0 var(--ident-m);
         margin-top: var(--ident-l);
-        flex-direction: column;
+        
+      }
+      @include media.media-breakpoint-down(sm) {
         align-items: flex-start;
       }
     }
