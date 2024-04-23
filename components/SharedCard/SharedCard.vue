@@ -148,6 +148,13 @@
       margin-bottom: var(--ident-l);
       gap: var(--ident-ml);
 
+      @include media.media-breakpoint-down (l) {
+        width: 20%;
+      }
+      @include media.media-breakpoint-down (sm) {
+        justify-content: center;
+      }
+
       &-text {
         font-size: var(--font-size-m);
         font-weight: var(--font-weight-semi-bold);
@@ -159,6 +166,7 @@
 
       &-icon {
         font-size: var(--font-size-l);
+
         @include media.media-breakpoint-down(sm) {
           font-size: var(--font-size-m);
         }

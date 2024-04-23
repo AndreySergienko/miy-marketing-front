@@ -25,6 +25,7 @@
 <style scoped lang="scss">
   @use 'assets/styles/media';
   .benefit {
+    padding: 0 15px;
     margin-bottom: var(--ident-xxls);
 
     &__inner {
@@ -50,7 +51,7 @@
       }
     }
 
-    @include media.media-breakpoint-down(xl) {
+    @include media.media-breakpoint-down(l) {
       &__inner {
         flex-direction: column;
         padding-left: var(--ident-lx);

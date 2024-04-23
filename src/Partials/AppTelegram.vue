@@ -54,11 +54,8 @@
     grid-template-columns: repeat(3, 1fr);
     gap: var(--ident-xm);
 
-    @include media.media-breakpoint-down(xl) {
-      gap: var(--ident-s);
-    }
-    
     @include media.media-breakpoint-down(l) {
+      padding: 0 15px;
       grid-template-columns: repeat(2, 1fr);
     }
 

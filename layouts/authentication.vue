@@ -23,10 +23,6 @@
       display: flex;
       justify-content: flex-end;
 
-      @include media.media-breakpoint-down(xl) {
-        justify-content: flex-start;
-      }
-
       @include media.media-breakpoint-down(l) {
         justify-content: flex-start;
       }
@@ -39,10 +35,6 @@
       z-index: -1;
       width: 1920px;
       height: 854px;
-
-      @include media.media-breakpoint-down(xl) {
-        display: none;
-      }
 
       @include media.media-breakpoint-down(l) {
         display: none;

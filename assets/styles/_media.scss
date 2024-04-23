@@ -1,15 +1,13 @@
-$media-sm: 360px;
-$media-md: 768px;
-$media-l: 1024px;
-$media-xl: 1366px;
-$media-xxl: 1920px;
+$media-sm: 768px;
+$media-md: 1024px;
+$media-l: 1366px;
+$media-xl: 1920px;
 
 :root {
   --media-sm: #{$media-sm};
   --media-md: #{$media-md};
   --media-l: #{$media-l};
   --media-xl: #{$media-xl};
-  --media-xxl: #{$media-xxl};
 }
 
 $media-breakpoints: (
@@ -17,7 +15,6 @@ $media-breakpoints: (
   md: $media-md,
   l: $media-l,
   xl: $media-xl,
-  xxl: $media-xxl,
 );
 
 @mixin media-breakpoint-down($size) {
@@ -26,8 +23,3 @@ $media-breakpoints: (
   }
 }
 
-@mixin media-breakpoint-up($size) {
-  @media (min-width: map-get($media-breakpoints, $size)) {
-    @content;
-  }
-}

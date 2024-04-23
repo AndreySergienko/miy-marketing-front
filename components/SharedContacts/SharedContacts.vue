@@ -40,9 +40,6 @@
       flex-direction: column;
       width: 80%;
 
-      @include media.media-breakpoint-down(xl) {
-        width: 100%;
-      }
     }
 
     &__items {

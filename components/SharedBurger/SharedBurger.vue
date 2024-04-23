@@ -6,22 +6,28 @@
       <div class="menu-list__inner">
         <SharedNavigation position="column"/>
         <div class="btn">
-          <SharedButton size="s" color="white">Войти</SharedButton>
-          <SharedButton size="m" color="blue">Зарегистрироваться</SharedButton>
+          <SharedButton size="s" color="white" @click="signin">Войти</SharedButton>
+          <SharedButton size="m" color="blue" @click="signup">Зарегистрироваться</SharedButton>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script setup>
-
+  const router = useRouter()
+  const signup = () => {
+    router.push('/authentication/registration')
+  }
+  const signin = () => {
+    router.push('/authentication/login')
+  }
 </script>
 <style scoped lang="scss">
   @use 'assets/styles/media';
   .shared__burger {
     display: none;
 
-    @include media.media-breakpoint-down(xl) {
+    @include media.media-breakpoint-down(l) {
       display: block;
     }
   }
@@ -90,17 +96,13 @@
   }
   .burger-checkbox:checked ~ .menu-list {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: flex-start;
     transform: translateX(0);
     height: 100%;
     width: 100%;
 
-    @include media.media-breakpoint-down(sm) {
-      justify-content: flex-start;
-    }
-
-    @include media.media-breakpoint-down(md) {
+    @include media.media-breakpoint-down(l) {
       justify-content: flex-start;
     }
   }

@@ -35,17 +35,5 @@
         width: 100%;
       }
     }
-
-    &__title {
-      @include media.media-breakpoint-down(l) {
-        font-size: var(--font-size-xl);
-        font-weight: var(--font-weight-bold);
-      }
-
-      @include media.media-breakpoint-down(sm) {
-        font-size: var(--font-size-mx);
-        font-weight: var(--font-weight-bold);
-      }
-    }
   }
 </style>
