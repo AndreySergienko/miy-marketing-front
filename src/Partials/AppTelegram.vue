@@ -1,7 +1,6 @@
 <template>
   <div class="tg">
     <div class="container">
-      <shared-animation>
         <div class="tg__inner">
           <div class="tg__text">
             <SharedTitle>Telegram-каналы</SharedTitle>
@@ -21,7 +20,6 @@
             />
           </div>
       </div>
-      </shared-animation>
     </div>
   </div>
 </template>
