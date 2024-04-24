@@ -15,8 +15,7 @@
 
               price="300 р"
               people= "12 000"
-              advertising= "1/24"
-              new-people= "376"
+              clock="1/24"
             />
           </div>
       </div>
@@ -27,6 +26,7 @@
 <style scoped lang="scss">
    @use 'assets/styles/media';
   .tg {
+    padding: 0 15px;
     margin-bottom: var(--ident-xxl);
 
     &__inner {
@@ -53,16 +53,16 @@
     gap: var(--ident-xm);
 
     @include media.media-breakpoint-down(l) {
-      padding: 0 15px;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
     }
 
     @include media.media-breakpoint-down(md) {
-      padding: 0 var(--ident-xxl);
-      grid-template-columns: repeat(1, 1fr);
+      padding: 0 var(--ident-adaptive-xm);
+      grid-template-columns: repeat(2, 1fr);
     }
 
     @include media.media-breakpoint-down(sm) {
+      padding: 0 150px;
       grid-template-columns: repeat(1, 1fr);
     }
   }

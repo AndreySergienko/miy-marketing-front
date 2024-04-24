@@ -40,13 +40,25 @@
       padding: var(--ident-mx) var(--ident-xs);
     }
     &__large {
-      padding: var(--font-size-s) 212px;
+      padding: var(--ident-l) 9vw;
       font-size: var(-font-size-ml);
       font-weight: var(--font-weight-semi-bold);
       border-radius: 12px;
 
+      @include media.media-breakpoint-down(xl) {
+        padding: var(--ident-l) 12vw;
+      }
+
+      @include media.media-breakpoint-down(l) {
+        padding: var(--ident-l) 17vw;
+      }
+
+      @include media.media-breakpoint-down(md) {
+        padding: var(--ident-l) 21vw;
+      }
+
       @include media.media-breakpoint-down(sm) {
-        padding: var(--ident-mx) 138px;
+        padding: var(--ident-mx) 39vw;
         font-size: var(--font-size-s);
       }
     }

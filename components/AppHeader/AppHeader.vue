@@ -32,6 +32,7 @@
       justify-content: space-between;
       align-items: center;
       margin: var(--ident-xs) 0px;
+      padding: 0 var(--ident-lx);
 
 
       @include media.media-breakpoint-down(l) {

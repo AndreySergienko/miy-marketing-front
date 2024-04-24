@@ -16,13 +16,10 @@
   @use 'assets/styles/media';
   .intro {
     margin-bottom: var(--ident-xxls);
-
-    @include media.media-breakpoint-down(xl) {
-      padding: 0 var(--ident-lx);
-    }
+    padding: 0 var(--ident-lx);
 
     &__inner {
-      padding: --ident-xxl 0;
+      padding: (--ident-xxl) 0;
       width: 55%;
 
       @include media.media-breakpoint-down(md) {

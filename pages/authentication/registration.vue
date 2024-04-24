@@ -58,12 +58,6 @@
 <style lang="scss" scoped>
   @use 'assets/styles/media';
 
-  .btn__registration {
-    @include media.media-breakpoint-down(sm) {
-      
-    }
-  }
-
   .form {
     display: flex;
     flex-direction: column;
