@@ -63,6 +63,11 @@
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-semi-bold);
       margin-bottom: var(--ident-adaptive-xm);
+
+      @include media.media-breakpoint-down(sm) {
+        font-size: var(--font-size-mx);
+        width: 60%;
+      }
     }
 
     &__calendar {

@@ -129,7 +129,10 @@
           gap: var(--ident-l);
 
           @include media.media-breakpoint-down(sm) {
+            display: flex;
+            flex-direction: column;
             gap: var(--ident-m);
+            width: 50vw;
           }
         }
 
@@ -141,7 +144,7 @@
           width: 100%;
 
           @include media.media-breakpoint-down(sm) {
-            width: 25%;
+            width: 20vw;
           }
         }
       }
