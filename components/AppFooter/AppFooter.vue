@@ -39,9 +39,14 @@
   @use 'assets/styles/media';
   .footer {
     border-top: 1px solid var(--color-light-gray);
+    padding: 0 15px;
+
+    @include media.media-breakpoint-down(sm) {
+        padding: 0;
+      }
 
     &__inner {
-      padding: var(--ident-adaptive-xl) ;
+      padding: var(--ident-adaptive-xl) 0;
       display: flex;
       flex-direction: column;
       justify-content: center;

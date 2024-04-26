@@ -1,13 +1,15 @@
 <template>
   <div class="header">
-    <div class="header__inner">
-      <nuxt-link class="header__link" to="/"><h1 class="header__title">ON-DEVELOPER</h1></nuxt-link>
-      <SharedNavigation class="header__navigation" />
-      <div class="header__button">
-        <SharedButton size="s" color="white" @click="signin">Войти</SharedButton>
-        <SharedButton size="m" color="blue" @click="signup">Зарегистрироваться</SharedButton>
+    <div class="container">
+      <div class="header__inner">
+        <nuxt-link class="header__link" to="/"><h1 class="header__title">ON-DEVELOPER</h1></nuxt-link>
+        <SharedNavigation class="header__navigation" />
+        <div class="header__button">
+          <SharedButton size="s" color="white" @click="signin">Войти</SharedButton>
+          <SharedButton size="m" color="blue" @click="signup">Зарегистрироваться</SharedButton>
+        </div>
+        <SharedBurger/>
       </div>
-      <SharedBurger/>
     </div>
   </div>
 </template>
@@ -36,7 +38,7 @@
 
 
       @include media.media-breakpoint-down(l) {
-        padding: 0 var(--ident-adaptive-xm);
+        padding: 0 var(--ident-lx);
         justify-content: space-between;
       }
 

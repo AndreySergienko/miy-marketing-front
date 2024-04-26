@@ -26,14 +26,15 @@
   @use 'assets/styles/media';
   .benefit {
     margin-bottom: var(--ident-xxls);
+    padding: 0 15px;
 
     &__inner {
-      padding: var(--ident-adaptive-xxl) 15px;
+      padding: var(--ident-adaptive-xxl) 0;
       display: flex;
       justify-content: space-between;
 
       @include media.media-breakpoint-down(xl) {
-        padding: 0 var(--ident-lx);
+        
       }
 
       @include media.media-breakpoint-down(l) {

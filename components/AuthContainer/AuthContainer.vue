@@ -63,6 +63,7 @@
 
         &.active {
         color: var(--color-blue);
+        text-underline-offset: 10px;
         }
 
         &:not(.active) {

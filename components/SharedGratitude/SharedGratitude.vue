@@ -46,7 +46,7 @@
   const gratDisplay: TGratDisplay = {
     display: 'gratitude__display'
   }
-  const props =defineProps({
+  const props = defineProps({
     display: String,
   })
 </script>
