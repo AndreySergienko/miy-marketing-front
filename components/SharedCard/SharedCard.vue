@@ -65,6 +65,23 @@
     border-radius: 25px;
     margin-bottom: var(--ident-xs);
     transition: box-shadow 0.3ms;
+    width: 20vw;
+
+    @include media.media-breakpoint-down (xl) {
+      width: 26vw;
+    }
+
+    @include media.media-breakpoint-down (l) {
+      width: 30vw;
+    }
+
+    @include media.media-breakpoint-down (md) {
+      width: 45vw;
+    }
+
+    @include media.media-breakpoint-down (sm) {
+      width: 100%;
+    }
 
     &:hover {
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -138,8 +155,16 @@
       margin-bottom: var(--ident-l);
       gap: var(--ident-ml);
 
-      @include media.media-breakpoint-down (l) {
+      @include media.media-breakpoint-down(xl) {
         justify-content: center;
+      }
+
+      @include media.media-breakpoint-down(l) {
+        justify-content: center;
+      }
+
+      @include media.media-breakpoint-down(sm) {
+
       }
 
       &-text {
