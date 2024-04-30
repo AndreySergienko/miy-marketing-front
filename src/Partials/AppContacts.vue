@@ -14,13 +14,12 @@
 <style scoped lang="scss">
   @use 'assets/styles/media';
   .contacts {
-    padding: 0 15px;
     margin-bottom: var(--ident-xxls);
 
     &__inner {
       display: flex;
       align-items: center;
-      padding: var(--ident-adaptive-xxl) 0px;
+      padding: var(--ident-adaptive-xxl) 15px;
 
       @include media.media-breakpoint-down(l) {
         padding: 0 var(--ident-lx);

@@ -33,7 +33,7 @@
       background: url(../public/DragonAuth.png) no-repeat;
       background-color: var(--color-blue);
       z-index: -1;
-      width: 1920px;
+      width: 100%;
       height: 854px;
 
       @include media.media-breakpoint-down(l) {
@@ -49,7 +49,11 @@
       border-radius: 48px 0 0 48px;
       background-color: var(--color-white);
       height: 854px;
-      width: 40%;
+      width: 42%;
+
+      @include media.media-breakpoint-down(xl) {
+        width: 40%;
+      }
 
       @include media.media-breakpoint-down(l) {
         width: 70%;

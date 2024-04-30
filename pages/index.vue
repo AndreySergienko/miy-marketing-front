@@ -48,21 +48,22 @@
     overflow: hidden;
   }
 
+
   .logo {
     position: absolute;
     background: url(../public/dragon_1.png) no-repeat;
     z-index: -1;
     width: 100%;
     height: 100%;
-    top: -50px;
-    left: 990px;
+    background-size: 50%;
+    top: -8vh;
+    left: 50vw;
     
-    @include media.media-breakpoint-down(l) {
-      top: -50px;
-      left: 700px;
-      background-size: 55%;
-    }
 
+    @include media.media-breakpoint-down(xl) {
+      top: -4vh;
+    }
+    
     @include media.media-breakpoint-down(md) {
         display: none;
       }

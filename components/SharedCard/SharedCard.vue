@@ -14,15 +14,9 @@
         </div>
         <div class="card__icon">
           <div class="card__icon-text">
-            {{ advertising }}
+            {{ clock}}
           </div>
-          <nuxt-icon class="card__icon-img__advertising" name="advertising"/>
-        </div>
-        <div class="card__icon">
-          <div class="card__icon-text">
-            {{ newPeople }}
-          </div>
-          <nuxt-icon class="card__icon-img__newPeople" name="newPeople"/>
+          <nuxt-icon class="card__icon-img__clock" name="clock"/>
         </div>
       </div>
       <div class="card__calendar">
@@ -47,8 +41,7 @@
   const props = defineProps({
     price: String,
     people: String,
-    advertising: String,
-    newPeople: String,
+    clock: String,
   })
 
   // const cardTitle = ref()
@@ -72,9 +65,30 @@
     border-radius: 25px;
     margin-bottom: var(--ident-xs);
     transition: box-shadow 0.3ms;
+    width: 20vw;
+
+    @include media.media-breakpoint-down (xl) {
+      width: 26vw;
+    }
+
+    @include media.media-breakpoint-down (l) {
+      width: 30vw;
+    }
+
+    @include media.media-breakpoint-down (md) {
+      width: 45vw;
+    }
+
+    @include media.media-breakpoint-down (sm) {
+      width: 100%;
+    }
 
     &:hover {
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    &__img {
+      width: 200px;
     }
 
     &__inner {
@@ -123,15 +137,8 @@
       }
 
       &-img {
-        &__people, &__newPeople {
+        &__people, &__clock {
           font-size: var(--font-size-m);
-
-          @include media.media-breakpoint-down(sm) {
-            font-size: var(--font-size-sm);
-          }
-        }
-        &__advertising {
-          font-size: var(--font-size-ml);
 
           @include media.media-breakpoint-down(sm) {
             font-size: var(--font-size-sm);
@@ -148,11 +155,16 @@
       margin-bottom: var(--ident-l);
       gap: var(--ident-ml);
 
-      @include media.media-breakpoint-down (l) {
-        width: 20%;
-      }
-      @include media.media-breakpoint-down (sm) {
+      @include media.media-breakpoint-down(xl) {
         justify-content: center;
+      }
+
+      @include media.media-breakpoint-down(l) {
+        justify-content: center;
+      }
+
+      @include media.media-breakpoint-down(sm) {
+
       }
 
       &-text {

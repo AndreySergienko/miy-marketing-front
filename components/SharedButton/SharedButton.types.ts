@@ -1,5 +1,5 @@
-export type TColorBtn = 'blue' | 'white'
-export type TSizeBtn = 'l' | 'm' | 's'
+export type TColorBtn = 'blue' | 'white' | 'gray'
+export type TSizeBtn = 'l' | 'm' | 's' | 'ml'
 
 
 export interface ISharedButtonProps {

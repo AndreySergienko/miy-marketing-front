@@ -1,38 +1,41 @@
 <template>
-  <div class="personal">
-    <div class="container">
-      <div class="personal__inner">
-        <div class="personal__intro">
-          <h3 class="personal__title">Общая информация</h3>
-          <div class="personal__form">
-            <SharedInput>ФИО</SharedInput>
-            <div class="personal__form-item">
-              <SharedInput>ИНН</SharedInput>
-              <SharedInput>Почта</SharedInput>
-            </div>
-          </div>
-          <div class="personal__card">
-            <div class="personal__card-inner">
-              <h3 class="personal__card-title">Привязанная карта</h3>
-              <div class="personal__card-form">
-                <SharedInput>Номер карты</SharedInput>
-                <div class="personal__card-form__items">
-                  <SharedInput>Дата</SharedInput>
-                  <div class="personal__card-form__item">
-                    <SharedInput class=" personal__card-form__input__password">CCV/CVC</SharedInput>
-                    <nuxt-icon class="personal__icon" name="password" filled/>
+  <ProfileContainer>
+    <template #form>
+      <div class="personal">
+        <div class="container">
+          <div class="personal__inner">
+            <div class="personal__intro">
+              <h3 class="personal__title">Общая информация</h3>
+              <div class="personal__form">
+                <SharedInput>ФИО</SharedInput>
+                <div class="personal__form-item">
+                  <SharedInput>ИНН</SharedInput>
+                  <SharedInput>Почта</SharedInput>
+                </div>
+              </div>
+              <div class="personal__card">
+                <div class="personal__card-inner">
+                  <h3 class="personal__card-title">Привязанная карта</h3>
+                  <div class="personal__card-form">
+                    <SharedInput>Номер карты</SharedInput>
+                    <div class="personal__card-form__items">
+                      <SharedInput>Дата</SharedInput>
+                      <div class="personal__card-form__item">
+                        <SharedInput class=" personal__card-form__input__password">CCV/CVC</SharedInput>
+                        <nuxt-icon class="personal__icon" name="password" filled/>
+                      </div>
+                    </div>
+                    <SharedInput>Предпочтение модерации</SharedInput>
                   </div>
                 </div>
-                <SharedInput>Предпочтение модерации</SharedInput>
               </div>
+              <SharedButton size="l" color="blue" class="personal__btn">Редактировать</SharedButton>
             </div>
           </div>
-          <SharedButton class="personal__button" size="m" color="blue">Редактировать</SharedButton>
         </div>
-        <div class="personal__img"/>
       </div>
-    </div>
-  </div>
+    </template>
+  </ProfileContainer>
 </template>
 
 <script setup>
@@ -41,22 +44,23 @@
   })
 </script>
 <style lang="scss" scoped >
+   @use 'assets/styles/media';
   .personal {
     position: relative;
     overflow: hidden;
     margin-top: var(--ident-xxxl);
 
+    @include media.media-breakpoint-down(md) {
+      width: 150vw;
+    }
+
+    @include media.media-breakpoint-down(sm) {
+      width: 205vw;
+    }
+
     &__inner {
       display: flex;
       gap: 95px;
-    }
-
-    &__img {
-      position: absolute;
-      background: url(../../public/Dragon.png) no-repeat;
-      width: 100%;
-      height: 100%;
-      left: 925px;
     }
 
     &__intro {
@@ -67,6 +71,10 @@
       margin-bottom: var(--ident-xm);
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-semi-bold);
+
+      @include media.media-breakpoint-down(sm) {
+        font-size: var(--font-size-mx);
+      }
     }
 
     &__form {
@@ -80,6 +88,11 @@
         grid-template-columns: repeat(2, 1fr);
         gap: var(--ident-xs);
         margin-bottom: var(--ident-xm);
+
+        @include media.media-breakpoint-down(sm) {
+          display: flex;
+          flex-direction: column;
+        }
       } 
     }
 
@@ -98,6 +111,10 @@
         font-size: var(--font-size-l);
         font-weight: var(--font-weight-semi-bold);
         margin-bottom: var(--ident-l);
+
+        @include media.media-breakpoint-down(sm) {
+        font-size: var(--font-size-ml);
+      }
       }
 
       &-form {
@@ -110,6 +127,13 @@
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           gap: var(--ident-l);
+
+          @include media.media-breakpoint-down(sm) {
+            display: flex;
+            flex-direction: column;
+            gap: var(--ident-m);
+            width: 50vw;
+          }
         }
 
         &__item {
@@ -118,6 +142,10 @@
 
         &__input__password {
           width: 100%;
+
+          @include media.media-breakpoint-down(sm) {
+            width: 20vw;
+          }
         }
       }
     }
@@ -127,10 +155,14 @@
       padding: 0;
       box-sizing: border-box;
       font-size: 50px;
+
+      @include media.media-breakpoint-down (sm) {
+        margin: var(--ident-lx) 0 0 var(--ident-m);
+      }
     }
 
-    &__button {
-      border-radius: 13px;
+    &__btn {
+      padding: var(--ident-mx) var(--ident-xxls);
       margin-bottom: var(--ident-xxxl);
     }
   }

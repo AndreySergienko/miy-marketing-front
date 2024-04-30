@@ -25,20 +25,20 @@
 <style scoped lang="scss">
   @use 'assets/styles/media';
   .benefit {
-    padding: 0 15px;
     margin-bottom: var(--ident-xxls);
+    padding: 0 15px;
 
     &__inner {
       padding: var(--ident-adaptive-xxl) 0;
       display: flex;
       justify-content: space-between;
 
-      @include media.media-breakpoint-down(md) {
-        padding: 0;
+      @include media.media-breakpoint-down(xl) {
+        
       }
 
-      @include media.media-breakpoint-down(sm) {
-        padding: 0 var(--ident-lx);
+      @include media.media-breakpoint-down(l) {
+        flex-direction: column;
       }
     }
 
@@ -49,13 +49,6 @@
       @include media.media-breakpoint-down(sm) {
         width: 95%;
       }
-    }
-
-    @include media.media-breakpoint-down(l) {
-      &__inner {
-        flex-direction: column;
-        padding-left: var(--ident-lx);
-      }  
     }
   }
 </style>
