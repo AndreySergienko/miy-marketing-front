@@ -29,6 +29,10 @@ const input = computed({
     display: flex;
     flex-direction: column;
 
+    @include media.media-breakpoint-down(l) {
+        width: 100%;
+      }
+
     &__name {
       margin-bottom: var(--ident-m);
 
@@ -36,6 +40,7 @@ const input = computed({
       font-weight: var(--font-weight-medium);
 
       @include media.media-breakpoint-down(sm) {
+        width: 100%;
         font-size: var(--font-size-s);
       }
     }

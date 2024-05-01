@@ -8,11 +8,11 @@
         <div class="footer__intro">
           <div class="footer__intro-inner">
             <div class="footer__intro-title">
-              <span>ОN DEVELOPER</span>
+              <span>ОN-DEVELOPER</span>
             </div>
             <div class="footer__intro-text">
               <p>Разработка сайта <span class="studio">Я</span>Р студия</p>
-              <p>© ОN DEVELOPERс 2021-2024</p>
+              <p>© ОN-DEVELOPERс 2021-2024</p>
             </div>
           </div>
           <div class="footer__intro-contacts">

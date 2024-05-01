@@ -40,12 +40,6 @@ definePageMeta({
     width: 70%;
 
     @include media.media-breakpoint-down(l){
-      width: 60%;
-    }
-    @include media.media-breakpoint-down(md) {
-      width: 70%;
-    }
-    @include media.media-breakpoint-down(sm) {
       width: 100%;
     }
 

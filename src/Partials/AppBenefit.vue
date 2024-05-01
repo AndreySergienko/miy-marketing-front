@@ -28,17 +28,26 @@
     margin-bottom: var(--ident-xxls);
     padding: 0 15px;
 
+    @include media.media-breakpoint-down(xl) {
+      margin-bottom: 0;
+    }
+    @include media.media-breakpoint-down(l) {
+      margin-bottom: var(--ident-xxls);
+    }
+    @include media.media-breakpoint-down (sm) {
+      margin-bottom: 0;
+    }
+    
+
     &__inner {
       padding: var(--ident-adaptive-xxl) 0;
       display: flex;
       justify-content: space-between;
 
-      @include media.media-breakpoint-down(xl) {
-        
-      }
-
       @include media.media-breakpoint-down(l) {
         flex-direction: column;
+        align-items: center;
+        text-align: center;
       }
     }
 

@@ -25,8 +25,14 @@
   @use 'assets/styles/media';
   .auth {
 
-    display: flex;
-    align-items: center;
+    &__inner {
+      
+      @include media.media-breakpoint-down(l) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
 
     &__title {
       font-size: var(--font-size-xl);
@@ -35,14 +41,16 @@
       width: 65%;
 
       @include media.media-breakpoint-down(l) {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
         width: 55%;
       }
 
-      @include media.media-breakpoint-down(md) {
-        width: 65%;
-      }
 
       @include media.media-breakpoint-down(sm) {
+        margin-top: var(--ident-xxxl);
+        text-align: center;
         font-size: var(--font-size-mx);
         width: 90%;
       }
@@ -54,6 +62,10 @@
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
       margin-bottom: var(--ident-xs);
+
+      @include media.media-breakpoint-down(l) {
+        justify-content: center;
+      }
 
       @include media.media-breakpoint-down(sm) {
         font-size: var(--font-size-s);
@@ -71,6 +83,13 @@
           text-decoration: none;
         }
       }  
+    }
+
+    &__form {
+      @include media.media-breakpoint-down(l) {
+        display: flex;
+        justify-content: center;
+      }
     }
   }
 </style>

@@ -63,10 +63,19 @@
     flex-direction: column;
     gap: var(--ident-l);
 
+    @include media.media-breakpoint-down(l) {
+      width: 100%;
+      align-items: center;
+    }
+
     &__item {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: var(--ident-l);
+
+      @include media.media-breakpoint-down(l) {
+        width: 100%;
+      }
 
       @include media.media-breakpoint-down(sm) {
         display: flex;
@@ -78,6 +87,10 @@
       display: flex;
       flex-direction: column;
       gap: var(--ident-m);
+
+      @include media.media-breakpoint-down(l) {
+        width: 100%;
+      }
 
       &-title {
         font-size: var(--font-size-m);

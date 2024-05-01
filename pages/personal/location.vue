@@ -8,10 +8,17 @@
           </div>
           <div class="location__inner">
             <SharedInput>Название</SharedInput>
-            <SharedInput>Выбор категории</SharedInput>
+            <div class="location__categories">
+              <label class="location__categories-title">Выбор Категории</label>
+                <select class="location__categories-list">
+                  <option><SharedCategories /></option>
+                </select>
+            </div>
+            <!-- <SharedInput>Выбор категории</SharedInput> -->
+            
             <div class="location__calendar">
               <span class="location__calendar-title">Заполните календарь доступных рекламных слотов в вашем TG-канале</span>
-              <SharedInput>День</SharedInput>
+              <SharedInput type="date">День</SharedInput>
               <SharedInput>Слоты</SharedInput>
               <div class="location__calendar-item">
                 <SharedInput>Интервал</SharedInput>
@@ -101,6 +108,23 @@
 
     &__btn {
       margin-bottom: var(--ident-l);
+    }
+    &__categories {
+      display: flex;
+      flex-direction: column;
+
+      &-title {
+        margin-bottom: var(--ident-m);
+
+        font-size: var(--font-size-m);
+        font-weight: var(--font-weight-medium);
+      }
+
+      &-list {
+        height: 50px;
+        border: 1px solid var(--color-light-gray);
+        border-radius: 12px;
+      }
     }
   }
 </style>

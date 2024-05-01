@@ -92,7 +92,7 @@
     }
 
     &__inner {
-      padding: var(--ident-xs) var(--ident-xl) 146px;
+      padding: var(--ident-xs) var(--ident-xl);
       gap: var(--ident-mx);
 
       display: flex;
@@ -107,6 +107,10 @@
     &__price {
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-semi-bold);
+
+      @include media.media-breakpoint-down (l) {
+      font-size: var(--font-size-xm);
+    }
 
       @include media.media-breakpoint-down(sm) {
         font-size: var(--font-size-mx);
