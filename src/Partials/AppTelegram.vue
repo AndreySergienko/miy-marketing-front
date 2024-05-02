@@ -26,7 +26,7 @@
 <style scoped lang="scss">
    @use 'assets/styles/media';
   .tg {
-    padding: 0 15px;
+    padding: 0 var(--ident-lm);
     margin-bottom: var(--ident-xxl);
 
     &__inner {
@@ -49,10 +49,10 @@
 
   .card__list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--ident-xm);
 
-    @include media.media-breakpoint-down(l) {
+    @include media.media-breakpoint-down(xl) {
       grid-template-columns: repeat(3, 1fr);
     }
 

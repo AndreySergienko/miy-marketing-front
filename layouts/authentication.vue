@@ -22,19 +22,24 @@
       position: relative;
       display: flex;
       justify-content: flex-end;
+      height: 73vh;
+      background-color: var(--color-blue);
+
+      @include media.media-breakpoint-down(xl) {
+        height: 59vh;
+      }
 
       @include media.media-breakpoint-down(l) {
-        justify-content: flex-start;
+        background-color: var(--color-white);
+        justify-content: center;
       }
     }
 
     &__logo {
-      position: absolute;
       background: url(../public/DragonAuth.png) no-repeat;
-      background-color: var(--color-blue);
-      z-index: -1;
+      background-size: 100%;
       width: 100%;
-      height: 854px;
+      height: 100%;
 
       @include media.media-breakpoint-down(l) {
         display: none;
@@ -48,20 +53,19 @@
       border: 1px solid transparent;
       border-radius: 48px 0 0 48px;
       background-color: var(--color-white);
-      height: 854px;
-      width: 42%;
+      width: 100%;
 
       @include media.media-breakpoint-down(xl) {
-        width: 40%;
+        width: 80%;
       }
 
       @include media.media-breakpoint-down(l) {
-        width: 70%;
+        justify-content: center;
+        width: 100%;
         padding: 0 var( --ident-adaptive-xm);
       }
 
       @include media.media-breakpoint-down(sm) {
-        height: 100%;
         padding: 0 var(--ident-l);
       }
     }
