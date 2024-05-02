@@ -26,7 +26,7 @@
 <style scoped lang="scss">
    @use 'assets/styles/media';
   .tg {
-    padding: 0 15px;
+    padding: 0 var(--ident-lm);
     margin-bottom: var(--ident-xxl);
 
     &__inner {

@@ -26,7 +26,7 @@
   @use 'assets/styles/media';
   .benefit {
     margin-bottom: var(--ident-xxls);
-    padding: 0 15px;
+    padding: 0 var(--ident-lm);
 
     @include media.media-breakpoint-down(xl) {
       margin-bottom: 0;

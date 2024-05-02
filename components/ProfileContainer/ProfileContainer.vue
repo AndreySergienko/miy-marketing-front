@@ -28,7 +28,7 @@
     }
 
     &__form {
-      padding: 0 15px;
+      padding: 0 var(--ident-lm);
     }
 
   }

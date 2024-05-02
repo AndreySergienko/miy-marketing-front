@@ -7,7 +7,7 @@
 <style lang="scss" scoped>
   @use 'assets/styles/media';
   .title {
-    font-size: var(--font-size-xxl);
+    font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-semi-bold);
     margin-bottom: var(--ident-xs);
 

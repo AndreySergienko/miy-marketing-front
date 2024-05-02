@@ -20,7 +20,7 @@
       gap: var(--ident-xxl);
       font-size: var(--font-size-ml);
       font-weight: var(--font-weight-medium);
-      padding: 0 15px;
+      padding: 0 var(--ident-lm);
 
       @include media.media-breakpoint-down (sm) {
         flex-direction: column;

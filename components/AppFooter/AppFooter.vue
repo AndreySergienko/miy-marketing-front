@@ -39,7 +39,7 @@
   @use 'assets/styles/media';
   .footer {
     border-top: 1px solid var(--color-light-gray);
-    padding: 0 15px;
+    padding: 0 var(--ident-lm);
 
     @include media.media-breakpoint-down(sm) {
         padding: 0;

@@ -22,8 +22,12 @@
       position: relative;
       display: flex;
       justify-content: flex-end;
-      height: 59vh;
+      height: 73vh;
       background-color: var(--color-blue);
+
+      @include media.media-breakpoint-down(xl) {
+        height: 59vh;
+      }
 
       @include media.media-breakpoint-down(l) {
         background-color: var(--color-white);
@@ -33,6 +37,7 @@
 
     &__logo {
       background: url(../public/DragonAuth.png) no-repeat;
+      background-size: 100%;
       width: 100%;
       height: 100%;
 
