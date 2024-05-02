@@ -3,10 +3,16 @@
     <div class="container">
       <shared-animation>
         <div class="intro__inner">
-          <h1 class="intro__title"> Ut enim ad minim veniam, quis nostrud exercitation </h1>
-          <SharedText> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut <br>
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco <br>
-            laboris nisi ut aliquip ex ea commodo consequat.</SharedText>
+          <h1 class="intro__title">
+            Ut enim ad minim veniam, quis nostrud exercitation
+          </h1>
+          <SharedText>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut <br />
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco <br />
+            laboris nisi ut aliquip ex ea commodo consequat.</SharedText
+          >
         </div>
       </shared-animation>
     </div>
@@ -16,7 +22,6 @@
   @use 'assets/styles/media';
   .intro {
     margin-bottom: var(--ident-xxls);
-    padding: 0 var(--ident-lx);
 
     @include media.media-breakpoint-down (sm) {
       margin-bottom: 0;

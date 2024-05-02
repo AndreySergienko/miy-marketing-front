@@ -1,22 +1,24 @@
 <template>
   <div class="auth">
-    <div class="auth__inner">
-      <h2 class="auth__title">Добро пожаловать в ON-DEVELOPER</h2>
-      <div class="auth__link">
-        <nuxt-link
-        to="/authentication/login"
-        :class="{active: $route.path === '/authentication/login'}" 
-        >
-          Войти
-        </nuxt-link>
-        <nuxt-link 
-        to="/authentication/registration"
-        :class="{active: $route.path === '/authentication/registration'}"
-        >
-          Регистрация
-        </nuxt-link>
+    <div class="container">
+      <div class="auth__inner">
+        <h2 class="auth__title">Добро пожаловать в ON-DEVELOPER</h2>
+        <div class="auth__link">
+          <nuxt-link
+            to="/authentication/login"
+            :class="{active: $route.path === '/authentication/login'}"
+          >
+            Войти
+          </nuxt-link>
+          <nuxt-link
+            to="/authentication/registration"
+            :class="{active: $route.path === '/authentication/registration'}"
+          >
+            Регистрация
+          </nuxt-link>
+        </div>
+        <div class="auth__form"><slot name="form" /></div>
       </div>
-      <div class="auth__form"><slot name="form" /></div>
     </div>
   </div>
 </template>
@@ -26,7 +28,7 @@
   .auth {
 
     &__inner {
-      
+
       @include media.media-breakpoint-down(l) {
         display: flex;
         flex-direction: column;
@@ -44,15 +46,15 @@
         text-align: center;
         justify-content: center;
         align-items: center;
-        width: 55%;
+        // width: 55%;
       }
 
 
       @include media.media-breakpoint-down(sm) {
-        margin-top: var(--ident-xxxl);
+        // margin-top: var(--ident-xxxl);
         text-align: center;
         font-size: var(--font-size-mx);
-        width: 90%;
+        // width: 90%;
       }
     }
 
@@ -82,7 +84,7 @@
           color: var(--color-black);
           text-decoration: none;
         }
-      }  
+      }
     }
 
     &__form {
