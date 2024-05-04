@@ -28,11 +28,13 @@
   .auth {
 
     &__inner {
+      padding: 0 71px;
 
       @include media.media-breakpoint-down(l) {
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 0;
       }
     }
 
@@ -40,13 +42,16 @@
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-semi-bold);
       margin-bottom: var(--ident-xm);
-      width: 65%;
+      width: 55%;
+
+      @include media.media-breakpoint-down(xl) {
+        width: 66%;
+      }
 
       @include media.media-breakpoint-down(l) {
         text-align: center;
         justify-content: center;
         align-items: center;
-        // width: 55%;
       }
 
 
@@ -54,7 +59,7 @@
         // margin-top: var(--ident-xxxl);
         text-align: center;
         font-size: var(--font-size-mx);
-        // width: 90%;
+        width: 90%;
       }
     }
 

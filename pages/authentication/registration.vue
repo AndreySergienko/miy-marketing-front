@@ -16,14 +16,17 @@
               <span class="form__checkbox-title">Публикация рекламных постов в</span>
               <div class="form__checkbox-items">
                 <div class="form__checkbox-item">
-                  <input type="checkbox"> В уведомительном порядке
+                  <input  type="checkbox">
+                  <label for="checkbox"> В уведомительном порядке</label>
                 </div>
                 <div class="form__checkbox-item">
-                  <input type="checkbox"> В автоматическом порядке
+                  <input type="checkbox">
+                  <label for="checkbox">В автоматическом порядке</label>
                 </div>
               </div>
               <div class="form__checkbox-confidential">
-                <input type="checkbox"> Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности</nuxt-link>.
+                <input type="checkbox">
+                <label for="checkbox">Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></label> 
               </div>
             </div>
             <div class="btn__registration">
@@ -103,25 +106,27 @@
 
       &-items {
         display: grid;
+        align-items: center;
         grid-template-columns: repeat(2, 1fr);
         gap: var(--ident-m);
       }
 
       &-item {
+        display: flex;
+        align-items: center;
         font-size: var(--font-size-sm);
         font-weight: var(--font-weight-medium);
 
         @include media.media-breakpoint-down(sm) {
           display: flex;
-          align-items: flex-start;
+          align-items: center;
           font-size: var(--font-size-ss);
         }
 
-        &:not(:last-child) {
-          margin-bottom: var(--ident-l);
-        }
       }
       &-confidential {
+        display: flex;
+        align-items: center;
         font-size: var(--font-size-ss);
         font-weight: var(--font-weight-medium);
       }

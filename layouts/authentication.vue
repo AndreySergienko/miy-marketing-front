@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <!-- <div class="container"> -->
     <AppHeader />
-  </div>
+  <!-- </div> -->
 
   <section class="authentication">
     <div class="authentication__inner">
@@ -27,9 +27,9 @@
     }
 
     &__logo {
-      background: url(../public/DragonAuth.png) no-repeat;
+      background: url(../public/dragon__white.png) no-repeat;
       height: 100%;
-      // min-height: calc(100vh - 49px);
+      min-height: calc(100vh - 49px);
       background-size: cover;
       width: 100%;
 

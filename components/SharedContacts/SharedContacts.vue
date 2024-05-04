@@ -38,7 +38,11 @@
     &__intro {
       display: flex;
       flex-direction: column;
-      width: 80%;
+      width: 100%;
+
+      @include media.media-breakpoint-down(xl) {
+        width: 95%;
+      }
 
     }
 

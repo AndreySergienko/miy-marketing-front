@@ -1,44 +1,52 @@
 <template>
-  <ProfileContainer>
-    <template #form>
-      <div class="personal">
-        <div class="container">
-          <div class="personal__inner">
-            <div class="personal__intro">
-              <h3 class="personal__title">Общая информация</h3>
-              <div class="personal__form">
-                <SharedInput>ФИО</SharedInput>
-                <div class="personal__form-item">
-                  <SharedInput>ИНН</SharedInput>
-                  <SharedInput>Почта</SharedInput>
-                </div>
-              </div>
-              <div class="personal__card">
-                <div class="personal__card-inner">
-                  <h3 class="personal__card-title">Привязанная карта</h3>
-                  <div class="personal__card-form">
-                    <SharedInput>Номер карты</SharedInput>
-                    <div class="personal__card-form__items">
-                      <SharedInput>Дата</SharedInput>
-                      <div class="personal__card-form__item">
-                        <SharedInput class=" personal__card-form__input__password">CCV/CVC</SharedInput>
-                        <nuxt-icon class="personal__icon" name="password" filled/>
+  <ProfileController>
+    <template #default="{profileData, profileRules, sendProfile}">
+      <ProfileContainer>
+        <template #form>
+          <VeeForm v-slot="{errors,meta}" @submit="sendProfile" :validation-schema="profileRules">
+            <div class="personal">
+              <div class="container">
+                <div class="personal__inner">
+                  <div class="personal__intro">
+                    <h3 class="personal__title">Общая информация</h3>
+                    <div class="personal__form">
+                      <SharedInput name="name" v-model="profileData.name" type="text" :error="errors.name" >ФИО</SharedInput>
+                      <div class="personal__form-item">
+                        <SharedInput name="inn" v-model="profileData.inn" type="text" :error="errors.inn"  >ИНН</SharedInput>
+                        <SharedInput name="email" v-model="profileData.email" type="text" :error="errors.email" >Почта</SharedInput>
                       </div>
                     </div>
-                    <SharedInput>Предпочтение модерации</SharedInput>
+                    <div class="personal__card">
+                      <div class="personal__card-inner">
+                        <h3 class="personal__card-title">Привязанная карта</h3>
+                        <div class="personal__card-form">
+                          <SharedInput>Номер карты</SharedInput>
+                          <div class="personal__card-form__items">
+                            <SharedInput>Дата</SharedInput>
+                            <div class="personal__card-form__item">
+                              <SharedInput class=" personal__card-form__input__password">CCV/CVC</SharedInput>
+                              <nuxt-icon class="personal__icon" name="password" filled/>
+                            </div>
+                          </div>
+                          <SharedInput>Предпочтение модерации</SharedInput>
+                        </div>
+                      </div>
+                    </div>
+                    <SharedButton size="l" color="blue" class="personal__btn" :disabled="!meta.valid" >Редактировать</SharedButton>
                   </div>
                 </div>
               </div>
-              <SharedButton size="l" color="blue" class="personal__btn">Редактировать</SharedButton>
             </div>
-          </div>
-        </div>
-      </div>
+          </VeeForm>
+        </template>
+      </ProfileContainer>
     </template>
-  </ProfileContainer>
+  </ProfileController>
 </template>
 
 <script setup>
+import ProfileController from '~/controllers/ProfileController/ProfileController.vue';
+
   definePageMeta({
     layout: 'personal'
   })
