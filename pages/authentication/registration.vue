@@ -15,18 +15,11 @@
             <div class="form__checkbox">
               <span class="form__checkbox-title">Публикация рекламных постов в</span>
               <div class="form__checkbox-items">
-                <div class="form__checkbox-item">
-                  <input  type="checkbox">
-                  <label for="checkbox"> В уведомительном порядке</label>
-                </div>
-                <div class="form__checkbox-item">
-                  <input type="checkbox">
-                  <label for="checkbox">В автоматическом порядке</label>
-                </div>
+                <SharedCheckbox>В уведомительном порядке</SharedCheckbox>
+                <SharedCheckbox>В автоматическом порядке</SharedCheckbox>  
               </div>
               <div class="form__checkbox-confidential">
-                <input type="checkbox">
-                <label for="checkbox">Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></label> 
+                <SharedCheckbox>Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></SharedCheckbox> 
               </div>
             </div>
             <div class="btn__registration">
@@ -43,6 +36,7 @@
 </template>
 
 <script setup>
+  import SharedCheckbox from '~/components/SharedCheckbox/SharedCheckbox.vue';
   import AuthController from '~/controllers/AuthController/AuthController.vue';
 
  
@@ -111,19 +105,6 @@
         gap: var(--ident-m);
       }
 
-      &-item {
-        display: flex;
-        align-items: center;
-        font-size: var(--font-size-sm);
-        font-weight: var(--font-weight-medium);
-
-        @include media.media-breakpoint-down(sm) {
-          display: flex;
-          align-items: center;
-          font-size: var(--font-size-ss);
-        }
-
-      }
       &-confidential {
         display: flex;
         align-items: center;

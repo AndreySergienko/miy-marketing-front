@@ -1,8 +1,5 @@
 <template>
-  <!-- <div class="container"> -->
-    <AppHeader />
-  <!-- </div> -->
-
+  <AppHeader />
   <section class="authentication">
     <div class="authentication__inner">
       <div class="authentication__logo" />
@@ -21,9 +18,11 @@
       background-color: var(--color-blue);
 
       @include media.media-breakpoint-down(l) {
+        margin-top: var(--ident-xxxl);
         background-color: var(--color-white);
         justify-content: center;
       }
+
     }
 
     &__logo {
