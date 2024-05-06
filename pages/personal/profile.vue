@@ -21,13 +21,13 @@
                         <h3 class="personal__card-title">Привязанная карта</h3>
                         <div class="personal__card-form">
                           <SharedInput name="card" type="number" >Номер карты</SharedInput>
-                          <div class="personal__card-form__items">
+                          <!-- <div class="personal__card-form__items">
                             <SharedInput name="date" type="number" >Дата</SharedInput>
                             <div class="personal__card-form__item">
                               <SharedInput name="code" type="number" class=" personal__card-form__input__password">CCV/CVC</SharedInput>
                               <nuxt-icon class="personal__icon" name="password" filled/>
                             </div>
-                          </div>
+                          </div> -->
                           <SharedInput name="moderation" type="text">Предпочтение модерации</SharedInput>
                         </div>
                       </div>
