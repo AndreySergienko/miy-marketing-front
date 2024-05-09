@@ -1,11 +1,11 @@
 <template>
   <section class="profile-history-pagination">
     <ProfileHistoryArrow is-disabled />
-    <ProfileHistoryPage page="1" is-active />
-    <ProfileHistoryPage page="2" />
-    <ProfileHistoryPage page="3" />
+    <ProfileHistoryPage :page="1" is-active />
+    <ProfileHistoryPage :page="2" />
+    <ProfileHistoryPage :page="3" />
     <ProfileHistoryPage />
-    <ProfileHistoryPage page="10" />
+    <ProfileHistoryPage :page="10" />
     <ProfileHistoryArrow is-inversed />
   </section>
 </template>
