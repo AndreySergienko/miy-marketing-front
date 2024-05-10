@@ -5,19 +5,12 @@
         <SharedTitle class="location__title">Размещение TG-каналов</SharedTitle>
         <div class="location__inner">
           <SharedInput>Название</SharedInput>
-          <div class="location__categories">
-            <label class="location__categories-title">Выбор категории</label>
-            <select class="location__categories-list">
-              <option value="" selected disabled>Выберите категорию</option>
-              <option
-                v-for="category in categories"
-                :key="category.id"
-                :value="category.value"
-              >
-                {{ category.title }}
-              </option>
-            </select>
-          </div>
+          <SharedSelect
+            title="Выбор категории"
+            :selected="category"
+            :options="categories"
+            @select="category = $event"
+          />
           <div class="location__calendar">
             <span class="location__calendar-title">
               Заполните календарь доступных рекламных слотов в вашем TG-канале
@@ -57,6 +50,8 @@ const { categories } = storeToRefs(categoriesStore);
 await useAsyncData("location-first-data", () => {
   return categoriesStore.getAll();
 });
+
+const category = ref("");
 </script>
 
 <style scoped lang="scss">
