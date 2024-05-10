@@ -158,7 +158,10 @@ const handleIntervalsUnselect = (value: string) => {
 
   &__btn {
     margin-bottom: var(--ident-l);
+    width: fit-content;
+    padding: var(--ident-l) 48px;
   }
+
   &__categories {
     display: flex;
     flex-direction: column;
