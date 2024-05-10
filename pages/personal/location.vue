@@ -15,7 +15,11 @@
             <span class="location__calendar-title">
               Заполните календарь доступных рекламных слотов в вашем TG-канале
             </span>
-            <SharedInput type="date">Дата</SharedInput>
+            <SharedCalendar
+              title="Календарь"
+              :selected="selectedDate"
+              @select="selectedDate = $event"
+            />
             <SharedMultiselect
               title="Слоты"
               :selected="selectedSlots"
@@ -80,6 +84,8 @@ const handleSlotsUnselect = (value: string) => {
   const index = selectedSlots.value.indexOf(value);
   selectedSlots.value.splice(index, 1);
 };
+
+const selectedDate = ref<Date | null>(null);
 
 const intervals = [
   { title: "1/24", value: "1/24" },
