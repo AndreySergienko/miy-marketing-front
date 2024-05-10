@@ -1,18 +1,23 @@
 <template>
   <section class="profile-history-list">
     <ProfileHistoryCard
-      v-for="index in 12"
+      v-for="(item, index) in payments"
       :key="index"
-      title="Название канала"
+      :title="item.name"
       image="/tg.png"
-      :price="3000"
-      :id="1"
-      :date="new Date().toLocaleDateString('ru')"
+      :price="item.price"
+      :id="index"
+      :date="item.datetime"
     />
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { usePaymentsStore } from "~/store/payments/payments.store";
+
+const paymentsStore = usePaymentsStore();
+const { payments } = storeToRefs(paymentsStore);
+</script>
 
 <style scoped lang="scss">
 .profile-history-list {

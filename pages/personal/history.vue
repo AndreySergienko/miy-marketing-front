@@ -10,10 +10,14 @@
 <script setup>
 import ProfileHistoryList from "~/controllers/ProfileHistoryList/ProfileHistoryList.vue";
 import ProfileHistoryPagination from "~/controllers/ProfileHistoryPagination/ProfileHistoryPagination.vue";
+import { usePaymentsStore } from "~/store/payments/payments.store";
 
 definePageMeta({
   layout: "personal",
 });
+
+const paymentsStore = usePaymentsStore();
+await useAsyncData("payments-all", () => paymentsStore.getAll());
 </script>
 
 <style scoped lang="scss">
