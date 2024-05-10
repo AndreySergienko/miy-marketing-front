@@ -1,29 +1,36 @@
 <template>
   <div
-    :class="['shared-select', rootClass]"
+    :class="['shared-multiselect', rootClass]"
     v-outside-click="() => (isOpened = false)"
   >
-    <span class="shared-select__title">{{ title }}</span>
-    <div class="shared-select__field" @click="isOpened = !isOpened">
-      <div class="shared-select__field-selected">{{ selectedText }}</div>
-      <NuxtIcon class="shared-select__field-arrow" name="select-arrow" filled />
+    <span class="shared-multiselect__title">{{ title }}</span>
+    <div class="shared-multiselect__field">
+      <div class="shared-multiselect__field-selected">
+        <SharedMultiselectSelectedItem
+          v-for="option in selectedOptions"
+          :key="option.value"
+          :text="option.title"
+          @remove="handleRemove(option.value)"
+        />
+      </div>
+      <NuxtIcon
+        class="shared-multiselect__field-arrow"
+        name="select-arrow"
+        filled
+        @click="isOpened = !isOpened"
+      />
     </div>
-    <div class="shared-select__options">
-      <div class="shared-select__options-inner">
-        <span
-          v-if="placeholder"
-          class="shared-select__options-inner--item shared-select__options-inner--item-placeholder"
-        >
-          {{ placeholder }}
-        </span>
-        <span
+    <div class="shared-multiselect__options">
+      <div class="shared-multiselect__options-inner">
+        <SharedMultiselectOptionsItem
           v-for="option in options"
           :key="option.value"
-          class="shared-select__options-inner--item"
-          @click="handleOptionClick(option.value)"
-        >
-          {{ option.title }}
-        </span>
+          :text="option.title"
+          :is-selected="
+            !!selectedOptions.find((item) => item.value === option.value)
+          "
+          @trigger="handleOptionClick(option.value)"
+        />
       </div>
     </div>
   </div>
@@ -31,39 +38,47 @@
 
 <script setup lang="ts">
 import type {
-  ISharedSelectProps,
-  ISharedSelectEmits,
-} from "./SharedSelect.types";
+  ISharedMultiselectOption,
+  ISharedMultiselectProps,
+  ISharedMultiselectEmits,
+} from "./SharedMultiselect.types";
 
-const props = defineProps<ISharedSelectProps>();
-const { selected, placeholder, options } = toRefs(props);
+const props = defineProps<ISharedMultiselectProps>();
+const { selected, options } = toRefs(props);
 
-const emit = defineEmits<ISharedSelectEmits>();
+const emit = defineEmits<ISharedMultiselectEmits>();
 
 const isOpened = ref(false);
 
-const selectedText = computed(() => {
-  if (!selected.value) return placeholder.value || "";
-
-  const option = options.value.find(
-    (option) => option.value === selected.value
-  );
-
-  return option?.title || "";
+const selectedOptions = computed(() => {
+  return selected.value
+    .map((value) => {
+      const option = options.value.find((option) => option.value === value);
+      return option || null;
+    })
+    .filter(Boolean) as ISharedMultiselectOption[];
 });
 
 const rootClass = computed(() => ({
-  "shared-select--opened": isOpened.value,
+  "shared-multiselect--opened": isOpened.value,
 }));
 
 const handleOptionClick = (value: string) => {
-  isOpened.value = false;
+  if (selectedOptions.value.find((option) => option.value === value)) {
+    emit("unselect", value);
+    return;
+  }
+
   emit("select", value);
+};
+
+const handleRemove = (value: string) => {
+  emit("unselect", value);
 };
 </script>
 
 <style scoped lang="scss">
-.shared-select {
+.shared-multiselect {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -84,14 +99,15 @@ const handleOptionClick = (value: string) => {
     border-radius: var(--ident-mx);
     padding: var(--ident-mx);
     background: #fff;
-    cursor: pointer;
+    overflow: hidden;
     user-select: none;
 
     &-selected {
       flex: 1;
       overflow: hidden;
-      font-size: var(--font-size-m);
-      font-weight: var(--font-weight-medium);
+      display: flex;
+      align-items: center;
+      gap: var(--ident-ml);
     }
 
     &-arrow {
@@ -99,6 +115,7 @@ const handleOptionClick = (value: string) => {
       width: 30px;
       height: 30px;
       transition: 0.3s rotate ease-in-out;
+      cursor: pointer;
 
       :deep(svg) {
         width: 100%;
@@ -160,7 +177,7 @@ const handleOptionClick = (value: string) => {
   }
 
   &--opened {
-    .shared-select__field {
+    .shared-multiselect__field {
       border-radius: var(--ident-mx) var(--ident-mx) 0 0;
 
       &-arrow {
@@ -168,7 +185,7 @@ const handleOptionClick = (value: string) => {
       }
     }
 
-    .shared-select__options {
+    .shared-multiselect__options {
       display: block;
     }
   }

@@ -16,9 +16,22 @@
               Заполните календарь доступных рекламных слотов в вашем TG-канале
             </span>
             <SharedInput type="date">Дата</SharedInput>
-            <SharedInput>Слоты</SharedInput>
+            <SharedMultiselect
+              title="Слоты"
+              :selected="selectedSlots"
+              :options="slots"
+              @select="handleSlotsSelect"
+              @unselect="handleSlotsUnselect"
+            />
             <div class="location__calendar-item">
-              <SharedInput>Интервал</SharedInput>
+              <SharedMultiselect
+                class="location__calendar-item-interval"
+                title="Интервал"
+                :selected="selectedIntervals"
+                :options="intervals"
+                @select="handleIntervalsSelect"
+                @unselect="handleIntervalsUnselect"
+              />
               <SharedInput>Цена</SharedInput>
             </div>
           </div>
@@ -37,7 +50,7 @@
   </ProfileContainer>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useCategoriesStore } from "~/store/categories/categories.store";
 
 definePageMeta({
@@ -52,6 +65,37 @@ await useAsyncData("location-first-data", () => {
 });
 
 const category = ref("");
+
+const slots = [
+  { title: "10:00", value: "10:00" },
+  { title: "11:00", value: "11:00" },
+];
+const selectedSlots = ref<string[]>([]);
+
+const handleSlotsSelect = (value: string) => {
+  selectedSlots.value.push(value);
+};
+
+const handleSlotsUnselect = (value: string) => {
+  const index = selectedSlots.value.indexOf(value);
+  selectedSlots.value.splice(index, 1);
+};
+
+const intervals = [
+  { title: "1/24", value: "1/24" },
+  { title: "1/48", value: "1/48" },
+  { title: "1/128", value: "1/128" },
+];
+const selectedIntervals = ref<string[]>([]);
+
+const handleIntervalsSelect = (value: string) => {
+  selectedIntervals.value.push(value);
+};
+
+const handleIntervalsUnselect = (value: string) => {
+  const index = selectedIntervals.value.indexOf(value);
+  selectedIntervals.value.splice(index, 1);
+};
 </script>
 
 <style scoped lang="scss">
