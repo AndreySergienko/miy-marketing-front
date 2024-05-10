@@ -2,7 +2,11 @@
   <div class="navigation container">
     <div class="navigation__inner">
       <nuxt-link
-        :class="{ active: $route.path === '/personal/profile' }"
+        :class="{
+          active:
+            $route.path === '/personal/profile' ||
+            $route.path === '/personal/connect',
+        }"
         to="/personal/profile"
       >
         Мой профиль
