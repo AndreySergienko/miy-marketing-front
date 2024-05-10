@@ -1,38 +1,30 @@
 <template>
-  <ProfileController>
-    <template #default="{profileData, profileRules, sendProfile}">
+  <UserController>
+    <template #default="{userData, userRules, sendUser}">
       <ProfileContainer>
         <template #form>
-          <VeeForm v-slot="{errors,meta}" @submit="sendProfile" :validation-schema="profileRules">
+          <VeeForm v-slot="{errors,meta}" @submit="sendUser" :validation-schema="userRules">
             <div class="personal">
               <div class="container">
                 <div class="personal__inner">
                   <div class="personal__intro">
                     <h3 class="personal__title">Общая информация</h3>
                     <div class="personal__form">
-                      <SharedInput name="name" v-model="profileData.name" type="text" :error="errors.name" >ФИО</SharedInput>
+                      <SharedInput name="fio" v-model="userData.name" type="text" :error="errors.fio" >ФИО</SharedInput>
                       <div class="personal__form-item">
-                        <SharedInput name="inn" v-model="profileData.inn" type="text" :error="errors.inn"  >ИНН</SharedInput>
-                        <SharedInput name="email" v-model="profileData.email" type="text" :error="errors.email" >Почта</SharedInput>
+                        <SharedInput name="inn" v-model="userData.inn" type="text" :error="errors.inn"  >ИНН</SharedInput>
+                        <SharedInput name="email" v-model="userData.email" type="text" :error="errors.email" >Почта</SharedInput>
                       </div>
                     </div>
                     <div class="personal__card">
                       <div class="personal__card-inner">
                         <h3 class="personal__card-title">Привязанная карта</h3>
                         <div class="personal__card-form">
-                          <SharedInput name="card" type="number" >Номер карты</SharedInput>
-                          <!-- <div class="personal__card-form__items">
-                            <SharedInput name="date" type="number" >Дата</SharedInput>
-                            <div class="personal__card-form__item">
-                              <SharedInput name="code" type="number" class=" personal__card-form__input__password">CCV/CVC</SharedInput>
-                              <nuxt-icon class="personal__icon" name="password" filled/>
-                            </div>
-                          </div> -->
-                          <SharedInput name="moderation" type="text">Предпочтение модерации</SharedInput>
+                          <SharedInput name="card" type="number":error="errors.card" >Номер карты</SharedInput>
                         </div>
                       </div>
                     </div>
-                    <SharedButton size="l" color="blue" class="personal__btn" :disabled="!meta.valid" >Редактировать</SharedButton>
+                    <SharedButton size="l" color="blue" class="personal__btn" :disabled="!meta.valid" @click="useUserStore.updateUser">Сохранить</SharedButton>
                   </div>
                 </div>
               </div>
@@ -41,12 +33,12 @@
         </template>
       </ProfileContainer>
     </template>
-  </ProfileController>
+  </UserController>
 </template>
 
 <script setup>
-import ProfileController from '~/controllers/ProfileController/ProfileController.vue';
-
+import UserController from '~/controllers/UserController/UserController.vue';
+import {useUserStore} from '../../store/user/user.store';
   definePageMeta({
     layout: 'personal'
   })

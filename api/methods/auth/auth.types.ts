@@ -14,10 +14,8 @@ export type TRequestMethods = 'delete' | 'put' | 'post' | 'get';
 export interface IRegistrationRequest {
     email: string;
     inn: number | null;
-    lastname: string;
-    name: string;
+    fio: string;
     password: string;
-    surname: string;
     uniqueBotId: string;
 }
 

@@ -55,5 +55,9 @@ const input = computed({
         outline: none;
       }
     }
+
+    &__error {
+      color: var(--color-blue);
+    }
   }
 </style>

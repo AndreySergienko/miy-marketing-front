@@ -5,7 +5,7 @@
         <template #title>Логин</template>
         <template #form>
           <VeeForm class="form" v-slot="{ errors, meta }" @submit="sendRegistration" :validation-schema="registrationRules">
-            <SharedInput name="name" v-model="registrationData.name" type="text" :error="errors.name">ФИО</SharedInput>
+            <SharedInput name="fio" v-model="registrationData.name" type="text" :error="errors.fio">ФИО</SharedInput>
             <div class="form__item">
               <SharedInput name="uniqueBotId" v-model="registrationData.uniqueBotId" type="text" :error="errors.uniqueBotId">Уникальный id</SharedInput>
               <SharedInput name="inn" v-model="registrationData.inn" type="text" :error="errors.inn">ИНН</SharedInput>
@@ -23,7 +23,7 @@
               </div>
             </div>
             <div class="btn__registration">
-              <SharedButton size="l" color="blue" :disabled="!meta.valid" @click="toggleContent" >Войти</SharedButton>
+              <SharedButton size="l" color="blue" :disabled="!meta.valid" @click="useAuthStore.registration" >Войти</SharedButton>
             </div>
           </VeeForm>
         </template>
@@ -38,6 +38,7 @@
 <script setup>
   import SharedCheckbox from '~/components/SharedCheckbox/SharedCheckbox.vue';
   import AuthController from '~/controllers/AuthController/AuthController.vue';
+  import { useAuthStore } from '~/store/auth/auth.store';
 
  
   definePageMeta({
