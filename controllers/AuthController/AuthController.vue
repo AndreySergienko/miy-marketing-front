@@ -15,7 +15,7 @@
   import type {ILoginRequest, IRegistrationRequest} from "~/api/methods/auth/auth.types";
   import {IAuthControllerSlots,
   } from "~/controllers/AuthController/AuthController.types";
-  import {validateInn} from '~/utils/INNValidation/InnValidation';
+  import {validateInn} from '~/utils/validator.ts/inn.validator';
   const authStore = useAuthStore()
 
   const registrationData = reactive<IRegistrationRequest>({

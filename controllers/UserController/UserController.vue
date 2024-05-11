@@ -1,5 +1,5 @@
 <template>
-  <slot 
+  <slot
     :userData="userData"
     :userRules="userRules"
     :sendUser="userStore.user"
@@ -11,8 +11,8 @@
   import { useUserStore } from '~/store/user/user.store';
   import type { IUserRequest } from '~/api/methods/user/user.types';
   import { IUserControllerSlots } from './UserController.types';
-  import {validateInn} from '~/utils/INNValidation/InnValidation';
-  
+  import {validateInn} from '~/utils/validator.ts/inn.validator';
+
 
   const userStore = useUserStore()
 
