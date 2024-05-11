@@ -1,36 +1,29 @@
 <template>
-  <div class="history">
-    <div class="container">
-      <div class="history__inner">
-        <div class="history__list">
-          <SharedCardTg 
-            v-for="index in 12" :key="index"
-            date="22.09.23"
-            price="22.09.23"
-            id="22.09.23"
-          />
-        </div>
-      </div>
+  <div class="history container">
+    <div class="history__inner">
+      <ProfileHistoryList />
+      <ProfileHistoryPagination />
     </div>
   </div>
 </template>
 
 <script setup>
-  definePageMeta({
-    layout: 'personal'
-  })
-</script>
-<style scoped lang="scss">
-  .history {
-    margin-top: var(--ident-adaptive-xxxl);
-    &__list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--ident-adaptive-xl);
-    }
+import ProfileHistoryList from "~/controllers/ProfileHistoryList/ProfileHistoryList.vue";
+import ProfileHistoryPagination from "~/controllers/ProfileHistoryPagination/ProfileHistoryPagination.vue";
+import { usePaymentsStore } from "~/store/payments/payments.store";
 
-    &__inner {
-      margin-bottom: 230px;
-    }
+definePageMeta({
+  layout: "personal",
+});
+
+const paymentsStore = usePaymentsStore();
+await useAsyncData("payments-all", () => paymentsStore.getAll());
+</script>
+
+<style scoped lang="scss">
+.history {
+  &__inner {
+    margin: var(--ident-adaptive-xxxl) 0;
   }
+}
 </style>
