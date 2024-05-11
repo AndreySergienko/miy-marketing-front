@@ -1,13 +1,11 @@
-export interface IChannel {}
-
-export interface INewChannel {
+export interface IChannelsRegistrationBody {
   categoriesId: number[];
-  name: string;
   description: string;
   link: string;
-  day: Date | null;
+  name: string;
+  day: number; // timestamp
   slots: string[];
-  price: string;
+  price: number;
   formatChannel: number;
   conditionCheck: string;
 }

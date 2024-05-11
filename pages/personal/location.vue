@@ -4,12 +4,14 @@
       <div class="location container">
         <SharedTitle class="location__title">Размещение TG-каналов</SharedTitle>
         <div class="location__inner">
-          <SharedInput>Название</SharedInput>
+          <SharedInput name="name" type="text" v-model="newChannel.name">
+            Название
+          </SharedInput>
           <SharedSelect
             title="Выбор категории"
             :selected="category"
             :options="categories"
-            @select="category = $event"
+            @select="handleCategorySelect"
           />
           <div class="location__calendar">
             <span class="location__calendar-title">
@@ -17,8 +19,8 @@
             </span>
             <SharedCalendar
               title="Календарь"
-              :selected="selectedDate"
-              @select="selectedDate = $event"
+              :selected="newChannel.day"
+              @select="newChannel.day = $event"
             />
             <SharedMultiselect
               title="Слоты"
@@ -28,21 +30,36 @@
               @unselect="handleSlotsUnselect"
             />
             <div class="location__calendar-item">
-              <SharedMultiselect
+              <SharedSelect
                 class="location__calendar-item-interval"
                 title="Интервал"
-                :selected="selectedIntervals"
+                :selected="`${newChannel.formatChannel}`"
                 :options="intervals"
-                @select="handleIntervalsSelect"
-                @unselect="handleIntervalsUnselect"
+                @select="newChannel.formatChannel = +$event"
               />
-              <SharedInput>Цена</SharedInput>
+              <SharedInput
+                name="price"
+                type="number"
+                v-model="newChannel.price"
+              >
+                Цена
+              </SharedInput>
             </div>
           </div>
-          <SharedInput class="location__input-link">
+          <SharedInput
+            name="link"
+            type="text"
+            v-model="newChannel.link"
+            class="location__input-link"
+          >
             Ссылка на канал тг
           </SharedInput>
-          <SharedInput class="location__input-moderation">
+          <SharedInput
+            name="conditionCheck"
+            type="text"
+            v-model="newChannel.conditionCheck"
+            class="location__input-moderation"
+          >
             Предпочтение модерации
           </SharedInput>
           <SharedButton class="location__btn" color="gray" size="xl">
@@ -56,10 +73,16 @@
 
 <script setup lang="ts">
 import { useCategoriesStore } from "~/store/categories/categories.store";
+import type { INewChannel } from "~/store/channel/channel.types";
 
 definePageMeta({
   layout: "personal",
 });
+
+const intervals = [
+  { title: "1/24", value: "1" },
+  { title: "2/48", value: "2" },
+];
 
 const categoriesStore = useCategoriesStore();
 const { categories } = storeToRefs(categoriesStore);
@@ -68,7 +91,27 @@ await useAsyncData("location-first-data", () => {
   return categoriesStore.getAll();
 });
 
+const newChannel = reactive<INewChannel>({
+  categoriesId: [],
+  description: "",
+  link: "",
+  name: "",
+  day: null,
+  slots: [], // Слоты
+  price: "",
+  formatChannel: 0,
+  conditionCheck: "",
+});
+
 const category = ref("");
+
+const handleCategorySelect = (value: string) => {
+  const foundCategory = categories.value.find((c) => c.value === value);
+  if (!foundCategory) return;
+
+  category.value = foundCategory.value;
+  newChannel.categoriesId = [foundCategory.id];
+};
 
 const slots = [
   { title: "10:00", value: "10:00" },
@@ -83,24 +126,6 @@ const handleSlotsSelect = (value: string) => {
 const handleSlotsUnselect = (value: string) => {
   const index = selectedSlots.value.indexOf(value);
   selectedSlots.value.splice(index, 1);
-};
-
-const selectedDate = ref<Date | null>(null);
-
-const intervals = [
-  { title: "1/24", value: "1/24" },
-  { title: "1/48", value: "1/48" },
-  { title: "1/128", value: "1/128" },
-];
-const selectedIntervals = ref<string[]>([]);
-
-const handleIntervalsSelect = (value: string) => {
-  selectedIntervals.value.push(value);
-};
-
-const handleIntervalsUnselect = (value: string) => {
-  const index = selectedIntervals.value.indexOf(value);
-  selectedIntervals.value.splice(index, 1);
 };
 </script>
 

@@ -1,29 +1,43 @@
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
-import type {IChannel} from "./channel.types";
+import type { IChannel } from "./channel.types";
+import type { IChannelsRegistrationBody } from "~/api/methods/channels/channels.types";
+import ChannelsService from "~/api/methods/channels/ChannelsService";
 
-export const useChannelStore = defineStore('global/channel', () => {
-    /** Список каналов **/
-    const channels = ref<IChannel[]>([])
+export const useChannelStore = defineStore("global/channel", () => {
+  const channelsService = new ChannelsService();
 
-    /** Получить список каналов **/
-    async function getAll() {}
+  /** Список каналов **/
+  const channels = ref<IChannel[]>([]);
 
-    /** Купить канал **/
-    async function buy() {}
-
-    /** Создать канал **/
-    async function create() {}
-
-
-    /** Обновить канал **/
-    async function update() {}
-
-    return {
-        channels,
-        update,
-        buy,
-        create,
-        getAll
+  /** Получить список каналов **/
+  async function getAll() {
+    try {
+      const data = await channelsService.getMy();
+      channels.value = data as IChannel[];
+    } catch {
+      console.log("Не удалось получить список каналов");
     }
+  }
+
+  /** Купить канал **/
+  async function buy() {}
+
+  /** Создать канал **/
+  async function create(data: IChannelsRegistrationBody) {
+    try {
+      await channelsService.register(data);
+    } catch {
+      console.log("Не удалось создать канал");
+    }
+  }
+
+  /** Обновить канал **/
+  async function update() {}
+
+  return {
+    channels,
+    update,
+    buy,
+    create,
+    getAll,
+  };
 });
