@@ -23,7 +23,7 @@ await useAsyncData("payments-all", () => paymentsStore.getAll());
 <style scoped lang="scss">
 .history {
   &__inner {
-    margin: var(--ident-adaptive-xxxl) 0;
+    margin: 86px 0;
   }
 }
 </style>

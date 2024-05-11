@@ -27,13 +27,11 @@
   @use 'assets/styles/media';
   .header {
 
-    margin-bottom: var(--ident-xs);
-
     &__inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: var(--ident-xs) 0px;
+      margin: var(--ident-xl) 0px;
     }
 
     &__link {

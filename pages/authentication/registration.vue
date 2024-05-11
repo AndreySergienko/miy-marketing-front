@@ -84,7 +84,7 @@
     &__checkbox {
       display: flex;
       flex-direction: column;
-      gap: var(--ident-m);
+      gap: var(--ident-s);
 
       @include media.media-breakpoint-down(l) {
         width: 100%;
@@ -103,7 +103,7 @@
         display: grid;
         align-items: center;
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--ident-m);
+        gap: var(--ident-s);
       }
 
       &-confidential {

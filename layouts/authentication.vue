@@ -18,7 +18,7 @@
       background-color: var(--color-blue);
 
       @include media.media-breakpoint-down(l) {
-        margin-top: var(--ident-xxxl);
+        margin-top: var(--ident-5xl);
         background-color: var(--color-white);
         justify-content: center;
       }

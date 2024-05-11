@@ -44,18 +44,18 @@
     &__inner {
       display: flex;
       flex-direction: column;
-      padding: var(--ident-xm);
+      padding: var(--ident-2xl);
     }
 
     &__img {
-      margin-right: var(--ident-xs);
+      margin-right: var(--ident-3xl);
     }
 
     &__title {
       display: flex;
       align-items: center;
       width: 10%;
-      margin-bottom: var(--ident-xs);
+      margin-bottom: var(--ident-3xl);
     }
 
     &__text {
@@ -65,7 +65,7 @@
     &__item {
       display: flex;
       flex-direction: column;
-      gap: var(--ident-m);
+      gap: var(--ident-s);
 
       &-text, &-number {
         font-weight: var(--font-weight-medium);

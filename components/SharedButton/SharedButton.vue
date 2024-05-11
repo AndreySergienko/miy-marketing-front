@@ -14,7 +14,7 @@
     l: 'btn__large',
     m: 'btn__medium',
     s: 'btn__small',
-    ml: 'btn__standard'
+    xl: 'btn__xl'
   }
   const props = defineProps({
     color: String,
@@ -36,13 +36,13 @@
     cursor: pointer;
 
     &__small {
-      padding: var(--ident-m) var(--ident-xs);
+      padding: var(--ident-m) var(--ident-xl);
     }
     &__medium {
-      padding: var(--ident-mx) var(--ident-xs);
+      padding: 12px var(--ident-xl);
     }
-    &__standard {
-      padding: 16px 48px;
+    &__xl {
+      padding: var(--ident-l) 48px;
       border-radius: 13px;
     }
     &__large {
@@ -64,20 +64,20 @@
       }
 
       @include media.media-breakpoint-down(sm) {
-        padding: var(--ident-mx) 140px;
+        padding: var(--ident-m) 140px;
         font-size: var(--font-size-s);
       }
     }
 
     &__white {
-      margin-right: var(--ident-xs);
+      margin-right: var(--ident-3xl);
 
       color: var(--color-blue);
       background-color: var(--color-white);
       border: 1px solid transparent;
 
       @include media.media-breakpoint-down(sm) {
-        margin-right: var(--ident-m);
+        margin-right: var(--ident-s);
       }
     }
 

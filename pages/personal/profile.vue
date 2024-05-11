@@ -48,7 +48,7 @@ import {useUserStore} from '../../store/user/user.store';
   .personal {
     position: relative;
     overflow: hidden;
-    margin-top: var(--ident-xxxl);
+    margin-top: var(--ident-5xl);
 
     @include media.media-breakpoint-down(md) {
       width: 150vw;
@@ -68,7 +68,7 @@ import {useUserStore} from '../../store/user/user.store';
     }
 
     &__title {
-      margin-bottom: var(--ident-xm);
+      margin-bottom: var(--ident-2xl);
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-semi-bold);
 
@@ -80,14 +80,14 @@ import {useUserStore} from '../../store/user/user.store';
     &__form {
       display: flex;
       flex-direction: column;
-      gap: var(--ident-xs);
-      margin-bottom: var(--ident-xm);
+      gap: var(--ident-3xl);
+      margin-bottom: var(--ident-2xl);
 
       &-item {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--ident-xs);
-        margin-bottom: var(--ident-xm);
+        gap: var(--ident-3xl);
+        margin-bottom: var(--ident-2xl);
 
         @include media.media-breakpoint-down(sm) {
           display: flex;
@@ -101,10 +101,10 @@ import {useUserStore} from '../../store/user/user.store';
       flex-direction: column;
       border: 1px solid var(--color-light-gray);
       border-radius: 24px;
-      margin-bottom: var(--ident-xm);
+      margin-bottom: var(--ident-2xl);
 
       &-inner {
-        padding: var(--ident-xs);
+        padding: var(--ident-3xl);
       }
 
       &-title {
@@ -131,7 +131,7 @@ import {useUserStore} from '../../store/user/user.store';
           @include media.media-breakpoint-down(sm) {
             display: flex;
             flex-direction: column;
-            gap: var(--ident-m);
+            gap: var(--ident-s);
             width: 50vw;
           }
         }
@@ -151,19 +151,19 @@ import {useUserStore} from '../../store/user/user.store';
     }
 
     &__icon {
-      margin: var(--ident-xs) 0 0 var(--ident-m);
+      margin: var(--ident-3xl) 0 0 var(--ident-s);
       padding: 0;
       box-sizing: border-box;
       font-size: 50px;
 
       @include media.media-breakpoint-down (sm) {
-        margin: var(--ident-lx) 0 0 var(--ident-m);
+        margin: var(--ident-l) 0 0 var(--ident-s);
       }
     }
 
     &__btn {
-      padding: var(--ident-mx) var(--ident-xxls);
-      margin-bottom: var(--ident-xxxl);
+      padding: var(--ident-m) var(--ident-5xl);
+      margin-bottom: var(--ident-5xl);
     }
   }
 </style>

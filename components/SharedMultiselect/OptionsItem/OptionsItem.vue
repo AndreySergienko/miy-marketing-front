@@ -24,7 +24,7 @@ const iconClass = computed(() => ({
 .options-item {
   display: flex;
   align-items: center;
-  padding: var(--ident-s) var(--ident-mx);
+  padding: var(--ident-s) var(--ident-m);
   gap: var(--ident-l);
   overflow: hidden;
 
@@ -37,7 +37,7 @@ const iconClass = computed(() => ({
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--ident-m);
+    border-radius: var(--ident-s);
     width: 30px;
     height: 30px;
     cursor: pointer;

@@ -45,7 +45,7 @@
           <SharedInput class="location__input-moderation">
             Предпочтение модерации
           </SharedInput>
-          <SharedButton class="location__btn" color="gray" size="ml">
+          <SharedButton class="location__btn" color="gray" size="xl">
             Отправить
           </SharedButton>
         </div>
@@ -108,7 +108,7 @@ const handleIntervalsUnselect = (value: string) => {
 @use "assets/styles/media";
 
 .location {
-  margin-top: var(--ident-xxxl);
+  margin-top: var(--ident-5xl);
 
   &__inner {
     display: flex;
@@ -130,7 +130,7 @@ const handleIntervalsUnselect = (value: string) => {
   }
 
   &__title {
-    margin-bottom: var(--ident-adaptive-xm);
+    margin-bottom: var(--ident-2xl);
   }
 
   &__calendar {
@@ -173,7 +173,7 @@ const handleIntervalsUnselect = (value: string) => {
     flex-direction: column;
 
     &-title {
-      margin-bottom: var(--ident-m);
+      margin-bottom: var(--ident-s);
 
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
