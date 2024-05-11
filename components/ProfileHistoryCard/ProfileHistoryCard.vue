@@ -26,17 +26,17 @@ const formattedPrice = computed(() => price.value.toLocaleString("ru"));
 
 <style lang="scss" scoped>
 .profile-history-card {
-  padding: var(--ident-xm);
+  padding: var(--ident-2xl);
   border: 2px solid var(--color-light-gray);
-  border-radius: var(--ident-xm);
+  border-radius: var(--ident-2xl);
   display: flex;
   flex-direction: column;
-  gap: var(--ident-xs);
+  gap: var(--ident-3xl);
 
   &__top {
     display: flex;
     align-items: center;
-    gap: var(--ident-xs);
+    gap: var(--ident-3xl);
 
     &-image {
       flex: 0 0 115px;

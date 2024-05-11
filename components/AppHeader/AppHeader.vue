@@ -27,27 +27,11 @@
   @use 'assets/styles/media';
   .header {
 
-    margin-bottom: var(--ident-xs);
-
     &__inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: var(--ident-xs) 0px;
-      padding: 0 var(--ident-lx);
-
-
-      @include media.media-breakpoint-down(l) {
-        padding: 0 var(--ident-lx);
-        justify-content: space-between;
-      }
-
-      @include media.media-breakpoint-down(sm) {
-        padding: 0 var(--ident-l);
-      }
-      @include media.media-breakpoint-down(md) {
-        padding: 0 var(--ident-l);
-      }
+      margin: var(--ident-xl) 0px;
     }
 
     &__link {

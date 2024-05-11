@@ -25,9 +25,9 @@ defineEmits<ISelectedItemEmits>();
   display: inline-flex;
   align-items: center;
   gap: var(--ident-l);
-  padding: var(--ident-m) var(--ident-l);
+  padding: var(--ident-s) var(--ident-l);
   background: var(--color-blue);
-  border-radius: var(--ident-ml);
+  border-radius: var(--ident-m);
   color: var(--color-white);
 
   &__text {

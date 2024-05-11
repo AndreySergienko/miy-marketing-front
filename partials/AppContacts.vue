@@ -4,7 +4,13 @@
       <shared-animation>
         <div class="contacts__inner">
           <SharedContacts />
-          <iframe class="contacts__map" src="https://yandex.ru/map-widget/v1/?um=constructor%3A0ac83c30029fc4deea7465f04dbaec8f68c6459c2bdfc053d2e1d31405ed4ec8&amp;source=constructor" width="900" height="500" frameborder="0"></iframe>
+          <iframe
+            class="contacts__map"
+            src="https://yandex.ru/map-widget/v1/?um=constructor%3A0ac83c30029fc4deea7465f04dbaec8f68c6459c2bdfc053d2e1d31405ed4ec8&amp;source=constructor"
+            width="900"
+            height="500"
+            frameborder="0"
+          ></iframe>
         </div>
       </shared-animation>
     </div>
@@ -14,15 +20,15 @@
 <style scoped lang="scss">
   @use 'assets/styles/media';
   .contacts {
-    margin-bottom: var(--ident-xxls);
+    margin-bottom: var(--ident-5xl);
 
     &__inner {
       display: flex;
       align-items: center;
-      padding: var(--ident-adaptive-xxl) 15px;
+      padding: var(--ident-4xl) 0;
 
       @include media.media-breakpoint-down(l) {
-        padding: 0 var(--ident-lx);
+        padding: 0 var(--ident-l);
         flex-direction: column;
       }
     }

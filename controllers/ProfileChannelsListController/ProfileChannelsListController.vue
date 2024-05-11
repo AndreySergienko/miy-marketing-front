@@ -48,7 +48,7 @@ import { EProfileChannelsItemTypes } from "~/components/ProfileChannelsItem/Prof
 .profile-channels-list {
   display: flex;
   flex-direction: column;
-  gap: var(--ident-xm);
-  margin-top: var(--ident-xm);
+  gap: var(--ident-2xl);
+  margin-top: var(--ident-2xl);
 }
 </style>

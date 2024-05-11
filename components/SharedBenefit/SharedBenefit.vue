@@ -29,7 +29,7 @@
   @use 'assets/styles/media';
 
   .text__white, .text__black {
-    margin-bottom: var(--ident-xs);
+    margin-bottom: var(--ident-xl);
     
     display: flex;
     align-items: center;
@@ -51,7 +51,7 @@
   }
   
   .benefit__number {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-3xl);
     font-weight: var(--font-weight-bold);
 
     @include media.media-breakpoint-down(sm) {
@@ -65,12 +65,12 @@
     
     .benefit__text {
       order: 0;
-      margin-left: var(--ident-xs);
+      margin-left: var(--ident-xl);
     }
 
     .benefit__number {
       order: 1;
-      margin-right: var(--ident-xs);
+      margin-right: var(--ident-xl);
     }
   }
 
@@ -81,12 +81,12 @@
 
     .benefit__text {
       order: 1;
-      margin-right: var(--ident-xs);
+      margin-right: var(--ident-xl);
     }
 
     .benefit__number {
       order: 0;
-      margin-left: var(--ident-xs);
+      margin-left: var(--ident-xl);
     }
   }
 </style>

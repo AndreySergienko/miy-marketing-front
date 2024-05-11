@@ -83,7 +83,7 @@ const statusText = computed(() => statuses[status.value]);
   &__panel {
     display: flex;
     align-items: center;
-    gap: var(--ident-xxl);
+    gap: var(--ident-4xl);
 
     &-status {
       position: relative;
@@ -126,7 +126,7 @@ const statusText = computed(() => statuses[status.value]);
     &-controls {
       display: flex;
       align-items: center;
-      gap: var(--ident-xxl);
+      gap: var(--ident-4xl);
 
       &--icon {
         cursor: pointer;

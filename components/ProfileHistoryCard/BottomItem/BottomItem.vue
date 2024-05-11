@@ -15,7 +15,7 @@ defineProps<IBottomItemProps>();
 .bottom-item {
   display: flex;
   flex-direction: column;
-  gap: var(--ident-m);
+  gap: var(--ident-s);
   font-weight: var(--font-weight-medium);
 
   &__title {

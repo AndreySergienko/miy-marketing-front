@@ -17,14 +17,14 @@
 <style scoped lang="scss">
   @use 'assets/styles/media';
   .FAQ {
-    margin-bottom: var(--ident-xxls);
+    margin-bottom: var(--ident-5xl);
 
     &__text{
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin-bottom: var(--ident-xxl);
+      margin-bottom: var(--ident-4xl);
 
       @include media.media-breakpoint-down(sm) {
         text-align: center;

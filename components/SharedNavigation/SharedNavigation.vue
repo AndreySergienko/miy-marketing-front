@@ -28,7 +28,7 @@
   .navigation {
     display: flex;
     cursor: pointer;
-    gap: var(--ident-adaptive-xl);
+    gap: var(--ident-3xl);
 
     @include media.media-breakpoint-down(sm) {
       gap: var( --ident-l);
@@ -39,19 +39,10 @@
     &__column {
       display: flex;
       flex-direction: column;
-      padding-left: var(--ident-xs);
+      padding-left: var(--ident-l);
       
-      @include media.media-breakpoint-down(l) {
-        padding-left: var(--ident-xs);
-      }
-
       @include media.media-breakpoint-down(sm) {
-        padding-left: var(--ident-m);
-        margin-bottom: var(--ident-adaptive-xl);
-      }
-
-      @include media.media-breakpoint-down(md) {
-        padding-left: var(--ident-xs);
+        margin-bottom: var(--ident-xl);
       }
 
     }

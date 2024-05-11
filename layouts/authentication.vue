@@ -1,9 +1,6 @@
 <template>
+  <AppHeader />
   <section class="authentication">
-    <div class="container">
-      <AppHeader />
-    </div>
-
     <div class="authentication__inner">
       <div class="authentication__logo" />
       <main class="authentication__info">
@@ -12,34 +9,28 @@
     </div>
   </section>
 </template>
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 <style lang="scss" scoped>
   @use 'assets/styles/media';
-  .authentication{ 
-
+  .authentication{
     &__inner {
-      position: relative;
       display: flex;
-      justify-content: flex-end;
-      height: 73vh;
       background-color: var(--color-blue);
 
-      @include media.media-breakpoint-down(xl) {
-        height: 59vh;
-      }
-
       @include media.media-breakpoint-down(l) {
+        margin-top: var(--ident-5xl);
         background-color: var(--color-white);
         justify-content: center;
       }
+
     }
 
     &__logo {
-      background: url(../public/DragonAuth.png) no-repeat;
-      background-size: 100%;
-      width: 100%;
+      background: url(../public/dragon__white.png) no-repeat;
       height: 100%;
+      min-height: calc(100vh - 49px);
+      background-size: cover;
+      width: 100%;
 
       @include media.media-breakpoint-down(l) {
         display: none;
@@ -47,7 +38,6 @@
     }
 
     &__info {
-      padding: 0 var(--ident-adaptive-xxxl);
       display: flex;
       align-items: center;
       border: 1px solid transparent;
@@ -55,18 +45,9 @@
       background-color: var(--color-white);
       width: 100%;
 
-      @include media.media-breakpoint-down(xl) {
-        width: 80%;
-      }
-
       @include media.media-breakpoint-down(l) {
         justify-content: center;
         width: 100%;
-        padding: 0 var( --ident-adaptive-xm);
-      }
-
-      @include media.media-breakpoint-down(sm) {
-        padding: 0 var(--ident-l);
       }
     }
   }

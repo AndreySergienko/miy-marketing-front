@@ -1,44 +1,44 @@
 <template>
-  <ProfileContainer>
-    <template #form>
-      <div class="personal">
-        <div class="container">
-          <div class="personal__inner">
-            <div class="personal__intro">
-              <h3 class="personal__title">Общая информация</h3>
-              <div class="personal__form">
-                <SharedInput>ФИО</SharedInput>
-                <div class="personal__form-item">
-                  <SharedInput>ИНН</SharedInput>
-                  <SharedInput>Почта</SharedInput>
-                </div>
-              </div>
-              <div class="personal__card">
-                <div class="personal__card-inner">
-                  <h3 class="personal__card-title">Привязанная карта</h3>
-                  <div class="personal__card-form">
-                    <SharedInput>Номер карты</SharedInput>
-                    <div class="personal__card-form__items">
-                      <SharedInput>Дата</SharedInput>
-                      <div class="personal__card-form__item">
-                        <SharedInput class=" personal__card-form__input__password">CCV/CVC</SharedInput>
-                        <nuxt-icon class="personal__icon" name="password" filled/>
+  <UserController>
+    <template #default="{userData, userRules, sendUser}">
+      <ProfileContainer>
+        <template #form>
+          <VeeForm v-slot="{errors,meta}" @submit="sendUser" :validation-schema="userRules">
+            <div class="personal">
+              <div class="container">
+                <div class="personal__inner">
+                  <div class="personal__intro">
+                    <h3 class="personal__title">Общая информация</h3>
+                    <div class="personal__form">
+                      <SharedInput name="fio" v-model="userData.name" type="text" :error="errors.fio" >ФИО</SharedInput>
+                      <div class="personal__form-item">
+                        <SharedInput name="inn" v-model="userData.inn" type="text" :error="errors.inn"  >ИНН</SharedInput>
+                        <SharedInput name="email" v-model="userData.email" type="text" :error="errors.email" >Почта</SharedInput>
                       </div>
                     </div>
-                    <SharedInput>Предпочтение модерации</SharedInput>
+                    <div class="personal__card">
+                      <div class="personal__card-inner">
+                        <h3 class="personal__card-title">Привязанная карта</h3>
+                        <div class="personal__card-form">
+                          <SharedInput name="card" type="number":error="errors.card" >Номер карты</SharedInput>
+                        </div>
+                      </div>
+                    </div>
+                    <SharedButton size="l" color="blue" class="personal__btn" :disabled="!meta.valid" @click="useUserStore.updateUser">Сохранить</SharedButton>
                   </div>
                 </div>
               </div>
-              <SharedButton size="l" color="blue" class="personal__btn">Редактировать</SharedButton>
             </div>
-          </div>
-        </div>
-      </div>
+          </VeeForm>
+        </template>
+      </ProfileContainer>
     </template>
-  </ProfileContainer>
+  </UserController>
 </template>
 
 <script setup>
+import UserController from '~/controllers/UserController/UserController.vue';
+import {useUserStore} from '../../store/user/user.store';
   definePageMeta({
     layout: 'personal'
   })
@@ -48,7 +48,7 @@
   .personal {
     position: relative;
     overflow: hidden;
-    margin-top: var(--ident-xxxl);
+    margin-top: var(--ident-5xl);
 
     @include media.media-breakpoint-down(md) {
       width: 150vw;
@@ -68,7 +68,7 @@
     }
 
     &__title {
-      margin-bottom: var(--ident-xm);
+      margin-bottom: var(--ident-2xl);
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-semi-bold);
 
@@ -80,14 +80,14 @@
     &__form {
       display: flex;
       flex-direction: column;
-      gap: var(--ident-xs);
-      margin-bottom: var(--ident-xm);
+      gap: var(--ident-3xl);
+      margin-bottom: var(--ident-2xl);
 
       &-item {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--ident-xs);
-        margin-bottom: var(--ident-xm);
+        gap: var(--ident-3xl);
+        margin-bottom: var(--ident-2xl);
 
         @include media.media-breakpoint-down(sm) {
           display: flex;
@@ -101,10 +101,10 @@
       flex-direction: column;
       border: 1px solid var(--color-light-gray);
       border-radius: 24px;
-      margin-bottom: var(--ident-xm);
+      margin-bottom: var(--ident-2xl);
 
       &-inner {
-        padding: var(--ident-xs);
+        padding: var(--ident-3xl);
       }
 
       &-title {
@@ -131,7 +131,7 @@
           @include media.media-breakpoint-down(sm) {
             display: flex;
             flex-direction: column;
-            gap: var(--ident-m);
+            gap: var(--ident-s);
             width: 50vw;
           }
         }
@@ -151,19 +151,19 @@
     }
 
     &__icon {
-      margin: var(--ident-xs) 0 0 var(--ident-m);
+      margin: var(--ident-3xl) 0 0 var(--ident-s);
       padding: 0;
       box-sizing: border-box;
       font-size: 50px;
 
       @include media.media-breakpoint-down (sm) {
-        margin: var(--ident-lx) 0 0 var(--ident-m);
+        margin: var(--ident-l) 0 0 var(--ident-s);
       }
     }
 
     &__btn {
-      padding: var(--ident-mx) var(--ident-xxls);
-      margin-bottom: var(--ident-xxxl);
+      padding: var(--ident-m) var(--ident-5xl);
+      margin-bottom: var(--ident-5xl);
     }
   }
 </style>

@@ -23,6 +23,6 @@ const { payments } = storeToRefs(paymentsStore);
 .profile-history-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--ident-adaptive-xl);
+  gap: var(--ident-3xl);
 }
 </style>

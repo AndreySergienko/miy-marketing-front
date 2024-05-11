@@ -19,7 +19,7 @@
     </div>
     <div class="more">
       <p class="more__text">Смотреть еще</p>
-      <nuxt-icon class="more__icon" name="arrow" filled/>
+      <nuxt-icon class="more__icon" name="arrow" filled />
     </div>
     <div class="FAQ">
       <AppFAQ />
@@ -32,12 +32,12 @@
     </div>
   </div>
 </template>
- <script setup>
-  import AppBenefit from '../src/Partials/AppBenefit.vue';
-  import AppContacts from '../src/Partials/AppContacts.vue';
-  import AppFAQ from '../src/Partials/AppFAQ.vue';
-  import AppIntro from '../src/Partials/AppIntro.vue';
-  import AppTelegram from '../src/Partials/AppTelegram.vue';
+<script setup>
+  import AppBenefit from '../partials/AppBenefit.vue';
+  import AppContacts from '../partials/AppContacts.vue';
+  import AppFAQ from '../partials/AppFAQ.vue';
+  import AppIntro from '../partials/AppIntro.vue';
+  import AppTelegram from '../partials/AppTelegram.vue';
 </script>
 
 <style lang="scss" scoped>
@@ -58,12 +58,12 @@
     background-size: 50%;
     top: -8vh;
     left: 50vw;
-    
+
 
     @include media.media-breakpoint-down(xl) {
       top: -4vh;
     }
-    
+
     @include media.media-breakpoint-down(md) {
         display: none;
       }
@@ -84,7 +84,7 @@
     &__text {
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
-      margin-right: var(--ident-m);
+      margin-right: var(--ident-s);
 
       @include media.media-breakpoint-down(sm) {
         font-size: var(--font-size-sm);

@@ -23,9 +23,9 @@ definePageMeta({
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--ident-xs);
-  margin-top: var(--ident-adaptive-xl);
-  margin-bottom: var(--ident-xxxl);
+  gap: var(--ident-3xl);
+  margin-top: var(--ident-3xl);
+  margin-bottom: var(--ident-5xl);
 
   &__icon {
     width: 200px;
