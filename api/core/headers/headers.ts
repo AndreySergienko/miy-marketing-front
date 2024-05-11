@@ -1,4 +1,4 @@
-export const authHeaders: HeadersInit = {
+export const authHeaders = (): HeadersInit => ({
   Authorization: `Bearer ${useCookie("afToken").value}`,
-};
-export const defaultHeaders: HeadersInit = {};
+});
+export const defaultHeaders = (): HeadersInit => ({});
