@@ -1,8 +1,5 @@
 <template>
-  <div class="container">
-    <AppHeader />
-  </div>
-
+  <AppHeader />
   <section class="authentication">
     <div class="authentication__inner">
       <div class="authentication__logo" />
@@ -21,15 +18,17 @@
       background-color: var(--color-blue);
 
       @include media.media-breakpoint-down(l) {
+        margin-top: var(--ident-5xl);
         background-color: var(--color-white);
         justify-content: center;
       }
+
     }
 
     &__logo {
-      background: url(../public/DragonAuth.png) no-repeat;
+      background: url(../public/dragon__white.png) no-repeat;
       height: 100%;
-      // min-height: calc(100vh - 49px);
+      min-height: calc(100vh - 49px);
       background-size: cover;
       width: 100%;
 

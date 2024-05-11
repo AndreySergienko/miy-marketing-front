@@ -27,14 +27,14 @@ definePageMeta({
 
 <style scoped lang="scss">
 .telegram {
-  margin-top: var(--ident-xm);
+  margin-top: var(--ident-2xl);
   margin-bottom: 30px;
 
   &__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--ident-l) 0 var(--ident-xs);
+    padding: var(--ident-l) 0 var(--ident-3xl);
     border-bottom: 2px solid var(--color-dark-gray);
 
     &-title {
@@ -44,7 +44,7 @@ definePageMeta({
     &-button {
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
-      padding: var(--ident-l) var(--ident-xs);
+      padding: var(--ident-l) var(--ident-3xl);
     }
   }
 }

@@ -24,7 +24,7 @@ const number = computed(() => page.value || "...");
   align-items: center;
   width: 47px;
   height: 47px;
-  border-radius: var(--ident-m);
+  border-radius: var(--ident-s);
   border: 1px solid var(--color-light-gray);
   font-size: var(--font-size-m);
   font-weight: var(--font-weight-medium);

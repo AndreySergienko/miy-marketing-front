@@ -20,15 +20,15 @@
 <style scoped lang="scss">
   @use 'assets/styles/media';
   .contacts {
-    margin-bottom: var(--ident-xxls);
+    margin-bottom: var(--ident-5xl);
 
     &__inner {
       display: flex;
       align-items: center;
-      padding: var(--ident-adaptive-xxl) 0;
+      padding: var(--ident-4xl) 0;
 
       @include media.media-breakpoint-down(l) {
-        padding: 0 var(--ident-lx);
+        padding: 0 var(--ident-l);
         flex-direction: column;
       }
     }

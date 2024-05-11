@@ -20,7 +20,9 @@ export default class ApiBuilder {
 
     private createOnResponse(context: FetchContext & {
         response: FetchResponse<ResponseType> }) {
+        console.log(this.mapper)
         return this.mapper.mapDataKeys(context.response)
+        
     }
 
     public create(headers: HeadersInit): $Fetch {

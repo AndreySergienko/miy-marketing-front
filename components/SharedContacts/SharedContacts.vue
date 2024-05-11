@@ -38,7 +38,11 @@
     &__intro {
       display: flex;
       flex-direction: column;
-      width: 80%;
+      width: 100%;
+
+      @include media.media-breakpoint-down(xl) {
+        width: 95%;
+      }
 
     }
 
@@ -55,7 +59,7 @@
     &__item-title {
       font-size: var(--font-size-l);
       font-weight: var(--font-weight-semi-bold);
-      margin-bottom: var(--ident-m);
+      margin-bottom: var(--ident-s);
 
       @include media.media-breakpoint-down(sm) {
         font-size: var(--font-size-m);

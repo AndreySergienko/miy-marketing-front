@@ -28,7 +28,7 @@
 <style scoped lang="scss">
    @use 'assets/styles/media';
   .tg {
-    margin-bottom: var(--ident-xxl);
+    margin-bottom: var(--ident-4xl);
 
     &__inner {
       display: flex;
@@ -40,7 +40,7 @@
     &__text {
       width: 50%;
       text-align: center;
-      margin-bottom: var(--ident-xxl);
+      margin-bottom: var(--ident-4xl);
 
       @include media.media-breakpoint-down(sm) {
         width: 95%;
@@ -51,14 +51,14 @@
   .card__list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: var(--ident-xm);
+    gap: var(--ident-2xl);
 
     @include media.media-breakpoint-down(xl) {
       grid-template-columns: repeat(3, 1fr);
     }
 
     @include media.media-breakpoint-down(md) {
-      padding: 0 var(--ident-adaptive-xm);
+      padding: 0 var(--ident-2xl);
       grid-template-columns: repeat(2, 1fr);
     }
 

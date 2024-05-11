@@ -84,7 +84,7 @@
     &__text {
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
-      margin-right: var(--ident-m);
+      margin-right: var(--ident-s);
 
       @include media.media-breakpoint-down(sm) {
         font-size: var(--font-size-sm);

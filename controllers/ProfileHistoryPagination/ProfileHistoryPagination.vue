@@ -18,6 +18,6 @@
   align-items: center;
   justify-content: center;
   gap: var(--ident-l);
-  margin-top: var(--ident-xxl);
+  margin-top: var(--ident-4xl);
 }
 </style>

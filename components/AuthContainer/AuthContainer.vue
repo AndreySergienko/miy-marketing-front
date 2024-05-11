@@ -28,42 +28,46 @@
   .auth {
 
     &__inner {
+      padding: 0 71px;
 
       @include media.media-breakpoint-down(l) {
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 0;
       }
     }
 
     &__title {
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-semi-bold);
-      margin-bottom: var(--ident-xm);
-      width: 65%;
+      margin-bottom: var(--ident-2xl);
+      width: 55%;
+
+      @include media.media-breakpoint-down(xl) {
+        width: 66%;
+      }
 
       @include media.media-breakpoint-down(l) {
         text-align: center;
         justify-content: center;
         align-items: center;
-        // width: 55%;
       }
 
 
       @include media.media-breakpoint-down(sm) {
-        // margin-top: var(--ident-xxxl);
         text-align: center;
         font-size: var(--font-size-mx);
-        // width: 90%;
+        width: 90%;
       }
     }
 
     &__link {
       display: flex;
-      gap: var(--ident-xs);
+      gap: var(--ident-3xl);
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
-      margin-bottom: var(--ident-xs);
+      margin-bottom: var(--ident-3xl);
 
       @include media.media-breakpoint-down(l) {
         justify-content: center;

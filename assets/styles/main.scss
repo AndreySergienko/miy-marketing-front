@@ -10,7 +10,7 @@
   max-width: 2000px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 var(--ident-lm);
+  padding: 0 var(--ident-l);
 
   @include media.media-breakpoint-down(xl) {
     max-width: 1630px;

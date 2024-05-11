@@ -5,7 +5,7 @@
         <template #title>Логин</template>
         <template #form>
           <VeeForm class="form" v-slot="{ errors, meta }" @submit="sendRegistration" :validation-schema="registrationRules">
-            <SharedInput name="name" v-model="registrationData.name" type="text" :error="errors.name">ФИО</SharedInput>
+            <SharedInput name="fio" v-model="registrationData.name" type="text" :error="errors.fio">ФИО</SharedInput>
             <div class="form__item">
               <SharedInput name="uniqueBotId" v-model="registrationData.uniqueBotId" type="text" :error="errors.uniqueBotId">Уникальный id</SharedInput>
               <SharedInput name="inn" v-model="registrationData.inn" type="text" :error="errors.inn">ИНН</SharedInput>
@@ -15,19 +15,15 @@
             <div class="form__checkbox">
               <span class="form__checkbox-title">Публикация рекламных постов в</span>
               <div class="form__checkbox-items">
-                <div class="form__checkbox-item">
-                  <input type="checkbox"> В уведомительном порядке
-                </div>
-                <div class="form__checkbox-item">
-                  <input type="checkbox"> В автоматическом порядке
-                </div>
+                <SharedCheckbox>В уведомительном порядке</SharedCheckbox>
+                <SharedCheckbox>В автоматическом порядке</SharedCheckbox>  
               </div>
               <div class="form__checkbox-confidential">
-                <input type="checkbox"> Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности</nuxt-link>.
+                <SharedCheckbox>Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></SharedCheckbox> 
               </div>
             </div>
             <div class="btn__registration">
-              <SharedButton size="l" color="blue" :disabled="!meta.valid" @click="toggleContent" >Войти</SharedButton>
+              <SharedButton size="l" color="blue" :disabled="!meta.valid" @click="useAuthStore.registration" >Войти</SharedButton>
             </div>
           </VeeForm>
         </template>
@@ -40,7 +36,9 @@
 </template>
 
 <script setup>
+  import SharedCheckbox from '~/components/SharedCheckbox/SharedCheckbox.vue';
   import AuthController from '~/controllers/AuthController/AuthController.vue';
+  import { useAuthStore } from '~/store/auth/auth.store';
 
  
   definePageMeta({
@@ -86,7 +84,7 @@
     &__checkbox {
       display: flex;
       flex-direction: column;
-      gap: var(--ident-m);
+      gap: var(--ident-s);
 
       @include media.media-breakpoint-down(l) {
         width: 100%;
@@ -103,25 +101,14 @@
 
       &-items {
         display: grid;
+        align-items: center;
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--ident-m);
+        gap: var(--ident-s);
       }
 
-      &-item {
-        font-size: var(--font-size-sm);
-        font-weight: var(--font-weight-medium);
-
-        @include media.media-breakpoint-down(sm) {
-          display: flex;
-          align-items: flex-start;
-          font-size: var(--font-size-ss);
-        }
-
-        &:not(:last-child) {
-          margin-bottom: var(--ident-l);
-        }
-      }
       &-confidential {
+        display: flex;
+        align-items: center;
         font-size: var(--font-size-ss);
         font-weight: var(--font-weight-medium);
       }

@@ -44,18 +44,6 @@
     clock: String,
   })
 
-  // const cardTitle = ref()
-  // const cardText = ref()
-
-  // const fetchData = async () => {
-  //   const response = await fetch('')
-  //   const data = await response.json();
-  //   cardTitle.value = data.title;
-  //   cardText.value = data.text;
-  // }
-
-  // fetchData()
-
 </script>
 
 <style lang="scss" scoped>
@@ -63,7 +51,7 @@
 
   .card {
     border-radius: 25px;
-    margin-bottom: var(--ident-xs);
+    margin-bottom: var(--ident-3xl);
     transition: box-shadow 0.3ms;
     width: 20vw;
 
@@ -92,8 +80,8 @@
     }
 
     &__inner {
-      padding: var(--ident-xs) var(--ident-xl);
-      gap: var(--ident-mx);
+      padding: var(--ident-3xl) var(--ident-3xl);
+      gap: var(--ident-m);
 
       display: flex;
       flex-direction: column;
@@ -119,9 +107,9 @@
 
     &__icons {
       display: flex;
-      gap: var(--ident-xxl);
+      gap: var(--ident-4xl);
       @include media.media-breakpoint-down(sm) {
-          gap: var( --ident-xm);
+          gap: var( --ident-2xl);
         }
     }
 
@@ -129,7 +117,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: var( --ident-ml);
+      gap: var( --ident-m);
 
       &-text {
         font-size: var( --font-size-m);
@@ -157,7 +145,7 @@
       align-items: center;
       width: 35%;
       margin-bottom: var(--ident-l);
-      gap: var(--ident-ml);
+      gap: var(--ident-m);
 
       @include media.media-breakpoint-down(xl) {
         justify-content: center;
@@ -195,8 +183,8 @@
       align-items: center;
 
       width: 100%;
-      padding: var(--ident-mx) 0;
-      gap: var(--ident-ml);
+      padding: var(--ident-m) 0;
+      gap: var(--ident-m);
 
       font-size: var(--font-size-m);
 

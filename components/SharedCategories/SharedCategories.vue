@@ -38,10 +38,10 @@
 <style lang="scss" scoped>
   @use 'assets/styles/media';
   .categories {
-    margin-bottom: var(--ident-xxxl);
+    margin-bottom: var(--ident-5xl);
 
     @include media.media-breakpoint-down(sm) {
-      margin-bottom: var(--ident-adaptive-xl);
+      margin-bottom: var(--ident-3xl);
     }
 
     &__container {
@@ -53,10 +53,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 15px;
 
       @include media.media-breakpoint-down(l) {
-        padding: 0 var(--ident-adaptive-xm);
+        padding: 0 var(--ident-2xl);
       }
       
       @include media.media-breakpoint-down(sm) {
@@ -76,7 +75,7 @@
       &-title {
         font-size: var(--font-size-xl);
         font-weight: var(--font-weight-semi-bold);
-        margin-bottom: var(--ident-xm);
+        margin-bottom: var(--ident-2xl);
       }
     }
 
@@ -84,8 +83,8 @@
       width: 100%;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: var(--ident-ml);
-      margin-bottom: var(--ident-adaptive-xl);
+      gap: var(--ident-m);
+      margin-bottom: var(--ident-3xl);
 
       @include media.media-breakpoint-down(l) {
         grid-template-columns: repeat(2, 1fr);
@@ -120,8 +119,8 @@
       justify-content: center;
 
       &-text {
-        padding: var(--ident-m) var(--ident-xs);
-        gap: var(--ident-ml);
+        padding: var(--ident-m) var(--ident-2xl);
+        gap: var(--ident-m);
         display: flex;
         justify-content: center;
         align-items: center;

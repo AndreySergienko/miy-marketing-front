@@ -15,7 +15,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: var(--ident-xm);
+      gap: var(--ident-2xl);
     }
 
     &__icon {
@@ -26,7 +26,7 @@
       display: flex;
       flex-direction: column;
       text-align: center;
-      gap: var(--ident-xs);
+      gap: var(--ident-3xl);
     }
 
     &__title {

@@ -82,7 +82,7 @@ const handleRemove = (value: string) => {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--ident-m);
+  gap: var(--ident-s);
 
   &__title {
     font-size: var(--font-size-m);
@@ -92,12 +92,12 @@ const handleRemove = (value: string) => {
   &__field {
     display: flex;
     align-items: center;
-    gap: var(--ident-ml);
+    gap: var(--ident-m);
     width: 100%;
     height: 51px;
     border: 1px solid var(--color-light-gray);
-    border-radius: var(--ident-mx);
-    padding: var(--ident-mx);
+    border-radius: var(--ident-m);
+    padding: var(--ident-m);
     background: #fff;
     overflow: hidden;
     user-select: none;
@@ -107,7 +107,7 @@ const handleRemove = (value: string) => {
       overflow: hidden;
       display: flex;
       align-items: center;
-      gap: var(--ident-ml);
+      gap: var(--ident-m);
     }
 
     &-arrow {
@@ -130,11 +130,11 @@ const handleRemove = (value: string) => {
     top: 100%;
     width: 100%;
     display: none;
-    padding: var(--ident-ml) var(--ident-s) var(--ident-ml) 0;
+    padding: var(--ident-m) var(--ident-s) var(--ident-m) 0;
     background: #fff;
     border: 1px solid var(--color-light-gray);
     border-top: none;
-    border-radius: 0 0 var(--ident-mx) var(--ident-mx);
+    border-radius: 0 0 var(--ident-m) var(--ident-m);
     box-shadow: 0px 4px 5px 5px #00000005;
 
     &-inner {
@@ -142,7 +142,7 @@ const handleRemove = (value: string) => {
       max-height: 300px;
       display: flex;
       flex-direction: column;
-      gap: var(--ident-lx);
+      gap: var(--ident-l);
       overflow: auto;
 
       &--item {
@@ -178,7 +178,7 @@ const handleRemove = (value: string) => {
 
   &--opened {
     .shared-multiselect__field {
-      border-radius: var(--ident-mx) var(--ident-mx) 0 0;
+      border-radius: var(--ident-m) var(--ident-m) 0 0;
 
       &-arrow {
         rotate: 180deg;
