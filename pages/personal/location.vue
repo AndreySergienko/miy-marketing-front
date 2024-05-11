@@ -9,7 +9,7 @@
           </SharedInput>
           <SharedSelect
             title="Выбор категории"
-            :selected="category"
+            :selected="selectedCategory"
             :options="categories"
             @select="handleCategorySelect"
           />
@@ -24,8 +24,8 @@
             />
             <SharedMultiselect
               title="Слоты"
-              :selected="selectedSlots"
-              :options="slots"
+              :selected="newChannel.slots"
+              :options="shownSlots"
               @select="handleSlotsSelect"
               @unselect="handleSlotsUnselect"
             />
@@ -84,6 +84,16 @@ const intervals = [
   { title: "2/48", value: "2" },
 ];
 
+const slots = Array.from({ length: 48 }, (_, i) => {
+  const hour = `${Math.floor(i / 2)}`.padStart(2, "0");
+  const minute = `${(i % 2) * 30}`.padStart(2, "0");
+
+  return {
+    title: `${hour}:${minute}`,
+    value: `${hour}:${minute}`,
+  };
+});
+
 const categoriesStore = useCategoriesStore();
 const { categories } = storeToRefs(categoriesStore);
 
@@ -97,36 +107,44 @@ const newChannel = reactive<INewChannel>({
   link: "",
   name: "",
   day: null,
-  slots: [], // Слоты
+  slots: [],
   price: "",
   formatChannel: 0,
   conditionCheck: "",
 });
 
-const category = ref("");
+const selectedCategory = ref("");
+
+const shownSlots = computed(() => {
+  if (newChannel.formatChannel === 1)
+    return slots.filter((slot) => !slot.value.endsWith("30"));
+  if (newChannel.formatChannel === 2) return slots;
+  return [];
+});
 
 const handleCategorySelect = (value: string) => {
   const foundCategory = categories.value.find((c) => c.value === value);
   if (!foundCategory) return;
 
-  category.value = foundCategory.value;
+  selectedCategory.value = foundCategory.value;
   newChannel.categoriesId = [foundCategory.id];
 };
 
-const slots = [
-  { title: "10:00", value: "10:00" },
-  { title: "11:00", value: "11:00" },
-];
-const selectedSlots = ref<string[]>([]);
-
 const handleSlotsSelect = (value: string) => {
-  selectedSlots.value.push(value);
+  newChannel.slots.push(value);
 };
 
 const handleSlotsUnselect = (value: string) => {
-  const index = selectedSlots.value.indexOf(value);
-  selectedSlots.value.splice(index, 1);
+  const index = newChannel.slots.indexOf(value);
+  newChannel.slots.splice(index, 1);
 };
+
+watch(
+  () => newChannel.formatChannel,
+  () => {
+    newChannel.slots = [];
+  }
+);
 </script>
 
 <style scoped lang="scss">
