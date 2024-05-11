@@ -1,4 +1,6 @@
-import animation from '~/modules/animation/animation.directive';
-import {Directive} from "@vue/runtime-core";
+import animation from "~/modules/animation/animation.directive";
+import outsideClick from "~/modules/outsideClick/outsideClick.directive";
 
-export default <Directive[]> [animation]
+import type { Directive } from "@vue/runtime-core";
+
+export default <Directive[]>[animation, outsideClick];
