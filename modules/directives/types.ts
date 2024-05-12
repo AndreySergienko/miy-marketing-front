@@ -1,8 +1,8 @@
 import {Directive} from "vue";
 
-export interface ICreateDirectiveArgs {
+export interface ICreateDirectiveArgs<El, Binding> {
     // Название директивы
     name: string;
     // Инстанс директвы
-    directive: Directive;
+    directive: Directive<El, Binding>;
 }

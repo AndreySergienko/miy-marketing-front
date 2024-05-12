@@ -5,7 +5,7 @@
         <template #title>Логин</template>
         <template #form>
           <VeeForm class="form" v-slot="{ errors, meta }" @submit="sendRegistration" :validation-schema="registrationRules">
-            <SharedInput name="fio" v-model="registrationData.name" type="text" :error="errors.fio">ФИО</SharedInput>
+            <SharedInput name="fio" v-model="registrationData.fio" type="text" :error="errors.fio">ФИО</SharedInput>
             <div class="form__item">
               <SharedInput name="uniqueBotId" v-model="registrationData.uniqueBotId" type="text" :error="errors.uniqueBotId">Уникальный id</SharedInput>
               <SharedInput name="inn" v-model="registrationData.inn" type="text" :error="errors.inn">ИНН</SharedInput>
