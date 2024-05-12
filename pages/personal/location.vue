@@ -62,7 +62,12 @@
           >
             Предпочтение модерации
           </SharedInput>
-          <SharedButton class="location__btn" color="gray" size="xl">
+          <SharedButton
+            class="location__btn"
+            :color="buttonColor"
+            size="xl"
+            @click="submitNewChannel"
+          >
             Отправить
           </SharedButton>
         </div>
@@ -73,6 +78,7 @@
 
 <script setup lang="ts">
 import { useCategoriesStore } from "~/store/categories/categories.store";
+import { useChannelStore } from "~/store/channel/channel.store";
 import type { INewChannel } from "~/store/channel/channel.types";
 
 definePageMeta({
@@ -81,7 +87,8 @@ definePageMeta({
 
 const intervals = [
   { title: "1/24", value: "1" },
-  { title: "2/48", value: "2" },
+  { title: "1/48", value: "2" },
+  { title: "30/24", value: "3" },
 ];
 
 const slots = Array.from({ length: 48 }, (_, i) => {
@@ -96,6 +103,8 @@ const slots = Array.from({ length: 48 }, (_, i) => {
 
 const categoriesStore = useCategoriesStore();
 const { categories } = storeToRefs(categoriesStore);
+
+const channelsStore = useChannelStore();
 
 await useAsyncData("location-first-data", () => {
   return categoriesStore.getAll();
@@ -116,10 +125,20 @@ const newChannel = reactive<INewChannel>({
 const selectedCategory = ref("");
 
 const shownSlots = computed(() => {
-  if (newChannel.formatChannel === 1)
-    return slots.filter((slot) => !slot.value.endsWith("30"));
-  if (newChannel.formatChannel === 2) return slots;
-  return [];
+  switch (newChannel.formatChannel) {
+    case 1:
+    case 2:
+      return slots.filter((slot) => !slot.value.endsWith("30"));
+    case 3:
+      return slots;
+    default:
+      return [];
+  }
+});
+
+const buttonColor = computed(() => {
+  if (newChannel.name === "") return "gray";
+  return "blue";
 });
 
 const handleCategorySelect = (value: string) => {
@@ -137,6 +156,22 @@ const handleSlotsSelect = (value: string) => {
 const handleSlotsUnselect = (value: string) => {
   const index = newChannel.slots.indexOf(value);
   newChannel.slots.splice(index, 1);
+};
+
+const submitNewChannel = async () => {
+  if (!newChannel.day) return;
+
+  await channelsStore.create({
+    categoriesId: newChannel.categoriesId,
+    description: newChannel.description,
+    link: newChannel.link,
+    name: newChannel.name,
+    day: Number(newChannel.day),
+    slots: newChannel.slots,
+    price: Number(newChannel.price),
+    formatChannel: newChannel.formatChannel,
+    conditionCheck: newChannel.conditionCheck,
+  });
 };
 
 watch(

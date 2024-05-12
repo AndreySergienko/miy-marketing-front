@@ -25,6 +25,7 @@ export const useChannelStore = defineStore("global/channel", () => {
   async function create(data: IChannelsRegistrationBody) {
     try {
       await channelsService.register(data);
+      await navigateTo("/personal/telegram");
     } catch {
       console.log("Не удалось создать канал");
     }
