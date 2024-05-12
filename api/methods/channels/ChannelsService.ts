@@ -19,4 +19,11 @@ export default class ChannelsService extends ApiService {
   async getMy() {
     return await this.$authApi<unknown[]>(this.apiUrl + "my");
   }
+
+  async check(channelName: string) {
+    return await this.$authApi(this.apiUrl + "check", {
+      method: "post",
+      body: { channelName },
+    });
+  }
 }

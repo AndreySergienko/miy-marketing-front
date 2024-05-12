@@ -21,6 +21,16 @@ export const useChannelStore = defineStore("global/channel", () => {
   /** Купить канал **/
   async function buy() {}
 
+  /** Проверить канал **/
+  async function check(channelName: string) {
+    try {
+      await channelsService.check(channelName);
+      await navigateTo("/personal/location");
+    } catch {
+      console.log("Не удалось проверить канал");
+    }
+  }
+
   /** Создать канал **/
   async function create(data: IChannelsRegistrationBody) {
     try {
@@ -36,6 +46,7 @@ export const useChannelStore = defineStore("global/channel", () => {
 
   return {
     channels,
+    check,
     update,
     buy,
     create,
