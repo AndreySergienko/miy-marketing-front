@@ -17,6 +17,7 @@ export interface IRegistrationRequest {
     fio: string;
     password: string;
     uniqueBotId: string;
+    isNotification: boolean;
 }
 
 export interface IRegistrationResponse extends ISuccessResponse {

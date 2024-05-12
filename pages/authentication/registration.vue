@@ -5,25 +5,28 @@
         <template #title>Логин</template>
         <template #form>
           <VeeForm class="form" v-slot="{ errors, meta }" @submit="sendRegistration" :validation-schema="registrationRules">
-            <SharedInput name="fio" v-model="registrationData.name" type="text" :error="errors.fio">ФИО</SharedInput>
+            <SharedInput name="fio" v-model="registrationData.fio" type="text" :error="errors.fio">ФИО</SharedInput>
             <div class="form__item">
               <SharedInput name="uniqueBotId" v-model="registrationData.uniqueBotId" type="text" :error="errors.uniqueBotId">Уникальный id</SharedInput>
               <SharedInput name="inn" v-model="registrationData.inn" type="text" :error="errors.inn">ИНН</SharedInput>
               <SharedInput name="email" v-model="registrationData.email" type="text" :error="errors.email">Почта</SharedInput>
-              <SharedInput name="password" v-model="registrationData.password" type="text" :error="errors.password">Пароль</SharedInput> 
+              <SharedInput name="password" v-model="registrationData.password" type="text" :error="errors.password">Пароль</SharedInput>
             </div>
             <div class="form__checkbox">
               <span class="form__checkbox-title">Публикация рекламных постов в</span>
               <div class="form__checkbox-items">
-                <SharedCheckbox>В уведомительном порядке</SharedCheckbox>
-                <SharedCheckbox>В автоматическом порядке</SharedCheckbox>  
+                <SharedGroupRadio v-model="registrationData.isNotification">
+                    <template #default="{ updateValue }">
+                      <SharedRadio v-for="radio in radios" :checked="radio.checked" name="notification" :key="radio.text" :value="radio.value" @change="updateValue">{{ radio.text }}</SharedRadio>
+                    </template>
+                </SharedGroupRadio>
               </div>
               <div class="form__checkbox-confidential">
-                <SharedCheckbox>Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></SharedCheckbox> 
+                <SharedCheckbox>Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></SharedCheckbox>
               </div>
             </div>
             <div class="btn__registration">
-              <SharedButton size="l" color="blue" :disabled="!meta.valid" @click="useAuthStore.registration" >Войти</SharedButton>
+              <SharedButton size="l" color="blue" :disabled="!meta.valid">Создать</SharedButton>
             </div>
           </VeeForm>
         </template>
@@ -35,26 +38,19 @@
   </AuthController>
 </template>
 
-<script setup>
-  import SharedCheckbox from '~/components/SharedCheckbox/SharedCheckbox.vue';
+<script setup lang="ts">
   import AuthController from '~/controllers/AuthController/AuthController.vue';
-  import { useAuthStore } from '~/store/auth/auth.store';
+  import {radios} from "~/modules/pages/registration/registration.data";
 
- 
   definePageMeta({
     layout: 'authentication'
   })
 
-  const showGratitude = ref(false);
-
-  const toggleContent = () => {
-    showGratitude.value = !showGratitude.value
-  }
-
+  const showGratitude = ref<boolean>(false);
 </script>
 
 <style lang="scss" scoped>
-  @use 'assets/styles/media';
+@use 'assets/styles/media';
 
   .form {
     display: flex;

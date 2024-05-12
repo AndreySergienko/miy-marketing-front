@@ -23,9 +23,9 @@
     inn: null,
     fio: '',
     password: '',
-    uniqueBotId: ''
+    uniqueBotId: '',
+    isNotification: true
   })
-
 
   const loginData = reactive<ILoginRequest>({
     email: '',
@@ -33,12 +33,12 @@
   })
 
   const loginRules = yup.object({
-    email: yup.string().email('Необходим формат почты').required('Обязательное поле для заполнения!').label(''),
+    email: yup.string().email('Необходимый формат почты').required('Обязательное поле для заполнения!').label(''),
     password: yup.string().min(5, 'Пароль дожен содержать не менее 5 символов').max(20, 'Пароль не может содержать более 20 символов').required('Обязательное поле для заполнения!').label(''),
   });
 
   const registrationRules = yup.object({
-    email: yup.string().email('Необходим формат почты').required('Обязательное поле для заполнения!').label(''),
+    email: yup.string().email('Необходимый формат почты').required('Обязательное поле для заполнения!').label(''),
     fio: yup.string().min(2, 'Имя должно быть длинее не менее 2 символов').required('Обязательное поле для заполнения!').label(''),
     inn: yup.number()
       .transform((originalValue) => {
