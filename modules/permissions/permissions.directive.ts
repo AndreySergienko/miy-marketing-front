@@ -6,7 +6,8 @@ import {useCheckScopes} from "~/modules/permissions/useCheckScopes";
 export default useCreateDirective<HTMLElement, TPermissionsScopesKeys[]>({
   name: "auth",
   directive: {
-    beforeMount(el, binding, vnode) {
+    /** Требует дорабкти, лучше использовать v-if напрямую **/
+    created(el, binding, vnode) {
       const isValid = useCheckScopes(binding.value)
       if (isValid) return;
       vnode.el.parentElement.removeChild(vnode.el)
