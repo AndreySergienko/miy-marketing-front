@@ -34,7 +34,7 @@ definePageMeta({
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--ident-l) 0 var(--ident-3xl);
+    padding: var(--ident-l) 0 var(--ident-xl);
     border-bottom: 2px solid var(--color-dark-gray);
 
     &-title {

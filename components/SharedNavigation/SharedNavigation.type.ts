@@ -10,3 +10,7 @@ export interface ISharedNavigationProps {
 }
 
 export type TNavBurger = Record<TNavDirection, string>
+
+export interface ISharedNavigationEmits {
+  (event: string, value: boolean): void
+}

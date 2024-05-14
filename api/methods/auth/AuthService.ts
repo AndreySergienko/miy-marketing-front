@@ -24,5 +24,5 @@ export default class AuthService extends ApiService {
       method: 'post',
       body: JSON.stringify(data)
     })
-  }
+  } 
 }

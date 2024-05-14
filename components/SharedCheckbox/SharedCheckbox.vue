@@ -1,13 +1,35 @@
 <template>
   <div class="checkbox">
-    <input class="checkbox__input" type="checkbox">
-    <label class="checkbox__label"><slot /></label>
+    <div class="checkbox__item">
+      <input class="checkbox__input" type="radio" :name="name" :value="value" />
+      <label class="checkbox__label"><slot/></label>
+    </div>
   </div>
-</template>
+</template> 
+<script setup lang="ts">
+  const props = defineProps({
+    name: {
+      type: String
+    },
+    value:{
+      type: String
+    }
+  })
+
+  const input = computed({
+    get() {
+        return ''
+    },
+    set(value: string) {
+        emits('update:modelValue', value)
+    }
+})
+
+</script>
 
 <style scoped lang="scss">
   @use 'assets/styles/media';
- .checkbox {
+ .checkbox{
   display: flex;
   align-items: flex-start;
   font-size: var(--font-size-sm);
@@ -17,10 +39,13 @@
     font-size: var(--font-size-ss);
   }
 
-  &__input {
+  &__item {
+    width: 100%;
+  }
+ }
+ .checkbox__input {
     @include media.media-breakpoint-down(sm) {
       margin-top: 2px;
     }
   }
- }
 </style>

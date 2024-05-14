@@ -1,10 +1,12 @@
 <template>
   <nav>
     <ul :class="['navigation', navDirection[position] ]">
-      <li v-for="(navItem, id) in navList" :key="id">
-        <div class="navigation__item">
-          {{ navItem.text }}
-        </div>
+      <li v-for="(navItem, id) in navList" :key="id" @click="handleClick">
+        <a :href="'#' + navItem.link" class="navigation__link">
+          <div class="navigation__item">
+            {{ navItem.text }}
+          </div>
+        </a>
       </li>
     </ul>
   </nav>
@@ -12,8 +14,14 @@
 
 <script setup lang="ts">
   import { navList } from './SharedNavigation.data';
-  import type { TNavBurger } from './SharedNavigation.type';
+  import type { ISharedNavigationEmits, TNavBurger } from './SharedNavigation.type';
 
+  const emits = defineEmits<ISharedNavigationEmits>()
+
+  const handleClick = () => {
+    emits('closeBurger', true);
+  }
+  
   const navDirection: TNavBurger = {
     column: 'navigation__column'
   }
@@ -57,5 +65,9 @@
     @include media.media-breakpoint-down(sm) {
       font-size: var(--font-size-s);
     }
+  }
+  .navigation__link {
+    text-decoration: none;
+    color: var(--color-black);
   }
 </style>

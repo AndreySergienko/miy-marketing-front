@@ -64,7 +64,7 @@
       }
 
       @include media.media-breakpoint-down(sm) {
-        padding: var(--ident-m) 140px;
+        padding: 12px 140px;
         font-size: var(--font-size-s);
       }
     }

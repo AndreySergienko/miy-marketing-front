@@ -1,5 +1,5 @@
 <template>
-  <div class="contacts">
+  <div class="contacts" id="contact">
     <div class="container">
       <shared-animation>
         <div class="contacts__inner">
@@ -21,6 +21,13 @@
   @use 'assets/styles/media';
   .contacts {
     margin-bottom: var(--ident-5xl);
+
+    @include media.media-breakpoint-down(xl) {
+      padding-top: 100px;
+      margin-top: -100px;
+      -webkit-background-clip: content-box;
+      background-clip: content-box;
+    }
 
     &__inner {
       display: flex;

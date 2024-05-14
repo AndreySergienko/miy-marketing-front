@@ -20,5 +20,10 @@ export default defineNuxtConfig ({
       baseUrlApi: '',
     }
   },
+  router: {
+    options: {
+      scrollBehaviorType: 'smooth'
+    }
+  },
   devtools: { enabled: true },
 })

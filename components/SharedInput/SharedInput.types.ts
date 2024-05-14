@@ -1,4 +1,4 @@
-export interface ISharedInputProps {
+ export interface ISharedInputProps {
     modelValue?: string;
     name: string;
     type: string;

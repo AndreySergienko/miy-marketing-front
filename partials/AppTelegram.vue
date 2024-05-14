@@ -1,9 +1,11 @@
 <template>
-  <div class="tg">
+  <div class="tg" id="telegram">
     <div class="container">
       <div class="tg__inner">
         <div class="tg__text">
-          <SharedTitle>Telegram-каналы</SharedTitle>
+          <div>
+            <SharedTitle>Telegram-каналы</SharedTitle>
+          </div>
           <SharedText
             >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -28,6 +30,10 @@
 <style scoped lang="scss">
    @use 'assets/styles/media';
   .tg {
+    padding-top: 100px;
+    margin-top: -100px;
+    -webkit-background-clip: content-box;
+    background-clip: content-box;
     margin-bottom: var(--ident-4xl);
 
     &__inner {

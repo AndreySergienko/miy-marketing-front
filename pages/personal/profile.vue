@@ -162,7 +162,7 @@ import {useUserStore} from '../../store/user/user.store';
     }
 
     &__btn {
-      padding: var(--ident-m) var(--ident-5xl);
+      padding: 12px var(--ident-xl);
       margin-bottom: var(--ident-5xl);
     }
   }

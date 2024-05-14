@@ -1,5 +1,5 @@
 <template>
-  <div class="benefit">
+  <div class="benefit" id="benefit">
     <div class="container">
       <shared-animation>
         <div class="benefit__inner">
@@ -33,6 +33,10 @@
 <style scoped lang="scss">
   @use 'assets/styles/media';
   .benefit {
+    padding-top: 100px;
+    margin-top: -100px;
+    -webkit-background-clip: content-box;
+    background-clip: content-box;
     margin-bottom: var(--ident-5xl);
 
     @include media.media-breakpoint-down(xl) {

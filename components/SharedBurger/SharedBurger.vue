@@ -2,9 +2,9 @@
   <div class="shared__burger">
     <input type="checkbox" id="burger-checkbox" class="burger-checkbox">
     <label class="burger" for="burger-checkbox"></label>
-    <div class="menu-list">
+    <div class="menu-list" :class="{active: isOpen}">
       <div class="menu-list__inner">
-        <SharedNavigation position="column"/>
+        <SharedNavigation position="column" @closeBurger="closeBurger" />
         <div class="btn">
           <SharedButton size="s" color="white" @click="signin">Войти</SharedButton>
           <SharedButton size="m" color="blue" @click="signup">Зарегистрироваться</SharedButton>
@@ -21,7 +21,15 @@
   const signin = () => {
     router.push('/authentication/login')
   }
+
+  const isOpen = ref(false);
+
+  const closeBurger = (value) => {
+    isOpen.value = value
+    console.log(isOpen.value)
+  }
 </script>
+
 <style scoped lang="scss">
   @use 'assets/styles/media';
   .shared__burger {
@@ -32,9 +40,10 @@
     }
   }
   .burger-checkbox {
-  position: absolute;
-  visibility: hidden;
+    position: absolute;
+    visibility: hidden;
   }
+
   .burger {
     position: relative;
     z-index: 1;
@@ -88,7 +97,13 @@
     background-color: var(--color-white);
     transition: .3s;
     z-index: 1;
-    
+
+    &.active
+
+    &__inner {
+      background-color: var(--color-white);
+      width: 100vw;
+    }
 
     @include media.media-breakpoint-down(sm) {
       top: 81px;
@@ -102,12 +117,14 @@
     height: 100%;
     width: 100%;
 
+
     @include media.media-breakpoint-down(l) {
       justify-content: flex-start;
     }
   }
   .btn {
     display: none;
+    margin-bottom: var(--ident-m);
 
     @include media.media-breakpoint-down(sm) {
       display: flex;

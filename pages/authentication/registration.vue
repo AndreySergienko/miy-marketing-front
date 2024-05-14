@@ -8,22 +8,22 @@
             <SharedInput name="fio" v-model="registrationData.name" type="text" :error="errors.fio">ФИО</SharedInput>
             <div class="form__item">
               <SharedInput name="uniqueBotId" v-model="registrationData.uniqueBotId" type="text" :error="errors.uniqueBotId">Уникальный id</SharedInput>
-              <SharedInput name="inn" v-model="registrationData.inn" type="text" :error="errors.inn">ИНН</SharedInput>
+              <SharedInput name="inn" v-model="registrationData.inn" type="number" :error="errors.inn">ИНН</SharedInput>
               <SharedInput name="email" v-model="registrationData.email" type="text" :error="errors.email">Почта</SharedInput>
               <SharedInput name="password" v-model="registrationData.password" type="text" :error="errors.password">Пароль</SharedInput> 
             </div>
             <div class="form__checkbox">
               <span class="form__checkbox-title">Публикация рекламных постов в</span>
               <div class="form__checkbox-items">
-                <SharedCheckbox>В уведомительном порядке</SharedCheckbox>
-                <SharedCheckbox>В автоматическом порядке</SharedCheckbox>  
+                <SharedCheckbox name="notification">В уведомительном порядке</SharedCheckbox>
+                <SharedCheckbox name="notification">В автоматическом порядке</SharedCheckbox>
               </div>
               <div class="form__checkbox-confidential">
                 <SharedCheckbox>Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></SharedCheckbox> 
               </div>
             </div>
             <div class="btn__registration">
-              <SharedButton size="l" color="blue" :disabled="!meta.valid" @click="useAuthStore.registration" >Войти</SharedButton>
+              <SharedButton size="l" color="blue" :disabled="!meta.valid">Войти</SharedButton>
             </div>
           </VeeForm>
         </template>
@@ -38,8 +38,6 @@
 <script setup>
   import SharedCheckbox from '~/components/SharedCheckbox/SharedCheckbox.vue';
   import AuthController from '~/controllers/AuthController/AuthController.vue';
-  import { useAuthStore } from '~/store/auth/auth.store';
-
  
   definePageMeta({
     layout: 'authentication'

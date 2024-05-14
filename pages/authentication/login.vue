@@ -36,7 +36,7 @@ definePageMeta({
   .form {
     display: flex;
     flex-direction: column;
-    gap: var(--ident-3xl);
+    gap: var(--ident-xl);
     width: 70%;
 
     @include media.media-breakpoint-down(l){
@@ -46,7 +46,7 @@ definePageMeta({
     &__input {
       display: flex;
       flex-direction: column;
-      gap: var(--ident-2xl);
+      gap: var(--ident-l);
     }
   }
 

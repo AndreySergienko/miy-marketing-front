@@ -20,14 +20,17 @@ export default class ApiBuilder {
 
     private createOnResponse(context: FetchContext & {
         response: FetchResponse<ResponseType> }) {
-        console.log(this.mapper)
-        return this.mapper.mapDataKeys(context.response)
-        
-    }
+          return this.mapper.mapDataKeys.call(this, context.response)
+        }
 
     public create(headers: HeadersInit): $Fetch {
-        const onResponse = this.createOnResponse
-        // @ts-ignore
-        return ofetch.create({ baseURL: this.createBaseUrl(), headers, onResponse})
+      const onResponse = this.createOnResponse
+      // @ts-ignore
+      return ofetch.create({ baseURL: this.createBaseUrl(), headers, onResponse(context: FetchContext & {
+          response: FetchResponse<ResponseType>
+        }): (FetchResponse<any> & FetchResponse<ResponseType>) | null {
+          const mapper = new FetchMapper()
+          return mapper.mapDataKeys(context.response)
+        }})
     }
 }

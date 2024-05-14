@@ -27,12 +27,7 @@
   const userRules = yup.object({
     email: yup.string().email('Необходим формат почты').required('Обязательное поле для заполнения!').label(''),
     fio: yup.string().min(6, 'Поле дожно содержать не менее 6 символов').required('Обязательное поле для заполнения!').label(''),
-    inn: yup.number()
-      .transform((originalValue) => {
-      const parsedValue = Number(originalValue);
-      return isNaN(parsedValue) ? undefined : parsedValue;})
-      .required('Обязательное поле для заполнения!').label('')
-      .test('validateInn', 'Недопустимый ИНН', validateInn),
+    inn: yup.number().required('Обязательное поле для заполнения!').label('').test('validateInn', 'Недопустимый ИНН', validateInn),
     card: yup.number().required('Обязательное поле для заполнения!').label('')
   })
 

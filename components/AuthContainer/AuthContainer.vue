@@ -64,10 +64,10 @@
 
     &__link {
       display: flex;
-      gap: var(--ident-3xl);
+      gap: var(--ident-xl);
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
-      margin-bottom: var(--ident-3xl);
+      margin-bottom: var(--ident-xl);
 
       @include media.media-breakpoint-down(l) {
         justify-content: center;
