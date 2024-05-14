@@ -1,5 +1,5 @@
 import FetchMapper from "~/api/core/mapper/FetchMapper";
-import {FetchContext, FetchResponse, ofetch} from "ofetch";
+import {ofetch} from "ofetch";
 import {$Fetch} from "nitropack";
 
 export default class ApiBuilder {
@@ -18,16 +18,7 @@ export default class ApiBuilder {
     return url
   }
 
-    private createOnResponse(context: FetchContext & {
-        response: FetchResponse<ResponseType> }) {
-        console.log(this.mapper)
-        return this.mapper.mapDataKeys(context.response)
-        
-    }
-
     public create(headers: HeadersInit): $Fetch {
-        const onResponse = this.createOnResponse
-        // @ts-ignore
-        return ofetch.create({ baseURL: this.createBaseUrl(), headers, onResponse})
+        return ofetch.create({ baseURL: this.createBaseUrl(), headers })
     }
 }

@@ -1,22 +1,17 @@
 import { defineStore } from "pinia";
 import UserService from "~/api/methods/user/UserService";
-import type { IUserRequest } from "~/api/methods/user/user.types";
-import type { IUser, TPermissions } from "./user.types";
-
-const TOKEN_NAME = "userToken";
+import type { IUser } from "./user.types";
+import {TPermissionsScopesKeys} from "~/modules/permissions/types";
+import type {IUserRequest} from "~/api/methods/user/user.types";
 
 export const useUserStore = defineStore("global/user", () => {
   const userService = new UserService();
-
-  const token = useCookie(TOKEN_NAME, {
-    secure: true,
-  });
 
   /** Данные об активном юзере **/
   const user = ref<IUser | null>(null);
 
   /** Права пользоватлея **/
-  const permissions = ref<Partial<TPermissions>>({});
+  const permissions = ref<Partial<Record<TPermissionsScopesKeys, TPermissionsScopesKeys>>>({});
 
   /** Получить юзера **/
   async function getMe() {
@@ -24,6 +19,10 @@ export const useUserStore = defineStore("global/user", () => {
       const response = await userService.getMe();
       if (!response) return;
       user.value = response;
+      for (let i = 0; i < user.value.permissions.length; i++) {
+        const permission = user.value.permissions[i]
+        permissions.value[permission] = permission;
+      }
     } catch (e) {
       console.log(e);
     }
@@ -43,7 +42,6 @@ export const useUserStore = defineStore("global/user", () => {
 
   return {
     permissions,
-    token,
     updateUser,
     getMe,
     user,

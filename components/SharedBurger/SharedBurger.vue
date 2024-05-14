@@ -6,14 +6,19 @@
       <div class="menu-list__inner">
         <SharedNavigation position="column"/>
         <div class="btn">
-          <SharedButton size="s" color="white" @click="signin">Войти</SharedButton>
-          <SharedButton size="m" color="blue" @click="signup">Зарегистрироваться</SharedButton>
+          <SharedButton size="s" color="white" v-if="!isAuth" @click="signin">Войти</SharedButton>
+          <SharedButton size="m" color="blue" v-if="!isAuth" @click="signup">Зарегистрироваться</SharedButton>
+          <SharedButton size="m" color="blue" v-if="isAuth" @click="logout">Выйти</SharedButton>
         </div>
       </div>
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
+  import type {IAuthProps} from "~/components/AppHeader/AppHeader.types";
+
+  const props = defineProps<IAuthProps>()
+
   const router = useRouter()
   const signup = () => {
     router.push('/authentication/registration')
@@ -40,7 +45,6 @@
     z-index: 1;
     cursor: pointer;
     display: block;
-    position: relative;
     border: none;
     background: transparent;
     width: 40px;
@@ -88,7 +92,7 @@
     background-color: var(--color-white);
     transition: .3s;
     z-index: 1;
-    
+
 
     @include media.media-breakpoint-down(sm) {
       top: 81px;

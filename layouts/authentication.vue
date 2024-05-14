@@ -1,5 +1,9 @@
 <template>
-  <AppHeader />
+  <AuthStateController>
+    <template #default="{ isAuth, logout }">
+      <AppHeader :is-auth="isAuth" :logout="logout" />
+    </template>
+  </AuthStateController>
   <section class="authentication">
     <div class="authentication__inner">
       <div class="authentication__logo" />
@@ -9,7 +13,10 @@
     </div>
   </section>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import AppHeader from "~/components/AppHeader/AppHeader.vue";
+import AuthStateController from "~/controllers/AuthStateController/AuthStateController.vue";
+</script>
 <style lang="scss" scoped>
   @use 'assets/styles/media';
   .authentication{

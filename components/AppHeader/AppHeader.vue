@@ -5,15 +5,19 @@
         <nuxt-link class="header__link" to="/"><h1 class="header__title">ON-DEVELOPER</h1></nuxt-link>
         <SharedNavigation class="header__navigation" />
         <div class="header__button">
-          <SharedButton size="s" color="white" @click="signin">Войти</SharedButton>
-          <SharedButton size="m" color="blue" @click="signup">Зарегистрироваться</SharedButton>
+          <SharedButton size="s" color="white" v-if="!isAuth" @click="signin">Войти</SharedButton>
+          <SharedButton size="m" color="blue" v-if="!isAuth" @click="signup">Зарегистрироваться</SharedButton>
+          <SharedButton size="m" color="blue" v-if="isAuth" @click="logout">Выйти</SharedButton>
         </div>
-        <SharedBurger/>
+        <SharedBurger :is-auth="isAuth" :logout="logout"/>
       </div>
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
+  import type {IAuthProps} from "~/components/AppHeader/AppHeader.types";
+  const props = defineProps<IAuthProps>()
+
   const router = useRouter()
   const signup = () => {
     router.push('/authentication/registration')
@@ -31,7 +35,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: var(--ident-xl) 0px;
+      margin: var(--ident-xl) 0;
     }
 
     &__link {
@@ -67,5 +71,5 @@
   nuxt-link {
     text-decoration: none;
   }
-  
+
 </style>

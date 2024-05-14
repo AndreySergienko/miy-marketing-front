@@ -28,6 +28,8 @@ import AuthController from "~/controllers/AuthController/AuthController.vue";
 definePageMeta({
     layout: 'authentication'
 })
+
+
 </script>
 
 <style scoped lang="scss">
@@ -62,4 +64,4 @@ definePageMeta({
       font-size: var(--font-size-sm);
     }
   }
-</style> 
+</style>

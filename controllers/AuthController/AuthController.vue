@@ -4,8 +4,8 @@
     :loginRules="loginRules"
     :registrationRules="registrationRules"
     :registrationData="registrationData"
-    :sendLogin="authStore.login"
-    :sendRegistration="authStore.registration"
+    :sendLogin="login"
+    :sendRegistration="registration"
   />
 </template>
 
@@ -31,6 +31,14 @@
     email: '',
     password: ''
   })
+
+  const registration = async () => {
+    await authStore.registration(registrationData)
+  }
+
+  const login = async () => {
+    await authStore.login(loginData)
+  }
 
   const loginRules = yup.object({
     email: yup.string().email('Необходимый формат почты').required('Обязательное поле для заполнения!').label(''),
