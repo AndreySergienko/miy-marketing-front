@@ -9,7 +9,7 @@
                     <SharedInput name="password" v-model="loginData.password" type="text" :error="errors.password">Пароль</SharedInput>
                   </div>
                   <div class="help__password">
-                    <span>Забыл Пароль</span>
+                    <span>Забыли пароль</span>
                     <NuxtIcon name="lock" filled/>
                   </div>
                   <div class="btn__login">
@@ -28,6 +28,8 @@ import AuthController from "~/controllers/AuthController/AuthController.vue";
 definePageMeta({
     layout: 'authentication'
 })
+
+
 </script>
 
 <style scoped lang="scss">
@@ -62,4 +64,4 @@ definePageMeta({
       font-size: var(--font-size-sm);
     }
   }
-</style> 
+</style>

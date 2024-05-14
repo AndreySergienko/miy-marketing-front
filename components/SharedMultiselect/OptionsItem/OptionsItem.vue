@@ -22,6 +22,7 @@ const iconClass = computed(() => ({
 
 <style scoped lang="scss">
 .options-item {
+  flex: 1 0;
   display: flex;
   align-items: center;
   padding: var(--ident-s) var(--ident-m);

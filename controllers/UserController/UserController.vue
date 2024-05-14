@@ -1,28 +1,32 @@
 <template>
-  <slot 
-    :userData="userData"
+  <slot
+    :userData="userStore.user"
     :userRules="userRules"
-    :sendUser="userStore.user"
+    :sendUser="update"
   />
 </template>
 
 <script setup lang="ts">
   import * as yup from 'yup'
   import { useUserStore } from '~/store/user/user.store';
-  import type { IUserRequest } from '~/api/methods/user/user.types';
-  import { IUserControllerSlots } from './UserController.types';
-  import {validateInn} from '~/utils/INNValidation/InnValidation';
-  
+  import type { IUserControllerSlots } from './UserController.types';
+  import {validateInn} from '~/utils/validator.ts/inn.validator';
+  import type {IUserRequest} from "~/api/methods/user/user.types";
 
   const userStore = useUserStore()
+  const { user } = storeToRefs(userStore)
 
-  const userData = reactive<IUserRequest>({
-    fio: '',
-    inn: null,
-    email: '',
-    card: '',
-  })
-
+  const update = async () => {
+    if (!user.value) return;
+    const userRequest: IUserRequest = {
+      inn: user.value.inn,
+      fio: user.value.fio,
+      cardNumber: user.value.cardNumber,
+      email: user.value.email,
+      isNotification: true,
+    }
+    await userStore.updateUser(userRequest)
+  }
 
   const userRules = yup.object({
     email: yup.string().email('Необходим формат почты').required('Обязательное поле для заполнения!').label(''),

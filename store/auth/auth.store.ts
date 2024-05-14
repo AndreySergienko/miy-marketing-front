@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia';
 import AuthService from "~/api/methods/auth/AuthService";
 import type {ILoginRequest, IRegistrationRequest} from "~/api/methods/auth/auth.types";
+import {toPersonalProfile} from "~/utils/links";
 
-const TOKEN_NAME = 'afToken'
+export const TOKEN_NAME = 'afToken'
 
 export const useAuthStore = defineStore('global/auth', () => {
     const authService = new AuthService();
@@ -12,18 +13,27 @@ export const useAuthStore = defineStore('global/auth', () => {
         secure: true
     })
 
+  /** Проверка на наличие токена **/
+  const isAuth = computed<boolean>(() => !!token.value)
+
     /** Авторизация пользователя **/
     async function login(data: ILoginRequest) {
         try {
             const res= await authService.login(data)
-            if (res) token.value = res.token
+            if (!res) return;
+          token.value = res.token
+          toPersonalProfile()
         } catch (e) {
-            
+          console.log(e)
         }
     }
 
     /** Удаление сессии пользователя **/
-    async function logout() {}
+    async function logout() {
+      token.value = ''
+      const route = useRoute()
+      if (route.meta.layout !== 'authentication' || route.path !== '/') return navigateTo('/')
+    }
 
     /** Регистрация пользователя **/
     async function registration(data: IRegistrationRequest) {
@@ -33,11 +43,12 @@ export const useAuthStore = defineStore('global/auth', () => {
             localStorage.setItem('userId', String(response.id))
             console.log("Пользователь успешно добавлен")
         } catch (e) {
-            console.log(e)
+            console.log(e.response._data)
         }
     }
 
     return {
+        isAuth,
         token,
         login,
         logout,

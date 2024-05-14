@@ -1,5 +1,5 @@
 import FetchMapper from "~/api/core/mapper/FetchMapper";
-import {FetchContext, FetchResponse, ofetch} from "ofetch";
+import {ofetch} from "ofetch";
 import {$Fetch} from "nitropack";
 
 export default class ApiBuilder {
@@ -33,4 +33,4 @@ export default class ApiBuilder {
           return mapper.mapDataKeys(context.response)
         }})
     }
-}
+  }

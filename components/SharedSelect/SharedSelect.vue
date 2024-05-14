@@ -129,6 +129,7 @@ const handleOptionClick = (value: string) => {
       overflow: auto;
 
       &--item {
+        flex: 1 0;
         font-size: var(--font-size-s);
         font-weight: var(--font-weight-medium);
         padding: var(--ident-s) 28px;

@@ -8,7 +8,7 @@
         class="telegram__top-button"
         color="blue"
         size="l"
-        @click="navigateTo('/personal/location')"
+        @click="navigateTo('/personal/connect')"
       >
         Опубликовать TG-канал
       </SharedButton>

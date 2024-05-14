@@ -2,31 +2,29 @@
   <div class="shared__burger">
     <input type="checkbox" id="burger-checkbox" class="burger-checkbox">
     <label class="burger" for="burger-checkbox"></label>
-    <div class="menu-list" :class="{active: isOpen}">
+    <div class="menu-list">
       <div class="menu-list__inner">
-        <SharedNavigation position="column" @closeBurger="closeBurger" />
+        <SharedNavigation position="column"/>
         <div class="btn">
-          <SharedButton size="s" color="white" @click="signin">Войти</SharedButton>
-          <SharedButton size="m" color="blue" @click="signup">Зарегистрироваться</SharedButton>
+          <SharedButton size="s" color="white" v-if="!isAuth" @click="signin">Войти</SharedButton>
+          <SharedButton size="m" color="blue" v-if="!isAuth" @click="signup">Зарегистрироваться</SharedButton>
+          <SharedButton size="m" color="blue" v-if="isAuth" @click="logout">Выйти</SharedButton>
         </div>
       </div>
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
+  import type {IAuthProps} from "~/components/AppHeader/AppHeader.types";
+
+  const props = defineProps<IAuthProps>()
+
   const router = useRouter()
   const signup = () => {
     router.push('/authentication/registration')
   }
   const signin = () => {
     router.push('/authentication/login')
-  }
-
-  const isOpen = ref(false);
-
-  const closeBurger = (value) => {
-    isOpen.value = value
-    console.log(isOpen.value)
   }
 </script>
 
@@ -49,7 +47,6 @@
     z-index: 1;
     cursor: pointer;
     display: block;
-    position: relative;
     border: none;
     background: transparent;
     width: 40px;
@@ -98,8 +95,6 @@
     transition: .3s;
     z-index: 1;
 
-    &.active
-
     &__inner {
       background-color: var(--color-white);
       width: 100vw;
@@ -109,6 +104,7 @@
       top: 81px;
     }
   }
+
   .burger-checkbox:checked ~ .menu-list {
     display: flex;
     justify-content: flex-start;

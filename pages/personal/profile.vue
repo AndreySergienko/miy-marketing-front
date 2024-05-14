@@ -10,9 +10,9 @@
                   <div class="personal__intro">
                     <h3 class="personal__title">Общая информация</h3>
                     <div class="personal__form">
-                      <SharedInput name="fio" v-model="userData.name" type="text" :error="errors.fio" >ФИО</SharedInput>
+                      <SharedInput name="fio" v-model="userData.fio" type="text" :error="errors.fio">ФИО</SharedInput>
                       <div class="personal__form-item">
-                        <SharedInput name="inn" v-model="userData.inn" type="text" :error="errors.inn"  >ИНН</SharedInput>
+                        <SharedInput name="inn" v-model="userData.inn" type="number" :error="errors.inn">ИНН</SharedInput>
                         <SharedInput name="email" v-model="userData.email" type="text" :error="errors.email" >Почта</SharedInput>
                       </div>
                     </div>
@@ -20,7 +20,7 @@
                       <div class="personal__card-inner">
                         <h3 class="personal__card-title">Привязанная карта</h3>
                         <div class="personal__card-form">
-                          <SharedInput name="card" type="number":error="errors.card" >Номер карты</SharedInput>
+                          <SharedInput name="card" v-model="userData.cardNumber" type="text" :error="errors.card" >Номер карты</SharedInput>
                         </div>
                       </div>
                     </div>
@@ -38,7 +38,7 @@
 
 <script setup>
 import UserController from '~/controllers/UserController/UserController.vue';
-import {useUserStore} from '../../store/user/user.store';
+import {useUserStore} from '~/store/user/user.store';
   definePageMeta({
     layout: 'personal'
   })
@@ -93,7 +93,7 @@ import {useUserStore} from '../../store/user/user.store';
           display: flex;
           flex-direction: column;
         }
-      } 
+      }
     }
 
     &__card {
