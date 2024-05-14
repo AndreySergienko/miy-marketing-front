@@ -4,12 +4,14 @@
       <div class="location container">
         <SharedTitle class="location__title">Размещение TG-каналов</SharedTitle>
         <div class="location__inner">
-          <SharedInput>Название</SharedInput>
+          <SharedInput name="name" type="text" v-model="newChannel.name">
+            Название
+          </SharedInput>
           <SharedSelect
             title="Выбор категории"
-            :selected="category"
+            :selected="selectedCategory"
             :options="categories"
-            @select="category = $event"
+            @select="handleCategorySelect"
           />
           <div class="location__calendar">
             <span class="location__calendar-title">
@@ -17,35 +19,55 @@
             </span>
             <SharedCalendar
               title="Календарь"
-              :selected="selectedDate"
-              @select="selectedDate = $event"
+              :selected="newChannel.day"
+              @select="newChannel.day = $event"
             />
             <SharedMultiselect
               title="Слоты"
-              :selected="selectedSlots"
-              :options="slots"
+              :selected="newChannel.slots"
+              :options="shownSlots"
               @select="handleSlotsSelect"
               @unselect="handleSlotsUnselect"
             />
             <div class="location__calendar-item">
-              <SharedMultiselect
+              <SharedSelect
                 class="location__calendar-item-interval"
                 title="Интервал"
-                :selected="selectedIntervals"
+                :selected="`${newChannel.formatChannel}`"
                 :options="intervals"
-                @select="handleIntervalsSelect"
-                @unselect="handleIntervalsUnselect"
+                @select="newChannel.formatChannel = +$event"
               />
-              <SharedInput>Цена</SharedInput>
+              <SharedInput
+                name="price"
+                type="number"
+                v-model="newChannel.price"
+              >
+                Цена
+              </SharedInput>
             </div>
           </div>
-          <SharedInput class="location__input-link">
+          <SharedInput
+            name="link"
+            type="text"
+            v-model="newChannel.link"
+            class="location__input-link"
+          >
             Ссылка на канал тг
           </SharedInput>
-          <SharedInput class="location__input-moderation">
+          <SharedInput
+            name="conditionCheck"
+            type="text"
+            v-model="newChannel.conditionCheck"
+            class="location__input-moderation"
+          >
             Предпочтение модерации
           </SharedInput>
-          <SharedButton class="location__btn" color="gray" size="xl">
+          <SharedButton
+            class="location__btn"
+            :color="buttonColor"
+            size="xl"
+            @click="submitNewChannel"
+          >
             Отправить
           </SharedButton>
         </div>
@@ -56,52 +78,108 @@
 
 <script setup lang="ts">
 import { useCategoriesStore } from "~/store/categories/categories.store";
+import { useChannelStore } from "~/store/channel/channel.store";
+import type { INewChannel } from "~/store/channel/channel.types";
 
 definePageMeta({
   layout: "personal",
 });
 
+const intervals = [
+  { title: "1/24", value: "1" },
+  { title: "1/48", value: "2" },
+  { title: "30/24", value: "3" },
+];
+
+const slots = Array.from({ length: 48 }, (_, i) => {
+  const hour = `${Math.floor(i / 2)}`.padStart(2, "0");
+  const minute = `${(i % 2) * 30}`.padStart(2, "0");
+
+  return {
+    title: `${hour}:${minute}`,
+    value: `${hour}:${minute}`,
+  };
+});
+
 const categoriesStore = useCategoriesStore();
 const { categories } = storeToRefs(categoriesStore);
+
+const channelsStore = useChannelStore();
 
 await useAsyncData("location-first-data", () => {
   return categoriesStore.getAll();
 });
 
-const category = ref("");
+const newChannel = reactive<INewChannel>({
+  categoriesId: [],
+  description: "",
+  link: "",
+  name: "",
+  day: null,
+  slots: [],
+  price: "",
+  formatChannel: 0,
+  conditionCheck: "",
+});
 
-const slots = [
-  { title: "10:00", value: "10:00" },
-  { title: "11:00", value: "11:00" },
-];
-const selectedSlots = ref<string[]>([]);
+const selectedCategory = ref("");
+
+const shownSlots = computed(() => {
+  switch (newChannel.formatChannel) {
+    case 1:
+    case 2:
+      return slots.filter((slot) => !slot.value.endsWith("30"));
+    case 3:
+      return slots;
+    default:
+      return [];
+  }
+});
+
+const buttonColor = computed(() => {
+  if (newChannel.name === "") return "gray";
+  return "blue";
+});
+
+const handleCategorySelect = (value: string) => {
+  const foundCategory = categories.value.find((c) => c.value === value);
+  if (!foundCategory) return;
+
+  selectedCategory.value = foundCategory.value;
+  newChannel.categoriesId = [foundCategory.id];
+};
 
 const handleSlotsSelect = (value: string) => {
-  selectedSlots.value.push(value);
+  newChannel.slots.push(value);
 };
 
 const handleSlotsUnselect = (value: string) => {
-  const index = selectedSlots.value.indexOf(value);
-  selectedSlots.value.splice(index, 1);
+  const index = newChannel.slots.indexOf(value);
+  newChannel.slots.splice(index, 1);
 };
 
-const selectedDate = ref<Date | null>(null);
+const submitNewChannel = async () => {
+  if (!newChannel.day) return;
 
-const intervals = [
-  { title: "1/24", value: "1/24" },
-  { title: "1/48", value: "1/48" },
-  { title: "1/128", value: "1/128" },
-];
-const selectedIntervals = ref<string[]>([]);
-
-const handleIntervalsSelect = (value: string) => {
-  selectedIntervals.value.push(value);
+  await channelsStore.create({
+    categoriesId: newChannel.categoriesId,
+    description: newChannel.description,
+    link: newChannel.link,
+    name: newChannel.name,
+    day: Number(newChannel.day),
+    slots: newChannel.slots,
+    price: Number(newChannel.price),
+    formatChannel: newChannel.formatChannel,
+    conditionCheck: newChannel.conditionCheck,
+  });
 };
 
-const handleIntervalsUnselect = (value: string) => {
-  const index = selectedIntervals.value.indexOf(value);
-  selectedIntervals.value.splice(index, 1);
-};
+watch(
+  () => newChannel.formatChannel,
+  () => {
+    newChannel.slots = [];
+  }
+);
 </script>
 
 <style scoped lang="scss">

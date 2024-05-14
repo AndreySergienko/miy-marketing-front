@@ -6,16 +6,35 @@
       Просим вас подключить TG-бота ON-DEVELOPER. Для этого нажмите “Проверить”
       для дальнейшего размещения канала на платформе
     </span>
-    <SharedButton class="connect__button" size="l" color="blue">
+    <SharedInput
+      class="connect__input"
+      name="channelName"
+      type="text"
+      v-model="channelName"
+    >
+      Название канала
+    </SharedInput>
+    <SharedButton
+      class="connect__button"
+      size="l"
+      color="blue"
+      @click="channelsStore.check(channelName)"
+    >
       Проверить
     </SharedButton>
   </main>
 </template>
 
 <script setup lang="ts">
+import { useChannelStore } from "~/store/channel/channel.store";
+
 definePageMeta({
   layout: "personal",
 });
+
+const channelsStore = useChannelStore();
+
+const channelName = ref("");
 </script>
 
 <style scoped lang="scss">
@@ -46,6 +65,10 @@ definePageMeta({
     text-align: center;
     font-size: var(--font-size-m);
     font-weight: var(--font-weight-medium);
+  }
+
+  &__input {
+    width: 360px;
   }
 
   &__button {
