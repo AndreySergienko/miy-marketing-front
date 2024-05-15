@@ -18,6 +18,7 @@ export interface IRegistrationRequest {
     password: string;
     uniqueBotId: string;
     isNotification: boolean;
+    isPoliticalAccept: boolean;
 }
 
 export interface IRegistrationResponse extends ISuccessResponse {

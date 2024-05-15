@@ -24,7 +24,8 @@
     fio: '',
     password: '',
     uniqueBotId: '',
-    isNotification: true
+    isNotification: true,
+    isPoliticalAccept: true
   })
 
   const loginData = reactive<ILoginRequest>({
@@ -40,14 +41,6 @@
     await authStore.login(loginData)
   }
 
-  const required = 'Обязательное поле для заполнения'
-  const email = 'Необходимый формат почты'
-  const minPassword = 'Пароль дожен содержать не менее 5 символов'
-  const maxPassword = 'Пароль не может содержать более 20 символов'
-  const minName = 'Имя должно быть длинее не менее 2 символов'
-  const minId = 'Id должен иметь длинну не менее 4 символов'
-  const inn = 'Недопустимый ИНН'
-
   const loginRules = yup.object({
     email: yup.string().email(email).required(required).label(''),
     password: yup.string().min(5, minPassword).max(20, maxPassword).required(required).label(''),
@@ -59,6 +52,7 @@
     inn: yup.number().required(required).label('').test('validateInn', inn, validateInn),
     uniqueBotId: yup.string().required(required).min(4, minId).label(''),
     password: yup.string().min(5, minPassword).max(20, maxPassword).required(required).label(''),
+    isPoliticalAccept: yup.boolean().required(required)
   });
 
   defineSlots<IAuthControllerSlots<typeof authStore.login, typeof authStore.registration>>()

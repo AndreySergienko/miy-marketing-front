@@ -21,7 +21,7 @@
                 </SharedGroupRadio>
               </div>
               <div class="form__checkbox-confidential">
-                <SharedCheckbox>Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></SharedCheckbox>
+                <SharedCheckbox v-model="registrationData.isPoliticalAccept">Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></SharedCheckbox>
               </div>
             </div>
             <div class="btn__registration">
@@ -79,7 +79,7 @@
     &__checkbox {
       display: flex;
       flex-direction: column;
-      gap: var(--ident-s);
+      gap: var(--ident-m);
 
       @include media.media-breakpoint-down(l) {
         width: 100%;

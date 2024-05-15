@@ -1,0 +1,7 @@
+export const required = '* обязательное поле для заполнения'
+export const email = '* необходимый формат почты'
+export const minPassword = '* пароль дожен содержать не менее 5 символов'
+export const maxPassword = '* пароль не может содержать более 20 символов'
+export const minName = '* имя должно быть длинее не менее 2 символов'
+export const minId = '* id должен иметь длинну не менее 4 символов'
+export const inn = '* недопустимый ИНН'
