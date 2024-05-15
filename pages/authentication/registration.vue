@@ -1,7 +1,7 @@
 <template>
   <AuthController>
-    <template #default="{ registrationData, registrationRules, sendRegistration }">
-      <AuthContainer v-show="!showGratitude" >
+    <template #default="{ isShowGratitude, registrationData, registrationRules, sendRegistration }">
+      <AuthContainer v-if="!isShowGratitude" >
         <template #form>
           <VeeForm class="form" v-slot="{ errors, meta }" @submit="sendRegistration" :validation-schema="registrationRules">
             <SharedInput name="fio" v-model="registrationData.fio" type="text" :error="errors.fio">ФИО</SharedInput>
@@ -30,7 +30,7 @@
           </VeeForm>
         </template>
       </AuthContainer>
-      <div v-show="showGratitude" class="gratitude">
+      <div v-else class="gratitude">
         <SharedGratitude />
       </div>
     </template>
@@ -44,8 +44,6 @@
   definePageMeta({
     layout: 'authentication'
   })
-
-  const showGratitude = ref<boolean>(false);
 </script>
 
 <style lang="scss" scoped>
