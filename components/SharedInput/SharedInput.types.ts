@@ -1,5 +1,5 @@
  export interface ISharedInputProps {
-    modelValue?: string;
+    modelValue?: string | number;
     name: string;
     type: string;
     error?: string;

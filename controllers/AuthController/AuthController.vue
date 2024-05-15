@@ -20,7 +20,7 @@
 
   const registrationData = reactive<IRegistrationRequest>({
     email: '',
-    inn: null,
+    inn: 0,
     fio: '',
     password: '',
     uniqueBotId: '',

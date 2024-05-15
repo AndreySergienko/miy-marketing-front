@@ -1,29 +1,12 @@
 <template>
   <div class="checkbox">
     <div class="checkbox__item">
-      <input class="checkbox__input" type="radio" :name="name" :value="value" />
+      <input class="checkbox__input" type="checkbox"/>
       <label class="checkbox__label"><slot/></label>
     </div>
   </div>
 </template> 
 <script setup lang="ts">
-  const props = defineProps({
-    name: {
-      type: String
-    },
-    value:{
-      type: String
-    }
-  })
-
-  const input = computed({
-    get() {
-        return ''
-    },
-    set(value: string) {
-        emits('update:modelValue', value)
-    }
-})
 
 </script>
 
