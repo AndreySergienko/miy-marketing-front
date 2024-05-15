@@ -19,7 +19,10 @@ export default class UserService extends ApiService {
   async updateUser(data: IUserRequest): Promise<IUserResponse> {
     return await this.$authApi(this.userURL + "update", {
       method: "put",
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        ...data,
+        inn: Number(data.inn),
+      }),
     });
   }
 }
