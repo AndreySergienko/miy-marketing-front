@@ -1,7 +1,7 @@
 <template>
   <AuthController>
     <template #default="{ registrationData, registrationRules, sendRegistration }">
-      <AuthContainer v-show="!showGratitude" >
+      <AuthContainer v-if="!showGratitude" >
         <template #form>
           <VeeForm class="form" v-slot="{ errors, meta }" @submit="sendRegistration" :validation-schema="registrationRules">
             <SharedInput name="fio" v-model="registrationData.fio" type="text" :error="errors.fio">ФИО</SharedInput>
@@ -25,12 +25,12 @@
               </div>
             </div>
             <div class="btn__registration">
-              <SharedButton size="l" color="blue" :disabled="!isCheckboxChecked || !meta.valid">Создать</SharedButton>
+              <SharedButton size="l" color="blue" :disabled="!meta.valid">Создать</SharedButton>
             </div>
           </VeeForm>
         </template>
       </AuthContainer>
-      <div v-show="showGratitude" class="gratitude">
+      <div v-else="showGratitude" class="gratitude">
         <SharedGratitude />
       </div>
     </template>
