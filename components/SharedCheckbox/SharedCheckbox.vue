@@ -1,20 +1,13 @@
 <template>
   <div class="checkbox">
-    <input class="checkbox__input" type="checkbox" v-model="isChecked" @change="handleCheckboxChange">
+    <input class="checkbox__input" type="checkbox">
     <label class="checkbox__label"><slot /></label>
   </div>
 </template>
 
 <script setup>
-  const { emit } = defineEmits();
 
-  const isChecked = defineProps({
-    default: false,
-  });
-
-  const handleCheckboxChange = () => {
-    this.$emit('checkboxChange', isChecked.value);
-  };
+  
 </script>
 
 <style scoped lang="scss">

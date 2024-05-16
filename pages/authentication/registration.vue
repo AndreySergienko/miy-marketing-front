@@ -21,7 +21,7 @@
                 </SharedGroupRadio>
               </div>
               <div class="form__checkbox-confidential">
-                <SharedCheckbox @checkboxChange="handleCheckboxChange">Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></SharedCheckbox>
+                <SharedCheckbox>Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></SharedCheckbox>
               </div>
             </div>
             <div class="btn__registration">
@@ -44,15 +44,6 @@
   definePageMeta({
     layout: 'authentication'
   })
-
-  const showGratitude = ref<boolean>(false);
-
-  const isCheckboxChecked = ref(false);
-
-  const handleCheckboxChange = (isChecked: boolean) => {
-    isCheckboxChecked.value = isChecked;
-  };
-
 </script>
 
 <style lang="scss" scoped>
