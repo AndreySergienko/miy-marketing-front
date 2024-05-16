@@ -40,22 +40,25 @@
     await authStore.login(loginData)
   }
 
+  const required = '* обязательное поле для заполнения'
+  const email = '* необходим формат почты'
+  const minPassword = '* пароль дожен содержать не менее 5 символов'
+  const maxPassword = '* пароль не может содержать более 20 символов'
+  const minName = '* имя должно быть длинее не менее 2 символов'
+  const inn = '* недопустимый ИНН'
+  const minId = '* id должен иметь длинну не менее 4 символов'
+
   const loginRules = yup.object({
-    email: yup.string().email('Необходимый формат почты').required('Обязательное поле для заполнения!').label(''),
-    password: yup.string().min(5, 'Пароль дожен содержать не менее 5 символов').max(20, 'Пароль не может содержать более 20 символов').required('Обязательное поле для заполнения!').label(''),
+    email: yup.string().email(email).required(required).label(''),
+    password: yup.string().min(5, minPassword).max(20, maxPassword).required(required).label(''),
   });
 
   const registrationRules = yup.object({
-    email: yup.string().email('Необходимый формат почты').required('Обязательное поле для заполнения!').label(''),
-    fio: yup.string().min(2, 'Имя должно быть длинее не менее 2 символов').required('Обязательное поле для заполнения!').label(''),
-    inn: yup.number()
-      .transform((originalValue) => {
-      const parsedValue = Number(originalValue);
-      return isNaN(parsedValue) ? undefined : parsedValue;})
-      .required('Обязательное поле для заполнения!').label('')
-      .test('validateInn', 'Недопустимый ИНН', validateInn),
-    uniqueBotId: yup.string().required('Обязательное поле для заполнения!').min(4, 'Id должен иметь длинну не менее 4 символов').label(''),
-    password: yup.string().min(5, 'Пароль дожен содержать не менее 5 символов').max(20, 'Пароль не может содержать более 20 символов').required('Обязательное поле для заполнения!').label(''),
+    email: yup.string().email(email).required(required).label(''),
+    fio: yup.string().min(2, minName).required(required).label(''),
+    inn: yup.number().required(required).label('').test('validateInn', inn, validateInn),
+    uniqueBotId: yup.string().required(required).min(4, minId).label(''),
+    password: yup.string().min(5, minPassword).max(20, maxPassword).required(required).label(''),
   });
 
   defineSlots<IAuthControllerSlots<typeof authStore.login, typeof authStore.registration>>()

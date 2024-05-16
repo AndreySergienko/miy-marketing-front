@@ -21,11 +21,11 @@
                 </SharedGroupRadio>
               </div>
               <div class="form__checkbox-confidential">
-                <SharedCheckbox>Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></SharedCheckbox>
+                <SharedCheckbox @checkboxChange="handleCheckboxChange">Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></SharedCheckbox>
               </div>
             </div>
             <div class="btn__registration">
-              <SharedButton size="l" color="blue" :disabled="!meta.valid">Создать</SharedButton>
+              <SharedButton size="l" color="blue" :disabled="!isCheckboxChecked || !meta.valid">Создать</SharedButton>
             </div>
           </VeeForm>
         </template>
@@ -46,6 +46,13 @@
   })
 
   const showGratitude = ref<boolean>(false);
+
+  const isCheckboxChecked = ref(false);
+
+  const handleCheckboxChange = (isChecked: boolean) => {
+    isCheckboxChecked.value = isChecked;
+  };
+
 </script>
 
 <style lang="scss" scoped>
@@ -54,7 +61,7 @@
   .form {
     display: flex;
     flex-direction: column;
-    gap: var(--ident-l);
+    gap: var(--ident-xl);
 
     @include media.media-breakpoint-down(l) {
       width: 100%;
@@ -79,7 +86,7 @@
     &__checkbox {
       display: flex;
       flex-direction: column;
-      gap: var(--ident-s);
+      gap: var(--ident-m);
 
       @include media.media-breakpoint-down(l) {
         width: 100%;

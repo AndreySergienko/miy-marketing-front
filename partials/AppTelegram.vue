@@ -1,5 +1,5 @@
 <template>
-  <div class="tg">
+  <div class="tg" id="telegram">
     <div class="container">
       <div class="tg__inner">
         <div class="tg__text">
@@ -28,6 +28,10 @@
 <style scoped lang="scss">
    @use 'assets/styles/media';
   .tg {
+    padding-top: 100px;
+    margin-top: -100px;
+    -webkit-background-clip: content-box;
+    background-clip: content-box;
     margin-bottom: var(--ident-4xl);
 
     &__inner {

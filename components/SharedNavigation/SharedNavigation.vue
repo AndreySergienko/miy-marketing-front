@@ -2,9 +2,11 @@
   <nav>
     <ul :class="['navigation', navDirection[position] ]">
       <li v-for="(navItem, id) in navList" :key="id">
-        <div class="navigation__item">
-          {{ navItem.text }}
-        </div>
+        <a :href="'#' + navItem.link" class="navigation__link">
+          <div class="navigation__item">
+            {{ navItem.text }}
+          </div>
+        </a>
       </li>
     </ul>
   </nav>
@@ -36,6 +38,20 @@
       align-items: flex-start;
     }
 
+    &__link {
+      text-decoration: none;
+      color: var(--color-black);
+    }
+
+    &__item {
+      font-size: var(--font-size-m);
+      font-weight: var(--font-weight-medium);
+
+      @include media.media-breakpoint-down(sm) {
+        font-size: var(--font-size-s);
+      }
+    }
+
     &__column {
       display: flex;
       flex-direction: column;
@@ -49,13 +65,5 @@
   }
   li {
     list-style: none;
-  }
-  .navigation__item {
-    font-size: var(--font-size-m);
-    font-weight: var(--font-weight-medium);
-
-    @include media.media-breakpoint-down(sm) {
-      font-size: var(--font-size-s);
-    }
   }
 </style>

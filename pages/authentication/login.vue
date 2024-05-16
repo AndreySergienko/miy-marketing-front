@@ -9,7 +9,7 @@
                     <SharedInput name="password" v-model="loginData.password" type="text" :error="errors.password">Пароль</SharedInput>
                   </div>
                   <div class="help__password">
-                    <span>Забыл Пароль</span>
+                    <span>Забыли пароль</span>
                     <NuxtIcon name="lock" filled/>
                   </div>
                   <div class="btn__login">
@@ -38,7 +38,7 @@ definePageMeta({
   .form {
     display: flex;
     flex-direction: column;
-    gap: var(--ident-3xl);
+    gap: var(--ident-l);
     width: 70%;
 
     @include media.media-breakpoint-down(l){
@@ -48,7 +48,7 @@ definePageMeta({
     &__input {
       display: flex;
       flex-direction: column;
-      gap: var(--ident-2xl);
+      gap: var(--ident-xl);
     }
   }
 
