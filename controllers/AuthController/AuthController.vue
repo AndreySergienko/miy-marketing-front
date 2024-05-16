@@ -40,25 +40,17 @@
     await authStore.login(loginData)
   }
 
-  const required = '* обязательное поле для заполнения'
-  const email = '* необходим формат почты'
-  const minPassword = '* пароль дожен содержать не менее 5 символов'
-  const maxPassword = '* пароль не может содержать более 20 символов'
-  const minName = '* имя должно быть длинее не менее 2 символов'
-  const inn = '* недопустимый ИНН'
-  const minId = '* id должен иметь длинну не менее 4 символов'
-
   const loginRules = yup.object({
-    email: yup.string().email(email).required(required).label(''),
-    password: yup.string().min(5, minPassword).max(20, maxPassword).required(required).label(''),
+    email: yup.string().email(rules.email).required(rules.required).label(''),
+    password: yup.string().min(5, rules.minPassword).max(20, rules.maxPassword).required(rules.required).label(''),
   });
 
   const registrationRules = yup.object({
-    email: yup.string().email(email).required(required).label(''),
-    fio: yup.string().min(2, minName).required(required).label(''),
-    inn: yup.number().required(required).label('').test('validateInn', inn, validateInn),
-    uniqueBotId: yup.string().required(required).min(4, minId).label(''),
-    password: yup.string().min(5, minPassword).max(20, maxPassword).required(required).label(''),
+    email: yup.string().email(rules.email).required(rules.required).label(''),
+    fio: yup.string().min(2, rules.minName).required(rules.required).label(''),
+    inn: yup.number().required(rules.required).label('').test('validateInn', rules.inn, validateInn),
+    uniqueBotId: yup.string().required(rules.required).min(4, rules.minId).label(''),
+    password: yup.string().min(5, rules.minPassword).max(20, rules.maxPassword).required(rules.required).label(''),
   });
 
   defineSlots<IAuthControllerSlots<typeof authStore.login, typeof authStore.registration>>()

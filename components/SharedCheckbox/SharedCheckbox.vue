@@ -1,13 +1,25 @@
 <template>
   <div class="checkbox">
-    <input class="checkbox__input" type="checkbox">
+    <input class="checkbox__input" type="checkbox" v-model="checkbox">
     <label class="checkbox__label"><slot /></label>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+  import type { ISharedCheckboxProps, ISharedCheckboxEmits } from './SharedCheckbox.types';
 
-  
+  const props = defineProps<ISharedCheckboxProps>()
+  const emits = defineEmits<ISharedCheckboxEmits>()
+
+  const checkbox = computed({
+    get() {
+      return props.modelValue
+    },
+    set(value:boolean) {
+      emits('update:modelValue', value)
+      console.log(value)
+    }
+  })
 </script>
 
 <style scoped lang="scss">

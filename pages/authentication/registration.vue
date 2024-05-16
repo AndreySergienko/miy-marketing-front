@@ -21,11 +21,11 @@
                 </SharedGroupRadio>
               </div>
               <div class="form__checkbox-confidential">
-                <SharedCheckbox>Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></SharedCheckbox>
+                <SharedCheckbox v-model="isChecked">Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></SharedCheckbox>
               </div>
             </div>
             <div class="btn__registration">
-              <SharedButton size="l" color="blue" :disabled="!meta.valid">Создать</SharedButton>
+              <SharedButton size="l" color="blue" :disabled="!meta.valid || !isChecked">Создать</SharedButton>
             </div>
           </VeeForm>
         </template>
@@ -44,6 +44,8 @@
   definePageMeta({
     layout: 'authentication'
   })
+
+  const isChecked = ref(false)
 </script>
 
 <style lang="scss" scoped>
