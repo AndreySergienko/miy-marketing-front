@@ -1,6 +1,6 @@
 <template>
   <AuthController>
-    <template #default="{ registrationData, registrationRules, sendRegistration }">
+    <template #default="{ isShowGratitude, registrationData, registrationRules, sendRegistration }">
       <AuthContainer v-if="!isShowGratitude" >
         <template #form>
           <VeeForm class="form" v-slot="{ errors, meta }" @submit="sendRegistration" :validation-schema="registrationRules">
