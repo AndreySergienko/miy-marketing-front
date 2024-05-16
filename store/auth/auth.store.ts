@@ -2,12 +2,13 @@ import { defineStore } from 'pinia';
 import AuthService from "~/api/methods/auth/AuthService";
 import type {ILoginRequest, IRegistrationRequest} from "~/api/methods/auth/auth.types";
 import {toPersonalProfile} from "~/utils/links";
+import {useAlertStore} from "~/store/alert/alert.store";
 
 export const TOKEN_NAME = 'afToken'
 
 export const useAuthStore = defineStore('global/auth', () => {
     const authService = new AuthService();
-
+    const alertStore = useAlertStore()
     /** Токен авторизации **/
     const token = useCookie(TOKEN_NAME, {
         secure: true
@@ -15,6 +16,8 @@ export const useAuthStore = defineStore('global/auth', () => {
 
   /** Проверка на наличие токена **/
   const isAuth = computed<boolean>(() => !!token.value)
+
+  const errors = ref({})
 
     /** Авторизация пользователя **/
     async function login(data: ILoginRequest) {
@@ -24,7 +27,20 @@ export const useAuthStore = defineStore('global/auth', () => {
           token.value = res.token
           toPersonalProfile()
         } catch (e) {
-          console.log(e)
+          if (e.response._data.message) {
+            alertStore.showError({
+              title: e.response._data.message
+            })
+            return;
+          }
+
+          if (Array.isArray(e.response._data)) {
+            for (let i = 0; i < e.response._data.length; i++) {
+              const [nameError, value] = Object.values(e.response._data[i])
+              errors[nameError] = value[0];
+            }
+            return;
+          }
         }
     }
 
@@ -43,7 +59,12 @@ export const useAuthStore = defineStore('global/auth', () => {
             localStorage.setItem('userId', String(response.id))
             isShowGratitude.value = true
         } catch (e) {
-            console.log(e)
+          if (e.response._data.message) {
+            alertStore.showError({
+              title: e.response._data.message
+            })
+            return;
+          }
         }
     }
 
