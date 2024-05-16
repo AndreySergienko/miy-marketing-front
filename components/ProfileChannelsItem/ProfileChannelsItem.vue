@@ -73,7 +73,7 @@ const statusText = computed(() => statuses[status.value]);
   border-bottom: 1px solid var(--item-color);
 
   &__title {
-    font-size: var(--font-size-ml);
+    font-size: var(--font-size-m);
     font-weight: var(--font-weight-medium);
     color: var(--color-black);
     overflow: hidden;
@@ -114,7 +114,7 @@ const statusText = computed(() => statuses[status.value]);
         border: 1px solid #ffd0d0;
         border-radius: 22px;
         box-shadow: 4px 4px 5px 0px #0000000d;
-        font-size: var(--font-size-sm);
+        font-size: var(--font-size-s);
         font-weight: var(--font-weight-medium);
         background: #fff;
         color: var(--color-black);

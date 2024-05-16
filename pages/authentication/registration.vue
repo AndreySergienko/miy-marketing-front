@@ -104,7 +104,7 @@
       &-confidential {
         display: flex;
         align-items: center;
-        font-size: var(--font-size-ss);
+        font-size: var(--font-size-s);
         font-weight: var(--font-weight-medium);
       }
     }

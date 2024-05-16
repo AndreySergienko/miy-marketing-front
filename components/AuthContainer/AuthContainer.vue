@@ -57,7 +57,7 @@
 
       @include media.media-breakpoint-down(sm) {
         text-align: center;
-        font-size: var(--font-size-mx);
+        font-size: var(--font-size-l);
         width: 90%;
       }
     }

@@ -44,6 +44,7 @@ export const useAuthStore = defineStore('global/auth', () => {
             console.log("Пользователь успешно добавлен")
         } catch (e) {
             console.log(e)
+            
         }
     }
 

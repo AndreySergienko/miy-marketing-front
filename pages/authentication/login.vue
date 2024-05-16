@@ -61,7 +61,7 @@ definePageMeta({
     color: var(--color-blue);
 
     @include media.media-breakpoint-down(sm) {
-      font-size: var(--font-size-sm);
+      font-size: var(--font-size-s);
     }
   }
 </style>

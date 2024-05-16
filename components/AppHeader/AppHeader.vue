@@ -60,7 +60,7 @@
       text-decoration: none;
 
       @include media.media-breakpoint-down(sm) {
-        font-size: var(--font-size-ml);
+        font-size: var(--font-size-m);
         font-weight: var(--font-weight-boldest);
       }
     }

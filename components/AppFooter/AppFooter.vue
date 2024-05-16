@@ -109,7 +109,7 @@
         font-weight: var(--font-weight-medium);
 
         @include media.media-breakpoint-down(sm) {
-          font-size: var(--font-size-ss);
+          font-size: var(--font-size-s);
           font-weight: var(--font-weight-medium);
         }
       }
@@ -142,7 +142,7 @@
     }
 
     &__icon {
-      font-size: var(--font-size-ml);
+      font-size: var(--font-size-m);
       margin-right: var(--ident-m);
 
       @include media.media-breakpoint-down(sm) {
@@ -154,7 +154,7 @@
       font-size: var(--font-size-m);
       font-weight: var(-font-weight-medium);
       @include media.media-breakpoint-down(sm) {
-        font-size: var(--font-size-ss)
+        font-size: var(--font-size-s)
       }
       
     }

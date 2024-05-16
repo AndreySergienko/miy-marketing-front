@@ -220,7 +220,7 @@ watch(
     padding: var(--ident-l);
 
     &-title {
-      font-size: var(--font-size-ml);
+      font-size: var(--font-size-m);
       font-weight: var(--font-weight-semi-bold);
     }
 

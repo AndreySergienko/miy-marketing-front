@@ -17,7 +17,6 @@
     },
     set(value:boolean) {
       emits('update:modelValue', value)
-      console.log(value)
     }
   })
 </script>
@@ -27,11 +26,11 @@
  .checkbox {
   display: flex;
   align-items: flex-start;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-s);
   font-weight: var(--font-weight-medium);
 
   @include media.media-breakpoint-down(sm) {
-    font-size: var(--font-size-ss);
+    font-size: var(--font-size-s);
   }
 
   &__input {

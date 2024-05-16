@@ -97,11 +97,11 @@
       font-weight: var(--font-weight-semi-bold);
 
       @include media.media-breakpoint-down (l) {
-      font-size: var(--font-size-xm);
+      font-size: var(--font-size-l);
     }
 
       @include media.media-breakpoint-down(sm) {
-        font-size: var(--font-size-mx);
+        font-size: 30px;
       }
     }
 
@@ -124,7 +124,7 @@
         font-weight: var(--font-weight-semi-bold);
 
         @include media.media-breakpoint-down(sm) {
-          font-size: var(--font-size-sm);
+          font-size: var(--font-size-s);
         }
       }
 
@@ -133,7 +133,7 @@
           font-size: var(--font-size-m);
 
           @include media.media-breakpoint-down(sm) {
-            font-size: var(--font-size-sm);
+            font-size: var(--font-size-s);
           }
         }
       }
@@ -164,7 +164,7 @@
         font-weight: var(--font-weight-semi-bold);
 
         @include media.media-breakpoint-down(sm) {
-          font-size: var(--font-size-sm);
+          font-size: var(--font-size-s);
         }
       }
 
@@ -194,12 +194,12 @@
       background-color: var(--color-blue);
 
       @include media.media-breakpoint-down(sm) {
-          font-size: var(--font-size-sm);
+          font-size: var(--font-size-s);
           gap: var(--ident-s);
         }
 
       &-icon {
-        font-size: var(--font-size-ml);
+        font-size: var(--font-size-m);
 
         @include media.media-breakpoint-down(sm) {
           font-size: var(--font-size-s);

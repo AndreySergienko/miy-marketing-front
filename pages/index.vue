@@ -87,12 +87,12 @@
       margin-right: var(--ident-s);
 
       @include media.media-breakpoint-down(sm) {
-        font-size: var(--font-size-sm);
+        font-size: var(--font-size-s);
       }
     }
 
     &__icon {
-      font-size: var(--font-size-ml);
+      font-size: var(--font-size-m);
     }
   }
 </style>

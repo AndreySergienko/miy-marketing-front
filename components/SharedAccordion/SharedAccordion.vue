@@ -34,7 +34,7 @@
       padding: var(--ident-xl);
       border: 1px solid var(--color-light-gray);
       border-radius: 25px;
-      margin-bottom: var(--ident-3xl);
+      margin-bottom: var(--ident-xl);
     }
 
     &__title {

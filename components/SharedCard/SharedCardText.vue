@@ -24,7 +24,7 @@
     text-align: center;
 
     @include media.media-breakpoint-down(sm) {
-      font-size: var(--font-size-ss);
+      font-size: var(--font-size-s);
     }
   }
 </style>

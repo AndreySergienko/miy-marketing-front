@@ -73,7 +73,7 @@ import {useUserStore} from '~/store/user/user.store';
       font-weight: var(--font-weight-semi-bold);
 
       @include media.media-breakpoint-down(sm) {
-        font-size: var(--font-size-mx);
+        font-size: var(--font-size-l);
       }
     }
 
@@ -113,7 +113,7 @@ import {useUserStore} from '~/store/user/user.store';
         margin-bottom: var(--ident-l);
 
         @include media.media-breakpoint-down(sm) {
-        font-size: var(--font-size-ml);
+        font-size: var(--font-size-m);
       }
       }
 

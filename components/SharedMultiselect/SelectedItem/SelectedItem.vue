@@ -31,7 +31,7 @@ defineEmits<ISelectedItemEmits>();
   color: var(--color-white);
 
   &__text {
-    font-size: var(--font-size-ss);
+    font-size: var(--font-size-s);
     font-weight: var(--font-weight-medium);
   }
 

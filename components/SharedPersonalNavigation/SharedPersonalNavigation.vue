@@ -41,7 +41,7 @@
   &__inner {
     display: flex;
     gap: var(--ident-4xl);
-    font-size: var(--font-size-ml);
+    font-size: var(--font-size-m);
     font-weight: var(--font-weight-medium);
 
     @include media.media-breakpoint-down(sm) {

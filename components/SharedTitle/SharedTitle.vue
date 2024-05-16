@@ -16,11 +16,11 @@
     }
 
     @include media.media-breakpoint-down(l) {
-      font-size: var(--font-size-xm);
+      font-size: var(--font-size-l);
     }
 
     @include media.media-breakpoint-down(sm) {
-      font-size: var(--font-size-ml);
+      font-size: var(--font-size-m);
       font-weight: var(--font-weight-bold);
     }
   }
