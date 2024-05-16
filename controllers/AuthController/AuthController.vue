@@ -6,6 +6,7 @@
     :registrationData="registrationData"
     :sendLogin="login"
     :sendRegistration="registration"
+    :isShowGratitude="isShowGratitude"
   />
 </template>
 
@@ -17,7 +18,7 @@
   } from "~/controllers/AuthController/AuthController.types";
   import {validateInn} from '~/utils/validator.ts/inn.validator';
   const authStore = useAuthStore()
-
+  const isShowGratitude = ref<boolean>(false);
   const registrationData = reactive<IRegistrationRequest>({
     email: '',
     inn: null,
@@ -33,7 +34,7 @@
   })
 
   const registration = async () => {
-    await authStore.registration(registrationData)
+    await authStore.registration(registrationData, isShowGratitude)
   }
 
   const login = async () => {

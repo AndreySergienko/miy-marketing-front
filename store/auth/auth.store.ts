@@ -36,12 +36,12 @@ export const useAuthStore = defineStore('global/auth', () => {
     }
 
     /** Регистрация пользователя **/
-    async function registration(data: IRegistrationRequest) {
+    async function registration(data: IRegistrationRequest, isShowGratitude: Ref<boolean>) {
         try {
             const response = await authService.registration(data)
             if (!response) return;
             localStorage.setItem('userId', String(response.id))
-            console.log("Пользователь успешно добавлен")
+            isShowGratitude.value = true
         } catch (e) {
             console.log(e)
         }

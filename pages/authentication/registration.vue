@@ -44,8 +44,9 @@
   definePageMeta({
     layout: 'authentication'
   })
-
+  
   const isChecked = ref(false)
+
 </script>
 
 <style lang="scss" scoped>
