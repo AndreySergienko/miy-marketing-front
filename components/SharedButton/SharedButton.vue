@@ -1,23 +1,35 @@
 <template>
-  <button :class="['btn', buttonColor[color], buttonSize[size]]" :disabled="disabled"><slot /></button>
+  <button :class="['btn', buttonColor[color], buttonSize[size]]" :disabled="isDisabled" @click.prevent="click">
+    <SharedLoader v-if="isLoading" height="20px" width="20px" />
+    <slot v-else />
+  </button>
 </template>
 
 <script setup lang="ts">
-import type {ISharedButtonProps, TButtonColorClass, TButtonSizeClass} from './SharedButton.types';
+import type {ISharedButtonProps, TButtonColorClass, TButtonSizeClass, ISharedButtonEmits} from './SharedButton.types';
 
-  const buttonColor: TButtonColorClass = {
+const emits = defineEmits<ISharedButtonEmits>()
+const props = withDefaults(defineProps<ISharedButtonProps>(), {
+  isDisabled: false,
+  isLoading: false,
+})
+
+const buttonColor: TButtonColorClass = {
   white: 'btn__white',
   blue: 'btn__blue',
   gray: 'btn__gray',
 }
-  const buttonSize: TButtonSizeClass = {
-    l: 'btn__large',
-    m: 'btn__medium',
-    s: 'btn__small',
-    xl: 'btn__xl'
-  }
+const buttonSize: TButtonSizeClass = {
+  l: 'btn__large',
+  m: 'btn__medium',
+  s: 'btn__small',
+  xl: 'btn__xl'
+}
 
-  const props = defineProps<ISharedButtonProps>()
+const click = () => {
+  if (props.isLoading || props.isDisabled) return
+  emits('click')
+}
 </script>
 
 <style scoped lang="scss">
@@ -27,11 +39,15 @@ import type {ISharedButtonProps, TButtonColorClass, TButtonSizeClass} from './Sh
     font-weight: var(--font-weight-medium);
 
     display: inline-flex;
+    justify-content: center;
     align-items: center;
 
     border-radius: 25px;
     box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, .1);
     cursor: pointer;
+    text-align: center;
+    max-width: 390px;
+    min-height: 57px;
 
     &__small {
       padding: var(--indent-m) var(--indent-xl);

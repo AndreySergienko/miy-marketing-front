@@ -3,7 +3,9 @@
     <div class="container">
       <div class="header__inner">
         <nuxt-link class="header__link" to="/"><h1 class="header__title">ON-DEVELOPER</h1></nuxt-link>
-        <SharedNavigation class="header__navigation" />
+        <ClientOnly>
+          <SharedNavigation class="header__navigation" />
+        </ClientOnly>
         <div class="header__button">
           <SharedButton size="s" color="white" v-if="!isAuth" @click="signin">Войти</SharedButton>
           <SharedButton size="m" color="blue" v-if="!isAuth" @click="signup">Зарегистрироваться</SharedButton>

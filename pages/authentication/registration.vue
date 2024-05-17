@@ -3,7 +3,7 @@
     <template #default="{ isShowGratitude, registrationData, registrationRules, sendRegistration, isLoading }">
       <AuthContainer v-if="!isShowGratitude" >
         <template #form>
-          <VeeForm class="form" v-slot="{ errors, meta }" @submit="sendRegistration" :validation-schema="registrationRules">
+          <VeeForm class="form" v-slot="{ errors, meta }" :validation-schema="registrationRules">
             <SharedInput name="fio" v-model="registrationData.fio" type="text" :error="errors.fio">ФИО</SharedInput>
             <div class="form__item">
               <SharedInput name="uniqueBotId" v-model="registrationData.uniqueBotId" type="text" :error="errors.uniqueBotId">Уникальный id</SharedInput>
@@ -25,8 +25,7 @@
               </div>
             </div>
             <div class="btn__registration">
-              {{ isLoading }}
-              <SharedButton size="l" color="blue" :disabled="!meta.valid || !isChecked || isLoading">Создать</SharedButton>
+              <SharedButton size="l" color="blue" :disabled="!meta.valid || !isChecked" @click="sendRegistration" :is-loading="isLoading">Создать</SharedButton>
             </div>
           </VeeForm>
         </template>
