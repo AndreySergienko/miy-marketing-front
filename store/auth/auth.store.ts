@@ -44,6 +44,7 @@ export const useAuthStore = defineStore('global/auth', () => {
             isShowGratitude.value = true
         } catch (e) {
             console.log(e)
+            
         }
     }
 

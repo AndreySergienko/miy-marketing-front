@@ -24,14 +24,14 @@ defineEmits<ISelectedItemEmits>();
 .selected-item {
   display: inline-flex;
   align-items: center;
-  gap: var(--ident-l);
-  padding: var(--ident-s) var(--ident-l);
+  gap: var(--indent-l);
+  padding: var(--indent-s) var(--indent-l);
   background: var(--color-blue);
-  border-radius: var(--ident-m);
+  border-radius: var(--indent-m);
   color: var(--color-white);
 
   &__text {
-    font-size: var(--font-size-ss);
+    font-size: var(--font-size-s);
     font-weight: var(--font-weight-medium);
   }
 

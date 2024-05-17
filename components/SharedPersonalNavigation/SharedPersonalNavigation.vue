@@ -36,12 +36,12 @@
 
 .navigation {
   border-top: 1px solid var(--color-light-gray);
-  padding-top: var(--ident-4xl);
+  padding-top: var(--indent-4xl);
 
   &__inner {
     display: flex;
-    gap: var(--ident-4xl);
-    font-size: var(--font-size-ml);
+    gap: var(--indent-4xl);
+    font-size: var(--font-size-m);
     font-weight: var(--font-weight-medium);
 
     @include media.media-breakpoint-down(sm) {
@@ -49,12 +49,12 @@
     }
 
     a {
-      text-decoration: none;
-      padding-bottom: 8px;
       color: var(--color-black);
-
+      text-decoration: none;
       &.active {
-        border-bottom: 2px solid var(--color-blue);
+        text-decoration: underline;
+        text-underline-offset: 10px;
+        text-decoration-color: var(--color-blue);
       }
     }
   }

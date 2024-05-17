@@ -1,5 +1,5 @@
 <template>
-  <div class="tg">
+  <div class="tg" id="telegram">
     <div class="container">
       <div class="tg__inner">
         <div class="tg__text">
@@ -28,7 +28,11 @@
 <style scoped lang="scss">
    @use 'assets/styles/media';
   .tg {
-    margin-bottom: var(--ident-4xl);
+    padding-top: 100px;
+    margin-top: -100px;
+    -webkit-background-clip: content-box;
+    background-clip: content-box;
+    margin-bottom: var(--indent-4xl);
 
     &__inner {
       display: flex;
@@ -40,7 +44,7 @@
     &__text {
       width: 50%;
       text-align: center;
-      margin-bottom: var(--ident-4xl);
+      margin-bottom: var(--indent-4xl);
 
       @include media.media-breakpoint-down(sm) {
         width: 95%;
@@ -51,14 +55,14 @@
   .card__list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: var(--ident-2xl);
+    gap: var(--indent-2xl);
 
     @include media.media-breakpoint-down(xl) {
       grid-template-columns: repeat(3, 1fr);
     }
 
     @include media.media-breakpoint-down(md) {
-      padding: 0 var(--ident-2xl);
+      padding: 0 var(--indent-2xl);
       grid-template-columns: repeat(2, 1fr);
     }
 

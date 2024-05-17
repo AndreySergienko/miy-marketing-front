@@ -6,11 +6,15 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
+html{
+  scroll-behavior: smooth;
+}
+
 .container {
   max-width: 2000px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 var(--ident-l);
+  padding: 0 var(--indent-l);
 
   @include media.media-breakpoint-down(xl) {
     max-width: 1630px;

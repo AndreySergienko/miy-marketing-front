@@ -9,18 +9,18 @@
   .title {
     font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-bold);
-    margin-bottom: var(--ident-xl);
+    margin-bottom: var(--indent-xl);
 
     @include media.media-breakpoint-down (xl) {
       font-size: var(--font-size-xl);
     }
 
     @include media.media-breakpoint-down(l) {
-      font-size: var(--font-size-xm);
+      font-size: var(--font-size-l);
     }
 
     @include media.media-breakpoint-down(sm) {
-      font-size: var(--font-size-ml);
+      font-size: var(--font-size-m);
       font-weight: var(--font-weight-bold);
     }
   }

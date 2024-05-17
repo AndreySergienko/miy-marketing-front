@@ -30,12 +30,17 @@
 <style lang="scss" scoped>
   @use 'assets/styles/media';
   .header {
+    position: sticky;
+    border-bottom: 1px solid var(--color-light-gray);
+    background-color: var(--color-white);
+    z-index: 1;
+    top: 0;
+    padding: var(--indent-xl) 0;
 
     &__inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: var(--ident-xl) 0;
     }
 
     &__link {
@@ -55,7 +60,7 @@
       text-decoration: none;
 
       @include media.media-breakpoint-down(sm) {
-        font-size: var(--font-size-ml);
+        font-size: var(--font-size-m);
         font-weight: var(--font-weight-boldest);
       }
     }

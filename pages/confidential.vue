@@ -29,12 +29,12 @@
     border-radius: 30px;
 
     &__inner {
-      padding: 0 var(--ident-3xl) var(--ident-3xl);
+      padding: 0 var(--indent-3xl) var(--indent-3xl);
       display: flex;
       align-items: center;
       flex-direction: column;
       text-align: center;
-      gap: var(--ident-3xl);
+      gap: var(--indent-3xl);
     }
 
     &__icon {

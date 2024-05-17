@@ -84,15 +84,15 @@
     &__text {
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
-      margin-right: var(--ident-s);
+      margin-right: var(--indent-s);
 
       @include media.media-breakpoint-down(sm) {
-        font-size: var(--font-size-sm);
+        font-size: var(--font-size-s);
       }
     }
 
     &__icon {
-      font-size: var(--font-size-ml);
+      font-size: var(--font-size-m);
     }
   }
 </style>
