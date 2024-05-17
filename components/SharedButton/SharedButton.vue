@@ -1,5 +1,5 @@
 <template>
-  <button :class="['btn', buttonColor[color], buttonSize[size]]" ><slot /></button>
+  <button :class="['btn', buttonColor[color], buttonSize[size]]" :disabled="disabled"><slot /></button>
 </template>
 
 <script setup lang="ts">
@@ -16,10 +16,14 @@
     s: 'btn__small',
     xl: 'btn__xl'
   }
-  const props = defineProps({
-    color: String,
-    size: String,
-  })
+
+  export interface ISharedButtonProps {
+    color: keyof typeof buttonColor;
+    size: keyof typeof buttonSize;
+    disabled: boolean;
+  }
+
+  const props = defineProps<ISharedButtonProps>()
 </script>
 
 <style scoped lang="scss">
@@ -32,7 +36,7 @@
     align-items: center;
 
     border-radius: 25px;
-    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .1);
+    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, .1);
     cursor: pointer;
 
     &__small {
@@ -87,9 +91,13 @@
       border: 1px solid var(--color-blue);
     }
 
+    &:disabled,
     &__gray {
+      cursor: no-drop;
       color: var(--color-white);
-      background-color: var(--color-light-gray);
+      background-color: var(--color-dark-gray);
+      opacity: .75;
+      box-shadow: none;
       border: 1px solid transparent;
     }
 

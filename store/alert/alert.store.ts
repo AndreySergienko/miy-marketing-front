@@ -3,7 +3,7 @@ import { IAlert, IAlertIdentify } from '~/store/alert/alert.types';
 import {createUniqueId} from "~/utils/maths";
 
 export const useAlertStore = defineStore('global/alert', () => {
-  const DEFAULT_DELAY_ALERT = 3000;
+  const DEFAULT_DELAY_ALERT = 3000000;
   const alertList = ref<Record<string, IAlertIdentify>>({});
 
   const delayAnimation = computed(() => {

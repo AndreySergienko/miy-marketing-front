@@ -5,6 +5,7 @@
         v-for="alert in alertList"
         :key="alert.title + alert.id"
         :delay="delayAnimation"
+        v-bind="alert"
         @close="store.close(alert.id)"
       >{{ alert.title }}</SharedAlert>
     </TransitionGroup>
