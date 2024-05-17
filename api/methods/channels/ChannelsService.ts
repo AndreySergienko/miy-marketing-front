@@ -23,7 +23,7 @@ export default class ChannelsService extends ApiService {
   async check(channelName: string) {
     return await this.$authApi(this.apiUrl + "check", {
       method: "post",
-      body: { channelName },
+      body: JSON.stringify({ channelName }),
     });
   }
 }
