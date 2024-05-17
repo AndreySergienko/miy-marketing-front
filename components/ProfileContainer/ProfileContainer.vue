@@ -15,7 +15,7 @@
       background: url(../../public/Dragon.png) no-repeat;
       width: 100%;
       height: 100%;
-      top: 10vh;
+      top: 5vh;
       left: 49vw;
 
       @include media.media-breakpoint-down(l) {

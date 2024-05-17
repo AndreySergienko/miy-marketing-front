@@ -48,7 +48,7 @@ import {useUserStore} from '~/store/user/user.store';
   .personal {
     position: relative;
     overflow: hidden;
-    margin-top: var(--indent-5xl);
+    margin-top: var(--indent-3xl);
 
     @include media.media-breakpoint-down(md) {
       width: 150vw;
