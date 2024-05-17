@@ -7,6 +7,7 @@
     :sendLogin="login"
     :sendRegistration="registration"
     :isShowGratitude="isShowGratitude"
+    :isLoading="authStore.isLoading"
   />
 </template>
 

@@ -60,6 +60,18 @@ const input = computed({
         border: 1px solid var(--color-blue);
         outline: none;
       }
+
+      &[type="number"]::-webkit-outer-spin-button,
+      &[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+
+      &[type='number'],
+      &[type="number"]:hover,
+      &[type="number"]:focus {
+        appearance: none;
+        -moz-appearance: textfield;
+      }
     }
 
     &__error {

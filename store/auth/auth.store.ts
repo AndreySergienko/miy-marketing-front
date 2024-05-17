@@ -14,19 +14,24 @@ export const useAuthStore = defineStore('global/auth', () => {
         secure: true
     })
 
+  const isLoading = ref<boolean>(false)
+
   /** Проверка на наличие токена **/
   const isAuth = computed<boolean>(() => !!token.value)
 
     /** Авторизация пользователя **/
     async function login(data: ILoginRequest) {
         try {
-            const res= await authService.login(data)
-            if (!res) return;
+          isLoading.value = true
+          const res= await authService.login(data)
+          if (!res) return;
           token.value = res.token
           toPersonalProfile()
         } catch (e: TPossibleError) {
           useShowError(e)
-          }
+          } finally {
+           isLoading.value = false
+        }
     }
 
     /** Удаление сессии пользователя **/
@@ -39,16 +44,20 @@ export const useAuthStore = defineStore('global/auth', () => {
     /** Регистрация пользователя **/
     async function registration(data: IRegistrationRequest, isShowGratitude: Ref<boolean>) {
         try {
+            isLoading.value = true
             const response = await authService.registration(data)
             if (!response) return;
             localStorage.setItem('userId', String(response.id))
             isShowGratitude.value = true
         } catch (e: TPossibleError) {
           useShowError(e)
+        } finally {
+          isLoading.value = false
         }
     }
 
     return {
+        isLoading,
         isAuth,
         token,
         login,
