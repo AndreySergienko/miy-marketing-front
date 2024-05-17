@@ -25,9 +25,7 @@ const props = defineProps<ISharedRadioProps>();
   }
 
   &__input {
-    @include media.media-breakpoint-down(sm) {
-      margin-top: 2px;
-    }
+    margin-top: 5px;
   }
 }
 </style>
