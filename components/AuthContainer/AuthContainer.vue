@@ -2,7 +2,7 @@
   <div class="auth">
     <div class="container">
       <div class="auth__inner">
-        <h2 class="auth__title">Добро пожаловать в ON-DEVELOPER</h2>
+        <h2 class="auth__title">Добро пожаловать <br> в ON-DEVELOPER</h2>
         <div class="auth__link">
           <nuxt-link
             to="/authentication/login"
@@ -42,11 +42,6 @@
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-semi-bold);
       margin-bottom: var(--ident-2xl);
-      width: 55%;
-
-      @include media.media-breakpoint-down(xl) {
-        width: 66%;
-      }
 
       @include media.media-breakpoint-down(l) {
         text-align: center;
@@ -54,11 +49,8 @@
         align-items: center;
       }
 
-
       @include media.media-breakpoint-down(sm) {
-        text-align: center;
-        font-size: var(--font-size-l);
-        width: 90%;
+        font-size: 30px;
       }
     }
 

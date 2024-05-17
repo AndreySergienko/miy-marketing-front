@@ -39,7 +39,6 @@ definePageMeta({
     display: flex;
     flex-direction: column;
     gap: var(--ident-l);
-    width: 70%;
 
     @include media.media-breakpoint-down(l){
       width: 100%;

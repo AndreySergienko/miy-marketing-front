@@ -49,12 +49,12 @@
     }
 
     a {
-      text-decoration: none;
-      padding-bottom: 8px;
       color: var(--color-black);
-
+      text-decoration: none;
       &.active {
-        border-bottom: 2px solid var(--color-blue);
+        text-decoration: underline;
+        text-underline-offset: 10px;
+        text-decoration-color: var(--color-blue);
       }
     }
   }
