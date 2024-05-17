@@ -2,12 +2,13 @@ import { defineStore } from 'pinia';
 import AuthService from "~/api/methods/auth/AuthService";
 import type {ILoginRequest, IRegistrationRequest} from "~/api/methods/auth/auth.types";
 import {toPersonalProfile} from "~/utils/links";
+import {TPossibleError} from "~/types/api.types";
+import {useShowError} from "~/composobles/useShowError";
 
 export const TOKEN_NAME = 'afToken'
 
 export const useAuthStore = defineStore('global/auth', () => {
     const authService = new AuthService();
-
     /** Токен авторизации **/
     const token = useCookie(TOKEN_NAME, {
         secure: true
@@ -23,9 +24,9 @@ export const useAuthStore = defineStore('global/auth', () => {
             if (!res) return;
           token.value = res.token
           toPersonalProfile()
-        } catch (e) {
-          console.log(e)
-        }
+        } catch (e: TPossibleError) {
+          useShowError(e)
+          }
     }
 
     /** Удаление сессии пользователя **/
@@ -42,9 +43,8 @@ export const useAuthStore = defineStore('global/auth', () => {
             if (!response) return;
             localStorage.setItem('userId', String(response.id))
             isShowGratitude.value = true
-        } catch (e) {
-            console.log(e)
-            
+        } catch (e: TPossibleError) {
+          useShowError(e)
         }
     }
 

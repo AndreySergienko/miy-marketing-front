@@ -5,6 +5,7 @@ export type TSizeBtn = 'l' | 'm' | 's' | 'xl'
 export interface ISharedButtonProps {
   size: TSizeBtn;
   color: TColorBtn;
+  disabled?: boolean;
 }
 
 export type TButtonColorClass = Record<TColorBtn, string>

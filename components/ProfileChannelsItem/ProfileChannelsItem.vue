@@ -113,7 +113,7 @@ const statusText = computed(() => statuses[status.value]);
         padding: var(--indent-l);
         border: 1px solid #ffd0d0;
         border-radius: 22px;
-        box-shadow: 4px 4px 5px 0px #0000000d;
+        box-shadow: 4px 4px 5px 0 #0000000d;
         font-size: var(--font-size-s);
         font-weight: var(--font-weight-medium);
         background: #fff;

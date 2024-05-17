@@ -135,7 +135,7 @@ const handleRemove = (value: string) => {
     border: 1px solid var(--color-light-gray);
     border-top: none;
     border-radius: 0 0 var(--indent-m) var(--indent-m);
-    box-shadow: 0px 4px 5px 5px #00000005;
+    box-shadow: 0 4px 5px 5px #00000005;
 
     &-inner {
       width: 100%;

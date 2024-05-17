@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card__inner">
-      <img class="card__img" src="../../public/tg.png" />
+      <img class="card__img" src="../../public/tg.png" alt="тг" />
       <SharedCardTitle class="card__title"/>
       <div class="card__price">{{ price }}</div>
       <SharedCardText />

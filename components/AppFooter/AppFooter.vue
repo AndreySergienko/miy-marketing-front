@@ -31,10 +31,6 @@
   </div>
 </template>
 
-<script setup>
-  import SharedNavigation from '../components/SharedNavigation/SharedNavigation.vue'
-</script>
-
 <style lang="scss" scoped>
   @use 'assets/styles/media';
   .footer {
@@ -55,7 +51,7 @@
       @include media.media-breakpoint-down(sm) {
         padding: 0 0 0 var(--indent-s);
         margin-top: var(--indent-l);
-        
+
       }
       @include media.media-breakpoint-down(sm) {
         align-items: flex-start;
@@ -156,11 +152,11 @@
       @include media.media-breakpoint-down(sm) {
         font-size: var(--font-size-s)
       }
-      
+
     }
   }
   .studio {
     color: red;
   }
-  
+
 </style>
