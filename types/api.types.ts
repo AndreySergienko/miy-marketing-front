@@ -3,5 +3,11 @@ export interface ISuccessResponse {
 }
 
 export interface IError {
-  response: unknown
+  response: {
+    _data: {
+      message: string;
+    }
+  }
 }
+
+export type TPossibleError = IError | unknown
