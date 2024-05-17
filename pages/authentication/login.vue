@@ -1,9 +1,9 @@
 <template>
     <AuthController>
-        <template #default="{ loginData, loginRules, sendLogin }">
+        <template #default="{ loginData, loginRules, sendLogin, isLoading }">
           <AuthContainer>
             <template #form>
-                <VeeForm class="form" v-slot="{ errors, meta }" @submit="sendLogin" :validation-schema="loginRules">
+                <VeeForm class="form" v-slot="{ errors, meta }" :validation-schema="loginRules">
                   <div class="form__input">
                     <SharedInput name="email" v-model="loginData.email" type="text" :error="errors.email">Почта</SharedInput>
                     <SharedInput name="password" v-model="loginData.password" type="text" :error="errors.password">Пароль</SharedInput>
@@ -13,7 +13,7 @@
                     <NuxtIcon name="lock" filled/>
                   </div>
                   <div class="btn__login">
-                    <SharedButton color="blue" size="l" :disabled="!meta.valid">Войти</SharedButton >
+                    <SharedButton color="blue" size="l" :is-disabled="!meta.valid" @click="sendLogin" :is-loading="isLoading">Войти</SharedButton >
                   </div>
                 </VeeForm>
             </template>

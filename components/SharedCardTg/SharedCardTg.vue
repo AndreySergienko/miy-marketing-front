@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card__inner">
       <div class="card__title">
-        <img class="card__img" src="~/public/tgcard.png"/>
+        <img alt="card" class="card__img" src="~/public/tgcard.png"/>
         <SharedCardTgTitle />
       </div>
       <div class="card__text">

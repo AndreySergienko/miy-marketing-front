@@ -28,7 +28,7 @@
     }
 
     &__inner {
-      padding: (--indent-4xl) 0;
+      padding: var(--indent-4xl) 0;
       width: 55%;
 
       @include media.media-breakpoint-down(md) {
