@@ -99,13 +99,7 @@ import {useUserStore} from '~/store/user/user.store';
     &__card {
       display: flex;
       flex-direction: column;
-      border: 1px solid var(--color-light-gray);
-      border-radius: 24px;
       margin-bottom: var(--ident-2xl);
-
-      &-inner {
-        padding: var(--ident-3xl);
-      }
 
       &-title {
         font-size: var(--font-size-l);
