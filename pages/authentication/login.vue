@@ -1,6 +1,6 @@
 <template>
     <AuthController>
-        <template #default="{ loginData, loginRules, sendLogin }">
+        <template #default="{ loginData, loginRules, sendLogin, isLoading }">
           <AuthContainer>
             <template #form>
                 <VeeForm class="form" v-slot="{ errors, meta }" @submit="sendLogin" :validation-schema="loginRules">
@@ -13,7 +13,7 @@
                     <NuxtIcon name="lock" filled/>
                   </div>
                   <div class="btn__login">
-                    <SharedButton color="blue" size="l" :disabled="!meta.valid">Войти</SharedButton >
+                    <SharedButton color="blue" size="l" :disabled="!meta.valid || isLoading">Войти</SharedButton >
                   </div>
                 </VeeForm>
             </template>

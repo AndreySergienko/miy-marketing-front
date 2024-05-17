@@ -1,6 +1,6 @@
 <template>
   <AuthController>
-    <template #default="{ isShowGratitude, registrationData, registrationRules, sendRegistration }">
+    <template #default="{ isShowGratitude, registrationData, registrationRules, sendRegistration, isLoading }">
       <AuthContainer v-if="!isShowGratitude" >
         <template #form>
           <VeeForm class="form" v-slot="{ errors, meta }" @submit="sendRegistration" :validation-schema="registrationRules">
@@ -25,7 +25,8 @@
               </div>
             </div>
             <div class="btn__registration">
-              <SharedButton size="l" color="blue" :disabled="!meta.valid || !isChecked">Создать</SharedButton>
+              {{ isLoading }}
+              <SharedButton size="l" color="blue" :disabled="!meta.valid || !isChecked || isLoading">Создать</SharedButton>
             </div>
           </VeeForm>
         </template>
@@ -44,7 +45,7 @@
   definePageMeta({
     layout: 'authentication'
   })
-  
+
   const isChecked = ref(false)
 </script>
 
