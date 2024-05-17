@@ -21,18 +21,18 @@
     margin-top: -100px;
     -webkit-background-clip: content-box;
     background-clip: content-box;
-    margin-bottom: var(--ident-5xl);
+    margin-bottom: var(--indent-5xl);
 
     &__text{
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin-bottom: var(--ident-4xl);
+      margin-bottom: var(--indent-4xl);
 
       @include media.media-breakpoint-down(sm) {
         text-align: center;
-        padding: 0 var(--ident-l);
+        padding: 0 var(--indent-l);
       }
     }
   }

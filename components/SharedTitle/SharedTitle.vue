@@ -9,7 +9,7 @@
   .title {
     font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-bold);
-    margin-bottom: var(--ident-xl);
+    margin-bottom: var(--indent-xl);
 
     @include media.media-breakpoint-down (xl) {
       font-size: var(--font-size-xl);

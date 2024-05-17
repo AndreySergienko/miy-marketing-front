@@ -48,7 +48,7 @@ import {useUserStore} from '~/store/user/user.store';
   .personal {
     position: relative;
     overflow: hidden;
-    margin-top: var(--ident-5xl);
+    margin-top: var(--indent-5xl);
 
     @include media.media-breakpoint-down(md) {
       width: 150vw;
@@ -68,7 +68,7 @@ import {useUserStore} from '~/store/user/user.store';
     }
 
     &__title {
-      margin-bottom: var(--ident-2xl);
+      margin-bottom: var(--indent-2xl);
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-semi-bold);
 
@@ -80,14 +80,14 @@ import {useUserStore} from '~/store/user/user.store';
     &__form {
       display: flex;
       flex-direction: column;
-      gap: var(--ident-3xl);
-      margin-bottom: var(--ident-2xl);
+      gap: var(--indent-3xl);
+      margin-bottom: var(--indent-2xl);
 
       &-item {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--ident-3xl);
-        margin-bottom: var(--ident-2xl);
+        gap: var(--indent-3xl);
+        margin-bottom: var(--indent-2xl);
 
         @include media.media-breakpoint-down(sm) {
           display: flex;
@@ -99,12 +99,12 @@ import {useUserStore} from '~/store/user/user.store';
     &__card {
       display: flex;
       flex-direction: column;
-      margin-bottom: var(--ident-2xl);
+      margin-bottom: var(--indent-2xl);
 
       &-title {
         font-size: var(--font-size-l);
         font-weight: var(--font-weight-semi-bold);
-        margin-bottom: var(--ident-l);
+        margin-bottom: var(--indent-l);
 
         @include media.media-breakpoint-down(sm) {
         font-size: var(--font-size-m);
@@ -113,19 +113,19 @@ import {useUserStore} from '~/store/user/user.store';
 
       &-form {
         display: flex;
-        gap: var(--ident-l);
+        gap: var(--indent-l);
         flex-direction: column;
 
 
         &__items {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: var(--ident-l);
+          gap: var(--indent-l);
 
           @include media.media-breakpoint-down(sm) {
             display: flex;
             flex-direction: column;
-            gap: var(--ident-s);
+            gap: var(--indent-s);
             width: 50vw;
           }
         }
@@ -145,19 +145,19 @@ import {useUserStore} from '~/store/user/user.store';
     }
 
     &__icon {
-      margin: var(--ident-3xl) 0 0 var(--ident-s);
+      margin: var(--indent-3xl) 0 0 var(--indent-s);
       padding: 0;
       box-sizing: border-box;
       font-size: 50px;
 
       @include media.media-breakpoint-down (sm) {
-        margin: var(--ident-l) 0 0 var(--ident-s);
+        margin: var(--indent-l) 0 0 var(--indent-s);
       }
     }
 
     &__btn {
-      padding: var(--ident-m) var(--ident-5xl);
-      margin-bottom: var(--ident-5xl);
+      padding: var(--indent-m) var(--indent-5xl);
+      margin-bottom: var(--indent-5xl);
     }
   }
 </style>

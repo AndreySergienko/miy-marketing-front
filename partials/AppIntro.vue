@@ -21,14 +21,14 @@
 <style scoped lang="scss">
   @use 'assets/styles/media';
   .intro {
-    margin-bottom: var(--ident-5xl);
+    margin-bottom: var(--indent-5xl);
 
     @include media.media-breakpoint-down (sm) {
       margin-bottom: 0;
     }
 
     &__inner {
-      padding: (--ident-4xl) 0;
+      padding: (--indent-4xl) 0;
       width: 55%;
 
       @include media.media-breakpoint-down(md) {
@@ -46,7 +46,7 @@
     &__title {
       font-size: var(--font-size-3xl);
       font-weight: var(--font-weight-semi-bold);
-      margin-bottom: var(--ident-3xl);
+      margin-bottom: var(--indent-3xl);
 
       @include media.media-breakpoint-down(xl) {
         font-size: var(--font-size-2xl);

@@ -27,7 +27,7 @@ await useAsyncData("channels", () => channelStore.getAll());
 .profile-channels-list {
   display: flex;
   flex-direction: column;
-  gap: var(--ident-2xl);
-  margin-top: var(--ident-2xl);
+  gap: var(--indent-2xl);
+  margin-top: var(--indent-2xl);
 }
 </style>

@@ -36,11 +36,11 @@
 
 .navigation {
   border-top: 1px solid var(--color-light-gray);
-  padding-top: var(--ident-4xl);
+  padding-top: var(--indent-4xl);
 
   &__inner {
     display: flex;
-    gap: var(--ident-4xl);
+    gap: var(--indent-4xl);
     font-size: var(--font-size-m);
     font-weight: var(--font-weight-medium);
 

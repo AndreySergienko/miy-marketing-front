@@ -51,7 +51,7 @@
 
   .card {
     border-radius: 25px;
-    margin-bottom: var(--ident-3xl);
+    margin-bottom: var(--indent-3xl);
     transition: box-shadow 0.3ms;
     width: 20vw;
 
@@ -80,8 +80,8 @@
     }
 
     &__inner {
-      padding: var(--ident-3xl) var(--ident-3xl);
-      gap: var(--ident-m);
+      padding: var(--indent-3xl) var(--indent-3xl);
+      gap: var(--indent-m);
 
       display: flex;
       flex-direction: column;
@@ -107,9 +107,9 @@
 
     &__icons {
       display: flex;
-      gap: var(--ident-4xl);
+      gap: var(--indent-4xl);
       @include media.media-breakpoint-down(sm) {
-          gap: var( --ident-2xl);
+          gap: var( --indent-2xl);
         }
     }
 
@@ -117,7 +117,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: var( --ident-m);
+      gap: var( --indent-m);
 
       &-text {
         font-size: var( --font-size-m);
@@ -144,8 +144,8 @@
       justify-content: space-between;
       align-items: center;
       width: 35%;
-      margin-bottom: var(--ident-l);
-      gap: var(--ident-m);
+      margin-bottom: var(--indent-l);
+      gap: var(--indent-m);
 
       @include media.media-breakpoint-down(xl) {
         justify-content: center;
@@ -183,8 +183,8 @@
       align-items: center;
 
       width: 100%;
-      padding: var(--ident-m) 0;
-      gap: var(--ident-m);
+      padding: var(--indent-m) 0;
+      gap: var(--indent-m);
 
       font-size: var(--font-size-m);
 
@@ -195,7 +195,7 @@
 
       @include media.media-breakpoint-down(sm) {
           font-size: var(--font-size-s);
-          gap: var(--ident-s);
+          gap: var(--indent-s);
         }
 
       &-icon {

@@ -15,7 +15,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: var(--ident-2xl);
+      gap: var(--indent-2xl);
     }
 
     &__icon {
@@ -26,7 +26,7 @@
       display: flex;
       flex-direction: column;
       text-align: center;
-      gap: var(--ident-3xl);
+      gap: var(--indent-3xl);
     }
 
     &__title {

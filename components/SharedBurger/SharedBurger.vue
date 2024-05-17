@@ -99,7 +99,8 @@
     }
 
     @include media.media-breakpoint-down(sm) {
-      top: 80px;
+      padding: var(--indent-m) var(--indent-s);
+      top: 77px;
     }
   }
   .burger-checkbox:checked ~ .menu-list {
@@ -116,7 +117,7 @@
   }
   .btn {
     display: none;
-    margin-bottom: var(--ident-m);
+    margin-bottom: var(--indent-m);
     
     @include media.media-breakpoint-down(sm) {
       display: flex;

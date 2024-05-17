@@ -54,7 +54,7 @@
   .form {
     display: flex;
     flex-direction: column;
-    gap: var(--ident-xl);
+    gap: var(--indent-xl);
 
     @include media.media-breakpoint-down(l) {
       width: 100%;
@@ -64,7 +64,7 @@
     &__item {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: var(--ident-l);
+      gap: var(--indent-l);
 
       @include media.media-breakpoint-down(l) {
         width: 100%;
@@ -79,7 +79,7 @@
     &__checkbox {
       display: flex;
       flex-direction: column;
-      gap: var(--ident-m);
+      gap: var(--indent-m);
 
       @include media.media-breakpoint-down(l) {
         width: 100%;
@@ -98,7 +98,7 @@
         display: grid;
         align-items: center;
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--ident-s);
+        gap: var(--indent-s);
       }
 
       &-confidential {

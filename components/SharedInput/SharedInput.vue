@@ -34,7 +34,7 @@ const input = computed({
       }
 
     &__name {
-      margin: 0 0 var(--ident-s) var(--ident-m);
+      margin: 0 0 var(--indent-s) var(--indent-m);
 
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
@@ -62,7 +62,7 @@ const input = computed({
     }
 
     &__error {
-      margin: var(--ident-s) 0 0 var(--ident-m);
+      margin: var(--indent-s) 0 0 var(--indent-m);
       color: var(--color-blue);
     }
   }

@@ -24,15 +24,15 @@
     margin-top: -100px;
     -webkit-background-clip: content-box;
     background-clip: content-box;
-    margin-bottom: var(--ident-5xl);
+    margin-bottom: var(--indent-5xl);
 
     &__inner {
       display: flex;
       align-items: center;
-      padding: var(--ident-4xl) 0;
+      padding: var(--indent-4xl) 0;
 
       @include media.media-breakpoint-down(l) {
-        padding: 0 var(--ident-l);
+        padding: 0 var(--indent-l);
         flex-direction: column;
       }
     }

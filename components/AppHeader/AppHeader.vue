@@ -35,7 +35,7 @@
     background-color: var(--color-white);
     z-index: 1;
     top: 0;
-    padding: var(--ident-xl) 0;
+    padding: var(--indent-xl) 0;
 
     &__inner {
       display: flex;

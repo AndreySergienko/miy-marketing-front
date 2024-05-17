@@ -41,7 +41,7 @@
     &__title {
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-semi-bold);
-      margin-bottom: var(--ident-2xl);
+      margin-bottom: var(--indent-2xl);
 
       @include media.media-breakpoint-down(l) {
         text-align: center;
@@ -56,10 +56,10 @@
 
     &__link {
       display: flex;
-      gap: var(--ident-3xl);
+      gap: var(--indent-3xl);
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
-      margin-bottom: var(--ident-3xl);
+      margin-bottom: var(--indent-3xl);
 
       @include media.media-breakpoint-down(l) {
         justify-content: center;

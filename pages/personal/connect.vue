@@ -42,9 +42,9 @@ const channelName = ref("");
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--ident-3xl);
-  margin-top: var(--ident-3xl);
-  margin-bottom: var(--ident-5xl);
+  gap: var(--indent-3xl);
+  margin-top: var(--indent-3xl);
+  margin-bottom: var(--indent-5xl);
 
   &__icon {
     width: 200px;
@@ -72,7 +72,7 @@ const channelName = ref("");
   }
 
   &__button {
-    padding: var(--ident-l) 48px;
+    padding: var(--indent-l) 48px;
     font-size: var(--font-size-m);
     font-weight: var(--font-weight-medium);
   }

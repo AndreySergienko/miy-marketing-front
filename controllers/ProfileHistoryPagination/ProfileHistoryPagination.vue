@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--ident-l);
-  margin-top: var(--ident-4xl);
+  gap: var(--indent-l);
+  margin-top: var(--indent-4xl);
 }
 </style>

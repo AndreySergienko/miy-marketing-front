@@ -27,7 +27,7 @@ const rootClass = computed(() => ({
   align-items: center;
   width: 47px;
   height: 47px;
-  border-radius: var(--ident-s);
+  border-radius: var(--indent-s);
   border: 1px solid var(--color-light-gray);
   cursor: pointer;
 

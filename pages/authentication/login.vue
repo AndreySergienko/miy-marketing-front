@@ -38,7 +38,7 @@ definePageMeta({
   .form {
     display: flex;
     flex-direction: column;
-    gap: var(--ident-l);
+    gap: var(--indent-l);
 
     @include media.media-breakpoint-down(l){
       width: 100%;
@@ -47,14 +47,14 @@ definePageMeta({
     &__input {
       display: flex;
       flex-direction: column;
-      gap: var(--ident-xl);
+      gap: var(--indent-xl);
     }
   }
 
   .help__password {
     display: flex;
     align-items: center;
-    gap: var(--ident-m);
+    gap: var(--indent-m);
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-medium);
     color: var(--color-blue);
