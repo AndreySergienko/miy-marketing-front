@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-  import type {TButtonColorClass, TButtonSizeClass} from './SharedButton.types';
+import type {ISharedButtonProps, TButtonColorClass, TButtonSizeClass} from './SharedButton.types';
 
   const buttonColor: TButtonColorClass = {
   white: 'btn__white',
@@ -15,12 +15,6 @@
     m: 'btn__medium',
     s: 'btn__small',
     xl: 'btn__xl'
-  }
-
-  export interface ISharedButtonProps {
-    color: keyof typeof buttonColor;
-    size: keyof typeof buttonSize;
-    disabled: boolean;
   }
 
   const props = defineProps<ISharedButtonProps>()
@@ -40,48 +34,48 @@
     cursor: pointer;
 
     &__small {
-      padding: var(--ident-m) var(--ident-xl);
+      padding: var(--indent-m) var(--indent-xl);
     }
     &__medium {
-      padding: 12px var(--ident-xl);
+      padding: 12px var(--indent-xl);
     }
     &__xl {
-      padding: var(--ident-l) 48px;
+      padding: var(--indent-l) 48px;
       border-radius: 13px;
     }
     &__large {
-      padding: var(--ident-l) 9vw;
+      padding: var(--indent-l) 9vw;
       font-size: var(-font-size-ml);
       font-weight: var(--font-weight-semi-bold);
       border-radius: 12px;
 
       @include media.media-breakpoint-down(xl) {
-        padding: var(--ident-l) 12vw;
+        padding: var(--indent-l) 12vw;
       }
 
       @include media.media-breakpoint-down(l) {
-        padding: var(--ident-l) 17vw;
+        padding: var(--indent-l) 17vw;
       }
 
       @include media.media-breakpoint-down(md) {
-        padding: var(--ident-l) 21vw;
+        padding: var(--indent-l) 21vw;
       }
 
       @include media.media-breakpoint-down(sm) {
-        padding: var(--ident-m) 140px;
+        padding: var(--indent-m) 140px;
         font-size: var(--font-size-s);
       }
     }
 
     &__white {
-      margin-right: var(--ident-3xl);
+      margin-right: var(--indent-3xl);
 
       color: var(--color-blue);
       background-color: var(--color-white);
       border: 1px solid transparent;
 
       @include media.media-breakpoint-down(sm) {
-        margin-right: var(--ident-s);
+        margin-right: var(--indent-s);
       }
     }
 

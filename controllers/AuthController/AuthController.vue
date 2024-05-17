@@ -42,21 +42,16 @@
   }
 
   const loginRules = yup.object({
-    email: yup.string().email('Необходимый формат почты').required('Обязательное поле для заполнения!').label(''),
-    password: yup.string().min(5, 'Пароль дожен содержать не менее 5 символов').max(20, 'Пароль не может содержать более 20 символов').required('Обязательное поле для заполнения!').label(''),
+    email: yup.string().email(rules.email).required(rules.required).label(''),
+    password: yup.string().min(10, rules.minPassword).max(40, rules.maxPassword).required(rules.required).label(''),
   });
 
   const registrationRules = yup.object({
-    email: yup.string().email('Необходимый формат почты').required('Обязательное поле для заполнения!').label(''),
-    fio: yup.string().min(2, 'Имя должно быть длинее не менее 2 символов').required('Обязательное поле для заполнения!').label(''),
-    inn: yup.number()
-      .transform((originalValue) => {
-      const parsedValue = Number(originalValue);
-      return isNaN(parsedValue) ? undefined : parsedValue;})
-      .required('Обязательное поле для заполнения!').label('')
-      .test('validateInn', 'Недопустимый ИНН', validateInn),
-    uniqueBotId: yup.string().required('Обязательное поле для заполнения!').min(4, 'Id должен иметь длинну не менее 4 символов').label(''),
-    password: yup.string().min(5, 'Пароль дожен содержать не менее 5 символов').max(20, 'Пароль не может содержать более 20 символов').required('Обязательное поле для заполнения!').label(''),
+    email: yup.string().email(rules.email).required(rules.required).label(''),
+    fio: yup.string().min(8, rules.minName).required(rules.required).label(''),
+    inn: yup.number().required(rules.required).label('').test('validateInn', rules.inn, validateInn),
+    uniqueBotId: yup.string().required(rules.required).min(4, rules.minId).label(''),
+    password: yup.string().min(10, rules.minPassword).max(40, rules.maxPassword).required(rules.required).label(''),
   });
 
   defineSlots<IAuthControllerSlots<typeof authStore.login, typeof authStore.registration>>()

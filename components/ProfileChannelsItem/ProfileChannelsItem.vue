@@ -73,7 +73,7 @@ const statusText = computed(() => statuses[status.value]);
   border-bottom: 1px solid var(--item-color);
 
   &__title {
-    font-size: var(--font-size-ml);
+    font-size: var(--font-size-m);
     font-weight: var(--font-weight-medium);
     color: var(--color-black);
     overflow: hidden;
@@ -83,13 +83,13 @@ const statusText = computed(() => statuses[status.value]);
   &__panel {
     display: flex;
     align-items: center;
-    gap: var(--ident-4xl);
+    gap: var(--indent-4xl);
 
     &-status {
       position: relative;
       display: flex;
       align-items: center;
-      gap: var(--ident-l);
+      gap: var(--indent-l);
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
       color: var(--item-text-color);
@@ -110,11 +110,11 @@ const statusText = computed(() => statuses[status.value]);
         left: -90px;
         z-index: 2;
         display: none;
-        padding: var(--ident-l);
+        padding: var(--indent-l);
         border: 1px solid #ffd0d0;
         border-radius: 22px;
-        box-shadow: 4px 4px 5px 0px #0000000d;
-        font-size: var(--font-size-sm);
+        box-shadow: 4px 4px 5px 0 #0000000d;
+        font-size: var(--font-size-s);
         font-weight: var(--font-weight-medium);
         background: #fff;
         color: var(--color-black);
@@ -126,7 +126,7 @@ const statusText = computed(() => statuses[status.value]);
     &-controls {
       display: flex;
       align-items: center;
-      gap: var(--ident-4xl);
+      gap: var(--indent-4xl);
 
       &--icon {
         cursor: pointer;

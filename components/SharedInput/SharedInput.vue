@@ -1,7 +1,7 @@
 <template>
     <div class="field">
         <span class="field__name" ><slot /></span>
-        <VeeField class="field__input" v-model="input" :name="name" :type="type" />
+        <VeeField :class="{'field__input': true, 'field__input-error': error}" v-model="input" :name="name" :type="type" />
         <span class="field__error" v-if="error">{{ error }}</span>
     </div>
 
@@ -34,7 +34,7 @@ const input = computed({
       }
 
     &__name {
-      margin-bottom: var(--ident-s);
+      margin: 0 0 var(--indent-s) var(--indent-m);
 
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
@@ -46,17 +46,24 @@ const input = computed({
     }
 
     &__input {
+      padding-left: var(--indent-s);
       height: 50px;
       border: 1px solid var(--color-light-gray);
       border-radius: 12px;
 
       &:focus {
+        border: 1px solid var(--color-light-gray);
+        outline: none;
+      }
+
+      &-error {
         border: 1px solid var(--color-blue);
         outline: none;
       }
     }
 
     &__error {
+      margin: var(--indent-s) 0 0 var(--indent-m);
       color: var(--color-blue);
     }
   }

@@ -67,7 +67,7 @@ const handleOptionClick = (value: string) => {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--ident-s);
+  gap: var(--indent-s);
 
   &__title {
     font-size: var(--font-size-m);
@@ -77,12 +77,12 @@ const handleOptionClick = (value: string) => {
   &__field {
     display: flex;
     align-items: center;
-    gap: var(--ident-m);
+    gap: var(--indent-m);
     width: 100%;
     height: 51px;
     border: 1px solid var(--color-light-gray);
-    border-radius: var(--ident-m);
-    padding: var(--ident-m);
+    border-radius: var(--indent-m);
+    padding: var(--indent-m);
     background: #fff;
     cursor: pointer;
     user-select: none;
@@ -113,26 +113,26 @@ const handleOptionClick = (value: string) => {
     top: 100%;
     width: 100%;
     display: none;
-    padding: var(--ident-m) var(--ident-s) var(--ident-m) 0;
+    padding: var(--indent-m) var(--indent-s) var(--indent-m) 0;
     background: #fff;
     border: 1px solid var(--color-light-gray);
     border-top: none;
-    border-radius: 0 0 var(--ident-m) var(--ident-m);
-    box-shadow: 0px 4px 5px 5px #00000005;
+    border-radius: 0 0 var(--indent-m) var(--indent-m);
+    box-shadow: 0 4px 5px 5px #00000005;
 
     &-inner {
       width: 100%;
       max-height: 300px;
       display: flex;
       flex-direction: column;
-      gap: var(--ident-l);
+      gap: var(--indent-l);
       overflow: auto;
 
       &--item {
         flex: 1 0;
         font-size: var(--font-size-s);
         font-weight: var(--font-weight-medium);
-        padding: var(--ident-s) 28px;
+        padding: var(--indent-s) 28px;
         cursor: pointer;
 
         &-placeholder {
@@ -162,7 +162,7 @@ const handleOptionClick = (value: string) => {
 
   &--opened {
     .shared-select__field {
-      border-radius: var(--ident-m) var(--ident-m) 0 0;
+      border-radius: var(--indent-m) var(--indent-m) 0 0;
 
       &-arrow {
         rotate: 180deg;

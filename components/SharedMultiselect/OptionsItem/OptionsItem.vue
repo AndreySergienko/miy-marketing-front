@@ -25,8 +25,8 @@ const iconClass = computed(() => ({
   flex: 1 0;
   display: flex;
   align-items: center;
-  padding: var(--ident-s) var(--ident-m);
-  gap: var(--ident-l);
+  padding: var(--indent-s) var(--indent-m);
+  gap: var(--indent-l);
   overflow: hidden;
 
   &__text {
@@ -38,7 +38,7 @@ const iconClass = computed(() => ({
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--ident-s);
+    border-radius: var(--indent-s);
     width: 30px;
     height: 30px;
     cursor: pointer;

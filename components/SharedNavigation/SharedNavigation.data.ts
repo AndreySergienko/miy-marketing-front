@@ -1,8 +1,8 @@
 import { INavItem } from "../SharedNavigation/SharedNavigation.type";
 
 export const navList: INavItem[] = [
-  {link:'', text: 'Преимущества'},
-  {link: '', text: 'Каналы'},
-  {link: '', text: 'FAQ'},
-  {link: '', text: 'Контакты'},
+  {link:'benefit', text: 'Преимущества'},
+  {link: 'telegram', text: 'Каналы'},
+  {link: 'faq', text: 'FAQ'},
+  {link: 'contact', text: 'Контакты'},
 ]

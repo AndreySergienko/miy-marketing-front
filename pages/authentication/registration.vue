@@ -21,11 +21,11 @@
                 </SharedGroupRadio>
               </div>
               <div class="form__checkbox-confidential">
-                <SharedCheckbox>Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></SharedCheckbox>
+                <SharedCheckbox v-model="isChecked">Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></SharedCheckbox>
               </div>
             </div>
             <div class="btn__registration">
-              <SharedButton size="l" color="blue" :disabled="!meta.valid">Создать</SharedButton>
+              <SharedButton size="l" color="blue" :disabled="!meta.valid || !isChecked">Создать</SharedButton>
             </div>
           </VeeForm>
         </template>
@@ -44,6 +44,8 @@
   definePageMeta({
     layout: 'authentication'
   })
+  
+  const isChecked = ref(false)
 </script>
 
 <style lang="scss" scoped>
@@ -52,7 +54,7 @@
   .form {
     display: flex;
     flex-direction: column;
-    gap: var(--ident-l);
+    gap: var(--indent-xl);
 
     @include media.media-breakpoint-down(l) {
       width: 100%;
@@ -62,7 +64,7 @@
     &__item {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: var(--ident-l);
+      gap: var(--indent-l);
 
       @include media.media-breakpoint-down(l) {
         width: 100%;
@@ -77,7 +79,7 @@
     &__checkbox {
       display: flex;
       flex-direction: column;
-      gap: var(--ident-s);
+      gap: var(--indent-m);
 
       @include media.media-breakpoint-down(l) {
         width: 100%;
@@ -96,13 +98,13 @@
         display: grid;
         align-items: center;
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--ident-s);
+        gap: var(--indent-s);
       }
 
       &-confidential {
         display: flex;
         align-items: center;
-        font-size: var(--font-size-ss);
+        font-size: var(--font-size-s);
         font-weight: var(--font-weight-medium);
       }
     }

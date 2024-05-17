@@ -9,7 +9,7 @@
   .text {
     font-size: var(--font-size-m);
     font-weight: var(--font-weight-medium);
-    margin-bottom: var( --ident-2xl);
+    margin-bottom: var( --indent-2xl);
 
     @include media.media-breakpoint-down(sm) {
       font-size: var(--font-size-s);

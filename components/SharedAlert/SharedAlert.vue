@@ -17,7 +17,7 @@ const background = computed(() => props.type === 'error' ? 'var(--red)' : 'var(-
 <style scoped lang="scss">
 
 .alert {
-  padding: var(--ident-s);
+  padding: var(--indent-s);
   width: 380px;
 
   display: flex;
@@ -32,7 +32,7 @@ const background = computed(() => props.type === 'error' ? 'var(--red)' : 'var(-
   border-radius: 20px;
 
   &__title {
-    padding: var(--ident-s);
+    padding: var(--indent-s);
 
     display: -webkit-box;
     -webkit-line-clamp: 2;

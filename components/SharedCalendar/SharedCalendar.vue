@@ -146,7 +146,7 @@ const handleDayClick = (day: number, isNextMonth = false) => {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--ident-s);
+  gap: var(--indent-s);
 
   &__title {
     font-size: var(--font-size-m);
@@ -156,12 +156,12 @@ const handleDayClick = (day: number, isNextMonth = false) => {
   &__field {
     display: flex;
     align-items: center;
-    gap: var(--ident-m);
+    gap: var(--indent-m);
     width: 100%;
     height: 51px;
     border: 1px solid var(--color-light-gray);
-    border-radius: var(--ident-m);
-    padding: var(--ident-m);
+    border-radius: var(--indent-m);
+    padding: var(--indent-m);
     background: #fff;
     cursor: pointer;
     user-select: none;
@@ -193,12 +193,12 @@ const handleDayClick = (day: number, isNextMonth = false) => {
     width: 100%;
     display: none;
     flex-direction: column;
-    gap: var(--ident-m);
-    padding: var(--ident-3xl);
+    gap: var(--indent-m);
+    padding: var(--indent-3xl);
     background: #fff;
     border: 1px solid var(--color-light-gray);
     border-top: none;
-    border-radius: 0 0 var(--ident-m) var(--ident-m);
+    border-radius: 0 0 var(--indent-m) var(--indent-m);
     box-shadow: 0px 4px 5px 5px #00000005;
 
     &-table {
@@ -235,7 +235,7 @@ const handleDayClick = (day: number, isNextMonth = false) => {
 
   &--opened {
     .shared-calendar__field {
-      border-radius: var(--ident-m) var(--ident-m) 0 0;
+      border-radius: var(--indent-m) var(--indent-m) 0 0;
 
       &-arrow {
         rotate: 180deg;

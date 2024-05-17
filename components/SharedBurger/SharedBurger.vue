@@ -93,9 +93,14 @@
     transition: .3s;
     z-index: 1;
 
+    &__inner {
+      background-color: var(--color-white);
+      width: 100vw;
+    }
 
     @include media.media-breakpoint-down(sm) {
-      top: 81px;
+      padding: var(--indent-m) var(--indent-s);
+      top: 77px;
     }
   }
   .burger-checkbox:checked ~ .menu-list {
@@ -112,7 +117,8 @@
   }
   .btn {
     display: none;
-
+    margin-bottom: var(--indent-m);
+    
     @include media.media-breakpoint-down(sm) {
       display: flex;
     }
