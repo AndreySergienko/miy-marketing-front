@@ -1,6 +1,6 @@
 <template>
   <div class="channel-initial">
-    <NuxtImg :src="avatar" :alt="name" />
+    <NuxtImg :src="avatar" :alt="name" height="150" width="150" />
     <span>{{ description }}</span>
     <span>Подписчиков: {{ subscribers }}</span>
   </div>

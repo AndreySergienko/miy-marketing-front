@@ -5,7 +5,7 @@
         <SharedTitle class="location__title">Размещение TG-каналов</SharedTitle>
         <ChannelInitial v-if="initialChannelData" v-bind="initialChannelData" />
         <div class="location__inner">
-          <SharedInput name="name" type="text" v-model="newChannel.name">
+          <SharedInput name="name" type="text" :is-disabled="true" v-model="newChannel.name">
             Название
           </SharedInput>
           <SharedSelect
@@ -51,6 +51,7 @@
             name="link"
             type="text"
             v-model="newChannel.link"
+            :is-disabled="true"
             class="location__input-link"
           >
             Ссылка на канал тг

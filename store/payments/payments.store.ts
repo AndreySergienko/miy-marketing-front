@@ -13,6 +13,7 @@ export const usePaymentsStore = defineStore("global/payments", () => {
     try {
       const data = await paymentsService.getAll();
       payments.value = transform(data);
+      console.log(payments.value)
     } catch (e) {
       console.error(e);
     }

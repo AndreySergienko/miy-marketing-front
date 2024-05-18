@@ -1,6 +1,6 @@
 <template>
   <UserController>
-    <template #default="{ userData, userRules, sendUser }">
+    <template #default="{ userData, userRules, sendUser, isLoading }">
       <ProfileContainer>
         <template #form>
           <VeeForm
@@ -61,6 +61,7 @@
                       color="blue"
                       class="personal__btn"
                       :disabled="!meta.valid"
+                      :is-loading="isLoading"
                       @click="sendUser"
                     >
                       Сохранить
@@ -78,7 +79,6 @@
 
 <script setup>
 import UserController from "~/controllers/UserController/UserController.vue";
-import { useUserStore } from "~/store/user/user.store";
 
 definePageMeta({
   layout: "personal",

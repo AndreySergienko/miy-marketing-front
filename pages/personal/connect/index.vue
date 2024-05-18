@@ -18,6 +18,7 @@
       class="connect__button"
       size="l"
       color="blue"
+      :is-disabled="!channelName"
       @click="channelsStore.check(channelName)"
     >
       Проверить

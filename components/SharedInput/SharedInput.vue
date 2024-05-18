@@ -1,7 +1,7 @@
 <template>
     <div class="field">
         <span class="field__name" ><slot /></span>
-        <VeeField :class="{'field__input': true, 'field__input-error': error}" v-model="input" :name="name" :type="type" />
+        <VeeField :class="{'field__input': true, 'field__input-error': error, 'disabled': isDisabled}" v-model="input" :name="name" :type="type" />
         <span class="field__error" v-if="error">{{ error }}</span>
     </div>
 
@@ -71,6 +71,11 @@ const input = computed({
       &[type="number"]:focus {
         appearance: none;
         -moz-appearance: textfield;
+      }
+
+      &.disabled {
+        opacity: .5;
+        pointer-events: none;
       }
     }
 

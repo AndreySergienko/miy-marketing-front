@@ -5,7 +5,7 @@
         <SharedTitle class="location__title">Размещение TG-каналов</SharedTitle>
         <ChannelInitial v-if="initialChannelData" v-bind="initialChannelData" />
         <div class="location__inner">
-          <SharedInput name="name" type="text" v-model="newChannel.name">
+          <SharedInput name="name" type="text" v-model="newChannel.name" :is-disabled="true">
             Название
           </SharedInput>
           <SharedSelect
@@ -50,6 +50,7 @@
           <SharedInput
             name="link"
             type="text"
+            :is-disabled="true"
             v-model="newChannel.link"
             class="location__input-link"
           >
@@ -112,7 +113,7 @@ const channelsStore = useChannelStore();
 const { channels, initialChannelData } = storeToRefs(channelsStore);
 
 if (!channels.value.length) {
-  await useAsyncData("channels", () => channelsStore.getAll());
+  await useAsyncData("channels", () => channelsStore.getMy());
 }
 
 await useAsyncData("location-first-data", () => {

@@ -3,9 +3,14 @@ import UserService from "~/api/methods/user/UserService";
 import type { IUser } from "./user.types";
 import {TPermissionsScopesKeys} from "~/modules/permissions/types";
 import type {IUserRequest} from "~/api/methods/user/user.types";
+import {useShowError} from "~/composobles/useShowError";
+import {useAlertStore} from "~/store/alert/alert.store";
 
 export const useUserStore = defineStore("global/user", () => {
   const userService = new UserService();
+  const alertStore = useAlertStore()
+
+  const isLoading = ref<boolean>(false)
 
   /** Данные об активном юзере **/
   const user = ref<IUser | null>(null);
@@ -32,11 +37,15 @@ export const useUserStore = defineStore("global/user", () => {
   async function updateUser(data: IUserRequest) {
     try {
       const response = await userService.updateUser(data);
-      console.log("Данные сохранены");
       if (!response) return;
+      alertStore.show({
+        type: 'success',
+        title: response.message
+      })
       localStorage.setItem("userId", String(response.id));
+
     } catch (e) {
-      console.log(e);
+      useShowError(e)
     }
   }
 
@@ -44,6 +53,7 @@ export const useUserStore = defineStore("global/user", () => {
     permissions,
     updateUser,
     getMe,
+    isLoading,
     user,
   };
 });

@@ -4,6 +4,7 @@ import type {
   IInitialChannelData,
 } from "~/api/methods/channels/channels.types";
 import ChannelsService from "~/api/methods/channels/ChannelsService";
+import {useShowError} from "~/composobles/useShowError";
 
 export const useChannelStore = defineStore("global/channel", () => {
   const channelsService = new ChannelsService();
@@ -12,12 +13,12 @@ export const useChannelStore = defineStore("global/channel", () => {
   const channels = ref<IChannelsListItem[]>([]);
   const initialChannelData = ref<IInitialChannelData | null>(null);
 
-  /** Получить список каналов **/
-  async function getAll() {
+  /** Получить список каналов для текущего юзера **/
+  async function getMy() {
     try {
       channels.value = await channelsService.getMy();
-    } catch {
-      console.log("Не удалось получить список каналов");
+    } catch (e) {
+      useShowError(e)
     }
   }
 
@@ -29,8 +30,8 @@ export const useChannelStore = defineStore("global/channel", () => {
     try {
       initialChannelData.value = await channelsService.check(channelName);
       await navigateTo("/personal/location");
-    } catch {
-      console.log("Не удалось проверить канал");
+    } catch (e) {
+      useShowError(e)
     }
   }
 
@@ -39,8 +40,8 @@ export const useChannelStore = defineStore("global/channel", () => {
     try {
       await channelsService.register(data);
       await navigateTo("/personal/telegram");
-    } catch {
-      console.log("Не удалось создать канал");
+    } catch (e) {
+      useShowError(e)
     }
   }
 
@@ -54,6 +55,6 @@ export const useChannelStore = defineStore("global/channel", () => {
     update,
     buy,
     create,
-    getAll,
+    getMy,
   };
 });

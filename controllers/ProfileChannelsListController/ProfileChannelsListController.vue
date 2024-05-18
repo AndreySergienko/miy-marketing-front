@@ -19,7 +19,7 @@ import { useChannelStore } from "~/store/channel/channel.store";
 const channelStore = useChannelStore();
 const { channels } = storeToRefs(channelStore);
 
-await useAsyncData("channels", () => channelStore.getAll());
+await useAsyncData("channels", () => channelStore.getMy());
 </script>
 
 <style scoped lang="scss">
