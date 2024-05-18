@@ -1,3 +1,5 @@
+import { EProfileChannelsItemTypes } from "~/components/ProfileChannelsItem/ProfileChannelsItem.types";
+
 export interface IChannelsRegistrationBody {
   categoriesId: number[];
   description: string;
@@ -8,4 +10,32 @@ export interface IChannelsRegistrationBody {
   price: number;
   formatChannel: number;
   conditionCheck: string;
+}
+
+export interface IInitialChannelData {
+  avatar: string;
+  description: string;
+  link: string;
+  name: string;
+  subscribers: number;
+}
+
+export interface IApiChannelsListItem extends IInitialChannelData {
+  chatId: string;
+  conditionCheck: string;
+  day: string;
+  formatChannelId: number;
+  id: number;
+  isCanPostMessage: boolean;
+  price: number;
+  statusId: number;
+}
+
+export interface IChannelsListItem extends IInitialChannelData {
+  id: number;
+  status: EProfileChannelsItemTypes;
+  conditionCheck: string;
+  day: Date;
+  formatChannelId: number;
+  price: number;
 }
