@@ -78,26 +78,11 @@
 </template>
 
 <script setup>
-<<<<<<< HEAD
 import UserController from '~/controllers/UserController/UserController.vue';
 import {useUserStore} from '~/store/user/user.store';
   definePageMeta({
     layout: 'personal'
   })
-</script>
-<style lang="scss" scoped >
-   @use 'assets/styles/media';
-  .personal {
-    position: relative;
-    overflow: hidden;
-    margin-top: var(--indent-3xl);
-=======
-import UserController from "~/controllers/UserController/UserController.vue";
->>>>>>> 4241b0339280649629a23d3ab79511ae3d554c14
-
-definePageMeta({
-  layout: "personal",
-});
 </script>
 
 <style lang="scss" scoped>
@@ -106,7 +91,7 @@ definePageMeta({
 .personal {
   position: relative;
   overflow: hidden;
-  margin-top: var(--indent-5xl);
+  margin-top: var(--indent-3xl);
 
   @include media.media-breakpoint-down(md) {
     width: 150vw;
