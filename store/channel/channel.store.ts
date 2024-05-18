@@ -1,18 +1,21 @@
-import type { IChannel } from "./channel.types";
-import type { IChannelsRegistrationBody } from "~/api/methods/channels/channels.types";
+import type {
+  IChannelsListItem,
+  IChannelsRegistrationBody,
+  IInitialChannelData,
+} from "~/api/methods/channels/channels.types";
 import ChannelsService from "~/api/methods/channels/ChannelsService";
 
 export const useChannelStore = defineStore("global/channel", () => {
   const channelsService = new ChannelsService();
 
   /** Список каналов **/
-  const channels = ref<IChannel[]>([]);
+  const channels = ref<IChannelsListItem[]>([]);
+  const initialChannelData = ref<IInitialChannelData | null>(null);
 
   /** Получить список каналов **/
   async function getAll() {
     try {
-      const data = await channelsService.getMy();
-      channels.value = data as IChannel[];
+      channels.value = await channelsService.getMy();
     } catch {
       console.log("Не удалось получить список каналов");
     }
@@ -24,7 +27,7 @@ export const useChannelStore = defineStore("global/channel", () => {
   /** Проверить канал **/
   async function check(channelName: string) {
     try {
-      await channelsService.check(channelName);
+      initialChannelData.value = await channelsService.check(channelName);
       await navigateTo("/personal/location");
     } catch {
       console.log("Не удалось проверить канал");
@@ -47,6 +50,7 @@ export const useChannelStore = defineStore("global/channel", () => {
   return {
     channels,
     check,
+    initialChannelData,
     update,
     buy,
     create,
