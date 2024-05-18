@@ -3,6 +3,7 @@
     <template #form>
       <div class="location container">
         <SharedTitle class="location__title">Размещение TG-каналов</SharedTitle>
+        <ChannelInitial v-if="initialChannelData" v-bind="initialChannelData" />
         <div class="location__inner">
           <SharedInput name="name" type="text" v-model="newChannel.name">
             Название
@@ -105,6 +106,7 @@ const categoriesStore = useCategoriesStore();
 const { categories } = storeToRefs(categoriesStore);
 
 const channelsStore = useChannelStore();
+const { initialChannelData } = storeToRefs(channelsStore);
 
 await useAsyncData("location-first-data", () => {
   return categoriesStore.getAll();
@@ -173,6 +175,13 @@ const submitNewChannel = async () => {
     conditionCheck: newChannel.conditionCheck,
   });
 };
+
+onBeforeMount(() => {
+  if (!initialChannelData.value) return navigateTo("/personal/connect");
+
+  newChannel.name = initialChannelData.value.name;
+  newChannel.link = initialChannelData.value.link;
+});
 
 watch(
   () => newChannel.formatChannel,

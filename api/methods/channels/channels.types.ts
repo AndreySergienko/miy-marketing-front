@@ -12,26 +12,27 @@ export interface IChannelsRegistrationBody {
   conditionCheck: string;
 }
 
-export interface IApiChannelsListItem {
+export interface IInitialChannelData {
   avatar: string;
-  chatId: string;
-  conditionCheck: string;
-  day: string;
   description: string;
-  formatChannelId: number;
-  id: number;
-  isCanPostMessage: boolean;
   link: string;
   name: string;
-  price: number;
-  statusId: number;
   subscribers: number;
 }
 
-export interface IChannelsListItem {
+export interface IApiChannelsListItem extends IInitialChannelData {
+  chatId: string;
+  conditionCheck: string;
+  day: string;
+  formatChannelId: number;
   id: number;
-  name: string;
-  link: string;
+  isCanPostMessage: boolean;
+  price: number;
+  statusId: number;
+}
+
+export interface IChannelsListItem extends IInitialChannelData {
+  id: number;
   status: EProfileChannelsItemTypes;
   conditionCheck: string;
   day: Date;

@@ -3,6 +3,7 @@ import type {
   IApiChannelsListItem,
   IChannelsListItem,
   IChannelsRegistrationBody,
+  IInitialChannelData,
 } from "./channels.types";
 import { API_ITEM_TYPES } from "~/components/ProfileChannelsItem/ProfileChannelsItem.types";
 
@@ -28,6 +29,8 @@ export default class ChannelsService extends ApiService {
 
     return data.map((item) => ({
       id: item.id,
+      avatar: item.avatar,
+      description: item.description,
       name: item.name,
       link: item.link,
       status:
@@ -36,10 +39,11 @@ export default class ChannelsService extends ApiService {
       day: new Date(+item.day),
       formatChannelId: item.formatChannelId,
       price: item.price,
+      subscribers: item.subscribers,
     }));
   }
 
-  async check(channelName: string) {
+  async check(channelName: string): Promise<IInitialChannelData> {
     return await this.$authApi(this.apiUrl + "check", {
       method: "post",
       body: JSON.stringify({ channelName }),
