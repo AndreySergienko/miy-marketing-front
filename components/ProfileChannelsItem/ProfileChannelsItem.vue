@@ -21,17 +21,20 @@
           class="profile-channels-item__panel-controls--icon"
           name="channels-controls-edit"
           filled
+          @click="$emit('edit')"
         />
         <NuxtIcon
           v-if="status === EProfileChannelsItemTypes.DONE"
           class="profile-channels-item__panel-controls--icon"
           name="channels-controls-retry"
           filled
+          @click="$emit('retry')"
         />
         <NuxtIcon
           class="profile-channels-item__panel-controls--icon"
           name="channels-controls-delete"
           filled
+          @click="$emit('delete')"
         />
       </div>
     </div>

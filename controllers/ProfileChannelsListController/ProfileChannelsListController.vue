@@ -6,7 +6,7 @@
       :title="item.name"
       :status="item.status"
       status-tooltip="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-      @edit="console.log('edit')"
+      @edit="navigateTo(`/personal/location/${item.id}`)"
       @retry="console.log('retry')"
       @delete="console.log('delete')"
     />
@@ -14,7 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import { EProfileChannelsItemTypes } from "~/components/ProfileChannelsItem/ProfileChannelsItem.types";
 import { useChannelStore } from "~/store/channel/channel.store";
 
 const channelStore = useChannelStore();
