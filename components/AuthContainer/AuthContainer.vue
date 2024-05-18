@@ -26,7 +26,6 @@
 <style scoped lang="scss">
   @use 'assets/styles/media';
   .auth {
-
     &__inner {
       padding: 0 71px;
 

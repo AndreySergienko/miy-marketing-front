@@ -112,7 +112,6 @@
     }
 
     &__button {
-      border-top: 1px solid var(--color-light-gray);
       width: 100vw;
 
       display: flex;

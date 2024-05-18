@@ -34,13 +34,13 @@ const input = computed({
       }
 
     &__name {
+      display: flex;
       margin: 0 0 var(--indent-s) var(--indent-m);
 
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
 
       @include media.media-breakpoint-down(sm) {
-        width: 100%;
         font-size: var(--font-size-s);
       }
     }

@@ -32,11 +32,9 @@
 
 <style scoped lang="scss">
   @use 'assets/styles/media';
+  @use 'assets/styles/mixins';
   .benefit {
-    padding-top: 100px;
-    margin-top: -100px;
-    -webkit-background-clip: content-box;
-    background-clip: content-box;
+    @include mixins.indent;
     margin-bottom: var(--indent-5xl);
 
     @include media.media-breakpoint-down(xl) {

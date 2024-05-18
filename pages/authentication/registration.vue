@@ -6,7 +6,9 @@
           <VeeForm class="form" v-slot="{ errors, meta }" :validation-schema="registrationRules">
             <SharedInput name="fio" v-model="registrationData.fio" type="text" :error="errors.fio">ФИО</SharedInput>
             <div class="form__item">
-              <SharedInput name="uniqueBotId" v-model="registrationData.uniqueBotId" type="text" :error="errors.uniqueBotId">Уникальный id</SharedInput>
+              <SharedInput name="uniqueBotId" v-model="registrationData.uniqueBotId" type="text" :error="errors.uniqueBotId">Уникальный id
+                <SharedIdbot />
+              </SharedInput>
               <SharedInput name="inn" v-model="registrationData.inn" type="number" :error="errors.inn">ИНН</SharedInput>
               <SharedInput name="email" v-model="registrationData.email" type="text" :error="errors.email">Почта</SharedInput>
               <SharedInput name="password" v-model="registrationData.password" type="text" :error="errors.password">Пароль</SharedInput>
@@ -57,7 +59,6 @@
     gap: var(--indent-xl);
 
     @include media.media-breakpoint-down(l) {
-      width: 100%;
       align-items: center;
     }
 
