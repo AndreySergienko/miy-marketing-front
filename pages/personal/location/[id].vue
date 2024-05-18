@@ -3,8 +3,9 @@
     <template #form>
       <div class="location container">
         <SharedTitle class="location__title">Размещение TG-каналов</SharedTitle>
+        <ChannelInitial v-if="initialChannelData" v-bind="initialChannelData" />
         <div class="location__inner">
-          <SharedInput name="name" type="text" v-model="newChannel.name">
+          <SharedInput name="name" type="text" v-model="newChannel.name" :is-disabled="true">
             Название
           </SharedInput>
           <SharedSelect
@@ -49,6 +50,7 @@
           <SharedInput
             name="link"
             type="text"
+            :is-disabled="true"
             v-model="newChannel.link"
             class="location__input-link"
           >
@@ -85,6 +87,9 @@ definePageMeta({
   layout: "personal",
 });
 
+const route = useRoute();
+const id = route.params.id;
+
 const intervals = [
   { title: "1/24", value: "1" },
   { title: "1/48", value: "2" },
@@ -105,6 +110,11 @@ const categoriesStore = useCategoriesStore();
 const { categories } = storeToRefs(categoriesStore);
 
 const channelsStore = useChannelStore();
+const { channels, initialChannelData } = storeToRefs(channelsStore);
+
+if (!channels.value.length) {
+  await useAsyncData("channels", () => channelsStore.getMy());
+}
 
 await useAsyncData("location-first-data", () => {
   return categoriesStore.getAll();
@@ -174,6 +184,26 @@ const submitNewChannel = async () => {
   });
 };
 
+onBeforeMount(() => {
+  const channel = channels.value.find((c) => c.id === +id.toString());
+  if (!channel) return navigateTo("/personal/telegram");
+
+  newChannel.name = channel.name;
+  newChannel.link = channel.link;
+  newChannel.day = channel.day;
+  newChannel.price = `${channel.price}`;
+  newChannel.formatChannel = channel.formatChannelId;
+  newChannel.conditionCheck = channel.conditionCheck;
+
+  initialChannelData.value = {
+    avatar: channel.avatar,
+    description: channel.description,
+    name: channel.name,
+    link: channel.link,
+    subscribers: channel.subscribers,
+  };
+});
+
 watch(
   () => newChannel.formatChannel,
   () => {
@@ -182,86 +212,4 @@ watch(
 );
 </script>
 
-<style scoped lang="scss">
-@use "assets/styles/media";
-
-.location {
-  margin-top: var(--indent-5xl);
-
-  &__inner {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 33%;
-
-    @include media.media-breakpoint-down(xl) {
-      width: 40vw;
-    }
-
-    @include media.media-breakpoint-down(md) {
-      width: 60vw;
-    }
-
-    @include media.media-breakpoint-down(sm) {
-      width: 92vw;
-    }
-  }
-
-  &__title {
-    margin-bottom: var(--indent-2xl);
-  }
-
-  &__calendar {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    border: 1px solid var(--color-light-gray);
-    border-radius: 13px;
-    padding: var(--indent-l);
-
-    &-title {
-      font-size: var(--font-size-m);
-      font-weight: var(--font-weight-semi-bold);
-    }
-
-    &-item {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-
-      @include media.media-breakpoint-down(sm) {
-        display: flex;
-        flex-direction: column;
-      }
-    }
-  }
-
-  &__input-link {
-    font-weight: var(--font-weight-semi-bold);
-  }
-
-  &__btn {
-    margin-bottom: var(--indent-l);
-    width: fit-content;
-    padding: var(--indent-l) 48px;
-  }
-
-  &__categories {
-    display: flex;
-    flex-direction: column;
-
-    &-title {
-      margin-bottom: var(--indent-s);
-
-      font-size: var(--font-size-m);
-      font-weight: var(--font-weight-medium);
-    }
-
-    &-list {
-      height: 50px;
-      border: 1px solid var(--color-light-gray);
-      border-radius: 12px;
-    }
-  }
-}
-</style>
+<style scoped lang="scss" src="./style.scss" />

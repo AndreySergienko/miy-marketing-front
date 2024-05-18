@@ -1,8 +1,9 @@
 <template>
   <slot
-    :userData="userStore.user"
+    :userData="user"
     :userRules="userRules"
     :sendUser="update"
+    :isLoading="userStore.isLoading"
   />
 </template>
 
@@ -33,7 +34,7 @@
     email: yup.string().email(rules.email).required(rules.required).label(''),
     fio: yup.string().min(8, rules.minName).required(rules.required).label(''),
     inn: yup.number().required(rules.required).label('').test('validateInn', rules.inn, validateInn),
-    cardNumber: yup.string().min(16, rules.minNumberCard).max(16, rules.maxNumberCard).required(rules.required).label('')
+    // cardNumber: yup.string().min(16, rules.minNumberCard).max(16, rules.maxNumberCard).required(rules.required).label('')
   })
 
   defineSlots<IUserControllerSlots<typeof userStore.user>>()

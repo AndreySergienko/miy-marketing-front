@@ -1,20 +1,24 @@
-import type { IChannel } from "./channel.types";
-import type { IChannelsRegistrationBody } from "~/api/methods/channels/channels.types";
+import type {
+  IChannelsListItem,
+  IChannelsRegistrationBody,
+  IInitialChannelData,
+} from "~/api/methods/channels/channels.types";
 import ChannelsService from "~/api/methods/channels/ChannelsService";
+import {useShowError} from "~/composobles/useShowError";
 
 export const useChannelStore = defineStore("global/channel", () => {
   const channelsService = new ChannelsService();
 
   /** Список каналов **/
-  const channels = ref<IChannel[]>([]);
+  const channels = ref<IChannelsListItem[]>([]);
+  const initialChannelData = ref<IInitialChannelData | null>(null);
 
-  /** Получить список каналов **/
-  async function getAll() {
+  /** Получить список каналов для текущего юзера **/
+  async function getMy() {
     try {
-      const data = await channelsService.getMy();
-      channels.value = data as IChannel[];
-    } catch {
-      console.log("Не удалось получить список каналов");
+      channels.value = await channelsService.getMy();
+    } catch (e) {
+      useShowError(e)
     }
   }
 
@@ -24,10 +28,10 @@ export const useChannelStore = defineStore("global/channel", () => {
   /** Проверить канал **/
   async function check(channelName: string) {
     try {
-      await channelsService.check(channelName);
+      initialChannelData.value = await channelsService.check(channelName);
       await navigateTo("/personal/location");
-    } catch {
-      console.log("Не удалось проверить канал");
+    } catch (e) {
+      useShowError(e)
     }
   }
 
@@ -36,8 +40,8 @@ export const useChannelStore = defineStore("global/channel", () => {
     try {
       await channelsService.register(data);
       await navigateTo("/personal/telegram");
-    } catch {
-      console.log("Не удалось создать канал");
+    } catch (e) {
+      useShowError(e)
     }
   }
 
@@ -47,9 +51,10 @@ export const useChannelStore = defineStore("global/channel", () => {
   return {
     channels,
     check,
+    initialChannelData,
     update,
     buy,
     create,
-    getAll,
+    getMy,
   };
 });

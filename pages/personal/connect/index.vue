@@ -18,6 +18,7 @@
       class="connect__button"
       size="l"
       color="blue"
+      :is-disabled="!channelName"
       @click="channelsStore.check(channelName)"
     >
       Проверить
@@ -37,44 +38,4 @@ const channelsStore = useChannelStore();
 const channelName = ref("");
 </script>
 
-<style scoped lang="scss">
-.connect {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--indent-3xl);
-  margin-top: var(--indent-3xl);
-  margin-bottom: var(--indent-5xl);
-
-  &__icon {
-    width: 200px;
-    height: 200px;
-
-    :deep(svg) {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  &__title {
-    margin: 0;
-  }
-
-  &__description {
-    width: 748px;
-    text-align: center;
-    font-size: var(--font-size-m);
-    font-weight: var(--font-weight-medium);
-  }
-
-  &__input {
-    width: 360px;
-  }
-
-  &__button {
-    padding: var(--indent-l) 48px;
-    font-size: var(--font-size-m);
-    font-weight: var(--font-weight-medium);
-  }
-}
-</style>
+<style scoped lang="scss" src="./style.scss" />

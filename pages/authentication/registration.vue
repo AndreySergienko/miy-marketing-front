@@ -59,7 +59,6 @@
     gap: var(--indent-xl);
 
     @include media.media-breakpoint-down(l) {
-      // width: 100%;
       align-items: center;
     }
 

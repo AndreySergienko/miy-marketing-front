@@ -1,5 +1,3 @@
-export interface IChannel {}
-
 export interface INewChannel {
   categoriesId: number[];
   name: string;

@@ -1,5 +1,11 @@
 import ApiService from "~/api/core/ApiService";
-import type { IChannelsRegistrationBody } from "./channels.types";
+import type {
+  IApiChannelsListItem,
+  IChannelsListItem,
+  IChannelsRegistrationBody,
+  IInitialChannelData,
+} from "./channels.types";
+import { API_ITEM_TYPES } from "~/components/ProfileChannelsItem/ProfileChannelsItem.types";
 
 export default class ChannelsService extends ApiService {
   private readonly apiUrl: string;
@@ -16,11 +22,28 @@ export default class ChannelsService extends ApiService {
     });
   }
 
-  async getMy() {
-    return await this.$authApi<unknown[]>(this.apiUrl + "my");
+  async getMy(): Promise<IChannelsListItem[]> {
+    const data = await this.$authApi<IApiChannelsListItem[]>(
+      this.apiUrl + "my"
+    );
+
+    return data.map((item) => ({
+      id: item.id,
+      avatar: item.avatar,
+      description: item.description,
+      name: item.name,
+      link: item.link,
+      status:
+        API_ITEM_TYPES[item.statusId as keyof typeof API_ITEM_TYPES] || "",
+      conditionCheck: item.conditionCheck,
+      day: new Date(+item.day),
+      formatChannelId: item.formatChannelId,
+      price: item.price,
+      subscribers: item.subscribers,
+    }));
   }
 
-  async check(channelName: string) {
+  async check(channelName: string): Promise<IInitialChannelData> {
     return await this.$authApi(this.apiUrl + "check", {
       method: "post",
       body: JSON.stringify({ channelName }),
