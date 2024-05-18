@@ -8,13 +8,16 @@
           class="profile-channels-item__panel-status--icon"
           :name="`channels-item-${status}`"
           filled
+          @pointerover="isTooltipActive = true"
+          @pointerleave="isTooltipActive = false"
         />
-        <span
+        <SharedTooltip
           v-if="statusTooltip"
+          :is-active="isTooltipActive"
           class="profile-channels-item__panel-status--tooltip"
-        >
-          {{ statusTooltip }}
-        </span>
+          :text="statusTooltip"
+          border-color="#ffd0d0"
+        />
       </div>
       <div class="profile-channels-item__panel-controls">
         <NuxtIcon
@@ -62,6 +65,8 @@ const statuses = {
 
 const rootClass = computed(() => `profile-channels-item--${status.value}`);
 const statusText = computed(() => statuses[status.value]);
+
+const isTooltipActive = ref(false);
 </script>
 
 <style scoped lang="scss">
@@ -100,6 +105,7 @@ const statusText = computed(() => statuses[status.value]);
       &--icon {
         width: 26px;
         height: 26px;
+        cursor: pointer;
 
         :deep(svg) {
           width: 100%;
@@ -108,21 +114,10 @@ const statusText = computed(() => statuses[status.value]);
       }
 
       &--tooltip {
-        position: absolute;
         top: -60px;
         left: -90px;
-        z-index: 2;
-        display: none;
         padding: var(--indent-l);
-        border: 1px solid #ffd0d0;
-        border-radius: 22px;
-        box-shadow: 4px 4px 5px 0 #0000000d;
-        font-size: var(--font-size-s);
-        font-weight: var(--font-weight-medium);
-        background: #fff;
-        color: var(--color-black);
         width: 232px;
-        box-sizing: border-box;
       }
     }
 
@@ -162,14 +157,6 @@ const statusText = computed(() => statuses[status.value]);
   &--rejected {
     --item-color: #ff5858;
     --item-text-color: #ff0000;
-
-    .profile-channels-item__panel-status--icon {
-      cursor: pointer;
-
-      &:hover + .profile-channels-item__panel-status--tooltip {
-        display: flex;
-      }
-    }
   }
 }
 </style>
