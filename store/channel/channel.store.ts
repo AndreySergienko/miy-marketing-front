@@ -1,18 +1,19 @@
-import type { IChannel } from "./channel.types";
-import type { IChannelsRegistrationBody } from "~/api/methods/channels/channels.types";
+import type {
+  IChannelsListItem,
+  IChannelsRegistrationBody,
+} from "~/api/methods/channels/channels.types";
 import ChannelsService from "~/api/methods/channels/ChannelsService";
 
 export const useChannelStore = defineStore("global/channel", () => {
   const channelsService = new ChannelsService();
 
   /** Список каналов **/
-  const channels = ref<IChannel[]>([]);
+  const channels = ref<IChannelsListItem[]>([]);
 
   /** Получить список каналов **/
   async function getAll() {
     try {
-      const data = await channelsService.getMy();
-      channels.value = data as IChannel[];
+      channels.value = await channelsService.getMy();
     } catch {
       console.log("Не удалось получить список каналов");
     }

@@ -1,10 +1,10 @@
 <template>
   <section class="profile-channels-list">
     <ProfileChannelsItem
-      v-for="(item, index) in channels"
-      :key="index"
-      title="Название канала"
-      :status="EProfileChannelsItemTypes.REJECTED"
+      v-for="item in channels"
+      :key="item.id"
+      :title="item.name"
+      :status="item.status"
       status-tooltip="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
       @edit="console.log('edit')"
       @retry="console.log('retry')"
