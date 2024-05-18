@@ -47,7 +47,7 @@ const rightClass = computed(() => ({
   &__arrows {
     display: flex;
     align-items: center;
-    gap: var(--ident-s);
+    gap: var(--indent-s);
 
     &-left,
     &-right {

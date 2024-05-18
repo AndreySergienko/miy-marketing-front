@@ -31,31 +31,27 @@
   </div>
 </template>
 
-<script setup>
-  import SharedNavigation from '../components/SharedNavigation/SharedNavigation.vue'
-</script>
-
 <style lang="scss" scoped>
   @use 'assets/styles/media';
   .footer {
     border-top: 1px solid var(--color-light-gray);
-    padding: 0 var(--ident-l);
+    padding: 0 var(--indent-l);
 
     @include media.media-breakpoint-down(sm) {
         padding: 0;
       }
 
     &__inner {
-      padding: var(--ident-3xl) 0;
+      padding: var(--indent-3xl) 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
 
       @include media.media-breakpoint-down(sm) {
-        padding: 0 0 0 var(--ident-s);
-        margin-top: var(--ident-l);
-        
+        padding: 0 0 0 var(--indent-s);
+        margin-top: var(--indent-l);
+
       }
       @include media.media-breakpoint-down(sm) {
         align-items: flex-start;
@@ -63,12 +59,12 @@
     }
 
     &__nav {
-      margin-bottom: var(--ident-3xl);
+      margin-bottom: var(--indent-3xl);
 
       @include media.media-breakpoint-down(sm) {
         display: flex;
         justify-content: flex-start;
-        margin-bottom: var(--ident-2xl);
+        margin-bottom: var(--indent-2xl);
       }
     }
 
@@ -84,7 +80,7 @@
       &-inner {
         display: flex;
         flex-direction: column;
-        gap: var(--ident-m);
+        gap: var(--indent-m);
 
         @include media.media-breakpoint-down(sm) {
           order:2;
@@ -104,12 +100,12 @@
       &-text {
         display: flex;
         flex-direction: column;
-        gap: var(--ident-m);
+        gap: var(--indent-m);
         font-size: var(--font-size-s);
         font-weight: var(--font-weight-medium);
 
         @include media.media-breakpoint-down(sm) {
-          font-size: var(--font-size-ss);
+          font-size: var(--font-size-s);
           font-weight: var(--font-weight-medium);
         }
       }
@@ -135,15 +131,15 @@
 
         &__web {
           @include media.media-breakpoint-down(sm) {
-            margin-bottom: var(--ident-2xl);
+            margin-bottom: var(--indent-2xl);
           }
         }
       }
     }
 
     &__icon {
-      font-size: var(--font-size-ml);
-      margin-right: var(--ident-m);
+      font-size: var(--font-size-m);
+      margin-right: var(--indent-m);
 
       @include media.media-breakpoint-down(sm) {
         font-size: var(--font-size-m);
@@ -154,13 +150,13 @@
       font-size: var(--font-size-m);
       font-weight: var(-font-weight-medium);
       @include media.media-breakpoint-down(sm) {
-        font-size: var(--font-size-ss)
+        font-size: var(--font-size-s)
       }
-      
+
     }
   }
   .studio {
     color: red;
   }
-  
+
 </style>

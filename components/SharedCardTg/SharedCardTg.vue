@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card__inner">
       <div class="card__title">
-        <img class="card__img" src="~/public/tgcard.png"/>
+        <img alt="card" class="card__img" src="~/public/tgcard.png"/>
         <SharedCardTgTitle />
       </div>
       <div class="card__text">
@@ -44,18 +44,18 @@
     &__inner {
       display: flex;
       flex-direction: column;
-      padding: var(--ident-2xl);
+      padding: var(--indent-2xl);
     }
 
     &__img {
-      margin-right: var(--ident-3xl);
+      margin-right: var(--indent-3xl);
     }
 
     &__title {
       display: flex;
       align-items: center;
       width: 10%;
-      margin-bottom: var(--ident-3xl);
+      margin-bottom: var(--indent-3xl);
     }
 
     &__text {
@@ -65,7 +65,7 @@
     &__item {
       display: flex;
       flex-direction: column;
-      gap: var(--ident-s);
+      gap: var(--indent-s);
 
       &-text, &-number {
         font-weight: var(--font-weight-medium);

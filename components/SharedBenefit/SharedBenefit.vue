@@ -29,7 +29,7 @@
   @use 'assets/styles/media';
 
   .text__white, .text__black {
-    margin-bottom: var(--ident-xl);
+    margin-bottom: var(--indent-xl);
     
     display: flex;
     align-items: center;
@@ -55,7 +55,7 @@
     font-weight: var(--font-weight-bold);
 
     @include media.media-breakpoint-down(sm) {
-      font-size: var(--font-size-mx);
+      font-size: var(--font-size-l);
     }
   }
 
@@ -65,12 +65,12 @@
     
     .benefit__text {
       order: 0;
-      margin-left: var(--ident-xl);
+      margin-left: var(--indent-xl);
     }
 
     .benefit__number {
       order: 1;
-      margin-right: var(--ident-xl);
+      margin-right: var(--indent-xl);
     }
   }
 
@@ -81,12 +81,12 @@
 
     .benefit__text {
       order: 1;
-      margin-right: var(--ident-xl);
+      margin-right: var(--indent-xl);
     }
 
     .benefit__number {
       order: 0;
-      margin-left: var(--ident-xl);
+      margin-left: var(--indent-xl);
     }
   }
 </style>

@@ -59,7 +59,7 @@
     &__item-title {
       font-size: var(--font-size-l);
       font-weight: var(--font-weight-semi-bold);
-      margin-bottom: var(--ident-s);
+      margin-bottom: var(--indent-s);
 
       @include media.media-breakpoint-down(sm) {
         font-size: var(--font-size-m);

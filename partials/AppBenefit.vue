@@ -37,14 +37,14 @@
     margin-top: -100px;
     -webkit-background-clip: content-box;
     background-clip: content-box;
-    margin-bottom: var(--ident-5xl);
+    margin-bottom: var(--indent-5xl);
 
     @include media.media-breakpoint-down(xl) {
       margin-bottom: 0;
     }
 
     @include media.media-breakpoint-down(l) {
-      margin-bottom: var(--ident-5xl);
+      margin-bottom: var(--indent-5xl);
     }
 
     @include media.media-breakpoint-down (sm) {
@@ -53,7 +53,7 @@
 
 
     &__inner {
-      padding: var(--ident-4xl) 0;
+      padding: var(--indent-4xl) 0;
       display: flex;
       justify-content: space-between;
 
@@ -66,7 +66,7 @@
 
     &__text {
       width: 80%;
-      margin-bottom: var(--ident-4xl);
+      margin-bottom: var(--indent-4xl);
 
       @include media.media-breakpoint-down(sm) {
         width: 95%;

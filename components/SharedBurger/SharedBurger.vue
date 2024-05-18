@@ -4,7 +4,9 @@
     <label class="burger" for="burger-checkbox"></label>
     <div class="menu-list">
       <div class="menu-list__inner">
-        <SharedNavigation position="column"/>
+        <ClientOnly>
+          <SharedNavigation position="column"/>
+        </ClientOnly>
         <div class="btn">
           <SharedButton size="s" color="white" v-if="!isAuth" @click="signin">Войти</SharedButton>
           <SharedButton size="m" color="blue" v-if="!isAuth" @click="signup">Зарегистрироваться</SharedButton>
@@ -99,7 +101,8 @@
     }
 
     @include media.media-breakpoint-down(sm) {
-      top: 80px;
+      padding: var(--indent-m) var(--indent-s);
+      top: 77px;
     }
   }
   .burger-checkbox:checked ~ .menu-list {
@@ -116,8 +119,8 @@
   }
   .btn {
     display: none;
-    margin-bottom: var(--ident-m);
-    
+    margin-bottom: var(--indent-m);
+
     @include media.media-breakpoint-down(sm) {
       display: flex;
     }

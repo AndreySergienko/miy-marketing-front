@@ -30,10 +30,10 @@
   .navigation {
     display: flex;
     cursor: pointer;
-    gap: var(--ident-3xl);
+    gap: var(--indent-3xl);
 
     @include media.media-breakpoint-down(sm) {
-      gap: var( --ident-l);
+      gap: var( --indent-l);
       flex-direction: column;
       align-items: flex-start;
     }
@@ -55,10 +55,10 @@
     &__column {
       display: flex;
       flex-direction: column;
-      padding-left: var(--ident-l);
+      padding-left: var(--indent-l);
       
       @include media.media-breakpoint-down(sm) {
-        margin-bottom: var(--ident-xl);
+        margin-bottom: var(--indent-xl);
       }
 
     }

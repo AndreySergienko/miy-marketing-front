@@ -28,13 +28,13 @@
 <style lang="scss" scoped>
   @use 'assets/styles/media';
   .accordion {
-    padding: 0 var(--ident-l);
+    padding: 0 var(--indent-l);
     
     &__item {
-      padding: var(--ident-xl);
+      padding: var(--indent-xl);
       border: 1px solid var(--color-light-gray);
       border-radius: 25px;
-      margin-bottom: var(--ident-3xl);
+      margin-bottom: var(--indent-xl);
     }
 
     &__title {
@@ -55,7 +55,7 @@
     }
 
     &__text {
-      margin-top: var(--ident-4xl);
+      margin-top: var(--indent-4xl);
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
 

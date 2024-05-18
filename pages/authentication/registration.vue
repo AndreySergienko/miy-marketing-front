@@ -1,9 +1,9 @@
 <template>
   <AuthController>
-    <template #default="{ isShowGratitude, registrationData, registrationRules, sendRegistration }">
+    <template #default="{ isShowGratitude, registrationData, registrationRules, sendRegistration, isLoading }">
       <AuthContainer v-if="!isShowGratitude" >
         <template #form>
-          <VeeForm class="form" v-slot="{ errors, meta }" @submit="sendRegistration" :validation-schema="registrationRules">
+          <VeeForm class="form" v-slot="{ errors, meta }" :validation-schema="registrationRules">
             <SharedInput name="fio" v-model="registrationData.fio" type="text" :error="errors.fio">ФИО</SharedInput>
             <div class="form__item">
               <SharedInput name="uniqueBotId" v-model="registrationData.uniqueBotId" type="text" :error="errors.uniqueBotId">Уникальный id</SharedInput>
@@ -25,7 +25,7 @@
               </div>
             </div>
             <div class="btn__registration">
-              <SharedButton size="l" color="blue" :disabled="!meta.valid || !isChecked">Создать</SharedButton>
+              <SharedButton size="l" color="blue" :disabled="!meta.valid || !isChecked" @click="sendRegistration" :is-loading="isLoading">Создать</SharedButton>
             </div>
           </VeeForm>
         </template>
@@ -55,7 +55,7 @@
   .form {
     display: flex;
     flex-direction: column;
-    gap: var(--ident-xl);
+    gap: var(--indent-xl);
 
     @include media.media-breakpoint-down(l) {
       width: 100%;
@@ -65,7 +65,7 @@
     &__item {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: var(--ident-l);
+      gap: var(--indent-l);
 
       @include media.media-breakpoint-down(l) {
         width: 100%;
@@ -80,7 +80,7 @@
     &__checkbox {
       display: flex;
       flex-direction: column;
-      gap: var(--ident-m);
+      gap: var(--indent-m);
 
       @include media.media-breakpoint-down(l) {
         width: 100%;
@@ -99,13 +99,13 @@
         display: grid;
         align-items: center;
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--ident-s);
+        gap: var(--indent-s);
       }
 
       &-confidential {
         display: flex;
         align-items: center;
-        font-size: var(--font-size-ss);
+        font-size: var(--font-size-s);
         font-weight: var(--font-weight-medium);
       }
     }

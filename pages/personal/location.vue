@@ -186,7 +186,7 @@ watch(
 @use "assets/styles/media";
 
 .location {
-  margin-top: var(--ident-5xl);
+  margin-top: var(--indent-5xl);
 
   &__inner {
     display: flex;
@@ -208,7 +208,7 @@ watch(
   }
 
   &__title {
-    margin-bottom: var(--ident-2xl);
+    margin-bottom: var(--indent-2xl);
   }
 
   &__calendar {
@@ -217,10 +217,10 @@ watch(
     gap: 24px;
     border: 1px solid var(--color-light-gray);
     border-radius: 13px;
-    padding: var(--ident-l);
+    padding: var(--indent-l);
 
     &-title {
-      font-size: var(--font-size-ml);
+      font-size: var(--font-size-m);
       font-weight: var(--font-weight-semi-bold);
     }
 
@@ -241,9 +241,9 @@ watch(
   }
 
   &__btn {
-    margin-bottom: var(--ident-l);
+    margin-bottom: var(--indent-l);
     width: fit-content;
-    padding: var(--ident-l) 48px;
+    padding: var(--indent-l) 48px;
   }
 
   &__categories {
@@ -251,7 +251,7 @@ watch(
     flex-direction: column;
 
     &-title {
-      margin-bottom: var(--ident-s);
+      margin-bottom: var(--indent-s);
 
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);

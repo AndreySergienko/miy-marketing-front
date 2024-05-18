@@ -3,7 +3,9 @@
     <div class="container">
       <div class="header__inner">
         <nuxt-link class="header__link" to="/"><h1 class="header__title">ON-DEVELOPER</h1></nuxt-link>
-        <SharedNavigation class="header__navigation" />
+        <ClientOnly>
+          <SharedNavigation class="header__navigation" />
+        </ClientOnly>
         <div class="header__button">
           <SharedButton size="s" color="white" v-if="!isAuth" @click="signin">Войти</SharedButton>
           <SharedButton size="m" color="blue" v-if="!isAuth" @click="signup">Зарегистрироваться</SharedButton>
@@ -35,7 +37,7 @@
     background-color: var(--color-white);
     z-index: 1;
     top: 0;
-    padding: var(--ident-xl) 0;
+    padding: var(--indent-xl) 0;
 
     &__inner {
       display: flex;
@@ -60,7 +62,7 @@
       text-decoration: none;
 
       @include media.media-breakpoint-down(sm) {
-        font-size: var(--font-size-ml);
+        font-size: var(--font-size-m);
         font-weight: var(--font-weight-boldest);
       }
     }

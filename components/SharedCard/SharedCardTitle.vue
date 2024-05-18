@@ -20,11 +20,11 @@
     text-align: center;
 
     @include media.media-breakpoint-down (l) {
-      font-size: var(--font-size-xm);
+      font-size: var(--font-size-l);
     }
 
     @include media.media-breakpoint-down(sm) {
-      font-size: var(--font-size-mx);
+      font-size: 30px;
     }
   }
 </style>

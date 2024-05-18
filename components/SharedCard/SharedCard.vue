@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card__inner">
-      <img class="card__img" src="../../public/tg.png" />
+      <img class="card__img" src="../../public/tg.png" alt="тг" />
       <SharedCardTitle class="card__title"/>
       <div class="card__price">{{ price }}</div>
       <SharedCardText />
@@ -51,7 +51,7 @@
 
   .card {
     border-radius: 25px;
-    margin-bottom: var(--ident-3xl);
+    margin-bottom: var(--indent-3xl);
     transition: box-shadow 0.3ms;
     width: 20vw;
 
@@ -80,8 +80,8 @@
     }
 
     &__inner {
-      padding: var(--ident-3xl) var(--ident-3xl);
-      gap: var(--ident-m);
+      padding: var(--indent-3xl) var(--indent-3xl);
+      gap: var(--indent-m);
 
       display: flex;
       flex-direction: column;
@@ -97,19 +97,19 @@
       font-weight: var(--font-weight-semi-bold);
 
       @include media.media-breakpoint-down (l) {
-      font-size: var(--font-size-xm);
+      font-size: var(--font-size-l);
     }
 
       @include media.media-breakpoint-down(sm) {
-        font-size: var(--font-size-mx);
+        font-size: 30px;
       }
     }
 
     &__icons {
       display: flex;
-      gap: var(--ident-4xl);
+      gap: var(--indent-4xl);
       @include media.media-breakpoint-down(sm) {
-          gap: var( --ident-2xl);
+          gap: var( --indent-2xl);
         }
     }
 
@@ -117,14 +117,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: var( --ident-m);
+      gap: var( --indent-m);
 
       &-text {
         font-size: var( --font-size-m);
         font-weight: var(--font-weight-semi-bold);
 
         @include media.media-breakpoint-down(sm) {
-          font-size: var(--font-size-sm);
+          font-size: var(--font-size-s);
         }
       }
 
@@ -133,7 +133,7 @@
           font-size: var(--font-size-m);
 
           @include media.media-breakpoint-down(sm) {
-            font-size: var(--font-size-sm);
+            font-size: var(--font-size-s);
           }
         }
       }
@@ -144,8 +144,8 @@
       justify-content: space-between;
       align-items: center;
       width: 35%;
-      margin-bottom: var(--ident-l);
-      gap: var(--ident-m);
+      margin-bottom: var(--indent-l);
+      gap: var(--indent-m);
 
       @include media.media-breakpoint-down(xl) {
         justify-content: center;
@@ -164,7 +164,7 @@
         font-weight: var(--font-weight-semi-bold);
 
         @include media.media-breakpoint-down(sm) {
-          font-size: var(--font-size-sm);
+          font-size: var(--font-size-s);
         }
       }
 
@@ -183,8 +183,8 @@
       align-items: center;
 
       width: 100%;
-      padding: var(--ident-m) 0;
-      gap: var(--ident-m);
+      padding: var(--indent-m) 0;
+      gap: var(--indent-m);
 
       font-size: var(--font-size-m);
 
@@ -194,12 +194,12 @@
       background-color: var(--color-blue);
 
       @include media.media-breakpoint-down(sm) {
-          font-size: var(--font-size-sm);
-          gap: var(--ident-s);
+          font-size: var(--font-size-s);
+          gap: var(--indent-s);
         }
 
       &-icon {
-        font-size: var(--font-size-ml);
+        font-size: var(--font-size-m);
 
         @include media.media-breakpoint-down(sm) {
           font-size: var(--font-size-s);

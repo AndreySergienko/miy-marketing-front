@@ -28,16 +28,12 @@
     await userStore.updateUser(userRequest)
   }
 
+
   const userRules = yup.object({
-    email: yup.string().email('Необходим формат почты').required('Обязательное поле для заполнения!').label(''),
-    fio: yup.string().min(6, 'Поле дожно содержать не менее 6 символов').required('Обязательное поле для заполнения!').label(''),
-    inn: yup.number()
-      .transform((originalValue) => {
-      const parsedValue = Number(originalValue);
-      return isNaN(parsedValue) ? undefined : parsedValue;})
-      .required('Обязательное поле для заполнения!').label('')
-      .test('validateInn', 'Недопустимый ИНН', validateInn),
-    card: yup.number().required('Обязательное поле для заполнения!').label('')
+    email: yup.string().email(rules.email).required(rules.required).label(''),
+    fio: yup.string().min(8, rules.minName).required(rules.required).label(''),
+    inn: yup.number().required(rules.required).label('').test('validateInn', rules.inn, validateInn),
+    cardNumber: yup.string().min(16, rules.minNumberCard).max(16, rules.maxNumberCard).required(rules.required).label('')
   })
 
   defineSlots<IUserControllerSlots<typeof userStore.user>>()

@@ -25,7 +25,7 @@ import AuthStateController from "~/controllers/AuthStateController/AuthStateCont
       background-color: var(--color-blue);
 
       @include media.media-breakpoint-down(l) {
-        margin-top: var(--ident-5xl);
+        margin-top: var(--indent-5xl);
         background-color: var(--color-white);
         justify-content: center;
       }
