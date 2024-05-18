@@ -18,11 +18,9 @@
 
 <style scoped lang="scss">
   @use 'assets/styles/media';
+  @use 'assets/styles/mixins';
   .contacts {
-    padding-top: 100px;
-    margin-top: -100px;
-    -webkit-background-clip: content-box;
-    background-clip: content-box;
+    @include mixins.indent;
     margin-bottom: var(--indent-5xl);
 
     &__inner {
