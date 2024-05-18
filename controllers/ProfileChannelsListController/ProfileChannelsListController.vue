@@ -7,7 +7,7 @@
       :status="item.status"
       status-tooltip="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
       @edit="navigateTo(`/personal/location/${item.id}`)"
-      @retry="console.log('retry')"
+      @retry="navigateTo(`/personal/connect/${item.id}`)"
       @delete="console.log('delete')"
     />
   </section>
