@@ -9,6 +9,7 @@
         <div class="header__button">
           <SharedButton size="s" color="white" v-if="!isAuth" @click="signin">Войти</SharedButton>
           <SharedButton size="m" color="blue" v-if="!isAuth" @click="signup">Зарегистрироваться</SharedButton>
+          <SharedUserbox v-if="isAuth" />
           <SharedButton size="m" color="blue" v-if="isAuth" @click="logout">Выйти</SharedButton>
         </div>
         <SharedBurger :is-auth="isAuth" :logout="logout"/>
