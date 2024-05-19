@@ -13,6 +13,7 @@
   </div>
 </template>
 <style scoped lang="scss">
+  @use 'assets/styles/media';
   .id-bot {
     margin-left: var(--indent-s);
     &__icon:hover + &__inner {
@@ -27,14 +28,26 @@
       transition: all 0.3s;
       border: 1px solid var(--color-light-gray);
       border-radius: 24px;
+
+      @include media.media-breakpoint-down(sm) {
+        left: 10px;
+      }
     }
 
     &__title {
       font-size: var(--font-size-s);
       margin-bottom: var(--indent-m);
+
+      @include media.media-breakpoint-down(sm) {
+        font-size: 14px;
+      }
     }
     &__text {
       font-size: 14px;
+
+      @include media.media-breakpoint-down(sm) {
+        font-size: 10px;
+      }
     }
   }
 </style>
