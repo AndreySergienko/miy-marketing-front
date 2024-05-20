@@ -2,13 +2,14 @@
   <div class="user-box">
     <div class="user-box__inner">
       <nuxt-icon name="user" class="user-box__icon" filled />
-      <div class="user-box__title">{{ props.title }}</div>
+      <div class="user-box__title">{{ user.fio }}</div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+  
   import type { ISharedUserboxProps } from './SharedUserbox.types';
-
+  
   const props = defineProps<ISharedUserboxProps>()
 </script>
 <style scoped lang="scss">

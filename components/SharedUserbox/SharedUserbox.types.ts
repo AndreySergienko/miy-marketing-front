@@ -1,3 +1,5 @@
+import type { IUser } from "~/store/user/user.types";
+
 export interface ISharedUserboxProps {
-  title:string;
+  user: IUser;
 }

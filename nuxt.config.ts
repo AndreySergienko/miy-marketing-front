@@ -11,16 +11,16 @@ export default defineNuxtConfig ({
       ErrorMessage: 'VeeErrorMessage',
     },
   },
-  app: {
-    head: {
-      meta: [
-        {
-          content: 'upgrade-insecure-requests',
-          "http-equiv": 'Content-Security-Policy'
-        }
-      ]
-    }
-  },
+  // app: {
+  //   head: {
+  //     meta: [
+  //       {
+  //         content: 'upgrade-insecure-requests',
+  //         "http-equiv": 'Content-Security-Policy'
+  //       }
+  //     ]
+  //   }
+  // },
   css: ['~/assets/styles/main.scss'],
   typescript: {
     strict: true

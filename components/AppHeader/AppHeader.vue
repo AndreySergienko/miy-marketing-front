@@ -9,7 +9,7 @@
         <div class="header__button">
           <SharedButton size="s" color="white" v-if="!isAuth" @click="signin">Войти</SharedButton>
           <SharedButton size="m" color="blue" v-if="!isAuth" @click="signup">Зарегистрироваться</SharedButton>
-          <SharedUserbox v-if="isAuth" />
+          <SharedUserbox v-if="user" :user="user" />
           <SharedButton size="m" color="blue" v-if="isAuth" @click="logout">Выйти</SharedButton>
         </div>
         <SharedBurger :is-auth="isAuth" :logout="logout"/>
@@ -19,7 +19,12 @@
 </template>
 <script setup lang="ts">
   import type {IAuthProps} from "~/components/AppHeader/AppHeader.types";
+  import { useUserStore } from '~/store/user/user.store';
+
   const props = defineProps<IAuthProps>()
+
+  const userStore = useUserStore()
+  const {user} = storeToRefs(userStore)
 
   const router = useRouter()
   const signup = () => {
