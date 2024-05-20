@@ -66,7 +66,7 @@ const click = () => {
       border-radius: 12px;
 
       @include media.media-breakpoint-down(sm) {
-        width: 350px;
+        width: 325px;
         font-size: var(--font-size-s);
       }
     }

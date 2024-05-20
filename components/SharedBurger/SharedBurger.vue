@@ -102,7 +102,7 @@
 
     @include media.media-breakpoint-down(sm) {
       padding: var(--indent-m) var(--indent-s);
-      top: 77px;
+      top: 76px;
     }
   }
   .burger-checkbox:checked ~ .menu-list {
