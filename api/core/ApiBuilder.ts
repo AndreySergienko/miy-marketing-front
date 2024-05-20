@@ -1,6 +1,5 @@
 import FetchMapper from "~/api/core/mapper/FetchMapper";
 import {ofetch} from "ofetch";
-import {$Fetch} from "nitropack";
 
 export default class ApiBuilder {
     private readonly mapper: FetchMapper;
@@ -18,7 +17,16 @@ export default class ApiBuilder {
     return url
   }
 
-    public create(headers: HeadersInit): $Fetch {
-        return ofetch.create({ baseURL: this.createBaseUrl(), headers })
+    public async create(headers: HeadersInit) {
+      // const api = (method, body) => {
+      //   const bodyToJson = JSON.stringify(body)
+      //   return await $fetch(this.createBaseUrl(), {
+      //     method,
+      //     bodyToJson,
+      //     headers: headers()
+      //   })
+      // }
+      // return api
+        return ofetch.create({ baseURL: this.createBaseUrl(), headers})
     }
 }

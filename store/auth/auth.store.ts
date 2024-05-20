@@ -26,6 +26,7 @@ export const useAuthStore = defineStore('global/auth', () => {
           const res= await authService.login(data)
           if (!res) return;
           token.value = res.token
+
           toPersonalProfile()
         } catch (e: TPossibleError) {
           useShowError(e)
