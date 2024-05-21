@@ -53,7 +53,7 @@ const click = () => {
       width: 110px;
     }
     &__medium {
-      width: 250px;
+      width: 240px;
     }
     &__xl {
       padding: var(--indent-l) 48px;
