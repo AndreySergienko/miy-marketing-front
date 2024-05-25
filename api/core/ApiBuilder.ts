@@ -1,5 +1,7 @@
 import FetchMapper from "~/api/core/mapper/FetchMapper";
-import {ofetch} from "ofetch";
+import {FetchOptions, FetchRequest, ofetch} from "ofetch";
+import {$Fetch} from "nitropack";
+import {useShowError} from "~/composobles/useShowError";
 
 export default class ApiBuilder {
     private readonly mapper: FetchMapper;
@@ -7,7 +9,7 @@ export default class ApiBuilder {
         this.mapper = new FetchMapper()
     }
 
-  private createBaseUrl() {
+  private createBaseUrl(): string {
     const config = useRuntimeConfig()
     let url = config.public.baseUrlApi
 
@@ -17,16 +19,19 @@ export default class ApiBuilder {
     return url
   }
 
-    public async create(headers: HeadersInit) {
-      // const api = (method, body) => {
-      //   const bodyToJson = JSON.stringify(body)
-      //   return await $fetch(this.createBaseUrl(), {
-      //     method,
-      //     bodyToJson,
-      //     headers: headers()
-      //   })
-      // }
-      // return api
-        return ofetch.create({ baseURL: this.createBaseUrl(), headers})
-    }
+  private createDefaultInstanceApi(): $Fetch {
+    return ofetch.create({ baseURL: this.createBaseUrl()})
+  }
+
+  public create(getHeaders: () => HeadersInit) {
+      const mapper = this.mapper;
+      const instance = this.createDefaultInstanceApi()
+      return async <T>(request: FetchRequest, options: FetchOptions): Promise<T> => {
+        // @ts-ignore
+        return Promise.resolve(instance(request, {
+          headers: getHeaders(),
+          ...options,
+        })).then(mapper.mapDataKeys).catch(useShowError)
+      }
+  }
 }

@@ -13,16 +13,16 @@ export default class AuthService extends ApiService {
     this.authUrl = 'auth/'
   }
   async login(data: ILoginRequest): Promise<ILoginResponse> {
-    return await this.$api(this.authUrl + 'login', {
+    return await this.$api<ILoginResponse>(this.authUrl + 'login', {
       method: 'post',
-      body: JSON.stringify(data)
+      body: data
     })
   }
 
   async registration(data: IRegistrationRequest): Promise<IRegistrationResponse> {
-    return await this.$api(this.authUrl + 'registration', {
+    return await this.$api<IRegistrationResponse>(this.authUrl + 'registration', {
       method: 'post',
-      body: JSON.stringify(data)
+      body: data
     })
   }
 }
