@@ -21,6 +21,7 @@
       </div>
       <div class="profile-channels-item__panel-controls">
         <NuxtIcon
+          v-if="status !== EProfileChannelsItemTypes.MODERATING"
           class="profile-channels-item__panel-controls--icon"
           name="channels-controls-edit"
           filled

@@ -5,7 +5,12 @@
         <SharedTitle class="location__title">Размещение TG-каналов</SharedTitle>
         <ChannelInitial v-if="initialChannelData" v-bind="initialChannelData" />
         <div class="location__inner">
-          <SharedInput name="name" type="text" v-model="newChannel.name" :is-disabled="true">
+          <SharedInput
+            name="name"
+            type="text"
+            v-model="newChannel.name"
+            :is-disabled="true"
+          >
             Название
           </SharedInput>
           <SharedSelect
@@ -79,6 +84,7 @@
 </template>
 
 <script setup lang="ts">
+import { EProfileChannelsItemTypes } from "~/components/ProfileChannelsItem/ProfileChannelsItem.types";
 import { useCategoriesStore } from "~/store/categories/categories.store";
 import { useChannelStore } from "~/store/channel/channel.store";
 import type { INewChannel } from "~/store/channel/channel.types";
@@ -186,7 +192,8 @@ const submitNewChannel = async () => {
 
 onBeforeMount(() => {
   const channel = channels.value.find((c) => c.id === +id.toString());
-  if (!channel) return navigateTo("/personal/telegram");
+  if (!channel || channel.status === EProfileChannelsItemTypes.MODERATING)
+    return navigateTo("/personal/telegram");
 
   newChannel.name = channel.name;
   newChannel.link = channel.link;
