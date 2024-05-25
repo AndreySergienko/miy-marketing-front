@@ -20,5 +20,8 @@ export default defineNuxtConfig ({
       baseUrlApi: process.env.NUXT_PUBLIC_BASE_URL_API || '',
     }
   },
+  ignore: [
+    '/ecosystem.config.js'
+  ],
   devtools: { enabled: false },
 })
