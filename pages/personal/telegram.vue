@@ -7,6 +7,7 @@
       <SharedButton
         class="telegram__top-button"
         color="blue"
+        :is-disabled="!permissions.CAN_PUBLIC_CHANNEL"
         size="l"
         @click="navigateTo('/personal/connect')"
       >
@@ -19,10 +20,14 @@
 
 <script setup lang="ts">
 import ProfileChannelsListController from "~/controllers/ProfileChannelsListController/ProfileChannelsListController.vue";
+import { useUserStore } from "~/store/user/user.store";
 
 definePageMeta({
   layout: "personal",
 });
+
+const userStore = useUserStore();
+const { permissions } = storeToRefs(userStore);
 </script>
 
 <style scoped lang="scss">
