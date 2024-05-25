@@ -11,24 +11,14 @@ export default defineNuxtConfig ({
       ErrorMessage: 'VeeErrorMessage',
     },
   },
-  // app: {
-  //   head: {
-  //     meta: [
-  //       {
-  //         content: 'upgrade-insecure-requests',
-  //         "http-equiv": 'Content-Security-Policy'
-  //       }
-  //     ]
-  //   }
-  // },
   css: ['~/assets/styles/main.scss'],
   typescript: {
     strict: true
   },
   runtimeConfig: {
     public: {
-      baseUrlApi: '',
+      baseUrlApi: process.env.NUXT_PUBLIC_BASE_URL_API || '',
     }
   },
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 })
