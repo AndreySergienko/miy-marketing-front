@@ -195,6 +195,10 @@ onBeforeMount(() => {
   if (!channel || channel.status === EProfileChannelsItemTypes.MODERATING)
     return navigateTo("/personal/telegram");
 
+  const category = categories.value.find((c) => c.id === channel.categories[0]);
+  selectedCategory.value = category?.value || "";
+
+  newChannel.categoriesId = channel.categories;
   newChannel.name = channel.name;
   newChannel.link = channel.link;
   newChannel.day = channel.day;
