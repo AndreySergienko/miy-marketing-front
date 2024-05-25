@@ -21,7 +21,7 @@ export default defineNuxtConfig ({
     }
   },
   ignore: [
-    '/ecosystem.config.js'
+    'ecosystem.config.cjs'
   ],
   devtools: { enabled: false },
 })
