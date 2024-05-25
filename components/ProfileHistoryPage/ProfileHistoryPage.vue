@@ -34,6 +34,7 @@ const number = computed(() => page.value || "...");
     border: 1px solid var(--color-blue);
     color: var(--color-blue);
     cursor: default;
+    pointer-events: none;
   }
 }
 </style>

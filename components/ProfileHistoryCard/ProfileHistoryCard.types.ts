@@ -3,5 +3,5 @@ export interface IProfileHistoryCardProps {
   title: string;
   date: string;
   price: number;
-  id: number;
+  id: string;
 }
