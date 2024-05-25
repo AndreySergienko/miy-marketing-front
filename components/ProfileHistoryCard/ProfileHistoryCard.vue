@@ -20,7 +20,15 @@ import type { IProfileHistoryCardProps } from "./ProfileHistoryCard.types";
 const props = defineProps<IProfileHistoryCardProps>();
 const { id, price } = toRefs(props);
 
-const formattedId = computed(() => `${id.value}`);
+const IDS = {
+  PAID: "Оплачено",
+  CANCEL: "Отменено",
+};
+
+const formattedId = computed(() => {
+  if (!id.value || !(id.value in IDS)) return "";
+  return IDS[id.value as keyof typeof IDS];
+});
 const formattedPrice = computed(() => price.value.toLocaleString("ru"));
 </script>
 

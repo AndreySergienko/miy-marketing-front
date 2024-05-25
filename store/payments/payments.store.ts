@@ -15,6 +15,12 @@ export const usePaymentsStore = defineStore("global/payments", () => {
     try {
       const data = await paymentsService.getAll();
       payments.value = transform(data);
+      payments.value.push({
+        price: 2345,
+        datetime: "",
+        name: "Тест",
+        status: "PAID",
+      });
     } catch (e) {
       console.error(e);
     }
