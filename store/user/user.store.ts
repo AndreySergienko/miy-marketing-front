@@ -5,11 +5,12 @@ import {TPermissionsScopesKeys} from "~/modules/permissions/types";
 import type {IUserRequest} from "~/api/methods/user/user.types";
 import {useShowError} from "~/composobles/useShowError";
 import {useAlertStore} from "~/store/alert/alert.store";
+import {useAuthStore} from "~/store/auth/auth.store";
 
 export const useUserStore = defineStore("global/user", () => {
   const userService = new UserService();
   const alertStore = useAlertStore()
-
+  const authStore = useAuthStore()
   const isLoading = ref<boolean>(false)
 
   /** Данные об активном юзере **/
@@ -29,6 +30,7 @@ export const useUserStore = defineStore("global/user", () => {
         permissions.value[permission] = permission;
       }
     } catch (e) {
+      authStore.logout()
       useShowError(e)
     }
   }

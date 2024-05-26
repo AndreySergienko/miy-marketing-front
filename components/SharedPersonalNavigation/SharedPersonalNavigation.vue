@@ -4,8 +4,7 @@
       <nuxt-link
         :class="{
           active:
-            $route.path === '/personal/profile' ||
-            $route.path === '/personal/connect',
+            $route.path === '/personal/profile'
         }"
         to="/personal/profile"
       >
@@ -15,7 +14,8 @@
         :class="{
           active:
             $route.path === '/personal/telegram' ||
-            $route.path === '/personal/location'
+            $route.path === '/personal/location' ||
+            $route.path === '/personal/connect'
         }"
         to="/personal/telegram"
       >
