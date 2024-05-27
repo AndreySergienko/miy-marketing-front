@@ -39,6 +39,7 @@ export interface IGetAll extends IInitialChannelData {
 }
 
 export interface IApiChannelsListItem extends IInitialChannelData {
+  categories: number[];
   chatId: string;
   conditionCheck: string;
   day: string;
@@ -51,6 +52,7 @@ export interface IApiChannelsListItem extends IInitialChannelData {
 
 export interface IChannelsListItem extends IInitialChannelData {
   id: number;
+  categories: number[];
   status: EProfileChannelsItemTypes;
   conditionCheck: string;
   day: Date;

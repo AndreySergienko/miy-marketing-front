@@ -2,7 +2,7 @@
   <div class="history container">
     <div class="history__inner">
       <ProfileHistoryList />
-      <ProfileHistoryPagination />
+      <ProfileHistoryPagination v-if="pages && pages > 1" />
     </div>
   </div>
 </template>
