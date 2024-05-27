@@ -12,12 +12,30 @@ export interface IChannelsRegistrationBody {
   conditionCheck: string;
 }
 
+
 export interface IInitialChannelData {
   avatar: string;
   description: string;
   link: string;
   name: string;
   subscribers: number;
+}
+
+export interface IGetAll extends IInitialChannelData {
+  channel: {
+    conditionCheck: string;
+    day: string;
+    formatChannelId: number;
+    id: number;
+    price: number;
+  },
+  slots: [{
+    channelId: number;
+    id: number;
+    statusId: number;
+    timestamp: string;
+    timestampFinish: string;
+  }]
 }
 
 export interface IApiChannelsListItem extends IInitialChannelData {

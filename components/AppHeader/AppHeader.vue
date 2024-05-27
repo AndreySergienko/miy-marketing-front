@@ -84,5 +84,4 @@
   nuxt-link {
     text-decoration: none;
   }
-
 </style>

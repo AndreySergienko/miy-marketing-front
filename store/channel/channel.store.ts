@@ -2,6 +2,7 @@ import type {
   IChannelsListItem,
   IChannelsRegistrationBody,
   IInitialChannelData,
+  IGetAll,
 } from "~/api/methods/channels/channels.types";
 import ChannelsService from "~/api/methods/channels/ChannelsService";
 import {useShowError} from "~/composobles/useShowError";
@@ -11,8 +12,17 @@ export const useChannelStore = defineStore("global/channel", () => {
 
   /** Список каналов **/
   const channels = ref<IChannelsListItem[]>([]);
+  const channelsAll = ref<IGetAll[]>([]);
   const initialChannelData = ref<IInitialChannelData | null>(null);
 
+  /** Получение всего списка каналов **/
+  async function getAll() {
+    try {
+      channelsAll.value = await channelsService.getAll();
+    } catch (e) {
+      useShowError(e)
+    }
+  }
   /** Получить список каналов для текущего юзера **/
   async function getMy() {
     try {
@@ -50,11 +60,13 @@ export const useChannelStore = defineStore("global/channel", () => {
 
   return {
     channels,
+    channelsAll,
     check,
     initialChannelData,
     update,
     buy,
     create,
     getMy,
+    getAll
   };
 });

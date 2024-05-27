@@ -4,6 +4,7 @@ import type {
   IChannelsListItem,
   IChannelsRegistrationBody,
   IInitialChannelData,
+  IGetAll,
 } from "./channels.types";
 import { API_ITEM_TYPES } from "~/components/ProfileChannelsItem/ProfileChannelsItem.types";
 
@@ -22,10 +23,16 @@ export default class ChannelsService extends ApiService {
     });
   }
 
+  async getAll(): Promise<IGetAll[]> {
+    return await this.$api<IGetAll[]>(
+      this.apiUrl + "all"
+    );
+  }
+
   async getMy(): Promise<IChannelsListItem[]> {
     const data = await this.$authApi<IApiChannelsListItem[]>(
       this.apiUrl + "my"
-    );
+    );  
 
     return data.map((item) => ({
       id: item.id,

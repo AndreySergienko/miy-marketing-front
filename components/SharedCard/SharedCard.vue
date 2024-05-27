@@ -8,13 +8,13 @@
       <div class="card__icons">
         <div class="card__icon">
           <div class="card__icon-text">
-            {{ people }}
+            {{ people}}
           </div>
           <nuxt-icon class="card__icon-img__people" name="people"/>
         </div>
         <div class="card__icon">
           <div class="card__icon-text">
-            {{ clock}}
+            {{ clock }}
           </div>
           <nuxt-icon class="card__icon-img__clock" name="clock"/>
         </div>
@@ -33,17 +33,16 @@
   </div>
 </template>
 
-<script setup>
-
+<script setup lang="ts">
   import SharedCardTitle from './SharedCardTitle.vue';
   import SharedCardText from './SharedCardText.vue'
 
   const props = defineProps({
-    price: String,
-    people: String,
+    price: Number,
+    people: Number,
     clock: String,
   })
-
+  
 </script>
 
 <style lang="scss" scoped>

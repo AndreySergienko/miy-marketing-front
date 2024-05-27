@@ -50,7 +50,7 @@
           <SharedInput
             name="link"
             type="text"
-            :is-disabled="true"
+            :is-disabled="false"
             v-model="newChannel.link"
             class="location__input-link"
           >
