@@ -22,11 +22,22 @@
   const props = defineProps<IAuthProps>()
 
   const router = useRouter()
+
   const signup = () => {
     router.push('/authentication/registration')
+    closeBurger()
   }
   const signin = () => {
     router.push('/authentication/login')
+    closeBurger()
+  }
+
+  
+  const closeBurger = () => {
+    const checkbox = document.getElementById('burger-checkbox')
+    if(checkbox) {
+      checkbox.checked = false
+    }
   }
 </script>
 <style scoped lang="scss">
