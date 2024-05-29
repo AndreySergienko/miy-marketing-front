@@ -2,7 +2,7 @@
   <nav>
     <ul :class="['navigation', navDirection[position] ]">
       <li v-for="(navItem, id) in navList" :key="id">
-        <a :href="'#' + navItem.link" class="navigation__link">
+        <a :href="'#' + navItem.link" class="navigation__link" @click="closeBurger">
           <div class="navigation__item">
             {{ navItem.text }}
           </div>
@@ -22,6 +22,15 @@
   const props = defineProps({
     position: String,
   })
+
+  const closeBurger = () => {
+    const checkbox = document.getElementById('burger-checkbox');
+    if (checkbox) {
+      checkbox.checked = false;
+    }
+  }
+
+
 </script>
 
 <style scoped lang="scss">

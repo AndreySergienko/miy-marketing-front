@@ -11,7 +11,12 @@
               </SharedInput>
               <SharedInput name="inn" v-model="registrationData.inn" type="number" :error="errors.inn">ИНН</SharedInput>
               <SharedInput name="email" v-model="registrationData.email" type="text" :error="errors.email">Почта</SharedInput>
-              <SharedInput name="password" v-model="registrationData.password" type="text" :error="errors.password">Пароль</SharedInput>
+              <SharedInput name="password" v-model="registrationData.password" :type="showPassword ? 'text' : 'password'" :error="errors.password">Пароль
+                <template #icon>
+                  <nuxt-icon v-if="showPassword" name="eye-off" @click="showPassword = !showPassword"></nuxt-icon>
+                  <nuxt-icon v-else name="eye" @click="showPassword = !showPassword"></nuxt-icon>
+                </template>
+              </SharedInput>
             </div>
             <div class="form__checkbox">
               <span class="form__checkbox-title">Публикация рекламных постов в</span>
@@ -42,6 +47,8 @@
 <script setup lang="ts">
   import AuthController from '~/controllers/AuthController/AuthController.vue';
   import {radios} from "~/modules/pages/registration/registration.data";
+
+  const showPassword = ref(false)
 
   definePageMeta({
     layout: 'authentication'

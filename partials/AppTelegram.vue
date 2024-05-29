@@ -13,23 +13,34 @@
         </div>
         <div class="card__list">
           <SharedCard
-            v-for="index in 9"
-            :key="index"
-            price="300 р"
-            people="12 000"
-            clock="1/24"
+            v-for="card in channelsAll"
+            :key="card.channel.id"
+            :price= "card.channel.price"
+            :people="card.channel.subscribers"
+            :clock="card.channel.day"
           />
         </div>
       </div>
     </div>
   </div>
 </template>
+<script setup lang="ts">
+  import { useChannelStore } from "~/store/channel/channel.store";
+
+  const channelStore = useChannelStore();
+  const { channelsAll } = storeToRefs(channelStore);
+
+  onServerPrefetch(channelStore.getAll)
+</script>
 
 <style scoped lang="scss">
    @use 'assets/styles/media';
-   @use 'assets/styles/mixins';
   .tg {
-    @include mixins.indent;
+    padding-top: 150px;
+    margin-top: -50px;
+    -webkit-background-clip: content-box;
+    background-clip: content-box;
+    
     margin-bottom: var(--indent-4xl);
 
     &__inner {

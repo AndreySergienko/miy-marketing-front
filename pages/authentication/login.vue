@@ -6,7 +6,14 @@
                 <VeeForm class="form" v-slot="{ errors, meta }" :validation-schema="loginRules">
                   <div class="form__input">
                     <SharedInput name="email" v-model="loginData.email" type="text" :error="errors.email">Почта</SharedInput>
-                    <SharedInput name="password" v-model="loginData.password" type="text" :error="errors.password">Пароль</SharedInput>
+                    <div class="form__password">
+                      <SharedInput name="password" v-model="loginData.password" :type="showPassword ? 'text' : 'password'" :error="errors.password">Пароль
+                        <template #icon>
+                          <nuxt-icon v-if="showPassword" name="eye-off" @click="showPassword = !showPassword"></nuxt-icon>
+                          <nuxt-icon v-else name="eye" @click="showPassword = !showPassword"></nuxt-icon>
+                        </template>
+                      </SharedInput>
+                    </div>
                   </div>
                   <div class="help__password">
                     <span>Забыли пароль</span>
@@ -28,6 +35,7 @@ import AuthController from "~/controllers/AuthController/AuthController.vue";
 definePageMeta({
     layout: 'authentication'
 })
+ const showPassword =ref(false)
 
 
 </script>
