@@ -31,6 +31,7 @@ const { permissions } = storeToRefs(userStore);
 </script>
 
 <style scoped lang="scss">
+  @use 'assets/styles/media';
 .telegram {
   margin-top: var(--indent-2xl);
   margin-bottom: 30px;
@@ -42,8 +43,15 @@ const { permissions } = storeToRefs(userStore);
     padding: var(--indent-l) 0 var(--indent-3xl);
     border-bottom: 2px solid var(--color-dark-gray);
 
+    @include media.media-breakpoint-down(sm) {
+      flex-direction: column;
+      text-align: center;
+    }
+
     &-title {
+      width: 225px;
       margin: 0;
+      margin-bottom: var(--indent-xl);
     }
 
     &-button {
