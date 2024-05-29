@@ -1,11 +1,9 @@
 <template>
-  <div class="container">
     <AuthStateController>
       <template #default="{ isAuth, logout }">
         <AppHeader :is-auth="isAuth" :logout="logout" />
       </template>
     </AuthStateController>
-  </div>
   <SharedPersonalNavigation />
   <div>
     <slot/>

@@ -7,6 +7,9 @@
         <ClientOnly>
           <SharedNavigation position="column"/>
         </ClientOnly>
+        <div class="userbox">
+          <SharedUserbox v-if="isAuth && user?.fio" :user="user" />
+        </div>
         <div class="btn">
           <SharedButton size="s" color="white" v-if="!isAuth" @click="signin">Войти</SharedButton>
           <SharedButton size="m" color="blue" v-if="!isAuth" @click="signup">Зарегистрироваться</SharedButton>
@@ -18,8 +21,12 @@
 </template>
 <script setup lang="ts">
   import type {IAuthProps} from "~/components/AppHeader/AppHeader.types";
+  import { useUserStore } from "~/store/user/user.store";
 
   const props = defineProps<IAuthProps>()
+
+  const userStore = useUserStore()
+  const {user} = storeToRefs(userStore)
 
   const router = useRouter()
 
@@ -95,7 +102,7 @@
     transition: bottom .3s, transform .3s .15s;
   }
   .menu-list {
-    top: 97px;
+    top: 106px;
     left: 0;
     position: absolute;
     display: none;
@@ -105,8 +112,10 @@
     background-color: var(--color-white);
     transition: .3s;
     z-index: 1;
+    width: 100vw;
 
     &__inner {
+      border-radius: 0 0 24px 24px;
       background-color: var(--color-white);
       width: 100vw;
     }
@@ -134,6 +143,14 @@
 
     @include media.media-breakpoint-down(sm) {
       display: flex;
+    }
+  }
+  
+  .userbox {
+    display: none;
+    margin-bottom: var(--indent-l);
+    @include media.media-breakpoint-down(sm) {
+      display: block;
     }
   }
 </style>
