@@ -49,9 +49,12 @@ const { permissions } = storeToRefs(userStore);
     }
 
     &-title {
-      width: 225px;
       margin: 0;
-      margin-bottom: var(--indent-xl);
+
+      @include media.media-breakpoint-down(sm) {
+        width: 225px;
+        margin-bottom: var(--indent-xl);
+      }
     }
 
     &-button {
