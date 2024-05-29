@@ -64,12 +64,7 @@
     &__column {
       display: flex;
       flex-direction: column;
-      padding-left: var(--indent-l);
-      
-      @include media.media-breakpoint-down(sm) {
-        margin-bottom: var(--indent-xl);
-      }
-
+      padding: var(--indent-l);
     }
   }
   li {

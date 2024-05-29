@@ -35,7 +35,6 @@
 @use "assets/styles/media";
 
 .navigation {
-  border-top: 1px solid var(--color-light-gray);
   padding-top: var(--indent-4xl);
 
   &__inner {
