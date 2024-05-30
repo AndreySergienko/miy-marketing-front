@@ -1,3 +1,4 @@
+@use 'assets/styles/media';
 .connect {
   display: flex;
   flex-direction: column;
@@ -9,6 +10,10 @@
   &__icon {
     width: 200px;
     height: 200px;
+    @include media.media-breakpoint-down(sm) {
+      width: 180px;
+      height: 180px;
+    }
 
     :deep(svg) {
       width: 100%;
@@ -25,10 +30,19 @@
     text-align: center;
     font-size: var(--font-size-m);
     font-weight: var(--font-weight-medium);
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: var(--font-size-s);
+      width: 360px;
+    }
   }
 
   &__input {
     width: 360px;
+
+    @include media.media-breakpoint-down(sm) {
+      width: 340px;
+    }
   }
 
   &__button {
