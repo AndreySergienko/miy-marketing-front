@@ -41,8 +41,12 @@
     cursor: pointer;
     gap: var(--indent-3xl);
 
+    @include media.media-breakpoint-down(xl) {
+      gap: var(--indent-2xl);
+    }
+
     @include media.media-breakpoint-down(sm) {
-      gap: var( --indent-l);
+      gap: var(--indent-l);
       flex-direction: column;
       align-items: flex-start;
     }
