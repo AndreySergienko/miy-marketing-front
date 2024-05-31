@@ -2,7 +2,7 @@
   <nav>
     <ul :class="['navigation', navDirection[position] ]">
       <li v-for="(navItem, id) in navList" :key="id">
-        <a :href="'#' + navItem.link" class="navigation__link" @click="closeBurger">
+        <a :href="'#' + navItem.link" class="navigation__link" @click="navigate(navItem)">
           <div class="navigation__item">
             {{ navItem.text }}
           </div>
@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
   import { navList } from './SharedNavigation.data';
-  import type { TNavBurger } from './SharedNavigation.type';
+  import type { INavItem, TNavBurger } from './SharedNavigation.type';
 
   const navDirection: TNavBurger = {
     column: 'navigation__column'
@@ -29,6 +29,14 @@
       checkbox.checked = false;
     }
   }
+
+  const navigate = (navItem:INavItem) => {
+  const currentPageURL = window.location.href;
+  if (currentPageURL.includes('/authentication/login') || currentPageURL.includes('/authentication/registration')) {
+    window.location.href = `https://on-developer.ru/#${navItem.link}`;
+  } 
+  closeBurger()
+}
 
 
 </script>
