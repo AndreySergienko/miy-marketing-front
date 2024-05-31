@@ -32,7 +32,7 @@
 
   const navigate = (navItem:INavItem) => {
   const currentPageURL = window.location.href;
-  if (currentPageURL.includes('/authentication/login') || currentPageURL.includes('/authentication/registration')) {
+  if (currentPageURL !== 'https://on-developer.ru') {
     window.location.href = `https://on-developer.ru/#${navItem.link}`;
   } 
   closeBurger()
