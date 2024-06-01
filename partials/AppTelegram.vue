@@ -30,7 +30,7 @@
   const channelStore = useChannelStore();
   const { channelsAll } = storeToRefs(channelStore);
 
-  onServerPrefetch(channelStore.getAll)
+  useAsyncData(channelStore.getAll)
 </script>
 
 <style scoped lang="scss">
@@ -40,7 +40,7 @@
     margin-top: -50px;
     -webkit-background-clip: content-box;
     background-clip: content-box;
-    
+
     margin-bottom: var(--indent-4xl);
 
     &__inner {

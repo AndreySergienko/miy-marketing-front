@@ -21,21 +21,25 @@ export interface IInitialChannelData {
   subscribers: number;
 }
 
-export interface IGetAll extends IInitialChannelData {
-  channel: {
-    conditionCheck: string;
-    day: string;
-    formatChannelId: number;
-    id: number;
-    price: number;
-  },
-  slots: [{
-    channelId: number;
-    id: number;
-    statusId: number;
-    timestamp: string;
-    timestampFinish: string;
-  }]
+export interface IChannelGetAll extends IInitialChannelData {
+  conditionCheck: string;
+  day: string;
+  formatChannelId: number;
+  id: number;
+  price: number;
+}
+
+export interface ISlot {
+  channelId: number;
+  id: number;
+  statusId: number;
+  timestamp: string;
+  timestampFinish: string;
+}
+
+export interface IGetAll {
+  channel: IChannelGetAll,
+  slots: ISlot[]
 }
 
 export interface IApiChannelsListItem extends IInitialChannelData {

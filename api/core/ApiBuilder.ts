@@ -20,7 +20,7 @@ export default class ApiBuilder {
 
   public create(getHeaders: () => HeadersInit) {
       const domain = this.createBaseUrl()
-      return async <T>(request: FetchRequest, options: FetchOptions): Promise<T> => {
+      return async <T>(request: FetchRequest, options?: FetchOptions): Promise<T> => {
         const url = domain + request
         // @ts-ignore
         return $fetch(url, {
