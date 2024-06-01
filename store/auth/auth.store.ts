@@ -36,7 +36,7 @@ export const useAuthStore = defineStore('global/auth', () => {
     }
 
     /** Удаление сессии пользователя **/
-    async function logout() {
+    function logout() {
       token.value = ''
       const route = useRoute()
       if (route.meta.layout !== 'authentication' || route.path !== '/') return navigateTo('/')

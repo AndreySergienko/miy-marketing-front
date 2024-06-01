@@ -24,4 +24,5 @@ export default defineNuxtConfig ({
     'ecosystem.config.cjs'
   ],
   devtools: { enabled: false },
+  ssr: false,
 })

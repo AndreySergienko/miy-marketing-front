@@ -34,12 +34,12 @@
           filled
           @click="$emit('retry')"
         />
-        <NuxtIcon
-          class="profile-channels-item__panel-controls--icon"
-          name="channels-controls-delete"
-          filled
-          @click="$emit('delete')"
-        />
+<!--        <NuxtIcon-->
+<!--          class="profile-channels-item__panel-controls&#45;&#45;icon"-->
+<!--          name="channels-controls-delete"-->
+<!--          filled-->
+<!--          @click="$emit('delete')"-->
+<!--        />-->
       </div>
     </div>
   </div>

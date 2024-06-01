@@ -4,15 +4,25 @@
       <SharedTitle class="telegram__top-title">
         Размещение TG-каналов
       </SharedTitle>
-      <SharedButton
-        class="telegram__top-button"
-        color="blue"
-        :is-disabled="!permissions.CAN_PUBLIC_CHANNEL"
-        size="l"
-        @click="navigateTo('/personal/connect')"
-      >
-        Опубликовать TG-канал
-      </SharedButton>
+      <div class="telegram__buttons">
+        <SharedTooltip
+          :is-active="isTooltipActive"
+          class="telegram__tooltip"
+          text="Необходимо зарегестрировать карту для возврата средств, в случае отмены публикации"
+          border-color="#ffd0d0"
+        />
+        <SharedButton
+          class="telegram__top-button"
+          color="blue"
+          :is-disabled="isDisabledButton"
+          size="l"
+          @click="navigateTo('/personal/connect')"
+          @pointerover="isDisabledButton && (isTooltipActive = true)"
+          @pointerleave="isDisabledButton && (isTooltipActive = false)"
+        >
+          Опубликовать TG-канал
+        </SharedButton>
+      </div>
     </div>
     <ProfileChannelsListController />
   </div>
@@ -28,6 +38,8 @@ definePageMeta({
 
 const userStore = useUserStore();
 const { permissions } = storeToRefs(userStore);
+const isTooltipActive = ref(false);
+const isDisabledButton = !permissions.value.CAN_PUBLIC_CHANNEL
 </script>
 
 <style scoped lang="scss">
@@ -35,6 +47,16 @@ const { permissions } = storeToRefs(userStore);
 .telegram {
   margin-top: var(--indent-2xl);
   margin-bottom: 30px;
+
+  &__buttons {
+    position: relative;
+  }
+
+  &__tooltip {
+    top: 65px;
+    border-radius: 10px;
+    text-align: center;
+  }
 
   &__top {
     display: flex;
