@@ -14,7 +14,7 @@
         </div>
         <div class="card__icon">
           <div class="card__icon-text">
-            {{ clock }}
+            {{ convertUtcDateToDate(+clock) }}
           </div>
           <nuxt-icon class="card__icon-img__clock" name="clock"/>
         </div>
@@ -36,13 +36,14 @@
 <script setup lang="ts">
   import SharedCardTitle from './SharedCardTitle.vue';
   import SharedCardText from './SharedCardText.vue'
+  import {convertUtcDateToDate} from "~/utils/date";
 
   const props = defineProps({
     price: Number,
     people: Number,
     clock: String,
   })
-  
+
 </script>
 
 <style lang="scss" scoped>
