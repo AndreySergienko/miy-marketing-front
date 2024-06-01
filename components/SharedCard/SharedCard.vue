@@ -2,9 +2,9 @@
   <div class="card">
     <div class="card__inner">
       <img class="card__img" src="../../public/tg.png" alt="тг" />
-      <SharedCardTitle class="card__title"/>
+      <SharedCardTitle class="card__title">{{ title }}</SharedCardTitle>
       <div class="card__price">{{ price }}</div>
-      <SharedCardText />
+      <SharedCardText>{{ text }}</SharedCardText>
       <div class="card__icons">
         <div class="card__icon">
           <div class="card__icon-text">
@@ -42,6 +42,8 @@
     price: Number,
     people: Number,
     clock: String,
+    text: String,
+    title: String,
   })
 
 </script>

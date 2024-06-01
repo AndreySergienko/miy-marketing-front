@@ -1,17 +1,8 @@
 <template>
-  <div class="text"> 
-    <span>{{ text }}</span>
+  <div class="text">
+    <span><slot /></span>
   </div>
 </template>
-
-<script setup>
-  const props= defineProps({
-    text:{
-      type:String,
-      default: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
-    }
-  })
-</script>
 
 <style  lang="scss" scoped>
   @use 'assets/styles/media';

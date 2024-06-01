@@ -18,6 +18,8 @@
             :price= "card.channel.price"
             :people="card.channel.subscribers"
             :clock="card.channel.day"
+            :text="card.channel.description"
+            :title="card.channel.name"
           />
         </div>
       </div>
