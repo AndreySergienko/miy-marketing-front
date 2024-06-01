@@ -2,11 +2,11 @@
   <nav>
     <ul :class="['navigation', navDirection[position] ]">
       <li v-for="(navItem, id) in navList" :key="id">
-        <a :href="'#' + navItem.link" class="navigation__link" @click="navigate(navItem)">
+        <nuxt-link :href="toPoint(navItem.link)" class="navigation__link" @click="closeBurger">
           <div class="navigation__item">
             {{ navItem.text }}
           </div>
-        </a>
+        </nuxt-link>
       </li>
     </ul>
   </nav>
@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
   import { navList } from './SharedNavigation.data';
-  import type { INavItem, TNavBurger } from './SharedNavigation.type';
+  import type { TNavBurger } from './SharedNavigation.type';
 
   const navDirection: TNavBurger = {
     column: 'navigation__column'
@@ -30,15 +30,10 @@
     }
   }
 
-  const navigate = (navItem:INavItem) => {
-  const currentPageURL = window.location.href;
-  if (currentPageURL !== 'https://on-developer.ru') {
-    window.location.href = `https://on-developer.ru/#${navItem.link}`;
-  } 
-  closeBurger()
-}
 
-
+  const toPoint = (link: string) => {
+    return window.location.origin + '#' + link
+  }
 </script>
 
 <style scoped lang="scss">
