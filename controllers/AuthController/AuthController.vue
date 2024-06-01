@@ -76,6 +76,7 @@
     password: yup.string()
               .min(10, rules.minPassword)
               .max(40, rules.maxPassword)
+              .matches(/^(?=.*[0-9])/, rules.number)
               .matches(/^(?=.*[A-Z])/, rules.letter)
               .matches(/^(?=.*[!@#$%^&*])/, rules.symbol)
               .required(rules.required)

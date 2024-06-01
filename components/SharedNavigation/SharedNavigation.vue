@@ -32,8 +32,8 @@
 
   const navigate = (navItem:INavItem) => {
   const currentPageURL = window.location.href;
-  if (currentPageURL !== 'https://on-developer.ru') {
-    window.location.href = `https://on-developer.ru/#${navItem.link}`;
+  if (currentPageURL !== 'http://localhost:3000/') {
+    window.location.href = `http://localhost:3000/#${navItem.link}`;
   } 
   closeBurger()
 }
