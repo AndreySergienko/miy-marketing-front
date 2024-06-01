@@ -35,8 +35,11 @@
 @use "assets/styles/media";
 
 .navigation {
-  border-top: 1px solid var(--color-light-gray);
   padding-top: var(--indent-4xl);
+
+  @include media.media-breakpoint-down(sm) {
+    padding-top: var(--indent-2xl) ;
+  }
 
   &__inner {
     display: flex;
@@ -46,6 +49,8 @@
 
     @include media.media-breakpoint-down(sm) {
       flex-direction: column;
+      gap: var(--indent-2xl);
+      font-size: var(--font-size-s);
     }
 
     a {

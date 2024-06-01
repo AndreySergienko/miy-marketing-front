@@ -13,11 +13,16 @@
   const props = defineProps<ISharedUserboxProps>()
 </script>
 <style scoped lang="scss">
+  @use 'assets/styles/media';
   .user-box {
     cursor: pointer;
     border: 1px solid var(--color-light-gray);
     border-radius: 24px;
-    margin-right: var(--indent-xl);
+    margin-right: var(--indent-l);
+    
+    @include media.media-breakpoint-down(sm) {
+      width: 250px;
+    }
 
     &__inner {
       padding: var(--indent-m) var(--indent-l);

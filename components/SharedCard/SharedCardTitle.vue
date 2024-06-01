@@ -3,12 +3,18 @@
 </template>
 
 <script setup>
+  import { useChannelStore } from "~/store/channel/channel.store";
+
+  const channelStore = useChannelStore();
+  const { channelsAll } = storeToRefs(channelStore);
+
   const props = defineProps({
     title: {
       type:String,
       default: 'Еaque ipsa'
     }
   })
+  onServerPrefetch(channelStore.getAll)
 </script>
 
 <style lang="scss" scoped>

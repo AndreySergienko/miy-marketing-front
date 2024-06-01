@@ -29,6 +29,10 @@
 
     &__form {
       padding: 0 var(--indent-l);
+
+      @include media.media-breakpoint-down(sm) {
+        padding: 0;
+      }
     }
 
   }
