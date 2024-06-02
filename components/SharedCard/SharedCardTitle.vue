@@ -1,21 +1,7 @@
 <template>
-  <h3 class="title">{{ title }}</h3>
+  <h3 class="title"><slot /></h3>
 </template>
 
-<script setup>
-  import { useChannelStore } from "~/store/channel/channel.store";
-
-  const channelStore = useChannelStore();
-  const { channelsAll } = storeToRefs(channelStore);
-
-  const props = defineProps({
-    title: {
-      type:String,
-      default: 'Еaque ipsa'
-    }
-  })
-  onServerPrefetch(channelStore.getAll)
-</script>
 
 <style lang="scss" scoped>
   @use 'assets/styles/media';

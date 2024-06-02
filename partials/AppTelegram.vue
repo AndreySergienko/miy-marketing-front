@@ -18,6 +18,8 @@
             :price= "card.channel.price"
             :people="card.channel.subscribers"
             :clock="card.channel.day"
+            :text="card.channel.description"
+            :title="card.channel.name"
           />
         </div>
       </div>
@@ -30,7 +32,7 @@
   const channelStore = useChannelStore();
   const { channelsAll } = storeToRefs(channelStore);
 
-  onServerPrefetch(channelStore.getAll)
+  useAsyncData(channelStore.getAll)
 </script>
 
 <style scoped lang="scss">
@@ -40,7 +42,7 @@
     margin-top: -50px;
     -webkit-background-clip: content-box;
     background-clip: content-box;
-    
+
     margin-bottom: var(--indent-4xl);
 
     &__inner {

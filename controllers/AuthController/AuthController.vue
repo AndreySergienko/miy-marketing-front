@@ -65,7 +65,7 @@
         .min(8, rules.minName)
         .required(rules.required)
         .label(''),
-    inn: yup.number()
+    inn: yup.string()
         .required(rules.required)
         .label('')
         .test('validateInn', rules.inn, validateInn),

@@ -9,7 +9,7 @@
               <SharedInput name="uniqueBotId" v-model="registrationData.uniqueBotId" type="text" :error="errors.uniqueBotId">Уникальный id
                 <SharedIdbot />
               </SharedInput>
-              <SharedInput name="inn" v-model="registrationData.inn" type="number" :error="errors.inn">ИНН</SharedInput>
+              <SharedInput name="inn" v-model="registrationData.inn" type="text" :error="errors.inn">ИНН</SharedInput>
               <SharedInput name="email" v-model="registrationData.email" type="text" :error="errors.email">Почта</SharedInput>
               <SharedInput name="password" v-model="registrationData.password" :type="showPassword ? 'text' : 'password'" :error="errors.password">Пароль
                 <template #icon>

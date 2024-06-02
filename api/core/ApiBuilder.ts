@@ -19,17 +19,14 @@ export default class ApiBuilder {
   }
 
   public create(getHeaders: () => HeadersInit) {
-      const mapper = this.mapper;
       const domain = this.createBaseUrl()
-      return async <T>(request: FetchRequest, options: FetchOptions): Promise<T> => {
+      return async <T>(request: FetchRequest, options?: FetchOptions): Promise<T> => {
         const url = domain + request
-        console.log('URL', url)
-        console.log('options', options)
         // @ts-ignore
         return $fetch(url, {
           headers: getHeaders(),
           ...options,
-        }).then(mapper.mapDataKeys).catch(useShowError)
+        }).catch(useShowError)
       }
   }
 }

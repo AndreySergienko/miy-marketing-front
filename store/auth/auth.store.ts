@@ -36,7 +36,7 @@ export const useAuthStore = defineStore('global/auth', () => {
     }
 
     /** Удаление сессии пользователя **/
-    async function logout() {
+    function logout() {
       token.value = ''
       const route = useRoute()
       if (route.meta.layout !== 'authentication' || route.path !== '/') return navigateTo('/')
@@ -44,6 +44,7 @@ export const useAuthStore = defineStore('global/auth', () => {
 
     /** Регистрация пользователя **/
     async function registration(data: IRegistrationRequest, isShowGratitude: Ref<boolean>) {
+      data.inn = Number(data.inn)
         try {
             isLoading.value = true
             const response = await authService.registration(data)

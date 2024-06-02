@@ -192,8 +192,8 @@ const submitNewChannel = async () => {
 
 onBeforeMount(() => {
   const channel = channels.value.find((c) => c.id === +id.toString());
-  if (!channel || channel.status === EProfileChannelsItemTypes.MODERATING)
-    return navigateTo("/personal/telegram");
+  // if (!channel || channel.status === EProfileChannelsItemTypes.MODERATING)
+  //   return navigateTo("/personal/telegram");
 
   const category = categories.value.find((c) => c.id === channel.categories[0]);
   selectedCategory.value = category?.value || "";

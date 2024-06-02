@@ -38,7 +38,9 @@ export const useChannelStore = defineStore("global/channel", () => {
   /** Проверить канал **/
   async function check(channelName: string) {
     try {
-      initialChannelData.value = await channelsService.check(channelName);
+      const response = await channelsService.check(channelName);
+      if (!response) return;
+      initialChannelData.value = response
       await navigateTo("/personal/location");
     } catch (e) {
       useShowError(e)
@@ -48,7 +50,8 @@ export const useChannelStore = defineStore("global/channel", () => {
   /** Создать канал **/
   async function create(data: IChannelsRegistrationBody) {
     try {
-      await channelsService.register(data);
+      const response = await channelsService.register(data);
+      if (!response) return;
       await navigateTo("/personal/telegram");
     } catch (e) {
       useShowError(e)
