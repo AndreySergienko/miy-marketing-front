@@ -4,7 +4,9 @@
       <Transition name="modal">
         <div class="modal">
           <div class="modal__inner">
+            <nuxt-icon class="modal__close" name="close" filled @click="emits('close')" />
 
+            <slot />
           </div>
         </div>
       </Transition>
@@ -24,10 +26,49 @@ interface ISharedModalEmits {
 
 const emits = defineEmits<ISharedModalEmits>()
 const props = defineProps<ISharedModalProps>()
+
+onMounted(() => {
+  document.body.classList.add('hidden')
+})
+
+onUnmounted(() => {
+  document.body.classList.remove('hidden')
+})
 </script>
 <style scoped lang="scss">
 .modal {
-  &__inner {}
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  z-index: 10;
+
+  width: 100%;
+  height: 100%;
+  background: #464646;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__inner {
+    padding: var(--indent-xl);
+    position: relative;
+
+    min-width: 200px;
+    min-height: 200px;
+
+    background: #fff;
+  }
+
+  &__close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 36px;
+
+    cursor: pointer;
+  }
 }
 
 .modal-opacity-enter-from {

@@ -55,7 +55,7 @@
 
   const channelStore = useChannelStore();
   const { channelsAll } = storeToRefs(channelStore);
-  const { clearInfoChannel, setInfoChannel, slotId, activeSlots, times } = useBuyChannel()
+  const { clearInfoChannel, setInfoChannel, slotId, times, activeSlots } = useBuyChannel()
 
   const buy = async () => {
     await channelStore.buy(+slotId.value)

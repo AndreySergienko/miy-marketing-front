@@ -27,6 +27,7 @@ export const useCategoriesStore = defineStore("global/categories", () => {
   const getAll = async () => {
     try {
       const data = await categoriesService.getAll();
+      console.log(data)
       categories.value = transform(data);
     } catch (e) {
       console.error(e);

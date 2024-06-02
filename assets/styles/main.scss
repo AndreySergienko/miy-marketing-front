@@ -11,6 +11,14 @@ html{
   scroll-behavior: smooth;
 }
 
+body {
+  position: relative;
+
+  &.hidden {
+    overflow: hidden;
+  }
+}
+
 .container {
   max-width: 2000px;
   width: 100%;
