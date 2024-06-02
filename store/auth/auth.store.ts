@@ -44,7 +44,6 @@ export const useAuthStore = defineStore('global/auth', () => {
 
     /** Регистрация пользователя **/
     async function registration(data: IRegistrationRequest, isShowGratitude: Ref<boolean>) {
-      data.inn = Number(data.inn)
         try {
             isLoading.value = true
             const response = await authService.registration(data)
