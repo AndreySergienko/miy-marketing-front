@@ -25,19 +25,15 @@
           </div>
           <nuxt-icon class="card__calendar-icon" name="calendar"/>
           </div>
-      <SharedButton  class="card__button" color="blue" :is-disabled="isDisabledBuy" @click="emits('buy')">
-        Выбрать дату
-        <nuxt-icon class="card__button-icon" name="chevron" filled />
-      </SharedButton>
+      <slot name="actions" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
   import {convertUtcDateToDate} from "~/utils/date";
-  import type {ISharedCardEmits, ISharedCardProps} from "~/components/SharedCard/SharedCard.types";
-  
-  const emits = defineEmits<ISharedCardEmits>()
+  import type {ISharedCardProps} from "~/components/SharedCard/SharedCard.types";
+
   const props = defineProps<ISharedCardProps>()
 
   const avatar = computed<string>(() => {
@@ -175,43 +171,6 @@
           font-size: var(--font-size-m);
         }
       }
-    }
-
-    &__button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      width: 100%;
-      padding: var(--indent-m) 0;
-      gap: var(--indent-m);
-
-      font-size: var(--font-size-m);
-
-      border: 1px solid transparent;
-      border-radius: 10px;
-      color: var(--color-white);
-      background-color: var(--color-blue);
-
-      @include media.media-breakpoint-down(sm) {
-          font-size: var(--font-size-s);
-          gap: var(--indent-s);
-        }
-
-      &-icon {
-        font-size: var(--font-size-m);
-
-        @include media.media-breakpoint-down(sm) {
-          font-size: var(--font-size-s);
-        }
-      }
-    }
-    &__help {
-      text-align: center;
-      font-size: var(--font-size-m);
-      font-weight: var(--font-weight-semi-bold);
-      color: var(--color-blue);
-      
     }
   }
 </style>

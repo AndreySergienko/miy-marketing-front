@@ -3,8 +3,4 @@ export interface ISharedCardProps {
   subscribers: number;
   date: string;
   avatar: string;
-  isDisabledBuy: boolean;
-}
-export interface ISharedCardEmits {
-  (event: 'buy'): unknown
 }

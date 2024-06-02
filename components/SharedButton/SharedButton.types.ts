@@ -3,7 +3,7 @@ export type TSizeBtn = 'l' | 'm' | 's' | 'xl'
 
 
 export interface ISharedButtonProps {
-  size: TSizeBtn;
+  size?: TSizeBtn;
   color: TColorBtn;
   isDisabled?: boolean;
   isLoading?: boolean;
