@@ -42,9 +42,8 @@
             @select="slotId = $event"
           />
         <SharedButton :is-disabled="!slotId || isLoading" :is-loading="isLoading" class="modal-telegram__btn" color="blue" @click="buy">Купить</SharedButton>
-      </div>
+      </div> 
     </SharedModal>
-
     <div class="more">
       <p class="more__text" @click="incrementPage">Смотреть еще</p>
       <nuxt-icon class="more__icon" name="arrow" filled />
@@ -56,6 +55,7 @@
   import {useBuyChannel} from "~/composobles/useBuyChannel";
   import {usePagination} from "~/composobles/usePagination";
   import {useCategoriesStore} from "~/store/categories/categories.store";
+
 
   const channelStore = useChannelStore();
   const { isLoading } = storeToRefs(channelStore)

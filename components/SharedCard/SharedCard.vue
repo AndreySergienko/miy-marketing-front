@@ -25,10 +25,16 @@
           </div>
           <nuxt-icon class="card__calendar-icon" name="calendar"/>
           </div>
-      <SharedButton class="card__button" color="blue" :is-disabled="isDisabledBuy" @click="emits('buy')">
+      <SharedButton v-if="isAuth" class="card__button" color="blue" :is-disabled="isDisabledBuy" @click="emits('buy')">
         Выбрать дату
         <nuxt-icon class="card__button-icon" name="chevron" filled />
       </SharedButton>
+      <div v-else-if="isAuth && permissions">
+        Нет свободный слотов
+      </div>
+      <div v-else="!isAuth" class="card__help">
+        Авторизируйтесь <br> и подтвердите почту
+      </div>
     </div>
   </div>
 </template>
@@ -36,6 +42,14 @@
 <script setup lang="ts">
   import {convertUtcDateToDate} from "~/utils/date";
   import type {ISharedCardEmits, ISharedCardProps} from "~/components/SharedCard/SharedCard.types";
+  import { useAuthStore } from "~/store/auth/auth.store";
+  import { useUserStore } from "~/store/user/user.store";
+
+  const authStore = useAuthStore();
+  const {isAuth} = storeToRefs(authStore)
+
+  const userStore = useUserStore();
+  const {permissions} = storeToRefs(userStore)
 
   const emits = defineEmits<ISharedCardEmits>()
   const props = defineProps<ISharedCardProps>()
@@ -205,6 +219,13 @@
           font-size: var(--font-size-s);
         }
       }
+    }
+    &__help {
+      text-align: center;
+      font-size: var(--font-size-m);
+      font-weight: var(--font-weight-semi-bold);
+      color: var(--color-blue);
+      
     }
   }
 </style>
