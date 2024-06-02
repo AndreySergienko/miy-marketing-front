@@ -25,10 +25,10 @@
           </div>
           <nuxt-icon class="card__calendar-icon" name="calendar"/>
           </div>
-      <button class="card__button" @click="emits('buy')">
+      <SharedButton class="card__button" color="blue" :is-disabled="isDisabledBuy" @click="emits('buy')">
         Выбрать дату
         <nuxt-icon class="card__button-icon" name="chevron" filled />
-      </button>
+      </SharedButton>
     </div>
   </div>
 </template>

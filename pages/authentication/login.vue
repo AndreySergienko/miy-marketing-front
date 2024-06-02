@@ -20,7 +20,7 @@
                     <NuxtIcon name="lock" filled/>
                   </div>
                   <div class="btn__login">
-                    <SharedButton color="blue" size="l" :is-disabled="!meta.valid" @click="sendLogin" :is-loading="isLoading">Войти</SharedButton >
+                    <SharedButton color="blue" size="l" :is-disabled="!meta.valid || isLoading" @click="sendLogin" :is-loading="isLoading">Войти</SharedButton >
                   </div>
                 </VeeForm>
             </template>

@@ -37,7 +37,7 @@ onUnmounted(() => {
 </script>
 <style scoped lang="scss">
 .modal {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
 
@@ -45,14 +45,14 @@ onUnmounted(() => {
 
   width: 100%;
   height: 100%;
-  background: #464646;
+  background: rgba(0, 0, 0, .55);
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   &__inner {
-    padding: var(--indent-xl);
+    padding: var(--indent-3xl);
     position: relative;
 
     min-width: 200px;
@@ -68,6 +68,7 @@ onUnmounted(() => {
     font-size: 36px;
 
     cursor: pointer;
+    z-index: 12;
   }
 }
 

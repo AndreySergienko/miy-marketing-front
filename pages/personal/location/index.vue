@@ -23,20 +23,21 @@
               :selected="newChannel.day"
               @select="newChannel.day = $event"
             />
-            <SharedMultiselect
-              title="Слоты"
-              :selected="newChannel.slots"
-              :options="shownSlots"
-              @select="handleSlotsSelect"
-              @unselect="handleSlotsUnselect"
+            <SharedSelect
+              title="Интервал"
+              :selected="`${newChannel.formatChannel}`"
+              :options="intervals"
+              @select="newChannel.formatChannel = +$event"
             />
+
             <div class="location__calendar-item">
-              <SharedSelect
+              <SharedMultiselect
+                title="Слоты"
                 class="location__calendar-item-interval"
-                title="Интервал"
-                :selected="`${newChannel.formatChannel}`"
-                :options="intervals"
-                @select="newChannel.formatChannel = +$event"
+                :selected="newChannel.slots"
+                :options="shownSlots"
+                @select="handleSlotsSelect"
+                @unselect="handleSlotsUnselect"
               />
               <SharedInput
                 name="price"

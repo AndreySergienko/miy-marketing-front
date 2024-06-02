@@ -16,8 +16,10 @@
             v-for="card in channelsAll"
             :key="card.channel.id"
             :price= "card.channel.price"
-            :people="card.channel.subscribers"
-            :clock="card.channel.day"
+            :subscribers="card.channel.subscribers"
+            :date="card.channel.day"
+            :avatar="card.channel.avatar"
+            :is-disabled-buy="!card.slots.length"
             @buy="setInfoChannel(card.slots)"
           >
             <template #title>
@@ -32,13 +34,15 @@
     </div>
 
     <SharedModal v-if="activeSlots.length" @close="clearInfoChannel">
-      <SharedSelect
-        title="Выбрать время"
-        :selected="slotId"
-        :options="times"
-        @select="slotId = $event"
-      />
-      <SharedButton @click="buy">Купить</SharedButton>
+      <div class="modal-telegram">
+          <SharedSelect
+            title="Выбрать время"
+            :selected="slotId"
+            :options="times"
+            @select="slotId = $event"
+          />
+        <SharedButton :is-disabled="!slotId || isLoading" :is-loading="isLoading" class="modal-telegram__btn" color="blue" @click="buy">Купить</SharedButton>
+      </div>
     </SharedModal>
 
     <div class="more">
@@ -54,6 +58,7 @@
   import {useCategoriesStore} from "~/store/categories/categories.store";
 
   const channelStore = useChannelStore();
+  const { isLoading } = storeToRefs(channelStore)
   const { channelsAll } = storeToRefs(channelStore);
   const { clearInfoChannel, setInfoChannel, slotId, times, activeSlots } = useBuyChannel()
 
@@ -143,6 +148,18 @@
 
      &__icon {
        font-size: var(--font-size-m);
+     }
+   }
+
+   .modal-telegram {
+     width: 500px;
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+
+     &__btn {
+       margin: 0 auto;
+       width: 150px;
      }
    }
 </style>

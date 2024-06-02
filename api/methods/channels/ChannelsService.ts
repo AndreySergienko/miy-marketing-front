@@ -24,7 +24,7 @@ export default class ChannelsService extends ApiService {
   }
 
   async buy(slotId: number) {
-    return await this.$authApi(this.apiUrl + 'buy', {
+    return await this.$authApi<{ message: string }>(this.apiUrl + 'buy', {
       method: 'post',
       body: {
         slotId

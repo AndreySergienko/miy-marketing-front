@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="btn__registration">
-              <SharedButton size="l" color="blue" :disabled="!meta.valid || !isChecked" @click="sendRegistration" :is-loading="isLoading">Создать</SharedButton>
+              <SharedButton size="l" color="blue" :disabled="!meta.valid || !isChecked || isLoading" @click="sendRegistration" :is-loading="isLoading">Создать</SharedButton>
             </div>
           </VeeForm>
         </template>
