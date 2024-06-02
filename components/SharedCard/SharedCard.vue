@@ -1,20 +1,20 @@
 <template>
   <div class="card">
     <div class="card__inner">
-      <img class="card__img" src="../../public/tg.png" alt="тг" />
-      <SharedCardTitle class="card__title">{{ title }}</SharedCardTitle>
+      <img class="card__img" :src="avatar" alt="Аватар" />
+      <slot name="title" />
       <div class="card__price">{{ price }}</div>
-      <SharedCardText>{{ text }}</SharedCardText>
+      <slot name="description" />
       <div class="card__icons">
         <div class="card__icon">
           <div class="card__icon-text">
-            {{ people}}
+            {{ subscribers}}
           </div>
           <nuxt-icon class="card__icon-img__people" name="people"/>
         </div>
         <div class="card__icon">
           <div class="card__icon-text">
-            {{ convertUtcDateToDate(+clock) }}
+            {{ convertUtcDateToDate(+date) }}
           </div>
           <nuxt-icon class="card__icon-img__clock" name="clock"/>
         </div>
@@ -25,27 +25,25 @@
           </div>
           <nuxt-icon class="card__calendar-icon" name="calendar"/>
           </div>
-      <button class="card__button">
-        Купить
+      <SharedButton class="card__button" color="blue" :is-disabled="isDisabledBuy" @click="emits('buy')">
+        Выбрать дату
         <nuxt-icon class="card__button-icon" name="chevron" filled />
-      </button>
+      </SharedButton>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-  import SharedCardTitle from './SharedCardTitle.vue';
-  import SharedCardText from './SharedCardText.vue'
   import {convertUtcDateToDate} from "~/utils/date";
+  import type {ISharedCardEmits, ISharedCardProps} from "~/components/SharedCard/SharedCard.types";
 
-  const props = defineProps({
-    price: Number,
-    people: Number,
-    clock: String,
-    text: String,
-    title: String,
+  const emits = defineEmits<ISharedCardEmits>()
+  const props = defineProps<ISharedCardProps>()
+
+  const avatar = computed<string>(() => {
+    if (props.avatar) return props.avatar;
+    return '../../public/tg.png'
   })
-
 </script>
 
 <style lang="scss" scoped>

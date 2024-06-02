@@ -6,23 +6,28 @@ import type {
 } from "~/api/methods/channels/channels.types";
 import ChannelsService from "~/api/methods/channels/ChannelsService";
 import {useShowError} from "~/composobles/useShowError";
+import {useAlertStore} from "~/store/alert/alert.store";
 
 export const useChannelStore = defineStore("global/channel", () => {
+  const alertStore = useAlertStore()
   const channelsService = new ChannelsService();
 
   /** Список каналов **/
   const channels = ref<IChannelsListItem[]>([]);
   const channelsAll = ref<IGetAll[]>([]);
   const initialChannelData = ref<IInitialChannelData | null>(null);
+  const isLoading = ref<boolean>(false)
 
   /** Получение всего списка каналов **/
-  async function getAll() {
+  async function getAll(url?: string) {
     try {
-      channelsAll.value = await channelsService.getAll();
+      const channelList = await channelsService.getAll(url);
+      channelsAll.value.push(...channelList)
     } catch (e) {
       useShowError(e)
     }
   }
+
   /** Получить список каналов для текущего юзера **/
   async function getMy() {
     try {
@@ -33,7 +38,17 @@ export const useChannelStore = defineStore("global/channel", () => {
   }
 
   /** Купить канал **/
-  async function buy() {}
+  async function buy(slotId: number) {
+    try {
+      isLoading.value = true
+      const response = await channelsService.buy(slotId)
+      if (!response) return;
+      isLoading.value = false
+      alertStore.show({ type: 'success', title: response.message })
+    } catch (e) {
+      useShowError(e)
+    }
+  }
 
   /** Проверить канал **/
   async function check(channelName: string) {
@@ -70,6 +85,7 @@ export const useChannelStore = defineStore("global/channel", () => {
     buy,
     create,
     getMy,
-    getAll
+    getAll,
+    isLoading,
   };
 });

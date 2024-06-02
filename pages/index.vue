@@ -1,9 +1,9 @@
 <template>
   <div class="main">
-    <div class="categories">
+    <div class="categories" v-if="categoriesStore.categories.length ">
       <div class="container">
         <div class="categories__inner">
-          <SharedCategories />
+          <SharedCategories :active-categories="categoriesStore.activeCategories" @set-category="categoriesStore.updateActiveCategories" />
         </div>
       </div>
     </div>
@@ -17,10 +17,6 @@
     <div class="tg">
       <AppTelegram />
     </div>
-    <div class="more">
-      <p class="more__text">Смотреть еще</p>
-      <nuxt-icon class="more__icon" name="arrow" filled />
-    </div>
     <div class="FAQ">
       <AppFAQ />
     </div>
@@ -32,12 +28,15 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
   import AppBenefit from '../partials/AppBenefit.vue';
   import AppContacts from '../partials/AppContacts.vue';
   import AppFAQ from '../partials/AppFAQ.vue';
   import AppIntro from '../partials/AppIntro.vue';
   import AppTelegram from '../partials/AppTelegram.vue';
+  import {useCategoriesStore} from "~/store/categories/categories.store";
+
+  const categoriesStore = useCategoriesStore()
 </script>
 
 <style lang="scss" scoped>
@@ -70,29 +69,6 @@
 
     @include media.media-breakpoint-down(sm) {
       display: none;
-    }
-  }
-
-  .more {
-    margin-bottom: 100px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-
-    &__text {
-      font-size: var(--font-size-m);
-      font-weight: var(--font-weight-medium);
-      margin-right: var(--indent-s);
-
-      @include media.media-breakpoint-down(sm) {
-        font-size: var(--font-size-s);
-      }
-    }
-
-    &__icon {
-      font-size: var(--font-size-m);
     }
   }
 </style>

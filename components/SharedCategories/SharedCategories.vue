@@ -4,11 +4,13 @@
       <div v-if="isOpen" class="categories__list">
         <h3 class="categories__list-title">Все категории</h3>
         <div class="categories__items">
-          <div class="categories__item"
-            v-for="(categoriesItem, id) in categoriesList" :key="id"
+          <div
+            v-for="(categoriesItem, id) in categoriesList" :key="categoriesItem.title + id"
+            :class="['categories__item', 'active' && activeCategories[id]]"
+            @click="emit('setCategory', categoriesItem.id)"
           >
-            <div class="categories__item-text">{{ categoriesItem.text }}</div>
-            <div class="categories__item-number">{{ categoriesItem.number }}</div>
+            <div class="categories__item-text">{{ categoriesItem.title }}</div>
+            <div v-if="categoriesItem.count" class="categories__item-number">{{ categoriesItem.count }}</div>
           </div>
         </div>
       </div>
@@ -22,12 +24,14 @@
   </div>
 </template>
 
-<script setup>
-  import {categoriesList} from './SharedCategories.data'
-  import {ref} from 'vue'
+<script setup lang="ts">
+import type {ISharedCategoriesEmits, ISharedCategoriesProps} from "~/components/SharedCategories/SharedCategories.type";
 
-  const isOpen = ref(false)
-  const iconName = ref('arrow-down')
+  const props = defineProps<ISharedCategoriesProps>()
+  const emit = defineEmits<ISharedCategoriesEmits>()
+
+  const isOpen = ref<boolean>(false)
+  const iconName = ref<string>('arrow-down')
 
   const showCategories = () => {
     isOpen.value = !isOpen.value
@@ -57,7 +61,7 @@
       @include media.media-breakpoint-down(l) {
         padding: 0 var(--indent-2xl);
       }
-      
+
       @include media.media-breakpoint-down(sm) {
           padding: 0 var(--indent-l);
         }
@@ -99,6 +103,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      cursor: pointer;
 
       &-text {
         font-size: var(--font-size-m);

@@ -23,16 +23,30 @@ export default class ChannelsService extends ApiService {
     });
   }
 
-  async getAll(): Promise<IGetAll[]> {
-    return await this.$api<IGetAll[]>(
-      this.apiUrl + "all"
+  async buy(slotId: number) {
+    return await this.$authApi<{ message: string }>(this.apiUrl + 'buy', {
+      method: 'post',
+      body: {
+        slotId
+      }
+    })
+  }
+
+  async getAll(url?: string): Promise<IGetAll[]> {
+    const fullUrl = url ? this.apiUrl + 'all' + url : this.apiUrl + 'all'
+    return await this.$api<IGetAll[]>(fullUrl, {
+        method: 'get'
+      }
     );
   }
 
   async getMy(): Promise<IChannelsListItem[]> {
     const data = await this.$authApi<IApiChannelsListItem[]>(
-      this.apiUrl + "my"
-    );  
+      this.apiUrl + "my",
+      {
+        method: 'get'
+      }
+    );
 
     return data.map((item) => ({
       id: item.id,
