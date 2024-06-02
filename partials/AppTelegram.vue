@@ -18,21 +18,61 @@
             :price= "card.channel.price"
             :people="card.channel.subscribers"
             :clock="card.channel.day"
-            :text="card.channel.description"
-            :title="card.channel.name"
-          />
+            @buy="setInfoChannel(card.slots)"
+          >
+            <template #title>
+              <SharedCardTitle>{{ card.channel.name }}</SharedCardTitle>
+            </template>
+            <template #description>
+              <SharedCardText>{{ card.channel.description }}</SharedCardText>
+            </template>
+          </SharedCard>
         </div>
       </div>
+    </div>
+
+    <SharedModal v-if="activeSlots.length" @close="clearInfoChannel">
+      <SharedSelect
+        title="Выбрать время"
+        :selected="slotId"
+        :options="times"
+        @select="slotId = $event"
+      />
+      <SharedButton @click="buy">Купить</SharedButton>
+    </SharedModal>
+
+    <div class="more">
+      <p class="more__text" @click="incrementPage">Смотреть еще</p>
+      <nuxt-icon class="more__icon" name="arrow" filled />
     </div>
   </div>
 </template>
 <script setup lang="ts">
   import { useChannelStore } from "~/store/channel/channel.store";
+  import {useBuyChannel} from "~/composobles/useBuyChannel";
+  import {usePagination} from "~/composobles/usePagination";
+  import {useCategoriesStore} from "~/store/categories/categories.store";
 
   const channelStore = useChannelStore();
   const { channelsAll } = storeToRefs(channelStore);
+  const { clearInfoChannel, setInfoChannel, slotId, activeSlots, times } = useBuyChannel()
 
-  useAsyncData(channelStore.getAll)
+  const buy = async () => {
+    await channelStore.buy(+slotId.value)
+    clearInfoChannel()
+  }
+
+  /** pagination **/
+  const { paginationQuery, incrementPage } = usePagination()
+  /** categories **/
+  const categoriesStore = useCategoriesStore()
+
+  watch([paginationQuery, categoriesStore.getQueryCategories], async () => {
+    const fullPath = categoriesStore.getQueryCategories ? paginationQuery.value + '&' + categoriesStore.getQueryCategories  : paginationQuery.value
+    await channelStore.getAll(fullPath)
+  }, { deep: true })
+
+  useAsyncData(() => channelStore.getAll(paginationQuery.value))
 </script>
 
 <style scoped lang="scss">
@@ -82,4 +122,27 @@
       grid-template-columns: repeat(1, 1fr);
     }
   }
+
+   .more {
+     margin-bottom: 100px;
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     cursor: pointer;
+
+     &__text {
+       font-size: var(--font-size-m);
+       font-weight: var(--font-weight-medium);
+       margin-right: var(--indent-s);
+
+       @include media.media-breakpoint-down(sm) {
+         font-size: var(--font-size-s);
+       }
+     }
+
+     &__icon {
+       font-size: var(--font-size-m);
+     }
+   }
 </style>

@@ -16,13 +16,15 @@ export const useChannelStore = defineStore("global/channel", () => {
   const initialChannelData = ref<IInitialChannelData | null>(null);
 
   /** Получение всего списка каналов **/
-  async function getAll() {
+  async function getAll(url?: string) {
     try {
-      channelsAll.value = await channelsService.getAll();
+      const channelList = await channelsService.getAll(url);
+      channelsAll.value.push(...channelList)
     } catch (e) {
       useShowError(e)
     }
   }
+
   /** Получить список каналов для текущего юзера **/
   async function getMy() {
     try {
@@ -33,7 +35,14 @@ export const useChannelStore = defineStore("global/channel", () => {
   }
 
   /** Купить канал **/
-  async function buy() {}
+  async function buy(slotId: number) {
+    try {
+      const response = await channelsService.buy(slotId)
+      console.log(response)
+    } catch (e) {
+      useShowError(e)
+    }
+  }
 
   /** Проверить канал **/
   async function check(channelName: string) {
@@ -70,6 +79,6 @@ export const useChannelStore = defineStore("global/channel", () => {
     buy,
     create,
     getMy,
-    getAll
+    getAll,
   };
 });
