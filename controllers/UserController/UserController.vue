@@ -20,7 +20,7 @@
   const update = async () => {
     if (!user.value) return;
     const userRequest: IUserRequest = {
-      inn: Number(user.value.inn),
+      inn:user.value.inn,
       fio: user.value.fio,
       cardNumber: user.value.cardNumber,
       email: user.value.email,

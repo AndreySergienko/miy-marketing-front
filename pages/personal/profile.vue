@@ -26,7 +26,7 @@
                         <SharedInput
                           name="inn"
                           v-model="userData.inn"
-                          type="number"
+                          type="text"
                           :error="errors.inn"
                         >
                           ИНН
@@ -79,7 +79,6 @@
 
 <script setup>
 import UserController from '~/controllers/UserController/UserController.vue';
-import {useUserStore} from '~/store/user/user.store';
   definePageMeta({
     layout: 'personal'
   })

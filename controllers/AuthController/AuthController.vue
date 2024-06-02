@@ -65,7 +65,7 @@
         .min(8, rules.minName)
         .required(rules.required)
         .label(''),
-    inn: yup.number()
+    inn: yup.string()
         .required(rules.required)
         .label('')
         .test('validateInn', rules.inn, validateInn),
@@ -76,6 +76,7 @@
     password: yup.string()
               .min(10, rules.minPassword)
               .max(40, rules.maxPassword)
+              .matches(/^(?=.*[0-9])/, rules.number)
               .matches(/^(?=.*[A-Z])/, rules.letter)
               .matches(/^(?=.*[!@#$%^&*])/, rules.symbol)
               .required(rules.required)

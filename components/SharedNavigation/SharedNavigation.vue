@@ -29,8 +29,7 @@
       checkbox.checked = false;
     }
   }
-
-
+  
   const toPoint = (link: string) => {
     return window.location.origin + '#' + link
   }

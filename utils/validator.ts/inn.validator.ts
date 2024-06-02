@@ -1,6 +1,6 @@
 // @ts-nocheck
 export function validateInn(inn, error) {
-  let result = false;
+  var result = false;
   if (typeof inn === 'number') {
     inn = inn.toString();
   } else if (typeof inn !== 'string') {
@@ -19,7 +19,7 @@ export function validateInn(inn, error) {
     var checkDigit = function (inn, coefficients) {
       var n = 0;
       for (var i in coefficients) {
-        n += coefficients[i] * inn[i];
+        n += coefficients[i] * parseInt(inn[i], 10);
       }
       return parseInt(n % 11 % 10);
     };
@@ -44,4 +44,4 @@ export function validateInn(inn, error) {
     }
   }
   return result;
-}
+} 
