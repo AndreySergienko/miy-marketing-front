@@ -19,10 +19,14 @@ export const useChannelStore = defineStore("global/channel", () => {
   const isLoading = ref<boolean>(false)
 
   /** Получение всего списка каналов **/
-  async function getAll(url?: string) {
+  async function getAll({ url, isMounted }: { url: string , isMounted?: boolean }) {
     try {
       const channelList = await channelsService.getAll(url);
-      channelsAll.value.push(...channelList)
+      if (isMounted) {
+        channelsAll.value = channelList
+      } else {
+        channelsAll.value.push(...channelList)
+      }
     } catch (e) {
       useShowError(e)
     }

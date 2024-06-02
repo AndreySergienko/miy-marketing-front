@@ -19,14 +19,20 @@
             :subscribers="card.channel.subscribers"
             :date="card.channel.day"
             :avatar="card.channel.avatar"
-            :is-disabled-buy="!card.slots.length"
-            @buy="setInfoChannel(card.slots)"
           >
             <template #title>
               <SharedCardTitle>{{ card.channel.name }}</SharedCardTitle>
             </template>
             <template #description>
               <SharedCardText>{{ card.channel.description }}</SharedCardText>
+            </template>
+            <template #actions>
+              <div v-if="!permissions?.CAN_BUY">Авторизуйтесь и добавьте почту</div>
+              <div v-else-if="!card.slots.length">Нет доступных слотов</div>
+              <SharedButton v-else class="action__button" color="blue" @click="setInfoChannel(card.slots)">
+                Выбрать дату
+                <nuxt-icon class="action__button-icon" name="chevron" filled />
+              </SharedButton>
             </template>
           </SharedCard>
         </div>
@@ -56,9 +62,20 @@
   import {useBuyChannel} from "~/composobles/useBuyChannel";
   import {usePagination} from "~/composobles/usePagination";
   import {useCategoriesStore} from "~/store/categories/categories.store";
+  import {useUserStore} from "~/store/user/user.store";
 
   const channelStore = useChannelStore();
+  const userStore = useUserStore()
+
+  /** pagination **/
+  const { paginationQuery, incrementPage } = usePagination()
+  /** categories **/
+  const categoriesStore = useCategoriesStore()
+
+
+  const { permissions } = storeToRefs(userStore)
   const { isLoading } = storeToRefs(channelStore)
+  const { getQueryCategories } = storeToRefs(categoriesStore)
   const { channelsAll } = storeToRefs(channelStore);
   const { clearInfoChannel, setInfoChannel, slotId, times, activeSlots } = useBuyChannel()
 
@@ -67,17 +84,12 @@
     clearInfoChannel()
   }
 
-  /** pagination **/
-  const { paginationQuery, incrementPage } = usePagination()
-  /** categories **/
-  const categoriesStore = useCategoriesStore()
-
-  watch([paginationQuery, categoriesStore.getQueryCategories], async () => {
-    const fullPath = categoriesStore.getQueryCategories ? paginationQuery.value + '&' + categoriesStore.getQueryCategories  : paginationQuery.value
-    await channelStore.getAll(fullPath)
+  watch([paginationQuery, getQueryCategories], async () => {
+    const fullPath = getQueryCategories.value ? paginationQuery.value + '&' + getQueryCategories.value  : paginationQuery.value
+    await channelStore.getAll({ url: fullPath })
   }, { deep: true })
 
-  useAsyncData(() => channelStore.getAll(paginationQuery.value))
+  useAsyncData(() => channelStore.getAll({ url: paginationQuery.value, isMounted: true }))
 </script>
 
 <style scoped lang="scss">
@@ -160,6 +172,36 @@
      &__btn {
        margin: 0 auto;
        width: 150px;
+     }
+   }
+
+   .action__button {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+
+     width: 100%;
+     padding: var(--indent-m) 0;
+     gap: var(--indent-m);
+
+     font-size: var(--font-size-m);
+
+     border: 1px solid transparent;
+     border-radius: 10px;
+     color: var(--color-white);
+     background-color: var(--color-blue);
+
+     @include media.media-breakpoint-down(sm) {
+       font-size: var(--font-size-s);
+       gap: var(--indent-s);
+     }
+
+     &-icon {
+       font-size: var(--font-size-m);
+
+       @include media.media-breakpoint-down(sm) {
+         font-size: var(--font-size-s);
+       }
      }
    }
 </style>

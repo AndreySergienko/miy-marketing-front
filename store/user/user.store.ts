@@ -23,14 +23,16 @@ export const useUserStore = defineStore("global/user", () => {
   async function getMe() {
     try {
       const response = await userService.getMe();
-      if (!response) return;
+      if (!response) {
+        authStore.logout()
+        return
+      }
       user.value = response;
       for (let i = 0; i < user.value.permissions.length; i++) {
         const permission = user.value.permissions[i]
         permissions.value[permission] = permission;
       }
     } catch (e) {
-      authStore.logout()
       useShowError(e)
     }
   }
