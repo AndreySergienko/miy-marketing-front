@@ -46,7 +46,7 @@
                         <h3 class="personal__card-title">Привязанная карта</h3>
                         <div class="personal__card-form">
                           <SharedInput
-                            name="card"
+                            name="cardNumber"
                             v-model="userData.cardNumber"
                             type="text"
                             :error="errors.cardNumber"

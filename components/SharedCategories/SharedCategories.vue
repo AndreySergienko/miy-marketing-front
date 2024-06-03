@@ -5,19 +5,19 @@
         <h3 class="categories__list-title">Все категории</h3>
         <div class="categories__items">
           <div
-            v-for="(categoriesItem, id) in categoriesList" :key="categoriesItem.title + id"
+            v-for="(categories, id) in categoriesList" :key="categories.title + id"
             :class="['categories__item', 'active' && activeCategories[id]]"
-            @click="emit('setCategory', categoriesItem.id)"
+            @click="emit('setCategory', categories.id)"
           >
-            <div class="categories__item-text">{{ categoriesItem.title }}</div>
-            <div v-if="categoriesItem.count" class="categories__item-number">{{ categoriesItem.count }}</div>
+            <div class="categories__item-text">{{ categories.title }}</div>
+            <div v-if="categories.count" class="categories__item-number">{{ categories.count }}</div>
           </div>
         </div>
       </div>
       <div class="categories__button">
         <button @click="showCategories" class="categories__button-text">
           Категории
-          <nuxt-icon calss="categories__button-icon" :name="iconName" filled></nuxt-icon>
+          <nuxt-icon class="categories__button-icon" :name="iconName" filled></nuxt-icon>
         </button>
       </div>
     </div>

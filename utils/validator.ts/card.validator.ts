@@ -1,22 +1,18 @@
-export function validateCardNumber(number) {
-  var regex = new RegExp("^[0-9]{16}$");
-  if (!regex.test(number))
-      return false;
-
-  return luhnCheck(number);
-}
-
-function luhnCheck(val) {
-  var sum = 0;
-  for (var i = 0; i < val.length; i++) {
-      var intVal = parseInt(val.substr(i, 1));
-      if (i % 2 == 0) {
-          intVal *= 2;
-          if (intVal > 9) {
-              intVal = 1 + (intVal % 10);
-          }
-      }
-      sum += intVal;
+export function validateCardNumber(inputNum) {
+  var digit, digits, flag, sum, _i, _len;
+  flag = true;
+  sum = 0;
+  digits = (inputNum + '').split('').reverse();
+  for (_i = 0, _len = digits.length; _i < _len; _i++) {
+    digit = digits[_i];
+    digit = parseInt(digit, 10);
+    if ((flag = !flag)) {
+      digit *= 2;
+    }
+    if (digit > 9) {
+      digit -= 9;
+    }
+    sum += digit;
   }
-  return (sum % 10) == 0;
-}
+  return sum % 10 === 0;
+};

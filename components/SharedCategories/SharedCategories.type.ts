@@ -2,7 +2,7 @@ import type {ICategoriesItem} from "~/api/methods/categories/categories.types";
 
 export interface ISharedCategoriesProps {
   activeCategories: Record<string, string>;
-  categoriesList: ICategoriesItem[]
+  categoriesList: ICategoriesItem[];
 }
 
 export interface ISharedCategoriesEmits {
