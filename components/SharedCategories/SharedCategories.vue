@@ -5,12 +5,12 @@
         <h3 class="categories__list-title">Все категории</h3>
         <div class="categories__items">
           <div
-            v-for="(categories, id) in categoriesList" :key="categories.title + id"
+            v-for="(categoriesItem, id) in categoriesList" :key="categoriesItem.title + id"
             :class="['categories__item', 'active' && activeCategories[id]]"
-            @click="emit('setCategory', categories.id)"
+            @click="emit('setCategory', categoriesItem.id)"
           >
-            <div class="categories__item-text">{{ categories.title }}</div>
-            <div v-if="categories.count" class="categories__item-number">{{ categories.count }}</div>
+            <div class="categories__item-text">{{ categoriesItem.title }}</div>
+            <div v-if="categoriesItem.count" class="categories__item-number">{{ categoriesItem.count }}</div>
           </div>
         </div>
       </div>

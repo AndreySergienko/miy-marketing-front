@@ -1,11 +1,10 @@
 <template>
   <div class="main">
-    <div class="categories">
+    <div class="categories" v-if="categoriesStore.categories.length ">
       <div class="container">
         <div class="categories__inner">
           <SharedCategories
-          :active-categories="categoriesStore.activeCategories"
-          :categories-list="categories"  
+          :active-categories="categoriesStore.activeCategories" 
           @set-category="categoriesStore.updateActiveCategories" />
         </div>
       </div>
@@ -40,7 +39,6 @@
   import {useCategoriesStore} from "~/store/categories/categories.store";
 
   const categoriesStore = useCategoriesStore()
-  const {categories} = useCategoriesStore()
   
 </script>
 
