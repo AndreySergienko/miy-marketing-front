@@ -3,7 +3,10 @@
     <div class="categories" v-if="categoriesStore.categories.length ">
       <div class="container">
         <div class="categories__inner">
-          <SharedCategories :active-categories="categoriesStore.activeCategories" @set-category="categoriesStore.updateActiveCategories" />
+          <SharedCategories 
+          :active-categories="categoriesStore.activeCategories" 
+          :categories-list="categories"
+          @set-category="categoriesStore.updateActiveCategories"/>
         </div>
       </div>
     </div>
@@ -37,6 +40,12 @@
   import {useCategoriesStore} from "~/store/categories/categories.store";
 
   const categoriesStore = useCategoriesStore()
+  const {categories, getAll} = useCategoriesStore()
+
+  onMounted(() => {
+    getAll()
+  })
+  
 </script>
 
 <style lang="scss" scoped>

@@ -6,5 +6,6 @@ export interface ISharedCategoriesProps {
 }
 
 export interface ISharedCategoriesEmits {
-  (event: 'setCategory', id: number): unknown
+  (event: 'setCategory', id: number): unknown,
+  (event: 'getCategoriesAll', categories:ICategoriesItem): unknown
 }
