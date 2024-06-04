@@ -1,13 +1,11 @@
 <template>
   <div class="main">
     <div class="categories" v-if="categoriesStore.categories.length ">
-      <div class="container">
-        <div class="categories__inner">
-          <SharedCategories 
-          :active-categories="categoriesStore.activeCategories" 
-          :categories-list="categories"
-          @set-category="categoriesStore.updateActiveCategories"/>
-        </div>
+      <div class="categories__inner">
+        <SharedCategories 
+        :active-categories="categoriesStore.activeCategories" 
+        :categories-list="categories"
+        @set-category="categoriesStore.updateActiveCategories"/>
       </div>
     </div>
     <div class="logo" />
@@ -40,12 +38,13 @@
   import {useCategoriesStore} from "~/store/categories/categories.store";
 
   const categoriesStore = useCategoriesStore()
-  const {categories, getAll} = useCategoriesStore()
+  const {categories} = storeToRefs(categoriesStore)
+  const {getAll} = useCategoriesStore()
 
   onMounted(() => {
-    getAll()
-  })
-  
+      getAll()
+    }
+  )
 </script>
 
 <style lang="scss" scoped>
