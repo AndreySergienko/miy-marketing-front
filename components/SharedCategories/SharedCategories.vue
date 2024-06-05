@@ -2,22 +2,24 @@
   <div class="categories">
     <div class="categories__inner">
       <div v-if="isOpen" class="categories__list">
-        <h3 class="categories__list-title">Все категории</h3>
-        <div class="categories__items">
-          <div
-            v-for="(categoriesItem, id) in categoriesList" :key="categoriesItem.title + id"
-            :class="['categories__item', 'active' && activeCategories[id]]"
-            @click="emit('setCategory', categoriesItem.id)"
-          >
-            <div class="categories__item-text">{{ categoriesItem.title }}</div>
-            <div v-if="categoriesItem.count" class="categories__item-number">{{ categoriesItem.count }}</div>
+        <div class="container">
+          <h3 class="categories__list-title">Все категории</h3>
+          <div class="categories__items">
+            <div
+              v-for="(categoriesItem, id) in categoriesList" :key="categoriesItem.title + id"
+              :class="['categories__item', 'active' && activeCategories[id]]"
+              @click="emit('setCategory', categoriesItem.id)"
+            >
+              <div class="categories__item-text">{{ categoriesItem.title }}</div>
+              <div v-if="categoriesItem.count" class="categories__item-number">{{ categoriesItem.count }}</div>
+            </div>
           </div>
         </div>
       </div>
       <div class="categories__button">
         <button @click="showCategories" class="categories__button-text">
           Категории
-          <nuxt-icon calss="categories__button-icon" :name="iconName" filled></nuxt-icon>
+          <nuxt-icon class="categories__button-icon" :name="iconName" filled></nuxt-icon>
         </button>
       </div>
     </div>
@@ -42,33 +44,20 @@ import type {ISharedCategoriesEmits, ISharedCategoriesProps} from "~/components/
 <style lang="scss" scoped>
   @use 'assets/styles/media';
   .categories {
+    position: fixed;
     margin-bottom: var(--indent-5xl);
 
     @include media.media-breakpoint-down(sm) {
       margin-bottom: var(--indent-3xl);
     }
 
-    &__container {
-      max-width: 1600px;
-      margin: 0 auto;
-    }
-
     &__inner {
       display: flex;
       flex-direction: column;
       align-items: center;
-
-      @include media.media-breakpoint-down(l) {
-        padding: 0 var(--indent-2xl);
-      }
-
-      @include media.media-breakpoint-down(sm) {
-          padding: 0 var(--indent-l);
-        }
     }
 
     &__list {
-      padding: 15px;
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -80,6 +69,10 @@ import type {ISharedCategoriesEmits, ISharedCategoriesProps} from "~/components/
         font-size: var(--font-size-xl);
         font-weight: var(--font-weight-semi-bold);
         margin-bottom: var(--indent-2xl);
+
+        @include media.media-breakpoint-down(sm) {
+          font-size: var(--font-size-l);
+        }
       }
     }
 

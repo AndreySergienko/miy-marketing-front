@@ -1,5 +1,5 @@
 import CategoriesService from "~/api/methods/categories/CategoriesService";
-import type { ICategoriesItem } from "~/api/methods/categories/categories.types";
+import type { ICategoriesItem, TCategoriesApiResponse } from "~/api/methods/categories/categories.types";
 import { transform } from "./categories.utils";
 
 export const useCategoriesStore = defineStore("global/categories", () => {

@@ -49,6 +49,7 @@ const input = computed({
     }
 
     &__input {
+      font-size: var(--font-size-s);
       padding-left: var(--indent-s);
       height: 50px;
       border: 1px solid var(--color-light-gray);
