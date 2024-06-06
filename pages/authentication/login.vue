@@ -16,8 +16,7 @@
                     </div>
                   </div>
                   <div class="help__password">
-                    <span>Забыли пароль</span>
-                    <NuxtIcon name="lock" filled/>
+                    <SharedForgotPassword />
                   </div>
                   <div class="btn__login">
                     <SharedButton color="blue" size="l" :is-disabled="!meta.valid || isLoading" @click="sendLogin" :is-loading="isLoading">Войти</SharedButton >
@@ -56,19 +55,6 @@ definePageMeta({
       display: flex;
       flex-direction: column;
       gap: var(--indent-xl);
-    }
-  }
-
-  .help__password {
-    display: flex;
-    align-items: center;
-    gap: var(--indent-m);
-    font-size: var(--font-size-s);
-    font-weight: var(--font-weight-medium);
-    color: var(--color-blue);
-
-    @include media.media-breakpoint-down(sm) {
-      font-size: var(--font-size-s);
     }
   }
 </style>
