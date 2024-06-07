@@ -6,9 +6,11 @@
     </div>
     <div class="forgot-password__inner">
       <div class="forgot-password__text">
-        Забыли пароль?<br>Просто введите свою почту для восстановления. После нажатия
-        кнопки "Восстановить" вы получите инструкции на указанный адрес электронной
-        почты.
+        Забыли пароль?<br>Для восстановления пароля необходимо перейти в
+        <nuxt-link to="https://t.me/miy_ad_bot">
+          тг бота
+        </nuxt-link> 
+        и прописать команду /help password.
       </div>
     </div>
   </div>
@@ -51,7 +53,7 @@
       position: absolute;
       left: 58%;
       display: none;
-      width: 370px;
+      width: 340px;
       z-index: 1;
       background-color: var(--color-white);
       color: var(--color-black);
