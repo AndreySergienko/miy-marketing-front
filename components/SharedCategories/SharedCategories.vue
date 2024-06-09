@@ -6,8 +6,8 @@
           <h3 class="categories__list-title">Все категории</h3>
           <div class="categories__items">
             <div
-              v-for="(categoriesItem, id) in categoriesList" :key="categoriesItem.title + id"
-              :class="['categories__item', 'active' && activeCategories[id]]"
+              v-for="(categoriesItem, index) in categoriesList" :key="categoriesItem.title + index"
+              :class="['categories__item', activeCategories[String(categoriesItem.id)] && 'active']"
               @click="emit('setCategory', categoriesItem.id)"
             >
               <div class="categories__item-text">{{ categoriesItem.title }}</div>
@@ -96,8 +96,11 @@ import type {ISharedCategoriesEmits, ISharedCategoriesProps} from "~/components/
       display: flex;
       justify-content: space-between;
       align-items: center;
-
       cursor: pointer;
+
+      &.active {
+        color: blue;
+      }
 
       &-text {
         font-size: var(--font-size-m);

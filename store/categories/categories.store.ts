@@ -36,9 +36,13 @@ export const useCategoriesStore = defineStore("global/categories", () => {
 
   /** Обновление списка категорий **/
   const updateActiveCategories = (categoryId: number) => {
-    const id = String(categoryId)
-    activeCategories.value[id] = id
-  }
+    const id = String(categoryId);
+    if (activeCategories.value[id]) {
+        delete activeCategories.value[id];
+    } else {
+        activeCategories.value[id] = id;
+    }
+}
 
   return {
     updateActiveCategories,

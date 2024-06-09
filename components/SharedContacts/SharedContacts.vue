@@ -3,7 +3,10 @@
     <div class="contact__intro">
       <div class="contact__title">
         <SharedTitle>Контакты</SharedTitle>
-        <SharedText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </SharedText>
+        <SharedText>
+          Свяжитесь с нами для консультации или заказа рекламной кампании. Мы всегда
+          на связи и готовы помочь вам добиться успеха в продвижении в телеграмме.
+        </SharedText>
       </div>
       <div class="contact__items">
         <div class="contact__item">

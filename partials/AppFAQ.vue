@@ -5,7 +5,11 @@
         <div class="FAQ__inner">
           <div class="FAQ__text">
             <SharedTitle>FAQ</SharedTitle>
-            <SharedText>Часто задоваемые нам вопросы на которые уже есть ответы</SharedText>
+            <SharedText>
+              Ответы на часто задаваемые вопросы о нашей платформе. Узнайте, как начать
+              размещать рекламу в телеграмм каналах и какие возможности предоставляет наш
+              сервис.
+            </SharedText>
           </div>
           <SharedAccordion />
         </div>

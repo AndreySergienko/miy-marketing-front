@@ -11,7 +11,6 @@
               <span>ОN-DEVELOPER</span>
             </div>
             <div class="footer__intro-text">
-              <p>Разработка сайта <span class="studio">Я</span>Р студия</p>
               <p>© ОN-DEVELOPERс 2021-2024</p>
             </div>
           </div>
@@ -155,8 +154,4 @@
 
     }
   }
-  .studio {
-    color: red;
-  }
-
 </style>

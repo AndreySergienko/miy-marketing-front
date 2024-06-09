@@ -4,15 +4,12 @@
       <shared-animation>
         <div class="intro__inner">
           <h1 class="intro__title">
-            Ut enim ad minim veniam, quis nostrud exercitation
+            Добро пожаловать на платформу для продвижения телеграмм каналов!
           </h1>
           <SharedText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut <br />
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco <br />
-            laboris nisi ut aliquip ex ea commodo consequat.</SharedText
-          >
+            Мы предлагаем уникальный бот, который позволяет делегировать ответственность за размещение и 
+            управление рекламой в вашем канале. Эффективное продвижение - это просто!
+          </SharedText>
         </div>
       </shared-animation>
     </div>
