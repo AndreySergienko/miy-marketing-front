@@ -1,9 +1,10 @@
 <template>
   <div class="main">
-    <div class="categories" v-if="categoriesStore.categories.length ">
+    <div class="categories" v-if="categoriesStore.categories.length">
       <div class="categories__inner">
         <SharedCategories 
-        :active-categories="categoriesStore.activeCategories" 
+         v-if="isAppTelegramVisible"
+        :active-categories="activeCategories" 
         :categories-list="categories"
         @set-category="categoriesStore.updateActiveCategories"/>
       </div>
@@ -15,7 +16,7 @@
     <div class="benefit">
       <AppBenefit />
     </div>
-    <div class="tg">
+    <div class="tg" ref="appTelegram">
       <AppTelegram />
     </div>
     <div class="FAQ">
@@ -38,13 +39,47 @@
   import {useCategoriesStore} from "~/store/categories/categories.store";
 
   const categoriesStore = useCategoriesStore()
-  const {categories} = storeToRefs(categoriesStore)
+  const {categories, activeCategories} = storeToRefs(categoriesStore)
   const {getAll} = useCategoriesStore()
 
+  const isAppTelegramVisible = ref(false);
+
   onMounted(() => {
-      getAll()
-    }
-  )
+  getAll();
+
+  const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 1.0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.intersectionRatio > 0) {
+        isAppTelegramVisible.value = true;
+      } else {
+        isAppTelegramVisible.value = false;
+      }
+    });
+  }, options);
+
+  const appTelegramElement = ref(document.querySelector('.tg'));
+
+  if (appTelegramElement.value) {
+    observer.observe(appTelegramElement.value);
+  }
+
+  const handleAppTelegramVisibility = (entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        isAppTelegramVisible.value = false;
+      }
+    });
+  };
+
+  const appTelegramObserver = new IntersectionObserver(handleAppTelegramVisibility, { threshold: 0.5 });
+  appTelegramObserver.observe(appTelegramElement.value);
+});
 </script>
 
 <style lang="scss" scoped>

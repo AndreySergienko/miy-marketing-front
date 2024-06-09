@@ -7,4 +7,5 @@ export interface ISharedCategoriesProps {
 
 export interface ISharedCategoriesEmits {
   (event: 'setCategory', id: number): unknown,
+  (event: 'activeCategory', id: number): unknown
 }
