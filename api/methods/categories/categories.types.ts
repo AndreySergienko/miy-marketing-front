@@ -12,5 +12,4 @@ export interface ICategoriesItem {
   title: string;
   value: string;
   count: number;
-
 }
