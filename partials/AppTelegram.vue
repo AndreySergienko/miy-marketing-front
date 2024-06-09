@@ -4,11 +4,10 @@
       <div class="tg__inner">
         <div class="tg__text">
           <SharedTitle>Telegram-каналы</SharedTitle>
-          <SharedText
-            >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+          <SharedText>
+            Выберите каналы для размещения вашей рекламы из списка на нашей главной
+            странице. У нас вы найдете каналы по теме "экономика, бизнес", где ваша
+            реклама будет наиболее эффективной.
           </SharedText>
         </div>
         <div class="card__list">

@@ -5,22 +5,11 @@
         <div class="benefit__inner">
           <div class="benefit__text">
             <SharedTitle> Наши преимущества </SharedTitle>
-            <SharedText
-              >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod <br />
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, <br />
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-              commodo <br />
-              consequat.
+            <SharedText>
+              Оплата и создание рекламы через нашего бота
             </SharedText>
-            <SharedText
-              >Lorem ipsum dolor sit amet, consectetur dipiscing elit, sed do
-              eiusmod tempor <br />
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis <br />
-              nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat.
+            <SharedText>
+              Возможность размещения рекламы в сотнях и тысячах каналов
             </SharedText>
           </div>
           <SharedBenefit />
