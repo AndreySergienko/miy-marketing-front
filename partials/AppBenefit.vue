@@ -4,12 +4,10 @@
       <shared-animation>
         <div class="benefit__inner">
           <div class="benefit__text">
-            <SharedTitle> Наши преимущества </SharedTitle>
+            <SharedTitle class="benefit__text-title"> Наши преимущества </SharedTitle>
             <SharedText>
-              Оплата и создание рекламы через нашего бота
             </SharedText>
             <SharedText>
-              Возможность размещения рекламы в сотнях и тысячах каналов
             </SharedText>
           </div>
           <SharedBenefit />
@@ -57,6 +55,10 @@
 
       @include media.media-breakpoint-down(sm) {
         width: 95%;
+      }
+
+      &-title {
+        color: var(--color-blue);
       }
     }
   }
