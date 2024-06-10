@@ -23,8 +23,10 @@ export const useAuthStore = defineStore('global/auth', () => {
     async function login(data: ILoginRequest) {
         try {
           isLoading.value = true
-          const res= await authService.login(data)
+          const res= await authService.login(data);
+          console.log(res)
           if (!res) return;
+          console.log('LOGIN USER')
           token.value = res.token
 
           toPersonalProfile()
