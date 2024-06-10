@@ -124,7 +124,6 @@
     description: "",
     link: "",
     name: "",
-    day: null,
     slots: [],
     price: "",
     formatChannel: 0,

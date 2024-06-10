@@ -16,7 +16,6 @@
             :key="card.channel.id"
             :price= "card.channel.price"
             :subscribers="card.channel.subscribers"
-            :date="card.channel.day"
             :avatar="card.channel.avatar"
           >
             <template #title>

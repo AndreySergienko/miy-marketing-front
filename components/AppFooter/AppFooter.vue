@@ -11,7 +11,7 @@
               <span>ОN-DEVELOPER</span>
             </div>
             <div class="footer__intro-text">
-              <p>© ОN-DEVELOPERс 2021-2024</p>
+              <p>© ОN-DEVELOPER с 2021-2024</p>
             </div>
           </div>
           <div class="footer__intro-contacts">
