@@ -12,8 +12,8 @@
               <span class="footer__intro-title__text">© ОN-DEVELOPER с 2021-2024</span>
             </div>
             <div class="footer__intro-link">
-              <a href="/Politic confidential/personal__data.docx">Согласие на обработку персональных данных</a>
-              <a href="/Politic confidential/public__offer.docx">Публичная оферта</a>
+              <a href="/Politic confidential/personal__data.pdf">Согласие на обработку персональных данных</a>
+              <a href="/Politic confidential/public__offer.pdf">Публичная оферта</a>
             </div>
             <div class="footer__intro-contacts">
               <div class="footer__intro-contacts__email">
