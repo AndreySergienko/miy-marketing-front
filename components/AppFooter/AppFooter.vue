@@ -8,20 +8,22 @@
         <div class="footer__intro">
           <div class="footer__intro-inner">
             <div class="footer__intro-title">
-              <span>ОN-DEVELOPER</span>
+              <span class="footer__intro-title__title">ОN-DEVELOPER</span>
+              <span class="footer__intro-title__text">© ОN-DEVELOPER с 2021-2024</span>
             </div>
-            <div class="footer__intro-text">
-              <p>© ОN-DEVELOPERс 2021-2024</p>
+            <div class="footer__intro-link">
+              <a href="/Politic confidential/personal__data.docx">Согласие на обработку персональных данных</a>
+              <a href="/Politic confidential/public__offer.docx">Публичная оферта</a>
             </div>
-          </div>
-          <div class="footer__intro-contacts">
-            <div class="footer__intro-contacts__email">
-              <nuxt-icon class="footer__icon" name="email" />
-              <span class="footer__icon-text">ON-Developer@gmail.com</span>
-            </div>
-            <div class="footer__intro-contacts__web">
-              <nuxt-icon class="footer__icon" name="tg" />
-              <span class="footer__icon-text">https://t.me/ON-Developer</span>
+            <div class="footer__intro-contacts">
+              <div class="footer__intro-contacts__email">
+                <nuxt-icon class="footer__icon" name="email" />
+                <span class="footer__icon-text">ON-Developer@gmail.com</span>
+              </div>
+              <div class="footer__intro-contacts__web">
+                <nuxt-icon class="footer__icon" name="tg" />
+                <span class="footer__icon-text">https://t.me/ON-Developer</span>
+              </div>
             </div>
           </div>
         </div>
@@ -69,7 +71,6 @@
 
     &__intro {
       display: flex;
-      justify-content: space-between;
       width: 100%;
 
       @include media.media-breakpoint-down(sm) {
@@ -77,22 +78,30 @@
       }
 
       &-inner {
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        gap: var(--indent-m);
+        align-items: center;
+        justify-content: space-between;
 
-        @include media.media-breakpoint-down(sm) {
-          order:2;
+        @include media.media-breakpoint-down(md) {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: var(--indent-l);
         }
       }
 
       &-title {
-        font-size: var(--font-size-l);
-        font-weight: var(--font-weight-bold);
+        display: flex;
+        flex-direction: column;
 
-        @include  media.media-breakpoint-down(sm) {
-          font-size: var(--font-size-m);
+        &__title {
+          font-size: var(--font-size-l);
           font-weight: var(--font-weight-bold);
+
+          @include  media.media-breakpoint-down(sm) {
+            font-size: var(--font-size-m);
+            font-weight: var(--font-weight-bold);
+          }
         }
       }
 
@@ -106,6 +115,29 @@
         @include media.media-breakpoint-down(sm) {
           font-size: var(--font-size-s);
           font-weight: var(--font-weight-medium);
+        }
+      }
+
+      &-link {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-size: var(--font-size-m);
+        cursor: pointer;
+
+        @include media.media-breakpoint-down(md) {
+          text-align: left;
+          order: 3;
+        }
+
+        @include media.media-breakpoint-down(sm) {
+          font-size: var(--font-size-s);
+        }
+
+        & > * {
+          color: var(--color-black);
+          text-decoration: none;
+
         }
       }
 
@@ -126,12 +158,6 @@
 
         &__email {
           margin-bottom: 2px;
-        }
-
-        &__web {
-          @include media.media-breakpoint-down(sm) {
-            margin-bottom: var(--indent-2xl);
-          }
         }
       }
     }
