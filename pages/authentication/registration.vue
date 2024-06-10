@@ -28,7 +28,7 @@
                 </SharedGroupRadio>
               </div>
               <div class="form__checkbox-confidential">
-                <SharedCheckbox v-model="isChecked">Согласен на обработку персональных данных, получение рассылок, а также с <a href="/Politic confidential/privacy__policy.docx">Политикой конфиденциальности.</a></SharedCheckbox>
+                <SharedCheckbox v-model="isChecked">Согласен на обработку персональных данных, получение рассылок, а также с <a target="_blank" href="/Politic confidential/privacy__policy.docx">Политикой конфиденциальности.</a></SharedCheckbox>
               </div>
             </div>
             <div class="btn__registration">
