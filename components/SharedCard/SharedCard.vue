@@ -12,12 +12,6 @@
           </div>
           <nuxt-icon class="card__icon-img__people" name="people"/>
         </div>
-        <div class="card__icon">
-          <div class="card__icon-text">
-            {{ convertUtcDateToDate(+date) }}
-          </div>
-          <nuxt-icon class="card__icon-img__clock" name="clock"/>
-        </div>
       </div>
       <div class="card__calendar">
         <div class="card__calendar-text">
@@ -31,7 +25,6 @@
 </template>
 
 <script setup lang="ts">
-  import {convertUtcDateToDate} from "~/utils/date";
   import type {ISharedCardProps} from "~/components/SharedCard/SharedCard.types";
 
   const props = defineProps<ISharedCardProps>()
