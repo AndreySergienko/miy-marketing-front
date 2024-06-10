@@ -53,7 +53,7 @@
     threshold: 1.0
   };
 
-  const observer = new IntersectionObserver((entries) => {
+  const unObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.intersectionRatio > 0) {
         isAppTelegramVisible.value = true;
@@ -66,7 +66,7 @@
   const appTelegramElement = ref(document.querySelector('.tg'));
 
   if (appTelegramElement.value) {
-    observer.observe(appTelegramElement.value);
+    unObserver.observe(appTelegramElement.value);
   }
 
   const handleAppTelegramVisibility = (entries) => {
