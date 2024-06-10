@@ -100,7 +100,7 @@
   ];
 
   const slots = Array.from({ length: 48 }, (_, i) => {
-    const hour = `${Math.floor(i / 2)+1}`.padStart(2, "0");
+    const hour = `${String(Math.floor(i / 2) + 1).padStart(2, "0")}`;
     const minute = `${(i % 2) * 30}`.padStart(2, "0");
 
     return {
