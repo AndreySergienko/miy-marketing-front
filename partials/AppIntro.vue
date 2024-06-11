@@ -4,7 +4,7 @@
       <shared-animation>
         <div class="intro__inner">
           <h1 class="intro__title">
-            Добро пожаловать на платформу для продвижения TG-каналов!
+            Добро пожаловать <br> на платформу <br> для продвижения <br> TG-каналов!
           </h1>
           <SharedText>
             Мы предлагаем уникальный бот, который позволяет делегировать ответственность за размещение и 
@@ -43,6 +43,7 @@
     &__title {
       font-size: var(--font-size-3xl);
       font-weight: var(--font-weight-semi-bold);
+      text-align: center;
       margin-bottom: var(--indent-3xl);
 
       @include media.media-breakpoint-down(xl) {
@@ -55,7 +56,7 @@
       }
 
       @include media.media-breakpoint-down(sm) {
-        font-size: var(--font-size-l);
+        font-size: 30px;
         font-weight: var(--font-weight-bold)
       }
     }

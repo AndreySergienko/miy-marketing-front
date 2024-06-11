@@ -5,9 +5,9 @@
         <div class="benefit__inner">
           <div class="benefit__text">
             <SharedTitle class="benefit__text-title"> Наши преимущества </SharedTitle>
-            <SharedText>
-            </SharedText>
-            <SharedText>
+            <SharedText class="benefit__text-text">
+              Оплата и создание рекламы через ТГ-бота платформы. <br>
+              Низкая комиссия - 7,2 % от суммы вашей рекламной интеграции.
             </SharedText>
           </div>
           <SharedBenefit />
@@ -60,6 +60,13 @@
       &-title {
         color: var(--color-blue);
       }
+      &-text {
+        font-size: 24px;
+        @include media.media-breakpoint-down(sm) {
+          font-size: var(--font-size-s);
+        }
+      }
     }
   }
+  
 </style>
