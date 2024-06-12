@@ -3,25 +3,31 @@ import type {
   IChannelsRegistrationBody,
   IInitialChannelData,
   IGetAll,
-} from "~/api/methods/channels/channels.types";
-import ChannelsService from "~/api/methods/channels/ChannelsService";
-import {useShowError} from "~/composobles/useShowError";
-import {useAlertStore} from "~/store/alert/alert.store";
+} from '~/api/methods/channels/channels.types'
+import ChannelsService from '~/api/methods/channels/ChannelsService'
+import { useShowError } from '~/composobles/useShowError'
+import { useAlertStore } from '~/store/alert/alert.store'
 
-export const useChannelStore = defineStore("global/channel", () => {
+export const useChannelStore = defineStore('global/channel', () => {
   const alertStore = useAlertStore()
-  const channelsService = new ChannelsService();
+  const channelsService = new ChannelsService()
 
   /** Список каналов **/
-  const channels = ref<IChannelsListItem[]>([]);
-  const channelsAll = ref<IGetAll[]>([]);
-  const initialChannelData = ref<IInitialChannelData | null>(null);
+  const channels = ref<IChannelsListItem[]>([])
+  const channelsAll = ref<IGetAll[]>([])
+  const initialChannelData = ref<IInitialChannelData | null>(null)
   const isLoading = ref<boolean>(false)
 
   /** Получение всего списка каналов **/
-  async function getAll({ url, isMounted }: { url: string , isMounted?: boolean }) {
+  async function getAll({
+    url,
+    isMounted,
+  }: {
+    url: string
+    isMounted?: boolean
+  }) {
     try {
-      const channelList = await channelsService.getAll(url);
+      const channelList = await channelsService.getAll(url)
       if (isMounted) {
         channelsAll.value = channelList
       } else {
@@ -35,32 +41,34 @@ export const useChannelStore = defineStore("global/channel", () => {
   /** Получить список каналов для текущего юзера **/
   async function getMy() {
     try {
-      channels.value = await channelsService.getMy();
+      channels.value = await channelsService.getMy()
     } catch (e) {
       useShowError(e)
     }
   }
 
   /** Купить канал **/
-  async function buy(slotId: number) {
+  async function buy(slotId: number, day: number) {
     try {
+      if (!day) return
       isLoading.value = true
-      const response = await channelsService.buy(slotId)
-      if (!response) return;
-      isLoading.value = false
+      const response = await channelsService.buy(slotId, day)
+      if (!response) return
       alertStore.show({ type: 'success', title: response.message })
     } catch (e) {
       useShowError(e)
+    } finally {
+      isLoading.value = false
     }
   }
 
   /** Проверить канал **/
   async function check(channelName: string) {
     try {
-      const response = await channelsService.check(channelName);
-      if (!response) return;
+      const response = await channelsService.check(channelName)
+      if (!response) return
       initialChannelData.value = response
-      await navigateTo("/personal/location");
+      await navigateTo('/personal/location')
     } catch (e) {
       useShowError(e)
     }
@@ -69,9 +77,9 @@ export const useChannelStore = defineStore("global/channel", () => {
   /** Создать канал **/
   async function create(data: IChannelsRegistrationBody) {
     try {
-      const response = await channelsService.register(data);
-      if (!response) return;
-      await navigateTo("/personal/telegram");
+      const response = await channelsService.register(data)
+      if (!response) return
+      await navigateTo('/personal/telegram')
     } catch (e) {
       useShowError(e)
     }
@@ -91,5 +99,5 @@ export const useChannelStore = defineStore("global/channel", () => {
     getMy,
     getAll,
     isLoading,
-  };
-});
+  }
+})

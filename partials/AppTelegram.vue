@@ -5,16 +5,16 @@
         <div class="tg__text">
           <SharedTitle>Telegram-каналы</SharedTitle>
           <SharedText>
-            Выберите каналы для размещения вашей рекламы из списка на нашей главной
-            странице. У нас вы найдете каналы по теме "экономика, бизнес", где ваша
-            реклама будет наиболее эффективной.
+            Выберите каналы для размещения вашей рекламы из списка на нашей
+            главной странице. У нас вы найдете каналы по теме "экономика,
+            бизнес", где ваша реклама будет наиболее эффективной.
           </SharedText>
         </div>
         <div class="card__list">
           <SharedCard
             v-for="card in channelsAll"
             :key="card.channel.id"
-            :price= "card.channel.price"
+            :price="card.channel.price"
             :subscribers="card.channel.subscribers"
             :avatar="card.channel.avatar"
           >
@@ -25,9 +25,16 @@
               <SharedCardText>{{ card.channel.description }}</SharedCardText>
             </template>
             <template #actions>
-              <div v-if="!permissions?.CAN_BUY">Авторизуйтесь и добавьте почту</div>
+              <div v-if="!permissions?.CAN_BUY">
+                Авторизуйтесь и добавьте почту
+              </div>
               <div v-else-if="!card.slots.length">Нет доступных слотов</div>
-              <SharedButton v-else class="action__button" color="blue" @click="setInfoChannel(card.slots)">
+              <SharedButton
+                v-else
+                class="action__button"
+                color="blue"
+                @click="setInfoChannel(card.slots)"
+              >
                 Выбрать дату
                 <nuxt-icon class="action__button-icon" name="chevron" filled />
               </SharedButton>
@@ -39,14 +46,26 @@
 
     <SharedModal v-if="activeSlots.length" @close="clearInfoChannel">
       <div class="modal-telegram">
-          <SharedSelect
-            title="Выбрать время"
-            :selected="slotId"
-            :options="times"
-            @select="slotId = $event"
-          />
-        <SharedButton :is-disabled="!slotId || isLoading" :is-loading="isLoading" class="modal-telegram__btn" color="blue" @click="buy">Купить</SharedButton>
-      </div> 
+        <SharedCalendar
+          title="Календарь"
+          :selected="day"
+          @select="day = $event"
+        />
+        <SharedSelect
+          title="Выбрать время"
+          :selected="slotId"
+          :options="times"
+          @select="slotId = $event"
+        />
+        <SharedButton
+          :is-disabled="!slotId || isLoading || !day"
+          :is-loading="isLoading"
+          class="modal-telegram__btn"
+          color="blue"
+          @click="buy"
+          >Купить</SharedButton
+        >
+      </div>
     </SharedModal>
     <div class="more">
       <p class="more__text" @click="incrementPage">Смотреть еще</p>
@@ -64,6 +83,7 @@
 
   const channelStore = useChannelStore();
   const userStore = useUserStore()
+  const day = ref<Date | null>(null)
 
   /** pagination **/
   const { paginationQuery, incrementPage } = usePagination()
@@ -73,19 +93,24 @@
 
   const { permissions } = storeToRefs(userStore)
   const { isLoading } = storeToRefs(channelStore)
-  const { getQueryCategories } = storeToRefs(categoriesStore)
+  const { getQueryCategories, activeCategories } = storeToRefs(categoriesStore)
   const { channelsAll } = storeToRefs(channelStore);
   const { clearInfoChannel, setInfoChannel, slotId, times, activeSlots } = useBuyChannel()
 
   const buy = async () => {
-    await channelStore.buy(+slotId.value)
+    if (!day.value) return;
+    await channelStore.buy(+slotId.value, +day.value)
     clearInfoChannel()
   }
 
-  watch([paginationQuery, getQueryCategories], async () => {
+  async function fetchChannels(isMounted?: boolean) {
     const fullPath = getQueryCategories.value ? paginationQuery.value + '&' + getQueryCategories.value  : paginationQuery.value
-    await channelStore.getAll({ url: fullPath })
-  }, { deep: true })
+    await channelStore.getAll({ url: fullPath, isMounted })
+  }
+
+  watch(paginationQuery, async () => await fetchChannels())
+
+  watch(activeCategories, async () => await fetchChannels(true), { deep: true })
 
   useAsyncData(() => channelStore.getAll({ url: paginationQuery.value, isMounted: true }))
 </script>

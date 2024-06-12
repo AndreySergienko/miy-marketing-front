@@ -1,52 +1,52 @@
-import ApiService from "~/api/core/ApiService";
+import ApiService from '~/api/core/ApiService'
 import type {
   IApiChannelsListItem,
   IChannelsListItem,
   IChannelsRegistrationBody,
   IInitialChannelData,
   IGetAll,
-} from "./channels.types";
-import { API_ITEM_TYPES } from "~/components/ProfileChannelsItem/ProfileChannelsItem.types";
+} from './channels.types'
+import { API_ITEM_TYPES } from '~/components/ProfileChannelsItem/ProfileChannelsItem.types'
 
 export default class ChannelsService extends ApiService {
-  private readonly apiUrl: string;
+  private readonly apiUrl: string
 
   constructor() {
-    super();
-    this.apiUrl = "channels/";
+    super()
+    this.apiUrl = 'channels/'
   }
 
   async register(data: IChannelsRegistrationBody) {
-    return await this.$authApi(this.apiUrl + "registration", {
-      method: "post",
+    return await this.$authApi(this.apiUrl + 'registration', {
+      method: 'post',
       body: data,
-    });
+    })
   }
 
-  async buy(slotId: number) {
+  async buy(slotId: number, day: number) {
     return await this.$authApi<{ message: string }>(this.apiUrl + 'buy', {
       method: 'post',
       body: {
-        slotId
-      }
+        slotId,
+        day,
+      },
     })
   }
 
   async getAll(url?: string): Promise<IGetAll[]> {
     const fullUrl = url ? this.apiUrl + 'all' + url : this.apiUrl + 'all'
     return await this.$api<IGetAll[]>(fullUrl, {
-        method: 'get'
-      }
-    );
+      method: 'get',
+    })
   }
 
   async getMy(): Promise<IChannelsListItem[]> {
     const data = await this.$authApi<IApiChannelsListItem[]>(
-      this.apiUrl + "my",
+      this.apiUrl + 'my',
       {
-        method: 'get'
-      }
-    );
+        method: 'get',
+      },
+    )
 
     return data.map((item) => ({
       id: item.id,
@@ -56,19 +56,19 @@ export default class ChannelsService extends ApiService {
       name: item.name,
       link: item.link,
       status:
-        API_ITEM_TYPES[item.statusId as keyof typeof API_ITEM_TYPES] || "",
+        API_ITEM_TYPES[item.statusId as keyof typeof API_ITEM_TYPES] || '',
       conditionCheck: item.conditionCheck,
       day: new Date(+item.day),
       formatChannelId: item.formatChannelId,
       price: item.price,
       subscribers: item.subscribers,
-    }));
+    }))
   }
 
   async check(channelName: string): Promise<IInitialChannelData> {
-    return await this.$authApi(this.apiUrl + "check", {
-      method: "post",
+    return await this.$authApi(this.apiUrl + 'check', {
+      method: 'post',
       body: JSON.stringify({ channelName }),
-    });
+    })
   }
 }
