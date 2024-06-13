@@ -9,7 +9,7 @@
           <div class="footer__intro-inner">
             <div class="footer__intro-title">
               <span class="footer__intro-title__title">ОN-DEVELOPER</span>
-              <span class="footer__intro-title__text">© ОN-DEVELOPER с 2021-2024</span>
+              <span class="footer__intro-title__text">© ОN-DEVELOPER 2024</span>
             </div>
             <div class="footer__intro-link">
               <a href="/Politic confidential/personal__data.pdf">Согласие на обработку персональных данных</a>
@@ -18,7 +18,7 @@
             <div class="footer__intro-contacts">
               <div class="footer__intro-contacts__email">
                 <nuxt-icon class="footer__icon" name="email" />
-                <span class="footer__icon-text">ON-Developer@gmail.com</span>
+                <span class="footer__icon-text">miy@on-developer.ru</span>
               </div>
               <div class="footer__intro-contacts__web">
                 <nuxt-icon class="footer__icon" name="tg" />
@@ -148,7 +148,6 @@
 
         &__email, &__web {
           display: flex;
-          justify-content: space-between;
           align-items: center;
 
           @include media.media-breakpoint-down(sm) {

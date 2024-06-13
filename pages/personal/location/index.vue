@@ -20,14 +20,14 @@
             @select="handleCategorySelect"
           />
           <div class="location__calendar">
-            <!-- <span class="location__calendar-title">
+            <span class="location__calendar-title">
               Заполните календарь доступных рекламных слотов в вашем TG-канале
             </span>
             <SharedCalendar
               title="Календарь"
               :selected="newChannel.day"
               @select="newChannel.day = $event"
-            /> -->
+            />
             <SharedSelect
               title="Интервал"
               :selected="`${newChannel.formatChannel}`"
