@@ -1,30 +1,28 @@
 <template>
   <div class="accordion">
-    <div v-for="(accordItem, id) in accordList" :key="id" class="accordion__inner">
+    <div class="accordion__inner">
       <div class="accordion__item">
         <div class="accordion__title">
-          <span> {{ accordItem.title }}</span>
-          <nuxt-icon class="accordion__icon" @click="accordion(accordItem)" :name="accordItem.isOpen ? 'minus' : 'plus'" filled></nuxt-icon>
+          <span><slot name="title" /></span>
+          <nuxt-icon class="accordion__icon" @click="accordion" :name="isOpen ? 'minus' : 'plus'" filled></nuxt-icon>
         </div>
-        <div v-if="accordItem.isOpen" class="accordion__text">
-          <p>{{ accordItem.text }}</p>
+        <div v-if="isOpen" class="accordion__text">
+          <p><slot name="text"/></p>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script setup>
-  import { accordList } from './SharedAccordion.data.ts';
   import {ref} from 'vue';
 
-  const iconName = ref('plus')
+  const isOpen = ref(false)
 
-  const accordion = (item) => {
-    item.isOpen = !item.isOpen
+  const accordion = () => {
+    isOpen.value = !isOpen.value
   }
-  
-
 </script>
+
 <style lang="scss" scoped>
   @use 'assets/styles/media';
   .accordion {
