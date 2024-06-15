@@ -59,7 +59,7 @@
           @select="slotId = $event"
         />
         <SharedButton
-          :is-disabled="!slotId || isLoading || !day"
+          :is-disabled="!slotId || isLoading || !dateIdx"
           :is-loading="isLoading"
           class="modal-telegram__btn"
           color="blue"
@@ -84,7 +84,6 @@
 
   const channelStore = useChannelStore();
   const userStore = useUserStore()
-  const day = ref<Date | null>(null)
 
   /** pagination **/
   const { paginationQuery, incrementPage } = usePagination()
@@ -99,8 +98,8 @@
   const { clearInfoChannel, setInfoChannel, slotId, times, activeSlots, dateIdx, days } = useBuyChannel()
 
   const buy = async () => {
-    if (!day.value) return;
-    await channelStore.buy(+slotId.value, +day.value)
+    if (!dateIdx.value || !slotId.value) return;
+    await channelStore.buy(+slotId.value, +dateIdx.value)
     clearInfoChannel()
   }
 

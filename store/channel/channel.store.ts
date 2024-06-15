@@ -48,11 +48,11 @@ export const useChannelStore = defineStore('global/channel', () => {
   }
 
   /** Купить канал **/
-  async function buy(slotId: number, day: number) {
+  async function buy(slotId: number, dateIdx: number) {
     try {
-      if (!day) return
+      if (!dateIdx) return
       isLoading.value = true
-      const response = await channelsService.buy(slotId, day)
+      const response = await channelsService.buy(slotId, dateIdx)
       if (!response) return
       alertStore.show({ type: 'success', title: response.message })
     } catch (e) {

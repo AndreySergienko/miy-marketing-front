@@ -23,12 +23,12 @@ export default class ChannelsService extends ApiService {
     })
   }
 
-  async buy(slotId: number, day: number) {
+  async buy(slotId: number, dateIdx: number) {
     return await this.$authApi<{ message: string }>(this.apiUrl + 'buy', {
       method: 'post',
       body: {
         slotId,
-        day,
+        dateIdx,
       },
     })
   }
