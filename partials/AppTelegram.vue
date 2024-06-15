@@ -33,7 +33,7 @@
                 v-else
                 class="action__button"
                 color="blue"
-                @click="setInfoChannel(card.slots)"
+                @click="setInfoChannel(card.slots, card.channel.days)"
               >
                 Выбрать дату
                 <nuxt-icon class="action__button-icon" name="chevron" filled />
@@ -46,10 +46,11 @@
 
     <SharedModal v-if="activeSlots.length" @close="clearInfoChannel">
       <div class="modal-telegram">
-        <SharedCalendar
-          title="Календарь"
-          :selected="day"
-          @select="day = $event"
+        <SharedSelect
+          title="Выбрать дату"
+          :selected="dateIdx"
+          :options="days"
+          @select="dateIdx = $event"
         />
         <SharedSelect
           title="Выбрать время"
@@ -95,7 +96,7 @@
   const { isLoading } = storeToRefs(channelStore)
   const { getQueryCategories, activeCategories } = storeToRefs(categoriesStore)
   const { channelsAll } = storeToRefs(channelStore);
-  const { clearInfoChannel, setInfoChannel, slotId, times, activeSlots } = useBuyChannel()
+  const { clearInfoChannel, setInfoChannel, slotId, times, activeSlots, dateIdx, days } = useBuyChannel()
 
   const buy = async () => {
     if (!day.value) return;

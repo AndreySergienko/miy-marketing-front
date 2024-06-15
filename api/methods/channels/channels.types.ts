@@ -5,7 +5,7 @@ export interface IChannelsRegistrationBody {
   description: string
   link: string
   name: string
-  // day: number; // timestamp
+  days: string[]
   slots: string[]
   price: number
   formatChannel: number
@@ -22,7 +22,7 @@ export interface IInitialChannelData {
 
 export interface IChannelGetAll extends IInitialChannelData {
   conditionCheck: string
-  day: string
+  days: string[]
   formatChannelId: number
   id: number
   price: number
@@ -30,10 +30,8 @@ export interface IChannelGetAll extends IInitialChannelData {
 
 export interface ISlot {
   channelId: number
-  id: number
-  statusId: number
+  id: Number
   timestamp: string
-  timestampFinish: string
 }
 
 export interface IGetAll {

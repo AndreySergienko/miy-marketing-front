@@ -1,9 +1,8 @@
 export interface ISharedCalendarProps {
-  title: string;
-  selected: Date | null;
-
+  title: string
+  selected: Date[] | null
 }
 
 export interface ISharedCalendarEmits {
-  (e: "select", value: Date): void;
+  (e: 'select', value: Date): void
 }
