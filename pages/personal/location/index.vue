@@ -60,7 +60,19 @@
             :is-disabled="true"
             class="location__input-link"
           >
+            <SharedTooltip 
+              :is-active="isTooltipActive"
+              class="tooltip"
+              text="* устанавливается автоматически при регистрации канала"
+              border-color="#ffd0d0"
+            />
             Ссылка на канал тг
+            <nuxt-icon 
+              name="question" 
+              class="tooltip__icon" 
+              @pointerover="isTooltipActive = true"
+              @pointerleave="isTooltipActive = true"
+              filled/>
           </SharedInput>
           <SharedInput
             name="conditionCheck"
@@ -88,6 +100,8 @@
   import { useAlertStore } from "~/store/alert/alert.store";
   import { useCategoriesStore } from "~/store/categories/categories.store";
   import { useChannelStore } from "~/store/channel/channel.store";
+
+  const isTooltipActive = ref(false);
 
   definePageMeta({
     layout: "personal",

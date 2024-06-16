@@ -14,7 +14,7 @@
         :class="{
           active:
             $route.path === '/personal/telegram' ||
-            $route.path === '/personal/location' ||
+            $route.path.startsWith('/personal/location') ||
             $route.path === '/personal/connect'
         }"
         to="/personal/telegram"
