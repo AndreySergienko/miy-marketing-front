@@ -58,7 +58,7 @@ export default class ChannelsService extends ApiService {
       status:
         API_ITEM_TYPES[item.statusId as keyof typeof API_ITEM_TYPES] || '',
       conditionCheck: item.conditionCheck,
-      day: new Date(+item.day),
+      days: item.days,
       formatChannelId: item.formatChannelId,
       price: item.price,
       subscribers: item.subscribers,

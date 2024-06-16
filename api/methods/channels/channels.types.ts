@@ -43,7 +43,7 @@ export interface IApiChannelsListItem extends IInitialChannelData {
   categories: number[]
   chatId: string
   conditionCheck: string
-  day: string
+  days: string[]
   formatChannelId: number
   id: number
   isCanPostMessage: boolean
@@ -56,7 +56,7 @@ export interface IChannelsListItem extends IInitialChannelData {
   categories: number[]
   status: EProfileChannelsItemTypes
   conditionCheck: string
-  day: Date
+  days: string[]
   formatChannelId: number
   price: number
 }
