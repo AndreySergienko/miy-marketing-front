@@ -14,7 +14,7 @@
   const avatar = computed<string>(() => {
     if (props.avatar) return props.avatar;
     return '/tg.png'
-  }) 
+  })
 
 </script>
 

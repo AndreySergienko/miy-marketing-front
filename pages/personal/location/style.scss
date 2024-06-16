@@ -53,6 +53,7 @@
   }
 
   &__input-link {
+    position: relative;
     font-weight: var(--font-weight-semi-bold);
   }
 
@@ -78,5 +79,29 @@
       border: 1px solid var(--color-light-gray);
       border-radius: 12px;
     }
+  }
+}
+.tooltip {
+  top: 35px;
+  left: 165px;
+  font-size: var(--font-size-s);
+  border-radius: 13px;
+  border-color: var(--color-blue);
+
+  @include media.media-breakpoint-down(xl) {
+    left: 95px;
+  }
+  @include media.media-breakpoint-down(l) {
+    left: 65px;
+  }
+  @include media.media-breakpoint-down(md) {
+    left: 130px;
+  }
+  @include media.media-breakpoint-down(sm){
+    left: 5px;
+  }
+  
+  &__icon {
+    margin-left: var(--indent-s);
   }
 }

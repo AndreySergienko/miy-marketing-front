@@ -8,7 +8,7 @@
         <SharedTooltip
           :is-active="isTooltipActive"
           class="telegram__tooltip"
-          text="Необходимо зарегестрировать карту для возврата средств, в случае отмены публикации"
+          text="*привяжите банковскую карту в ЛК"
           border-color="#ffd0d0"
         />
         <SharedButton
@@ -17,8 +17,6 @@
           :is-disabled="isDisabledButton"
           size="l"
           @click="navigateTo('/personal/connect')"
-          @pointerover="isDisabledButton && (isTooltipActive = true)"
-          @pointerleave="isDisabledButton && (isTooltipActive = false)"
         >
           Опубликовать TG-канал
         </SharedButton>
@@ -38,8 +36,8 @@ definePageMeta({
 
 const userStore = useUserStore();
 const { permissions } = storeToRefs(userStore);
-const isTooltipActive = ref(false);
 const isDisabledButton = !permissions.value.CAN_PUBLIC_CHANNEL
+const isTooltipActive = computed(() => !permissions.value.CAN_PUBLIC_CHANNEL)
 </script>
 
 <style scoped lang="scss">
@@ -56,6 +54,9 @@ const isDisabledButton = !permissions.value.CAN_PUBLIC_CHANNEL
     top: 65px;
     border-radius: 10px;
     text-align: center;
+    @include media.media-breakpoint-down(sm) {
+      top: 90px;
+    }
   }
 
   &__top {
