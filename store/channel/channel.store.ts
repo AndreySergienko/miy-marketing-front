@@ -5,7 +5,6 @@ import type {
   IGetAll,
 } from '~/api/methods/channels/channels.types'
 import ChannelsService from '~/api/methods/channels/ChannelsService'
-import { useShowError } from '~/composobles/useShowError'
 import { useAlertStore } from '~/store/alert/alert.store'
 
 export const useChannelStore = defineStore('global/channel', () => {

@@ -48,6 +48,7 @@ export interface IApiChannelsListItem extends IInitialChannelData {
   id: number
   isCanPostMessage: boolean
   price: number
+  slots: ISlot[]
   statusId: number
 }
 
@@ -59,4 +60,5 @@ export interface IChannelsListItem extends IInitialChannelData {
   days: string[]
   formatChannelId: number
   price: number
+  slots: ISlot[]
 }

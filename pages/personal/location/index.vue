@@ -85,135 +85,97 @@
 </template>
 
 <script setup lang="ts">
-    import { useAlertStore } from "~/store/alert/alert.store";
-    import { useCategoriesStore } from "~/store/categories/categories.store";
-    import { useChannelStore } from "~/store/channel/channel.store";
-    import type { INewChannel } from "~/store/channel/channel.types";
+  import { useAlertStore } from "~/store/alert/alert.store";
+  import { useCategoriesStore } from "~/store/categories/categories.store";
+  import { useChannelStore } from "~/store/channel/channel.store";
 
-    definePageMeta({
-      layout: "personal",
-    });
+  definePageMeta({
+    layout: "personal",
+  });
 
-    const intervals = [
-      { title: "1/24", value: "1" },
-      { title: "1/48", value: "2" },
-      { title: "30/24", value: "3" },
-    ];
+  const intervals = [
+    { title: "1/24", value: "1" },
+    { title: "1/48", value: "2" },
+    { title: "30/24", value: "3" },
+  ];
 
-    const slots = Array.from({ length: 48 }, (_, i) => {
-      const hour = `${String(Math.floor(i / 2) + 1).padStart(2, "0")}`;
-      const minute = `${(i % 2) * 30}`.padStart(2, "0");
+  const slots = Array.from({ length: 48 }, (_, i) => {
+    const hour = `${String(Math.floor(i / 2) + 1).padStart(2, "0")}`;
+    const minute = `${(i % 2) * 30}`.padStart(2, "0");
 
-      return {
-        title: `${hour}:${minute}`,
-        value: `${hour}:${minute}`,
-      };
-    });
+    return {
+      title: `${hour}:${minute}`,
+      value: `${hour}:${minute}`,
+    };
+  });
 
-    const categoriesStore = useCategoriesStore();
-    const alertStore = useAlertStore()
-    const { categories } = storeToRefs(categoriesStore);
+  const categoriesStore = useCategoriesStore();
+  const { categories } = storeToRefs(categoriesStore);
 
-    const channelsStore = useChannelStore();
-    const { initialChannelData } = storeToRefs(channelsStore);
+  const channelsStore = useChannelStore();
+  const { initialChannelData } = storeToRefs(channelsStore);
 
-    await useAsyncData("location-first-data", () => {
-      return categoriesStore.getAll();
-    });
+  await useAsyncData("location-first-data", () => {
+    return categoriesStore.getAll();
+  });
 
-    const addDate = (date: Date) => {
-      if (!newChannel.days) return
-      const transformDayWithoutTime = date.setHours(0, 0, 0, 0)
-      const index = newChannel.days.findIndex(el => +el === transformDayWithoutTime)
-      if (index !== -1) {
-        newChannel.days.splice(index, 1)
-      } else {
-        if (newChannel.days.length > 6) {
-        alertStore.showError({ title: 'Выбрано слишком много дат, максимальное допустимое кол-во 7' })
-        return;
-      }
-        newChannel.days.push(new Date(transformDayWithoutTime))
-      }
+  const { newChannel, addDate, createApiData } = useRegistrationData()
+
+  const selectedCategory = ref("");
+
+  const shownSlots = computed(() => {
+    switch (newChannel.formatChannel) {
+      case 1:
+      case 2:
+        return slots.filter((slot) => !slot.value.endsWith("30"));
+      case 3:
+        return slots;
+      default:
+        return [];
     }
+  });
 
-    const newChannel = reactive<INewChannel>({
-      categoriesId: [],
-      description: "",
-      link: "",
-      name: "",
-      slots: [],
-      days: [],
-      price: "",
-      formatChannel: 0,
-      conditionCheck: "",
-    });
+  const buttonColor = computed(() => {
+    if (newChannel.name === "") return "gray";
+    return "blue";
+  });
 
+  const handleCategorySelect = (value: string) => {
+    const foundCategory = categories.value.find((c) => c.value === value);
+    if (!foundCategory) return;
 
-    const selectedCategory = ref("");
+    selectedCategory.value = foundCategory.value;
+    newChannel.categoriesId = [foundCategory.id];
+  };
 
-    const shownSlots = computed(() => {
-      switch (newChannel.formatChannel) {
-        case 1:
-        case 2:
-          return slots.filter((slot) => !slot.value.endsWith("30"));
-        case 3:
-          return slots;
-        default:
-          return [];
-      }
-    });
+  const handleSlotsSelect = (value: string) => {
+    newChannel.slots.push(value);
+  };
 
-    const buttonColor = computed(() => {
-      if (newChannel.name === "") return "gray";
-      return "blue";
-    });
+  const handleSlotsUnselect = (value: string) => {
+    const index = newChannel.slots.indexOf(value);
+    newChannel.slots.splice(index, 1);
+  };
 
-    const handleCategorySelect = (value: string) => {
-      const foundCategory = categories.value.find((c) => c.value === value);
-      if (!foundCategory) return;
+  const submitNewChannel = async () => {
+    if (!newChannel.days.length) return;
 
-      selectedCategory.value = foundCategory.value;
-      newChannel.categoriesId = [foundCategory.id];
-    };
+    await channelsStore.create(createApiData());
+  };
 
-    const handleSlotsSelect = (value: string) => {
-      newChannel.slots.push(value);
-    };
+  onBeforeMount(() => {
+    if (!initialChannelData.value) return navigateTo("/personal/connect");
 
-    const handleSlotsUnselect = (value: string) => {
-      const index = newChannel.slots.indexOf(value);
-      newChannel.slots.splice(index, 1);
-    };
+    newChannel.name = initialChannelData.value.name;
+    newChannel.link = initialChannelData.value.link;
+  });
 
-    const submitNewChannel = async () => {
-      if (!newChannel.days.length) return;
-
-      await channelsStore.create({
-        categoriesId: newChannel.categoriesId,
-        description: newChannel.description,
-        link: newChannel.link,
-        name: newChannel.name,
-        days: newChannel.days?.map(day => String(+day)),
-        slots: newChannel.slots,
-        price: Number(newChannel.price),
-        formatChannel: newChannel.formatChannel,
-        conditionCheck: newChannel.conditionCheck,
-      });
-    };
-
-    onBeforeMount(() => {
-      if (!initialChannelData.value) return navigateTo("/personal/connect");
-
-      newChannel.name = initialChannelData.value.name;
-      newChannel.link = initialChannelData.value.link;
-    });
-
-    watch(
-      () => newChannel.formatChannel,
-      () => {
-        newChannel.slots = [];
-      }
-    );
+  watch(
+    () => newChannel.formatChannel,
+    () => {
+      newChannel.slots = [];
+    }
+  );
 </script>
 
 <style scoped lang="scss" src="./style.scss" />

@@ -76,8 +76,6 @@
 </template>
 <script setup lang="ts">
   import { useChannelStore } from "~/store/channel/channel.store";
-  import {useBuyChannel} from "~/composobles/useBuyChannel";
-  import {usePagination} from "~/composobles/usePagination";
   import {useCategoriesStore} from "~/store/categories/categories.store";
   import {useUserStore} from "~/store/user/user.store";
 
@@ -228,3 +226,4 @@
      }
    }
 </style>
+~/composables/useBuyChannel~/composables/usePagination
