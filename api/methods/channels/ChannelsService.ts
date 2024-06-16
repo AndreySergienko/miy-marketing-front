@@ -50,6 +50,7 @@ export default class ChannelsService extends ApiService {
 
     return data.map((item) => ({
       id: item.id,
+      slots: item.slots,
       avatar: item.avatar,
       description: item.description,
       categories: item.categories,

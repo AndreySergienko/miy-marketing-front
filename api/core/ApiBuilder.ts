@@ -1,6 +1,6 @@
 import FetchMapper from '~/api/core/mapper/FetchMapper'
 import { FetchOptions, FetchRequest } from 'ofetch'
-import { useShowError } from '~/composobles/useShowError'
+import { useShowError } from '~/composables/useShowError'
 
 export default class ApiBuilder {
   private readonly mapper: FetchMapper
