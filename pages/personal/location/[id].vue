@@ -25,8 +25,8 @@
             </span>
             <SharedCalendar
               title="Календарь"
-              :selected="newChannel.day"
-              @select="newChannel.day = $event"
+              :selected="newChannel.days"
+              @select="addDate"
             />
             <SharedMultiselect
               title="Слоты"
@@ -93,6 +93,21 @@ definePageMeta({
   layout: "personal",
 });
 
+const addDate = (date: Date) => {
+      if (!newChannel.days) return
+      const transformDayWithoutTime = date.setHours(0, 0, 0, 0)
+      const index = newChannel.days.findIndex(el => +el === transformDayWithoutTime)
+      if (index !== -1) {
+        newChannel.days.splice(index, 1)
+      } else {
+        if (newChannel.days.length > 6) {
+        alertStore.showError({ title: 'Выбрано слишком много дат, максимальное допустимое кол-во 7' })
+        return;
+      }
+        newChannel.days.push(new Date(transformDayWithoutTime))
+      }
+    }
+
 const route = useRoute();
 const id = route.params.id;
 
@@ -131,7 +146,7 @@ const newChannel = reactive<INewChannel>({
   description: "",
   link: "",
   name: "",
-  day: null,
+  days: [],
   slots: [],
   price: "",
   formatChannel: 0,
