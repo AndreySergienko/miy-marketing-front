@@ -62,16 +62,18 @@
 
   const selectedText = computed<string>(() => {
     let string = ''
-    selected.value?.forEach(el => {
-      const transformedDay = new Date(el).toLocaleDateString("ru") || ""
-      if (string) {
-        string += `, ${transformedDay}`
-      } else {
-        string += transformedDay
-      }
-    });
+    if (Array.isArray(selected.value)) {
+        selected.value.forEach(el => {
+            const transformedDay = new Date(el).toLocaleDateString("ru") || ""
+            if (string) {
+                string += `, ${transformedDay}`
+            } else {
+                string += transformedDay
+            }
+        });
+    }
     return string
-  });
+});
 
   const topMenuTitle = computed(() => {
     const month = currentDate.value.toLocaleDateString("ru", {
@@ -106,7 +108,9 @@
   }));
 
   const itemClassConstruct = (day: number, isNextMonth: boolean) => {
-    if (!selected.value) return;
+    if (!Array.isArray(selected.value)) {
+    return {};
+  }
     const offset = Number(isNextMonth);
     return {
     "shared-calendar__options-table--item-active": selected.value.find(el => el.getDate() === day && el.getMonth() === (currentDate.value.getMonth() + offset) && el.getFullYear() === currentDate.value.getFullYear())
