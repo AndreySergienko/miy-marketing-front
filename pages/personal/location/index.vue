@@ -86,7 +86,7 @@
 
 <script setup lang="ts">
     import { useAlertStore } from "~/store/alert/alert.store";
-  import { useCategoriesStore } from "~/store/categories/categories.store";
+    import { useCategoriesStore } from "~/store/categories/categories.store";
     import { useChannelStore } from "~/store/channel/channel.store";
     import type { INewChannel } from "~/store/channel/channel.types";
 
@@ -147,6 +147,7 @@
       formatChannel: 0,
       conditionCheck: "",
     });
+
 
     const selectedCategory = ref("");
 

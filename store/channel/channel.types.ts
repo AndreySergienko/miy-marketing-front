@@ -3,7 +3,7 @@ export interface INewChannel {
   name: string
   description: string
   link: string
-  days: Date[]
+  days: Date[];
   slots: string[]
   price: string
   formatChannel: number

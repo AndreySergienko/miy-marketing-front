@@ -31,8 +31,9 @@
 
   const avatar = computed<string>(() => {
     if (props.avatar) return props.avatar;
-    return '../../public/tg.png'
-  })
+    return '/tg.png'
+  }) 
+
 </script>
 
 <style lang="scss" scoped>
