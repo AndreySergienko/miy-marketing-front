@@ -17,6 +17,7 @@
             :price="card.channel.price"
             :subscribers="card.channel.subscribers"
             :avatar="card.channel.avatar"
+            :interval="currentFormat(card.channel.formatChannelId)"
           >
             <template #title>
               <SharedCardTitle>{{ card.channel.name }}</SharedCardTitle>
@@ -83,6 +84,14 @@
   const channelStore = useChannelStore();
   const userStore = useUserStore()
 
+  const{getAllFormat} = useChannelStore()
+  const {formatAll} = toRefs(channelStore)
+
+  const currentFormat = (formatChannelId:number) => {
+    const format = formatAll.value.find(item => item.id === formatChannelId);
+    return format.value;
+  }
+
   /** pagination **/
   const { paginationQuery, incrementPage } = usePagination()
   /** categories **/
@@ -111,6 +120,10 @@
   watch(activeCategories, async () => await fetchChannels(true), { deep: true })
 
   useAsyncData(() => channelStore.getAll({ url: paginationQuery.value, isMounted: true }))
+  
+  onMounted(() => {
+    getAllFormat()
+  })
 </script>
 
 <style scoped lang="scss">
@@ -226,4 +239,4 @@
      }
    }
 </style>
-~/composables/useBuyChannel~/composables/usePagination
+

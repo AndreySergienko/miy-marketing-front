@@ -3,6 +3,7 @@ import type {
   IChannelsRegistrationBody,
   IInitialChannelData,
   IGetAll,
+  IFormat,
 } from '~/api/methods/channels/channels.types'
 import ChannelsService from '~/api/methods/channels/ChannelsService'
 import { useAlertStore } from '~/store/alert/alert.store'
@@ -16,6 +17,18 @@ export const useChannelStore = defineStore('global/channel', () => {
   const channelsAll = ref<IGetAll[]>([])
   const initialChannelData = ref<IInitialChannelData | null>(null)
   const isLoading = ref<boolean>(false)
+
+  /** Формат */
+const formatAll = ref<IFormat[]>([]);
+
+/** Получение списка интервалов */
+  async function getAllFormat() {
+    try {
+      formatAll.value = await channelsService.getFormat()
+    } catch (e) {
+      useShowError(e);
+    }
+  }
 
   /** Получение всего списка каналов **/
   async function getAll({
@@ -83,6 +96,7 @@ export const useChannelStore = defineStore('global/channel', () => {
       useShowError(e)
     }
   }
+  
 
   /** Обновить канал **/
   async function update() {}
@@ -97,6 +111,8 @@ export const useChannelStore = defineStore('global/channel', () => {
     create,
     getMy,
     getAll,
+    formatAll,
+    getAllFormat,
     isLoading,
   }
 })
