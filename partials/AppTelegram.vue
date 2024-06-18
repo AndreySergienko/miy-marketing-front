@@ -76,54 +76,67 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { useChannelStore } from "~/store/channel/channel.store";
-  import {useCategoriesStore} from "~/store/categories/categories.store";
-  import {useUserStore} from "~/store/user/user.store";
+      import { useChannelStore } from "~/store/channel/channel.store";
+      import {useCategoriesStore} from "~/store/categories/categories.store";
+      import {useUserStore} from "~/store/user/user.store";
+    import { useAlertStore } from "~/store/alert/alert.store";
+  import { date } from "yup";
 
 
-  const channelStore = useChannelStore();
-  const userStore = useUserStore()
+      const channelStore = useChannelStore();
+      const userStore = useUserStore()
 
-  const{getAllFormat} = useChannelStore()
-  const {formatAll} = toRefs(channelStore)
+      const{getAllFormat} = useChannelStore()
+      const {formatAll} = toRefs(channelStore)
 
-  const currentFormat = (formatChannelId:number) => {
-    const format = formatAll.value.find(item => item.id === formatChannelId);
-    return format.value;
-  }
+      const currentFormat = (formatChannelId:number) => {
+        const format = formatAll.value.find(item => item.id === formatChannelId);
+        if (!format) return 'Нет подходящего формата'
+        return format.value;
+      }
 
-  /** pagination **/
-  const { paginationQuery, incrementPage } = usePagination()
-  /** categories **/
-  const categoriesStore = useCategoriesStore()
+      /** pagination **/
+      const { paginationQuery, incrementPage } = usePagination()
+      /** categories **/
+      const categoriesStore = useCategoriesStore()
 
 
-  const { permissions } = storeToRefs(userStore)
-  const { isLoading } = storeToRefs(channelStore)
-  const { getQueryCategories, activeCategories } = storeToRefs(categoriesStore)
-  const { channelsAll } = storeToRefs(channelStore);
-  const { clearInfoChannel, setInfoChannel, slotId, times, activeSlots, dateIdx, days } = useBuyChannel()
+      const { permissions } = storeToRefs(userStore)
+      const { isLoading } = storeToRefs(channelStore)
+      const { getQueryCategories, activeCategories } = storeToRefs(categoriesStore)
+      const { channelsAll } = storeToRefs(channelStore);
+      const alertStore = useAlertStore()
+      const { clearInfoChannel, setInfoChannel, slotId, times, activeSlots, dateIdx, days } = useBuyChannel()
 
-  const buy = async () => {
-    if (!dateIdx.value || !slotId.value) return;
-    await channelStore.buy(+slotId.value, +dateIdx.value)
-    clearInfoChannel()
-  }
+      const buy = async () => {
+        if (!slotId.value) {
+          alertStore.showError({ title: 'Укажите время' })
+          return
+        };
+        if (!dateIdx.value && +dateIdx.value !== 0) {
+          console.log(dateIdx.value);
 
-  async function fetchChannels(isMounted?: boolean) {
-    const fullPath = getQueryCategories.value ? paginationQuery.value + '&' + getQueryCategories.value  : paginationQuery.value
-    await channelStore.getAll({ url: fullPath, isMounted })
-  }
+          alertStore.showError({ title: 'Укажите дату' })
+          return
+        }
+        await channelStore.buy(+slotId.value, +dateIdx.value)
+        clearInfoChannel()
+      }
 
-  watch(paginationQuery, async () => await fetchChannels())
+      async function fetchChannels(isMounted?: boolean) {
+        const fullPath = getQueryCategories.value ? paginationQuery.value + '&' + getQueryCategories.value  : paginationQuery.value
+        await channelStore.getAll({ url: fullPath, isMounted })
+      }
 
-  watch(activeCategories, async () => await fetchChannels(true), { deep: true })
+      watch(paginationQuery, async () => await fetchChannels())
 
-  useAsyncData(() => channelStore.getAll({ url: paginationQuery.value, isMounted: true }))
-  
-  onMounted(() => {
-    getAllFormat()
-  })
+      watch(activeCategories, async () => await fetchChannels(true), { deep: true })
+
+      useAsyncData(() => channelStore.getAll({ url: paginationQuery.value, isMounted: true }))
+
+      onMounted(() => {
+        getAllFormat()
+      })
 </script>
 
 <style scoped lang="scss">
@@ -239,4 +252,3 @@
      }
    }
 </style>
-

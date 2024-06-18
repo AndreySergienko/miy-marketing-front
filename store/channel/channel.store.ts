@@ -19,14 +19,17 @@ export const useChannelStore = defineStore('global/channel', () => {
   const isLoading = ref<boolean>(false)
 
   /** Формат */
-const formatAll = ref<IFormat[]>([]);
+  const formatAll = ref<IFormat[]>([])
 
-/** Получение списка интервалов */
+  /** Получение списка интервалов */
   async function getAllFormat() {
     try {
-      formatAll.value = await channelsService.getFormat()
+      const response = await channelsService.getFormat()
+      if (response) {
+        formatAll.value = response
+      }
     } catch (e) {
-      useShowError(e);
+      useShowError(e)
     }
   }
 
@@ -62,7 +65,6 @@ const formatAll = ref<IFormat[]>([]);
   /** Купить канал **/
   async function buy(slotId: number, dateIdx: number) {
     try {
-      if (!dateIdx) return
       isLoading.value = true
       const response = await channelsService.buy(slotId, dateIdx)
       if (!response) return
@@ -96,7 +98,6 @@ const formatAll = ref<IFormat[]>([]);
       useShowError(e)
     }
   }
-  
 
   /** Обновить канал **/
   async function update() {}
