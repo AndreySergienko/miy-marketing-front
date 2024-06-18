@@ -39,6 +39,13 @@ export interface IGetAll {
   slots: ISlot[]
 }
 
+export interface IFormat {
+  // formatChannelId: number
+  id: number;
+  value: string;
+}
+
+
 export interface IApiChannelsListItem extends IInitialChannelData {
   categories: number[]
   chatId: string

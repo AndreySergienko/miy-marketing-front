@@ -37,8 +37,11 @@
   import AppIntro from '../partials/AppIntro.vue';
   import AppTelegram from '../partials/AppTelegram.vue';
   import {useCategoriesStore} from "~/store/categories/categories.store";
+  import { useChannelStore } from '~/store/channel/channel.store';
 
   const categoriesStore = useCategoriesStore()
+  const channelStore = useChannelStore()
+  // const {getAllFormat} = useChannelStore()
   const {categories, activeCategories} = storeToRefs(categoriesStore)
   const {getAll} = useCategoriesStore()
 
@@ -46,6 +49,7 @@
 
   onMounted(() => {
   getAll();
+  // getAllFormat();
 
   const options = {
     root: null,

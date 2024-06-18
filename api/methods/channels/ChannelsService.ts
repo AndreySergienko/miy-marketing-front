@@ -5,6 +5,7 @@ import type {
   IChannelsRegistrationBody,
   IInitialChannelData,
   IGetAll,
+  IFormat,
 } from './channels.types'
 import { API_ITEM_TYPES } from '~/components/ProfileChannelsItem/ProfileChannelsItem.types'
 
@@ -14,6 +15,13 @@ export default class ChannelsService extends ApiService {
   constructor() {
     super()
     this.apiUrl = 'channels/'
+  }
+
+  async getFormat(): Promise<IFormat> {
+     const fullUrl ='channels/format/all'
+     return await this.$api(fullUrl, {
+      method: 'get',
+     })
   }
 
   async register(data: IChannelsRegistrationBody) {
