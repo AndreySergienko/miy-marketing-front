@@ -89,7 +89,7 @@
 
   const currentFormat = (formatChannelId:number) => {
     const format = formatAll.value.find(item => item.id === formatChannelId);
-    return format.value;
+    return format ? format.value : null;
   }
 
   /** pagination **/

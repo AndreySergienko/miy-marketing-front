@@ -24,6 +24,7 @@ const formatAll = ref<IFormat[]>([]);
 /** Получение списка интервалов */
   async function getAllFormat() {
     try {
+      const formats = await channelsService.getFormat();
       formatAll.value = await channelsService.getFormat()
     } catch (e) {
       useShowError(e);

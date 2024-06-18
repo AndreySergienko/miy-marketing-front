@@ -19,7 +19,6 @@ export const useUserStore = defineStore('global/user', () => {
   const permissions = ref<
     Partial<Record<TPermissionsScopesKeys, TPermissionsScopesKeys>>
   >({})
-  console.log(permissions)
 
   /** Получить юзера **/
   async function getMe() {

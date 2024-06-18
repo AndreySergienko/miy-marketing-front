@@ -40,7 +40,6 @@ export interface IGetAll {
 }
 
 export interface IFormat {
-  // formatChannelId: number
   id: number;
   value: string;
 }
