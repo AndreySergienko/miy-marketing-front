@@ -1,6 +1,22 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig ({
+  app: {
+    head: {
+      title: "on-developer.ru",
+      meta: [
+        {
+          name: "description",
+          content: 
+          "Платформа для продвижения TG-каналов. Платформа предлагаем уникальный бот, который позволяет делегировать ответственность за размещение и управление рекламой в вашем канале. Если вы ищите простой и удобный способ размещения рекламы в вашем telegram-канале, on-developer - это то, что вам нужно.  Эффективное продвижение - это просто!"
+        },
+        {
+          name: "keywords",
+          content: "on-developer, tg, telegram, канал, реклама"
+        }
+      ]
+    }
+  },
   modules: ['@pinia/nuxt', '@vee-validate/nuxt', "@nuxt/image", 'nuxt-icons'],
   veeValidate: {
     autoImports: true,

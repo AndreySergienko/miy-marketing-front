@@ -76,11 +76,11 @@
   </div>
 </template>
 <script setup lang="ts">
-      import { useChannelStore } from "~/store/channel/channel.store";
-      import {useCategoriesStore} from "~/store/categories/categories.store";
-      import {useUserStore} from "~/store/user/user.store";
+    import { useChannelStore } from "~/store/channel/channel.store";
+    import {useCategoriesStore} from "~/store/categories/categories.store";
+    import {useUserStore} from "~/store/user/user.store";
     import { useAlertStore } from "~/store/alert/alert.store";
-  import { date } from "yup";
+  
 
 
       const channelStore = useChannelStore();
