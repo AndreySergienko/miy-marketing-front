@@ -40,10 +40,9 @@ export interface IGetAll {
 }
 
 export interface IFormat {
-  id: number;
-  value: string;
+  id: number
+  value: string
 }
-
 
 export interface IApiChannelsListItem extends IInitialChannelData {
   categories: number[]

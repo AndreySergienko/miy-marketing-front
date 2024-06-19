@@ -17,11 +17,11 @@ export default class ChannelsService extends ApiService {
     this.apiUrl = 'channels/'
   }
 
-  async getFormat(): Promise<IFormat> {
-     const fullUrl ='channels/format/all'
-     return await this.$api(fullUrl, {
+  async getFormat(): Promise<IFormat[]> {
+    const fullUrl = 'channels/format/all'
+    return await this.$api(fullUrl, {
       method: 'get',
-     })
+    })
   }
 
   async register(data: IChannelsRegistrationBody) {
