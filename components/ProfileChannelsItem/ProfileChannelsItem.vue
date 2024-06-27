@@ -8,15 +8,6 @@
           class="profile-channels-item__panel-status--icon"
           :name="`channels-item-${status}`"
           filled
-          @pointerover="isTooltipActive = true"
-          @pointerleave="isTooltipActive = false"
-        />
-        <SharedTooltip
-          v-if="statusTooltip"
-          :is-active="isTooltipActive"
-          class="profile-channels-item__panel-status--tooltip"
-          :text="statusTooltip"
-          border-color="#ffd0d0"
         />
       </div>
       <div class="profile-channels-item__panel-controls">
@@ -26,6 +17,8 @@
           name="channels-controls-edit"
           filled
           @click="$emit('edit')"
+          @pointerover="activeToolTip = true"
+          @pointerleave="activeToolTip = false"
         />
         <NuxtIcon
           v-if="status === EProfileChannelsItemTypes.DONE"
@@ -33,6 +26,13 @@
           name="channels-controls-retry"
           filled
           @click="$emit('retry')"
+        />
+        <SharedTooltip
+          v-if="activeToolTip"
+          :is-active="activeToolTip"
+          class="profile-channels-item__panel-controls--tooltip"
+          text="*для изменения данных о канале вам необходимо переподключить бота к каналу, таким образом мы корректно отменим или удалим несуществующие интеграции"
+          border-color="#ffd0d0"
         />
 <!--        <NuxtIcon-->
 <!--          class="profile-channels-item__panel-controls&#45;&#45;icon"-->
@@ -67,10 +67,11 @@ const statuses = {
 const rootClass = computed(() => `profile-channels-item--${status.value}`);
 const statusText = computed(() => statuses[status.value]);
 
-const isTooltipActive = ref(false);
+const activeToolTip = ref(true)
 </script>
 
 <style scoped lang="scss">
+@use 'assets/styles/media';
 .profile-channels-item {
   --item-color: transparent;
   --item-text-color: var(--color-black);
@@ -93,6 +94,9 @@ const isTooltipActive = ref(false);
     display: flex;
     align-items: center;
     gap: var(--indent-4xl);
+    @include media.media-breakpoint-down(sm) {
+      gap: var(--indent-l);
+    }
 
     &-status {
       position: relative;
@@ -123,6 +127,7 @@ const isTooltipActive = ref(false);
     }
 
     &-controls {
+      position: relative;
       display: flex;
       align-items: center;
       gap: var(--indent-4xl);
@@ -135,6 +140,18 @@ const isTooltipActive = ref(false);
         :deep(svg) {
           width: 100%;
           height: 100%;
+        }
+      }
+
+      &--tooltip {
+        font-size: var(--font-size-s);
+        top: 40px;
+        left: -500px;
+        padding: var(--indent-l);
+        width: 500px;
+        @include media.media-breakpoint-down(sm) {
+          left: -240px;
+          width: 260px;
         }
       }
     }

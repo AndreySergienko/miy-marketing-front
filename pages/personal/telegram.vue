@@ -18,7 +18,7 @@
           size="l"
           @click="navigateTo('/personal/connect')"
         >
-          Опубликовать TG-канал
+          Опубликовать <br> TG-канал
         </SharedButton>
       </div>
     </div>
