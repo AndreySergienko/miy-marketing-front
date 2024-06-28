@@ -10,7 +10,17 @@
   </div>
 </template>
 <style scoped lang="scss">
+@use 'assets/styles/media';
   .gratitude {
+    margin-left: 9vw;
+
+    @include media.media-breakpoint-down(xl) {
+      margin-left: 2vw;
+    }
+    @include media.media-breakpoint-down(l) {
+      margin-left: 0;
+    }
+
     &__inner {
       display: flex;
       flex-direction: column;
