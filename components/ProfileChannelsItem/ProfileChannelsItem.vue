@@ -67,7 +67,7 @@ const statuses = {
 const rootClass = computed(() => `profile-channels-item--${status.value}`);
 const statusText = computed(() => statuses[status.value]);
 
-const activeToolTip = ref(true)
+const activeToolTip = ref(false)
 </script>
 
 <style scoped lang="scss">

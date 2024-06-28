@@ -19,7 +19,7 @@
   } from "~/controllers/AuthController/AuthController.types";
   import {validateInn} from '~/utils/validator.ts/inn.validator';
   const authStore = useAuthStore()
-  const isShowGratitude = ref<boolean>(true);
+  const isShowGratitude = ref<boolean>(false);
   const registrationData = reactive<IRegistrationRequest>({
     email: '',
     inn: '',

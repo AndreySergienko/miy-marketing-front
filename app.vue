@@ -7,4 +7,4 @@
 
 <script setup lang="ts">
   import AlertController from "~/controllers/AlertController/AlertController.vue";
-</script>
+  </script>
