@@ -117,16 +117,4 @@
       }
     }
   }
-
-  .gratitude {
-    margin-left: 2vw;
-
-    @include media.media-breakpoint-down(l) {
-      margin-left: 15vw;
-    }
-
-    @include media.media-breakpoint-down(sm) {
-      margin-left: 1vw
-    }
-  }
 </style>

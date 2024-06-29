@@ -6,7 +6,6 @@
       :title="item.name"
       :status="item.status"
       status-tooltip="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-      @edit="navigateTo(`/personal/location/${item.id}`)"
       @retry="navigateTo(`/personal/connect/${item.id}`)"
       @delete="console.log('delete')"
     />

@@ -3,7 +3,7 @@
     <div class="card__inner">
       <img class="card__img" :src="avatar" alt="Аватар" />
       <slot name="title" />
-      <div class="card__price">{{ price }}</div>
+      <div class="card__price">{{ formattedPrice }}</div>
       <slot name="description" />
       <div class="card__icons">
         <div class="card__icon">
@@ -39,6 +39,13 @@
     if (props.avatar) return props.avatar;
     return '/tg.png'
   }) 
+
+  const formattedPrice = computed(() => {
+  return new Intl.NumberFormat('ru-RU', {
+    style: 'currency',
+    currency: props.currency,
+  }).format(props.price);
+});
 
 </script>
 
@@ -83,13 +90,14 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      text-align: center;
 
       border: 1px solid var(--color-light-gray);
       border-radius: 25px;
     }
 
     &__price {
-      font-size: var(--font-size-xl);
+      font-size: var(--font-size-l);
       font-weight: var(--font-weight-semi-bold);
 
       @include media.media-breakpoint-down (l) {
