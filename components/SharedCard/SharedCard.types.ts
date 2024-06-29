@@ -4,4 +4,5 @@ export interface ISharedCardProps {
   subscribers: number;
   avatar: string;
   interval: string;
+  currency: string;
 }

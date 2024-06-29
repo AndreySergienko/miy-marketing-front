@@ -15,6 +15,7 @@
             v-for="card in channelsAll"
             :key="card.channel.id"
             :price="card.channel.price"
+            :currency="'RUB'"
             :subscribers="card.channel.subscribers"
             :avatar="card.channel.avatar"
             :interval="currentFormat(card.channel.formatChannelId)"

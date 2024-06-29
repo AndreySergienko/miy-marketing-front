@@ -2,7 +2,10 @@
   <div class="header">
     <div class="container">
       <div class="header__inner">
-        <nuxt-link class="header__link" to="/"><h1 class="header__title">ON-DEVELOPER</h1></nuxt-link>
+        <nuxt-link class="header__link" to="/">
+          <img class="header__img" src="~/public/dragon.png" alt="dragon">
+          <h1 class="header__title">ON-DEVELOPER</h1>
+        </nuxt-link>
         <ClientOnly>
           <SharedNavigation class="header__navigation" />
         </ClientOnly>
@@ -51,7 +54,18 @@
       align-items: center;
     }
 
+    &__img {
+      display: none;
+      width: 20px;
+      margin-right: var(--indent-s);
+
+      @include media.media-breakpoint-down(sm) {
+        display: block;
+      }
+    }
+
     &__link {
+      display: flex;
       text-decoration: none;
       color: var(--color-black);
     }
