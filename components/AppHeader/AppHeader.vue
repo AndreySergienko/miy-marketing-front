@@ -3,7 +3,7 @@
     <div class="container">
       <div class="header__inner">
         <nuxt-link class="header__link" to="/">
-          <img class="header__img" src="~/public/dragon.png" alt="dragon">
+          <NuxtImg class="header__img" src="/dragon.png" alt="dragon"/>
           <h1 class="header__title">ON-DEVELOPER</h1>
         </nuxt-link>
         <ClientOnly>
