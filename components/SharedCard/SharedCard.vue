@@ -80,6 +80,7 @@
 
     &__img {
       width: 200px;
+      border-radius: 25px;
     }
 
     &__inner {

@@ -51,12 +51,9 @@ const isTooltipActive = computed(() => !permissions.value.CAN_PUBLIC_CHANNEL)
   }
 
   &__tooltip {
-    top: 65px;
+    top: 85px;
     border-radius: 10px;
     text-align: center;
-    @include media.media-breakpoint-down(sm) {
-      top: 90px;
-    }
   }
 
   &__top {
