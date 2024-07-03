@@ -71,7 +71,7 @@
               name="question" 
               class="tooltip__icon" 
               @pointerover="isTooltipActive = true"
-              @pointerleave="isTooltipActive = true"
+              @pointerleave="isTooltipActive = false"
               filled/>
           </SharedInput>
           <SharedInput

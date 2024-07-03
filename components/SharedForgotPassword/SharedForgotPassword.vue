@@ -1,5 +1,5 @@
 <template>
-  <div :class="['forgot-password', isShow && 'show']" @mousemove="openShow" @mouseenter="openShow">
+  <div :class="['forgot-password', isShow && 'show']" @mousemove="openShow" @mouseleave="closeShow">
     <div class="forgot-password__title">
       <span>Забыли пароль</span>
       <nuxt-icon name="lock" filled/>

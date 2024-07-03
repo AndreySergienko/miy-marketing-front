@@ -1,5 +1,5 @@
 <template>
-  <div :class="['id-bot', isShow && 'show']" @mousemove="openShow" @mouseenter="openShow">
+  <div :class="['id-bot', isShow && 'show']" @mousemove="openShow" @mouseenter="closeShow">
     <nuxt-icon class="id-bot__icon" name="question" filled />
     <div class="id-bot__inner">
       <div class="id-bot__title">Уникальный id</div>
