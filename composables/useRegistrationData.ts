@@ -35,6 +35,19 @@ export function useRegistrationData() {
     }
   }
 
+  const totalPrice = computed(() => {
+    const price = Number(newChannel.price);
+    return Math.floor(price * 1.15)
+  });
+
+  const formattedPrice = computed(() => {
+    const currencyFormatter = new Intl.NumberFormat('ru-RU', {
+        style: "currency",
+        currency: 'RUB',
+    });
+    return currencyFormatter.format(totalPrice.value);
+});
+
   const createApiData = () => {
     return {
       categoriesId: newChannel.categoriesId,
@@ -43,11 +56,11 @@ export function useRegistrationData() {
       name: newChannel.name,
       days: newChannel.days?.map((day) => String(+day)),
       slots: newChannel.slots,
-      price: Number(newChannel.price),
+      price: totalPrice.value,
       formatChannel: newChannel.formatChannel,
       conditionCheck: newChannel.conditionCheck,
     }
   }
 
-  return { createApiData, addDate, newChannel }
+  return { createApiData, addDate, newChannel, formattedPrice }
 }
