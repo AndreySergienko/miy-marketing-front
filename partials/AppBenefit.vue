@@ -7,7 +7,7 @@
             <SharedTitle class="benefit__text-title"> Наши преимущества </SharedTitle>
             <SharedText class="benefit__text-text">
               Оплата и создание рекламы через ТГ-бота платформы. <br>
-              Низкая комиссия - 7,2 % от суммы вашей рекламной интеграции.
+              Фиксированный сервисный сбор для админов ТГ-канала обеспечивает:
             </SharedText>
           </div>
           <SharedBenefit />

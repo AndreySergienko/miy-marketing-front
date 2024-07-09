@@ -45,13 +45,27 @@
                 @unselect="handleSlotsUnselect"
               />
               <SharedInput
+                class="location__calendar-item-price"
                 name="price"
                 type="number"
                 v-model="newChannel.price"
               >
-                Цена
+              <SharedTooltip 
+                :is-active="isCharge"
+                class="tooltip__charge"
+                text="* в стоимость будет добавлен сервисный сбор"
+                border-color="#ffd0d0"
+              />
+                Цена <span class="charge">+15%</span>
+                <nuxt-icon 
+                  name="question" 
+                  class="tooltip__icon" 
+                  @pointerover="isCharge = true"
+                  @pointerleave="isCharge = false"
+                  filled/>
               </SharedInput>
             </div>
+            <div class="total__price">Итоговая стоимость: {{ formattedPrice }}</div>
           </div>
           <SharedInput
             name="link"
@@ -102,6 +116,7 @@
   import { useChannelStore } from "~/store/channel/channel.store";
 
   const isTooltipActive = ref(false);
+  const isCharge = ref(false)
 
   definePageMeta({
     layout: "personal",
@@ -133,7 +148,8 @@
     return categoriesStore.getAll();
   });
 
-  const { newChannel, addDate, createApiData } = useRegistrationData()
+  const { newChannel, addDate, createApiData, formattedPrice } = useRegistrationData()
+
 
   const selectedCategory = ref("");
 
@@ -148,6 +164,8 @@
         return [];
     }
   });
+
+  
 
   const buttonColor = computed(() => {
     if (newChannel.name === "") return "gray";

@@ -41,6 +41,7 @@
     }
 
     &-item {
+      position: relative;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 24px;
@@ -48,6 +49,10 @@
       @include media.media-breakpoint-down(sm) {
         display: flex;
         flex-direction: column;
+      }
+
+      &-price {
+        position: relative;
       }
     }
   }
@@ -104,4 +109,20 @@
   &__icon {
     margin-left: var(--indent-s);
   }
+
+  &__charge {
+    width: 255px;
+    font-size: var(--font-size-s);
+    border-radius: 13px;
+    top: 30px;
+    left: 0;
+  }
+}
+.charge {
+  margin-left: var(--indent-s);
+  color: var(--red);
+}
+.total__price {
+  font-size: var(--font-size-m);
+  color: var(--color-blue);
 }
