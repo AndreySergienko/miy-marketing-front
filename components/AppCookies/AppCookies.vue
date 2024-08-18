@@ -4,7 +4,7 @@
       <div class="cookies__inner">
         <div class="cookies__text">
           <p>Мы собираем куки. Без них никак.</p>
-          <a href="/Cookies/Cookies.pdf">Подробнее...</a>
+          <a href="/Cookies/Cookies.pdf" target="_blank" rel="noopener noreferrer">Подробнее...</a>
         </div>
         <div class="cookies__btn">
           <SharedButton size="xs" color="blue" @click="acceptCookies">OK</SharedButton>

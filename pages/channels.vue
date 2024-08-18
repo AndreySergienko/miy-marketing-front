@@ -70,7 +70,7 @@
         >
       </div>
     </SharedModal>
-    <div class="more">
+    <div class="more" v-if="channelsAll.length > 0">
       <p class="more__text" @click="incrementPage">Смотреть еще</p>
       <nuxt-icon class="more__icon" name="arrow" filled />
     </div>
