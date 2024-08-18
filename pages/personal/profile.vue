@@ -26,7 +26,7 @@
                         <SharedInput
                           name="inn"
                           v-model="userData.inn"
-                          type="number"
+                          type="text"
                           :error="errors.inn"
                         >
                           ИНН
@@ -46,7 +46,7 @@
                         <h3 class="personal__card-title">Привязанная карта</h3>
                         <div class="personal__card-form">
                           <SharedInput
-                            name="card"
+                            name="cardNumber"
                             v-model="userData.cardNumber"
                             type="text"
                             :error="errors.cardNumber"
@@ -79,7 +79,6 @@
 
 <script setup>
 import UserController from '~/controllers/UserController/UserController.vue';
-import {useUserStore} from '~/store/user/user.store';
   definePageMeta({
     layout: 'personal'
   })

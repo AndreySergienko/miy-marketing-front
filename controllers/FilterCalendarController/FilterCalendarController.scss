@@ -1,0 +1,46 @@
+@use "assets/styles/media";
+
+.filter-calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  @include media.media-breakpoint-down(sm) {
+    gap: 25px;
+  }
+
+  &__title {
+    font-size: 30px;
+    line-height: 21px;
+    font-weight: 700;
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: 18px;
+      max-width: 300px;
+    }
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    &-reset {
+      z-index: 1;
+      position: absolute;
+      top: -11px;
+      right: 0;
+      padding: 5px 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 15px;
+      line-height: 11px;
+      font-weight: 600;
+      color: rgb(0, 56, 255);
+      background: var(--color-white);
+      cursor: pointer;
+    }
+  }
+}

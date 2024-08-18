@@ -4,23 +4,10 @@
       <shared-animation>
         <div class="benefit__inner">
           <div class="benefit__text">
-            <SharedTitle> Наши преимущества </SharedTitle>
-            <SharedText
-              >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod <br />
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, <br />
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-              commodo <br />
-              consequat.
-            </SharedText>
-            <SharedText
-              >Lorem ipsum dolor sit amet, consectetur dipiscing elit, sed do
-              eiusmod tempor <br />
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis <br />
-              nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat.
+            <SharedTitle class="benefit__text-title"> Наши преимущества </SharedTitle>
+            <SharedText class="benefit__text-text">
+              Оплата и создание рекламы через ТГ-бота платформы. <br>
+              Фиксированный сервисный сбор для админов ТГ-канала обеспечивает:
             </SharedText>
           </div>
           <SharedBenefit />
@@ -69,6 +56,17 @@
       @include media.media-breakpoint-down(sm) {
         width: 95%;
       }
+
+      &-title {
+        color: var(--color-blue);
+      }
+      &-text {
+        font-size: 24px;
+        @include media.media-breakpoint-down(sm) {
+          font-size: var(--font-size-s);
+        }
+      }
     }
   }
+  
 </style>

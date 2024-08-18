@@ -1,15 +1,7 @@
 <template>
-  <h3 class="title">{{ title }}</h3>
+  <h3 class="title"><slot /></h3>
 </template>
 
-<script setup>
-  const props = defineProps({
-    title: {
-      type:String,
-      default: 'Еaque ipsa'
-    }
-  })
-</script>
 
 <style lang="scss" scoped>
   @use 'assets/styles/media';

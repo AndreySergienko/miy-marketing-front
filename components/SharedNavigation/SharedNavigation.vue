@@ -2,11 +2,11 @@
   <nav>
     <ul :class="['navigation', navDirection[position] ]">
       <li v-for="(navItem, id) in navList" :key="id">
-        <a :href="'#' + navItem.link" class="navigation__link">
+        <nuxt-link :href="toPoint(navItem.link)" class="navigation__link" @click="closeBurger">
           <div class="navigation__item">
             {{ navItem.text }}
           </div>
-        </a>
+        </nuxt-link>
       </li>
     </ul>
   </nav>
@@ -22,6 +22,17 @@
   const props = defineProps({
     position: String,
   })
+
+  const closeBurger = () => {
+    const checkbox = document.getElementById('burger-checkbox');
+    if (checkbox) {
+      checkbox.checked = false;
+    }
+  }
+  
+  const toPoint = (link: string) => {
+    return window.location.origin + '#' + link
+  }
 </script>
 
 <style scoped lang="scss">
@@ -32,8 +43,12 @@
     cursor: pointer;
     gap: var(--indent-3xl);
 
+    @include media.media-breakpoint-down(xl) {
+      gap: var(--indent-2xl);
+    }
+
     @include media.media-breakpoint-down(sm) {
-      gap: var( --indent-l);
+      gap: var(--indent-l);
       flex-direction: column;
       align-items: flex-start;
     }
@@ -55,12 +70,7 @@
     &__column {
       display: flex;
       flex-direction: column;
-      padding-left: var(--indent-l);
-      
-      @include media.media-breakpoint-down(sm) {
-        margin-bottom: var(--indent-xl);
-      }
-
+      padding: var(--indent-l);
     }
   }
   li {

@@ -3,9 +3,10 @@ export enum EProfileChannelsItemTypes {
   MODERATING = "moderating",
   DONE = "done",
   REJECTED = "rejected",
+  CREATE = 'create'
 }
 export const API_ITEM_TYPES = {
-  1: EProfileChannelsItemTypes.MODERATING,
+  1: EProfileChannelsItemTypes.CREATE,
   2: EProfileChannelsItemTypes.MODERATING,
   3: EProfileChannelsItemTypes.AVAILABLE,
   4: EProfileChannelsItemTypes.DONE,

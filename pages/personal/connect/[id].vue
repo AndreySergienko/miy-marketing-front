@@ -47,7 +47,7 @@ const channelName = ref("");
 
 onBeforeMount(() => {
   const channel = channels.value.find((c) => c.id === +id.toString());
-  if (!channel) return navigateTo("/personal/telegram");
+  // if (!channel) return navigateTo("/personal/telegram");
 
   channelName.value = channel.name;
 });

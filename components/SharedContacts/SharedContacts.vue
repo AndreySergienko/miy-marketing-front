@@ -3,24 +3,27 @@
     <div class="contact__intro">
       <div class="contact__title">
         <SharedTitle>Контакты</SharedTitle>
-        <SharedText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </SharedText>
+        <SharedText>
+          Свяжитесь с нами для консультации или заказа рекламной кампании. Мы всегда
+          на связи и готовы помочь вам добиться успеха в продвижении в телеграмме.
+        </SharedText>
       </div>
       <div class="contact__items">
         <div class="contact__item">
           <h3 class="contact__item-title">Email</h3>
-          <SharedText>ON-Developer@gmail.com</SharedText>
+          <SharedText>miy@on-developer.ru</SharedText>
         </div>
         <div class="contact__item">
-          <h3 class="contact__item-title">Тг канал</h3>
-          <SharedText>https://t.me/ON-Developer</SharedText>
+          <h3 class="contact__item-title">TG-канал</h3>
+          <SharedText>https://t.me/ON_DEVELOPER</SharedText>
         </div>
         <div class="contact__item">
           <h3 class="contact__item-title">Адрес</h3>
-          <SharedText>Вятская улица, 47с2А, Москва, 127015</SharedText>
+          <SharedText>РФ, г. Москва, вн.тер. г. муниципальный округ Раменки, км МЖД Киевское 5-й, д. 1, стр. 1, помещ. 3/3</SharedText>
         </div>
         <div class="contact__item">
           <h3 class="contact__item-title">ИНН</h3>
-          <SharedText>902729038037</SharedText>
+          <SharedText>9729376921</SharedText>
         </div>
       </div>
     </div>
@@ -49,8 +52,10 @@
     &__items {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
+      gap: var(--indent-m);
 
       @include media.media-breakpoint-down(sm) {
+        gap: 0;
         display: flex;
         flex-direction: column;
       }

@@ -1,6 +1,6 @@
 <template>
   <div class="alert">
-    <NuxtIcon :name="type" class="alert__icon" filled size="24px" />
+    <NuxtIcon :name="type" class="alert__icon" filled />
     <div class="alert__title">{{ title }}</div>
     <NuxtIcon  class="alert__icon alert__icon--close" name="close" filled @click="$emit('close')" />
   </div>
@@ -15,6 +15,7 @@ const background = computed(() => props.type === 'error' ? 'var(--red)' : 'var(-
 </script>
 
 <style scoped lang="scss">
+@use 'assets/styles/media';
 
 .alert {
   padding: var(--indent-s);
@@ -31,17 +32,20 @@ const background = computed(() => props.type === 'error' ? 'var(--red)' : 'var(-
   background: v-bind('background');
   border-radius: 20px;
 
+  @include media.media-breakpoint-down(sm) {
+    width: 320px;
+  }
+
   &__title {
     padding: var(--indent-s);
 
-    display: -webkit-box;
+    display: block;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   &__icon {
+    font-size: 24px;
     &:deep(svg) {
       width: 100%;
       height: 36px;

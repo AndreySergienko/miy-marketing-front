@@ -2,32 +2,38 @@
   <div class="categories">
     <div class="categories__inner">
       <div v-if="isOpen" class="categories__list">
-        <h3 class="categories__list-title">Все категории</h3>
-        <div class="categories__items">
-          <div class="categories__item"
-            v-for="(categoriesItem, id) in categoriesList" :key="id"
-          >
-            <div class="categories__item-text">{{ categoriesItem.text }}</div>
-            <div class="categories__item-number">{{ categoriesItem.number }}</div>
+        <div class="container">
+          <h3 class="categories__list-title">Все категории</h3>
+          <div class="categories__items">
+            <div
+              v-for="(categoriesItem, index) in categoriesList" :key="categoriesItem.title + index"
+              :class="['categories__item', activeCategories[String(categoriesItem.id)] && 'active']"
+              @click="emit('setCategory', categoriesItem.id)"
+            >
+              <div class="categories__item-text">{{ categoriesItem.title }}</div>
+              <div v-if="categoriesItem.count" class="categories__item-number">{{ categoriesItem.count }}</div>
+            </div>
           </div>
         </div>
       </div>
       <div class="categories__button">
         <button @click="showCategories" class="categories__button-text">
           Категории
-          <nuxt-icon calss="categories__button-icon" :name="iconName" filled></nuxt-icon>
+          <nuxt-icon class="categories__button-icon" :name="iconName" filled></nuxt-icon>
         </button>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
-  import {categoriesList} from './SharedCategories.data'
-  import {ref} from 'vue'
+<script setup lang="ts">
+import type {ISharedCategoriesEmits, ISharedCategoriesProps} from "~/components/SharedCategories/SharedCategories.type";
 
-  const isOpen = ref(false)
-  const iconName = ref('arrow-down')
+  const props = defineProps<ISharedCategoriesProps>()
+  const emit = defineEmits<ISharedCategoriesEmits>()
+
+  const isOpen = ref<boolean>(false)
+  const iconName = ref<string>('arrow-down')
 
   const showCategories = () => {
     isOpen.value = !isOpen.value
@@ -38,33 +44,20 @@
 <style lang="scss" scoped>
   @use 'assets/styles/media';
   .categories {
+    position: fixed;
     margin-bottom: var(--indent-5xl);
 
     @include media.media-breakpoint-down(sm) {
       margin-bottom: var(--indent-3xl);
     }
 
-    &__container {
-      max-width: 1600px;
-      margin: 0 auto;
-    }
-
     &__inner {
       display: flex;
       flex-direction: column;
       align-items: center;
-
-      @include media.media-breakpoint-down(l) {
-        padding: 0 var(--indent-2xl);
-      }
-      
-      @include media.media-breakpoint-down(sm) {
-          padding: 0 var(--indent-l);
-        }
     }
 
     &__list {
-      padding: 15px;
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -76,6 +69,10 @@
         font-size: var(--font-size-xl);
         font-weight: var(--font-weight-semi-bold);
         margin-bottom: var(--indent-2xl);
+
+        @include media.media-breakpoint-down(sm) {
+          font-size: var(--font-size-l);
+        }
       }
     }
 
@@ -99,6 +96,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      cursor: pointer;
+
+      &.active {
+        color: blue;
+      }
 
       &-text {
         font-size: var(--font-size-m);

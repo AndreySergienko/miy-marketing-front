@@ -7,9 +7,15 @@
 </template>
 
 <script setup lang="ts">
-import type { IChannelInitialProps } from "./ChannelInitial.types";
+  import type { IChannelInitialProps } from "./ChannelInitial.types";
+  
+  const props = defineProps<IChannelInitialProps>();
 
-defineProps<IChannelInitialProps>();
+  const avatar = computed<string>(() => {
+    if (props.avatar) return props.avatar;
+    return '/tg.png'
+  })
+
 </script>
 
 <style scoped lang="scss">

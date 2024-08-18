@@ -3,7 +3,7 @@ import type {TPermissionsScopesKeys} from "~/modules/permissions/types";
 
 export interface IUser {
   email: string;
-  inn: number;
+  inn: string;
   fio: string;
   permissions: TPermissionsScopesKeys[];
   cardNumber?: string;

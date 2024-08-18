@@ -1,7 +1,10 @@
 <template>
     <div class="field">
         <span class="field__name" ><slot /></span>
-        <VeeField :class="{'field__input': true, 'field__input-error': error, 'disabled': isDisabled}" v-model="input" :name="name" :type="type" />
+        <keep-alive>
+          <VeeField :class="{'field__input': true, 'field__input-error': error, 'disabled': isDisabled}" v-model="input" :name="name" :type="type"/>
+        </keep-alive>
+        <i class="field__icon"><slot name="icon" /></i>
         <span class="field__error" v-if="error">{{ error }}</span>
     </div>
 
@@ -10,7 +13,7 @@
 import type {ISharedInputEmits, ISharedInputProps} from "~/components/SharedInput/SharedInput.types";
 
 const props = defineProps<ISharedInputProps>();
-const emits = defineEmits<ISharedInputEmits>()
+const emits = defineEmits<ISharedInputEmits>();
 
 const input = computed({
     get() {
@@ -20,12 +23,12 @@ const input = computed({
         emits('update:modelValue', value)
     }
 })
-
 </script>
 
 <style scoped lang="scss">
   @use 'assets/styles/media';
   .field {
+    position: relative;
     display: flex;
     flex-direction: column;
 
@@ -46,6 +49,7 @@ const input = computed({
     }
 
     &__input {
+      font-size: var(--font-size-s);
       padding-left: var(--indent-s);
       height: 50px;
       border: 1px solid var(--color-light-gray);
@@ -76,6 +80,20 @@ const input = computed({
       &.disabled {
         opacity: .5;
         pointer-events: none;
+      }
+    }
+
+    &__icon, &__icon-error {
+      position: absolute;
+      z-index: 1;
+      top: 39px;
+      right: 10px;
+      cursor: pointer;
+      color: var(--color-blue);
+      font-size: 24px;
+
+      @include media.media-breakpoint-down(sm) {
+        top: 34px;
       }
     }
 

@@ -1,13 +1,17 @@
 <template>
-  <div :class="['id-bot', isShow && 'show']" @mousemove="openShow" @mouseenter="openShow">
+  <div :class="['id-bot', isShow && 'show']" @mousemove="openShow" @mouseenter="closeShow">
     <nuxt-icon class="id-bot__icon" name="question" filled />
     <div class="id-bot__inner">
       <div class="id-bot__title">Уникальный id</div>
-      <div class="id-bot__text">Вы сможете получить уникальный id через нашего <nuxt-link to="https://t.me/miy_ad_bot">тг бота</nuxt-link>. Для <br>
-        начала напишите в строке “/start”. Убедительная просьба <br>
-        использовать один аккаунт при получении id и при будущем <br>
-        осуществлении рекламы. В обязательно порядке при <br>
-        размещении рекламы в тг каналах вы должны быть админом.
+      <div class="id-bot__text">
+        Вы сможете получить уникальный id через нашего 
+        <nuxt-link to="https://t.me/miy_ad_bot">
+          тг бота
+        </nuxt-link>. 
+        Для начала напишите в строке “/start”. Убедительная просьба
+        использовать один аккаунт при получении id и при будущем
+        осуществлении рекламы. В обязательно порядке при
+        размещении рекламы в тг каналах вы должны быть админом. 
       </div>
     </div>
   </div>
@@ -23,7 +27,6 @@ const openShow = () => {
 }
 
 function closeShow() {
-  // console.log('click')
   window.removeEventListener('click', closeShow)
   isShow.value = false
 }
@@ -40,6 +43,8 @@ function closeShow() {
     }
     &__inner {
       position: absolute;
+      width: 445px;
+      z-index: 2;
       padding: var(--indent-l);
       display: none;
       background-color: var(--color-white);
@@ -48,7 +53,8 @@ function closeShow() {
       border-radius: 24px;
 
       @include media.media-breakpoint-down(sm) {
-        left: 10px;
+        width: 290px;
+        left: 15%;
       }
     }
 

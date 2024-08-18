@@ -23,7 +23,8 @@ const buttonSize: TButtonSizeClass = {
   l: 'btn__large',
   m: 'btn__medium',
   s: 'btn__small',
-  xl: 'btn__xl'
+  xl: 'btn__xl',
+  xs: 'btn__xs'
 }
 
 const click = () => {
@@ -59,6 +60,13 @@ const click = () => {
       padding: var(--indent-l) 48px;
       border-radius: 13px;
     }
+    &__xs {
+      font-size: 14px;
+      padding: 9px 20px;
+      width: 61px;
+      min-height: 35px;
+      border-radius: 10px;
+    }
     &__large {
       width: 500px;
       font-size: var(--font-size-m);
@@ -66,7 +74,7 @@ const click = () => {
       border-radius: 12px;
 
       @include media.media-breakpoint-down(sm) {
-        width: 325px;
+        width: 318px;
         font-size: var(--font-size-s);
       }
     }

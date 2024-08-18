@@ -1,12 +1,12 @@
-import FetchMapper from "~/api/core/mapper/FetchMapper";
-import {FetchOptions, FetchRequest} from "ofetch";
-import {useShowError} from "~/composobles/useShowError";
+import FetchMapper from '~/api/core/mapper/FetchMapper'
+import { FetchOptions, FetchRequest } from 'ofetch'
+import { useShowError } from '~/composables/useShowError'
 
 export default class ApiBuilder {
-    private readonly mapper: FetchMapper;
-    constructor() {
-        this.mapper = new FetchMapper()
-    }
+  private readonly mapper: FetchMapper
+  constructor() {
+    this.mapper = new FetchMapper()
+  }
 
   private createBaseUrl(): string {
     const config = useRuntimeConfig()
@@ -19,17 +19,17 @@ export default class ApiBuilder {
   }
 
   public create(getHeaders: () => HeadersInit) {
-      const mapper = this.mapper;
-      const domain = this.createBaseUrl()
-      return async <T>(request: FetchRequest, options: FetchOptions): Promise<T> => {
-        const url = domain + request
-        console.log('URL', url)
-        console.log('options', options)
-        // @ts-ignore
-        return $fetch(url, {
-          headers: getHeaders(),
-          ...options,
-        }).then(mapper.mapDataKeys).catch(useShowError)
-      }
+    const domain = this.createBaseUrl()
+    return async <T>(
+      request: FetchRequest,
+      options?: FetchOptions,
+    ): Promise<T> => {
+      const url = domain + request
+      // @ts-ignore
+      return $fetch(url, {
+        headers: getHeaders(),
+        ...options,
+      }).catch(useShowError)
+    }
   }
 }

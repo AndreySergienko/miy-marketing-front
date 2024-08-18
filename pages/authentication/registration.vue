@@ -9,9 +9,14 @@
               <SharedInput name="uniqueBotId" v-model="registrationData.uniqueBotId" type="text" :error="errors.uniqueBotId">Уникальный id
                 <SharedIdbot />
               </SharedInput>
-              <SharedInput name="inn" v-model="registrationData.inn" type="number" :error="errors.inn">ИНН</SharedInput>
+              <SharedInput name="inn" v-model="registrationData.inn" type="text" :error="errors.inn">ИНН</SharedInput>
               <SharedInput name="email" v-model="registrationData.email" type="text" :error="errors.email">Почта</SharedInput>
-              <SharedInput name="password" v-model="registrationData.password" type="text" :error="errors.password">Пароль</SharedInput>
+              <SharedInput name="password" v-model="registrationData.password" :type="showPassword ? 'text' : 'password'" :error="errors.password">Пароль
+                <template #icon>
+                  <nuxt-icon v-if="showPassword" name="eye-off" @click="showPassword = !showPassword"></nuxt-icon>
+                  <nuxt-icon v-else name="eye" @click="showPassword = !showPassword"></nuxt-icon>
+                </template>
+              </SharedInput>
             </div>
             <div class="form__checkbox">
               <span class="form__checkbox-title">Публикация рекламных постов в</span>
@@ -23,11 +28,11 @@
                 </SharedGroupRadio>
               </div>
               <div class="form__checkbox-confidential">
-                <SharedCheckbox v-model="isChecked">Согласен на обработку персональных данных, получение рассылок, а также с <nuxt-link to="/confidential">Политикой конфиденциальности.</nuxt-link></SharedCheckbox>
+                <SharedCheckbox v-model="isChecked">Согласен на обработку персональных данных, получение рассылок, а также с <a target="_blank" href="/Politic confidential/privacy__policy.pdf">Политикой конфиденциальности.</a></SharedCheckbox>
               </div>
             </div>
             <div class="btn__registration">
-              <SharedButton size="l" color="blue" :disabled="!meta.valid || !isChecked" @click="sendRegistration" :is-loading="isLoading">Создать</SharedButton>
+              <SharedButton size="l" color="blue" :isDisabled="!meta.valid || !isChecked || isLoading" @click="sendRegistration" :is-loading="isLoading">Создать</SharedButton>
             </div>
           </VeeForm>
         </template>
@@ -42,6 +47,8 @@
 <script setup lang="ts">
   import AuthController from '~/controllers/AuthController/AuthController.vue';
   import {radios} from "~/modules/pages/registration/registration.data";
+
+  const showPassword = ref(false)
 
   definePageMeta({
     layout: 'authentication'
@@ -108,18 +115,6 @@
         font-size: var(--font-size-s);
         font-weight: var(--font-weight-medium);
       }
-    }
-  }
-
-  .gratitude {
-    margin-left: 2vw;
-
-    @include media.media-breakpoint-down(l) {
-      margin-left: 15vw;
-    }
-
-    @include media.media-breakpoint-down(sm) {
-      margin-left: 1vw
     }
   }
 </style>

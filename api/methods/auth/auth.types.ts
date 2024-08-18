@@ -13,7 +13,7 @@ export type TRequestMethods = 'delete' | 'put' | 'post' | 'get';
 
 export interface IRegistrationRequest {
     email: string;
-    inn: number | null;
+    inn: string;
     fio: string;
     password: string;
     uniqueBotId: string;

@@ -1,22 +1,22 @@
 <template>
   <div class="card">
     <div class="card__inner">
-      <img class="card__img" src="../../public/tg.png" alt="тг" />
-      <SharedCardTitle class="card__title"/>
-      <div class="card__price">{{ price }}</div>
-      <SharedCardText />
+      <img class="card__img" :src="avatar" alt="Аватар" />
+      <slot name="title" />
+      <div class="card__price">{{ formattedPrice }}</div>
+      <slot name="description" />
       <div class="card__icons">
         <div class="card__icon">
           <div class="card__icon-text">
-            {{ people }}
+            {{ subscribers}}
           </div>
           <nuxt-icon class="card__icon-img__people" name="people"/>
         </div>
         <div class="card__icon">
           <div class="card__icon-text">
-            {{ clock}}
+            {{ interval}}
           </div>
-          <nuxt-icon class="card__icon-img__clock" name="clock"/>
+          <nuxt-icon class="card__icon-img__people" name="clock"/>
         </div>
       </div>
       <div class="card__calendar">
@@ -25,24 +25,27 @@
           </div>
           <nuxt-icon class="card__calendar-icon" name="calendar"/>
           </div>
-      <button class="card__button">
-        Купить
-        <nuxt-icon class="card__button-icon" name="chevron" filled />
-      </button>
+      <slot name="actions" />
     </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+  import type {ISharedCardProps} from "~/components/SharedCard/SharedCard.types";
 
-  import SharedCardTitle from './SharedCardTitle.vue';
-  import SharedCardText from './SharedCardText.vue'
+  const props = defineProps<ISharedCardProps>()
 
-  const props = defineProps({
-    price: String,
-    people: String,
-    clock: String,
-  })
+  const avatar = computed<string>(() => {
+    if (props.avatar) return props.avatar;
+    return '/tg.png'
+  }) 
+
+  const formattedPrice = computed(() => {
+  return new Intl.NumberFormat('ru-RU', {
+    style: 'currency',
+    currency: props.currency,
+  }).format(props.price);
+});
 
 </script>
 
@@ -77,6 +80,7 @@
 
     &__img {
       width: 200px;
+      border-radius: 25px;
     }
 
     &__inner {
@@ -87,13 +91,14 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      text-align: center;
 
       border: 1px solid var(--color-light-gray);
       border-radius: 25px;
     }
 
     &__price {
-      font-size: var(--font-size-xl);
+      font-size: var(--font-size-l);
       font-weight: var(--font-weight-semi-bold);
 
       @include media.media-breakpoint-down (l) {
@@ -173,36 +178,6 @@
 
         @include media.media-breakpoint-down(sm) {
           font-size: var(--font-size-m);
-        }
-      }
-    }
-
-    &__button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      width: 100%;
-      padding: var(--indent-m) 0;
-      gap: var(--indent-m);
-
-      font-size: var(--font-size-m);
-
-      border: 1px solid transparent;
-      border-radius: 10px;
-      color: var(--color-white);
-      background-color: var(--color-blue);
-
-      @include media.media-breakpoint-down(sm) {
-          font-size: var(--font-size-s);
-          gap: var(--indent-s);
-        }
-
-      &-icon {
-        font-size: var(--font-size-m);
-
-        @include media.media-breakpoint-down(sm) {
-          font-size: var(--font-size-s);
         }
       }
     }
