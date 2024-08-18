@@ -1,26 +1,44 @@
+@use "assets/styles/media";
+
 .day-block {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 30px;
-  width: 36px;
-  height: 60px;
-  gap: 10px;
+  width: 48px;
+  height: 73px;
+  gap: 15px;
   transition: 0.2s ease-in-out;
   cursor: pointer;
 
+  @include media.media-breakpoint-down(sm) {
+    width: 36px;
+    height: 60px;
+    gap: 10px;
+  }
+
   &__number {
-    font-size: 15px;
-    line-height: 11px;
+    font-size: 25px;
+    line-height: 18px;
     font-weight: 700;
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: 15px;
+      line-height: 11px;
+    }
   }
 
   &__week {
-    font-size: 12px;
-    line-height: 9px;
+    font-size: 14px;
+    line-height: 10px;
     font-weight: 400;
     color: rgba(53, 53, 53, 0.5);
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: 12px;
+      line-height: 9px;
+    }
   }
 
   &__current {

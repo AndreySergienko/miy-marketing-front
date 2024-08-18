@@ -1,3 +1,5 @@
+@use "assets/styles/media";
+
 .filter-calendar-main {
   position: relative;
   overflow: auto;
@@ -5,7 +7,11 @@
   &__calendar {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 29px;
+
+    @include media.media-breakpoint-down(sm) {
+      gap: 15px;
+    }
 
     &-month {
       display: flex;
@@ -23,19 +29,12 @@
       &__content {
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 10px;
+
+        @include media.media-breakpoint-down(sm) {
+          gap: 5px;
+        }
       }
-    }
-  }
-
-  &__controls {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-
-    :last-child {
-      margin-left: auto;
     }
   }
 }

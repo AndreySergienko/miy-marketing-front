@@ -1,13 +1,23 @@
+@use "assets/styles/media";
+
 .filter-calendar {
   display: flex;
   flex-direction: column;
-  padding: 0 14px;
-  gap: 25px;
+  gap: 48px;
+
+  @include media.media-breakpoint-down(sm) {
+    gap: 25px;
+  }
 
   &__title {
-    font-size: 18px;
+    font-size: 30px;
+    line-height: 21px;
     font-weight: 700;
-    max-width: 300px;
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: 18px;
+      max-width: 300px;
+    }
   }
 
   &__content {
