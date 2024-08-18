@@ -1,20 +1,6 @@
 import type { IMonth, IMonthDay } from "./FilterCalendarMain.types";
 
 const weekDays = ["ВС", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"];
-const monthNames = [
-  "Январь",
-  "Февраль",
-  "Март",
-  "Апрель",
-  "Май",
-  "Июнь",
-  "Июль",
-  "Август",
-  "Сентябрь",
-  "Октябрь",
-  "Ноябрь",
-  "Декабрь",
-];
 
 export const getDaysByMonth = (month: number): IMonthDay[] => {
   const date = new Date();

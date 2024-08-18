@@ -16,7 +16,7 @@
             :day="day"
             :is-current="isCurrentDay(day.date)"
             :is-selected="isSelected(day.date)"
-            @click="$emit('selectDate', day.date)"
+            @select-triggered="$emit('selectDate', day.date)"
           />
         </div>
       </div>

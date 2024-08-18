@@ -5,3 +5,7 @@ export interface IDayBlockProps {
   isCurrent: boolean;
   isSelected: boolean;
 }
+
+export interface IDayBlockEmits {
+  (e: "selectTriggered"): void;
+}
