@@ -1,0 +1,40 @@
+@use "assets/styles/media";
+
+.filter-calendar-main {
+  position: relative;
+  overflow: auto;
+
+  &__calendar {
+    display: flex;
+    align-items: center;
+    gap: 29px;
+
+    @include media.media-breakpoint-down(sm) {
+      gap: 15px;
+    }
+
+    &-month {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      &__title {
+        font-size: 14px;
+        line-height: 10px;
+        font-weight: 400;
+        color: rgba(53, 53, 53, 0.5);
+        text-transform: uppercase;
+      }
+
+      &__content {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        @include media.media-breakpoint-down(sm) {
+          gap: 5px;
+        }
+      }
+    }
+  }
+}
