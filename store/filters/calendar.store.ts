@@ -22,16 +22,25 @@ export const useCalendarStore = defineStore("filters/calendar", () => {
     if (date.getTime() < notFullRange.start.getTime()) {
       notFullRange.end = notFullRange.start;
       notFullRange.start = date;
-    } else {
-      notFullRange.end = date;
+      return;
     }
 
-    // TODO: вызвать получение новых данных с бэка, с передачей массива с датами
+    notFullRange.end = date;
   };
 
   const reset = (): void => {
     ranges.value = [];
   };
+
+  watch(
+    ranges,
+    () => {
+      // TODO: вызвать получение новых данных с бэка, с передачей массива с датами
+    },
+    {
+      deep: true,
+    }
+  );
 
   return {
     ranges,
