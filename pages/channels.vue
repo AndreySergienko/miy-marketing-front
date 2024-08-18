@@ -70,10 +70,10 @@
         >
       </div>
     </SharedModal>
-    <a href="/channels" class="more">
-      <p class="more__text">Смотреть еще</p>
+    <div class="more">
+      <p class="more__text" @click="incrementPage">Смотреть еще</p>
       <nuxt-icon class="more__icon" name="arrow" filled />
-    </a>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -195,8 +195,6 @@
      justify-content: center;
      align-items: center;
      cursor: pointer;
-     text-decoration: none;
-     color: var(--color-black);
 
      &__text {
        font-size: var(--font-size-m);
