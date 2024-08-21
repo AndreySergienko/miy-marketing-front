@@ -1,9 +1,13 @@
 import CategoriesService from "~/api/methods/categories/CategoriesService";
 import type { ICategoriesItem } from "~/api/methods/categories/categories.types";
 import { transform } from "./categories.utils";
+import { useCalendarStore } from "../filters/calendar.store";
 
 export const useCategoriesStore = defineStore("global/categories", () => {
   const categoriesService = new CategoriesService();
+
+  const calendarStore = useCalendarStore();
+  const { range } = storeToRefs(calendarStore);
 
   /** Список категорий **/
   const categories = ref<ICategoriesItem[]>([]);
@@ -25,9 +29,9 @@ export const useCategoriesStore = defineStore("global/categories", () => {
   });
 
   /** Получить список категорий **/
-  const getAll = async (dates: string) => {
+  const getAll = async () => {
     try {
-      const data = await categoriesService.getAll(dates);
+      const data = await categoriesService.getAll(range.value);
       categories.value = transform(data);
     } catch (e) {
       console.error(e);
@@ -43,6 +47,16 @@ export const useCategoriesStore = defineStore("global/categories", () => {
       activeCategories.value[id] = id;
     }
   };
+
+  watch(
+    range,
+    () => {
+      getAll();
+    },
+    {
+      deep: true,
+    }
+  );
 
   return {
     updateActiveCategories,
