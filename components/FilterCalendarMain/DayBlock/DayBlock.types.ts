@@ -7,5 +7,5 @@ export interface IDayBlockProps {
 }
 
 export interface IDayBlockEmits {
-  (e: "selectTriggered"): void;
+  (e: "selectTriggered", element: HTMLDivElement): void;
 }
