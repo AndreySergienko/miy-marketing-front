@@ -10,6 +10,7 @@
             бизнес", где ваша реклама будет наиболее эффективной.
           </SharedText>
         </div>
+        <FilterCalendarController />
         <div class="card__list">
           <SharedCard
             v-for="card in channelsAll"
@@ -81,6 +82,7 @@
     import {useCategoriesStore} from "~/store/categories/categories.store";
     import {useUserStore} from "~/store/user/user.store";
     import { useAlertStore } from "~/store/alert/alert.store";
+    import FilterCalendarController from "~/controllers/FilterCalendarController/FilterCalendarController.vue";
   
 
 
