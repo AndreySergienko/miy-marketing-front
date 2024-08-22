@@ -2,7 +2,7 @@
   <div class="tg" id="telegram">
     <div class="container">
       <div class="tg__inner">
-        <div class="tg__text">
+        <div class="tg__text-page">
           <SharedTitle>Telegram-каналы</SharedTitle>
           <SharedText>
             Выберите каналы для размещения вашей рекламы из списка на нашей
@@ -166,6 +166,16 @@
 
       @include media.media-breakpoint-down(sm) {
         width: 95%;
+      }
+
+      &-page {
+        width: 63%;
+        text-align: center;
+        margin-bottom: var(--indent-4xl);
+
+        @include media.media-breakpoint-down(sm) {
+          width: 95%;
+        }
       }
     }
   }

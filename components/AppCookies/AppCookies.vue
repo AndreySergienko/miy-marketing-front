@@ -3,7 +3,7 @@
     <div class="cookies" v-if="!cookiesAccepted">
       <div class="cookies__inner">
         <div class="cookies__text">
-          <p>Мы собираем куки. Без них никак.</p>
+          <p>Мы собираем файлы Cookies.</p>
           <a href="/Cookies/Cookies.pdf" target="_blank" rel="noopener noreferrer">Подробнее...</a>
         </div>
         <div class="cookies__btn">

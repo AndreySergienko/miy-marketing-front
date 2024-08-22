@@ -71,7 +71,7 @@
         >
       </div>
     </SharedModal>
-    <a href="/channels" class="more">
+    <a href="/channels" class="more" v-if="channelsAll.length > 0">
       <p class="more__text">Смотреть еще</p>
       <nuxt-icon class="more__icon" name="arrow" filled />
     </a>
