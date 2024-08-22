@@ -12,7 +12,7 @@ export interface IMonthDay {
 }
 
 export interface IFilterCalendarMainProps {
-  selectedDates: ICalendarRange[];
+  selectedRange: ICalendarRange | null;
 }
 
 export interface IFilterCalendarMainEmits {

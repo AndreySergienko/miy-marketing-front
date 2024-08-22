@@ -1,59 +1,36 @@
-import { useCategoriesStore } from "../categories/categories.store";
-
 export interface ICalendarRange {
   start: Date;
   end: Date | null;
 }
 
 export const useCalendarStore = defineStore("filters/calendar", () => {
-  const categoriesStore = useCategoriesStore();
-
-  const ranges = ref<ICalendarRange[]>([]);
+  const range = ref<ICalendarRange | null>(null);
 
   const selectDate = (date: Date): void => {
-    console.log(date);
-
-    const notFullRange = ranges.value.find((range) => range.end === null);
-
-    if (!notFullRange) {
-      ranges.value.push({
+    if (!range.value || (range.value.start && range.value.end)) {
+      range.value = {
         start: date,
         end: null,
-      });
+      };
+
       return;
     }
 
-    if (date.getTime() < notFullRange.start.getTime()) {
-      notFullRange.end = notFullRange.start;
-      notFullRange.start = date;
+    if (date.getTime() < range.value.start.getTime()) {
+      range.value.end = range.value.start;
+      range.value.start = date;
       return;
     }
 
-    notFullRange.end = date;
+    range.value.end = date;
   };
 
   const reset = (): void => {
-    ranges.value = [];
+    range.value = null;
   };
 
-  watch(
-    ranges,
-    (newRanges) => {
-      const rangesWithTimestamps = newRanges.map((range) => ({
-        start: range.start.getTime(),
-        end: range.end?.getTime() || null,
-      }));
-
-      const strigifiedRanges = JSON.stringify(rangesWithTimestamps);
-      categoriesStore.getAll(btoa(strigifiedRanges));
-    },
-    {
-      deep: true,
-    }
-  );
-
   return {
-    ranges,
+    range,
     selectDate,
     reset,
   };
