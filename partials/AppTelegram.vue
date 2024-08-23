@@ -157,7 +157,7 @@ onMounted(() => {
   getAllFormat();
 });
 
-watch(range, () => fetchChannels(), { deep: true });
+watch(range, async () => await fetchChannels(true), { deep: true });
 </script>
 
 <style scoped lang="scss">
