@@ -51,12 +51,14 @@ const selectionStyles = computed(() => {
   const firstRect = first.getBoundingClientRect();
   const secondRect = second.getBoundingClientRect();
 
+  const minRectLeft = Math.min(firstRect.left, secondRect.left);
+  const maxRectWidth = Math.max(firstRect.width, secondRect.width);
   const leftOffset =
-    calendarDiv.value.scrollLeft + firstRect.left + firstRect.width / 2;
+    calendarDiv.value.scrollLeft + minRectLeft + maxRectWidth / 2;
 
   return {
     "--left": `${leftOffset}px`,
-    "--width": `${secondRect.left - firstRect.left}px`,
+    "--width": `${Math.abs(secondRect.left - firstRect.left)}px`,
     "--height": `${firstRect.height}px`,
   };
 });
