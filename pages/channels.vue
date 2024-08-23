@@ -2,7 +2,7 @@
   <div class="tg" id="telegram">
     <div class="container">
       <div class="tg__inner">
-        <div class="tg__text">
+        <div class="tg__text-page">
           <SharedTitle>Telegram-каналы</SharedTitle>
           <SharedText>
             Выберите каналы для размещения вашей рекламы из списка на нашей
@@ -10,6 +10,7 @@
             бизнес", где ваша реклама будет наиболее эффективной.
           </SharedText>
         </div>
+        <FilterCalendarController />
         <div class="card__list">
           <SharedCard
             v-for="card in channelsAll"
@@ -70,7 +71,7 @@
         >
       </div>
     </SharedModal>
-    <div class="more">
+    <div class="more" v-if="channelsAll.length > 0">
       <p class="more__text" @click="incrementPage">Смотреть еще</p>
       <nuxt-icon class="more__icon" name="arrow" filled />
     </div>
@@ -81,6 +82,7 @@
     import {useCategoriesStore} from "~/store/categories/categories.store";
     import {useUserStore} from "~/store/user/user.store";
     import { useAlertStore } from "~/store/alert/alert.store";
+    import FilterCalendarController from "~/controllers/FilterCalendarController/FilterCalendarController.vue";
   
 
 
@@ -164,6 +166,16 @@
 
       @include media.media-breakpoint-down(sm) {
         width: 95%;
+      }
+
+      &-page {
+        width: 63%;
+        text-align: center;
+        margin-bottom: var(--indent-4xl);
+
+        @include media.media-breakpoint-down(sm) {
+          width: 95%;
+        }
       }
     }
   }
