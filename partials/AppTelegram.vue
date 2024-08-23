@@ -70,10 +70,10 @@
         >
       </div>
     </SharedModal>
-    <div class="more">
-      <p class="more__text" @click="incrementPage">Смотреть еще</p>
+    <a href="/channels" class="more">
+      <p class="more__text">Смотреть еще</p>
       <nuxt-icon class="more__icon" name="arrow" filled />
-    </div>
+    </a>
   </div>
 </template>
 <script setup lang="ts">
