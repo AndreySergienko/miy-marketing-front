@@ -1,5 +1,5 @@
 <template>
-  <div :class="['day-block', classes]" @click="handleClick">
+  <div ref="root" :class="['day-block', classes]" @click="handleClick">
     <span class="day-block__number">{{ day.number }}</span>
     <span class="day-block__week">{{ day.inWeek }}</span>
   </div>
@@ -13,14 +13,16 @@ const { isCurrent, isSelected } = toRefs(props);
 
 const emit = defineEmits<IDayBlockEmits>();
 
+const root = ref<HTMLDivElement>();
+
 const classes = computed(() => ({
   "day-block__current": isCurrent.value,
   "day-block__selected": isSelected.value,
 }));
 
 const handleClick = () => {
-  if (isSelected.value) return;
-  emit("selectTriggered");
+  if (isSelected.value || !root.value) return;
+  emit("selectTriggered", root.value);
 };
 </script>
 

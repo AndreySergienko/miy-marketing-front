@@ -4,46 +4,33 @@ export interface ICalendarRange {
 }
 
 export const useCalendarStore = defineStore("filters/calendar", () => {
-  const ranges = ref<ICalendarRange[]>([]);
+  const range = ref<ICalendarRange | null>(null);
 
   const selectDate = (date: Date): void => {
-    console.log(date);
-
-    const notFullRange = ranges.value.find((range) => range.end === null);
-
-    if (!notFullRange) {
-      ranges.value.push({
+    if (!range.value || (range.value.start && range.value.end)) {
+      range.value = {
         start: date,
         end: null,
-      });
+      };
+
       return;
     }
 
-    if (date.getTime() < notFullRange.start.getTime()) {
-      notFullRange.end = notFullRange.start;
-      notFullRange.start = date;
+    if (date.getTime() < range.value.start.getTime()) {
+      range.value.end = range.value.start;
+      range.value.start = date;
       return;
     }
 
-    notFullRange.end = date;
+    range.value.end = date;
   };
 
   const reset = (): void => {
-    ranges.value = [];
+    range.value = null;
   };
 
-  watch(
-    ranges,
-    () => {
-      // TODO: вызвать получение новых данных с бэка, с передачей массива с датами
-    },
-    {
-      deep: true,
-    }
-  );
-
   return {
-    ranges,
+    range,
     selectDate,
     reset,
   };

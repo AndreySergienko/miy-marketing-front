@@ -4,98 +4,102 @@ import type {
   IInitialChannelData,
   IGetAll,
   IFormat,
-} from '~/api/methods/channels/channels.types'
-import ChannelsService from '~/api/methods/channels/ChannelsService'
-import { useAlertStore } from '~/store/alert/alert.store'
+} from "~/api/methods/channels/channels.types";
+import ChannelsService from "~/api/methods/channels/ChannelsService";
+import { useAlertStore } from "~/store/alert/alert.store";
+import { ICalendarRange } from "../filters/calendar.store";
 
-export const useChannelStore = defineStore('global/channel', () => {
-  const alertStore = useAlertStore()
-  const channelsService = new ChannelsService()
+export const useChannelStore = defineStore("global/channel", () => {
+  const alertStore = useAlertStore();
+
+  const channelsService = new ChannelsService();
 
   /** Список каналов **/
-  const channels = ref<IChannelsListItem[]>([])
-  const channelsAll = ref<IGetAll[]>([])
-  const initialChannelData = ref<IInitialChannelData | null>(null)
-  const isLoading = ref<boolean>(false)
+  const channels = ref<IChannelsListItem[]>([]);
+  const channelsAll = ref<IGetAll[]>([]);
+  const initialChannelData = ref<IInitialChannelData | null>(null);
+  const isLoading = ref<boolean>(false);
 
   /** Формат */
-  const formatAll = ref<IFormat[]>([])
+  const formatAll = ref<IFormat[]>([]);
 
   /** Получение списка интервалов */
   async function getAllFormat() {
     try {
-      const response = await channelsService.getFormat()
+      const response = await channelsService.getFormat();
       if (response) {
-        formatAll.value = response
+        formatAll.value = response;
       }
     } catch (e) {
-      useShowError(e)
+      useShowError(e);
     }
   }
 
   /** Получение всего списка каналов **/
   async function getAll({
+    dates,
     url,
     isMounted,
   }: {
-    url: string
-    isMounted?: boolean
+    dates: ICalendarRange | null;
+    url: string;
+    isMounted?: boolean;
   }) {
     try {
-      const channelList = await channelsService.getAll(url)
+      const channelList = await channelsService.getAll(dates, url);
       if (isMounted) {
-        channelsAll.value = channelList
+        channelsAll.value = channelList;
       } else {
-        channelsAll.value.push(...channelList)
+        channelsAll.value.push(...channelList);
       }
     } catch (e) {
-      useShowError(e)
+      useShowError(e);
     }
   }
 
   /** Получить список каналов для текущего юзера **/
   async function getMy() {
     try {
-      channels.value = await channelsService.getMy()
+      channels.value = await channelsService.getMy();
     } catch (e) {
-      useShowError(e)
+      useShowError(e);
     }
   }
 
   /** Купить канал **/
   async function buy(slotId: number, dateIdx: number) {
     try {
-      isLoading.value = true
-      const response = await channelsService.buy(slotId, dateIdx)
-      if (!response) return
-      alertStore.show({ type: 'success', title: response.message })
+      isLoading.value = true;
+      const response = await channelsService.buy(slotId, dateIdx);
+      if (!response) return;
+      alertStore.show({ type: "success", title: response.message });
     } catch (e) {
-      useShowError(e)
+      useShowError(e);
     } finally {
-      isLoading.value = false
+      isLoading.value = false;
     }
   }
 
   /** Проверить канал **/
   async function check(channelName: string) {
     try {
-      const response = await channelsService.check(channelName)
-      if (!response) return
-      initialChannelData.value = response
-      await navigateTo('/personal/location')
+      const response = await channelsService.check(channelName);
+      if (!response) return;
+      initialChannelData.value = response;
+      await navigateTo("/personal/location");
     } catch (e) {
-      useShowError(e)
+      useShowError(e);
     }
   }
 
   /** Создать канал **/
   async function create(data: IChannelsRegistrationBody) {
     try {
-      const response = await channelsService.register(data)
-      if (!response) return
-      await navigateTo('/personal/telegram')
+      const response = await channelsService.register(data);
+      if (!response) return;
+      await navigateTo("/personal/telegram");
     } catch (e) {
-      useShowError(e)
+      useShowError(e);
     }
   }
 
@@ -115,5 +119,5 @@ export const useChannelStore = defineStore('global/channel', () => {
     formatAll,
     getAllFormat,
     isLoading,
-  }
-})
+  };
+});
