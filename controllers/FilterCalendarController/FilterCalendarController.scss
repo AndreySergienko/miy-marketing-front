@@ -2,8 +2,10 @@
 
 .filter-calendar {
   display: flex;
+  align-self: baseline;
   flex-direction: column;
   gap: 48px;
+  max-width: calc(100vw - 32px);
 
   @include media.media-breakpoint-down(sm) {
     gap: 25px;
