@@ -1,5 +1,5 @@
 <template>
-  <div class="filter-calendar-main">
+  <div ref="calendarDiv" class="filter-calendar-main">
     <div class="filter-calendar-main__calendar">
       <div
         v-for="month in getMonthsFromToday()"
@@ -40,17 +40,22 @@ const { selectedRange } = toRefs(props);
 
 const emit = defineEmits<IFilterCalendarMainEmits>();
 
+const calendarDiv = ref<HTMLDivElement>();
 const selectionDivs = ref<HTMLDivElement[]>([]);
 
 const selectionStyles = computed(() => {
+  if (!calendarDiv.value) return;
   if (selectionDivs.value.length !== 2) return;
 
   const [first, second] = selectionDivs.value;
   const firstRect = first.getBoundingClientRect();
   const secondRect = second.getBoundingClientRect();
 
+  const leftOffset =
+    calendarDiv.value.scrollLeft + firstRect.left + firstRect.width / 2;
+
   return {
-    "--left": `${firstRect.left + firstRect.width / 2}px`,
+    "--left": `${leftOffset}px`,
     "--width": `${secondRect.left - firstRect.left}px`,
     "--height": `${firstRect.height}px`,
   };
