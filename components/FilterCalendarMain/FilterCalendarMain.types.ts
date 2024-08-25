@@ -1,5 +1,3 @@
-import type { ICalendarRange } from "~/store/filters/calendar.store";
-
 export interface IMonth {
   index: number;
   name: string;
@@ -12,7 +10,7 @@ export interface IMonthDay {
 }
 
 export interface IFilterCalendarMainProps {
-  selectedRange: ICalendarRange | null;
+  selectedDates: Date[];
 }
 
 export interface IFilterCalendarMainEmits {

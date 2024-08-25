@@ -102,7 +102,7 @@ const { paginationQuery, incrementPage } = usePagination();
 /** categories **/
 const categoriesStore = useCategoriesStore();
 const calendarStore = useCalendarStore();
-const { range } = storeToRefs(calendarStore);
+const { dates } = storeToRefs(calendarStore);
 
 const { permissions } = storeToRefs(userStore);
 const { isLoading } = storeToRefs(channelStore);
@@ -138,7 +138,7 @@ async function fetchChannels(isMounted?: boolean) {
   const fullPath = getQueryCategories.value
     ? paginationQuery.value + "&" + getQueryCategories.value
     : paginationQuery.value;
-  await channelStore.getAll({ dates: range.value, url: fullPath, isMounted });
+  await channelStore.getAll({ dates: dates.value, url: fullPath, isMounted });
 }
 
 watch(paginationQuery, async () => await fetchChannels());
@@ -147,7 +147,7 @@ watch(activeCategories, async () => await fetchChannels(true), { deep: true });
 
 useAsyncData(() =>
   channelStore.getAll({
-    dates: range.value,
+    dates: dates.value,
     url: paginationQuery.value,
     isMounted: true,
   })
@@ -157,7 +157,7 @@ onMounted(() => {
   getAllFormat();
 });
 
-watch(range, async () => await fetchChannels(true), { deep: true });
+watch(dates, async () => await fetchChannels(true), { deep: true });
 </script>
 
 <style scoped lang="scss">

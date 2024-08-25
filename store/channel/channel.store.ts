@@ -41,7 +41,7 @@ export const useChannelStore = defineStore("global/channel", () => {
     url,
     isMounted,
   }: {
-    dates: ICalendarRange | null;
+    dates: Date[];
     url: string;
     isMounted?: boolean;
   }) {

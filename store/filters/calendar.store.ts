@@ -4,33 +4,27 @@ export interface ICalendarRange {
 }
 
 export const useCalendarStore = defineStore("filters/calendar", () => {
-  const range = ref<ICalendarRange | null>(null);
+  const dates = ref<Date[]>([]);
 
   const selectDate = (date: Date): void => {
-    if (!range.value || (range.value.start && range.value.end)) {
-      range.value = {
-        start: date,
-        end: null,
-      };
+    const foundIndex = dates.value.findIndex(
+      (item) => item.getTime() === date.getTime()
+    );
 
+    if (foundIndex !== -1) {
+      dates.value.splice(foundIndex, 1);
       return;
     }
 
-    if (date.getTime() < range.value.start.getTime()) {
-      range.value.end = range.value.start;
-      range.value.start = date;
-      return;
-    }
-
-    range.value.end = date;
+    dates.value.push(date);
   };
 
   const reset = (): void => {
-    range.value = null;
+    dates.value = [];
   };
 
   return {
-    range,
+    dates,
     selectDate,
     reset,
   };
