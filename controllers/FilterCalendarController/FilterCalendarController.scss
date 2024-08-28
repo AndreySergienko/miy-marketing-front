@@ -2,7 +2,6 @@
 
 .filter-calendar {
   display: flex;
-  align-self: baseline;
   flex-direction: column;
   gap: 48px;
   max-width: calc(100vw - 32px);
@@ -31,7 +30,7 @@
     &-reset {
       z-index: 1;
       position: absolute;
-      top: -11px;
+      top: -30px;
       right: 0;
       padding: 5px 10px;
       display: flex;

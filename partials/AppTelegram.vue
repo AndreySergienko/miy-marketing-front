@@ -10,6 +10,7 @@
             бизнес", где ваша реклама будет наиболее эффективной.
           </SharedText>
         </div>
+        <FilterCalendarController />
         <div class="card__list">
           <SharedCard
             v-for="card in channelsAll"
@@ -70,7 +71,7 @@
         >
       </div>
     </SharedModal>
-    <a href="/channels" class="more">
+    <a href="/channels" class="more" v-if="channelsAll.length > 0">
       <p class="more__text">Смотреть еще</p>
       <nuxt-icon class="more__icon" name="arrow" filled />
     </a>
@@ -82,6 +83,7 @@ import { useCategoriesStore } from "~/store/categories/categories.store";
 import { useUserStore } from "~/store/user/user.store";
 import { useAlertStore } from "~/store/alert/alert.store";
 import { useCalendarStore } from "~/store/filters/calendar.store";
+import FilterCalendarController from "~/controllers/FilterCalendarController/FilterCalendarController.vue";
 
 const channelStore = useChannelStore();
 const userStore = useUserStore();
@@ -100,7 +102,7 @@ const { paginationQuery, incrementPage } = usePagination();
 /** categories **/
 const categoriesStore = useCategoriesStore();
 const calendarStore = useCalendarStore();
-const { range } = storeToRefs(calendarStore);
+const { dates } = storeToRefs(calendarStore);
 
 const { permissions } = storeToRefs(userStore);
 const { isLoading } = storeToRefs(channelStore);
@@ -136,7 +138,7 @@ async function fetchChannels(isMounted?: boolean) {
   const fullPath = getQueryCategories.value
     ? paginationQuery.value + "&" + getQueryCategories.value
     : paginationQuery.value;
-  await channelStore.getAll({ dates: range.value, url: fullPath, isMounted });
+  await channelStore.getAll({ dates: dates.value, url: fullPath, isMounted });
 }
 
 watch(paginationQuery, async () => await fetchChannels());
@@ -145,7 +147,7 @@ watch(activeCategories, async () => await fetchChannels(true), { deep: true });
 
 useAsyncData(() =>
   channelStore.getAll({
-    dates: range.value,
+    dates: dates.value,
     url: paginationQuery.value,
     isMounted: true,
   })
@@ -155,7 +157,7 @@ onMounted(() => {
   getAllFormat();
 });
 
-watch(range, () => fetchChannels(), { deep: true });
+watch(dates, async () => await fetchChannels(true), { deep: true });
 </script>
 
 <style scoped lang="scss">

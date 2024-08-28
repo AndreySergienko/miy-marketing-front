@@ -1,5 +1,5 @@
 <template>
-  <div ref="calendarDiv" class="filter-calendar-main">
+  <div class="filter-calendar-main">
     <div class="filter-calendar-main__calendar">
       <div
         v-for="month in getMonthsFromToday()"
@@ -16,15 +16,11 @@
             :day="day"
             :is-current="isCurrentDay(day.date)"
             :is-selected="isSelected(day.date)"
-            @select-triggered="handleSelectTrigger($event, day.date)"
+            @select-triggered="$emit('selectDate', day.date)"
           />
         </div>
       </div>
     </div>
-    <div
-      :class="['filter-calendar-main__selection', selectionClass]"
-      :style="selectionStyles"
-    ></div>
   </div>
 </template>
 
@@ -36,36 +32,9 @@ import type {
 import { getDaysByMonth, getMonthsFromToday } from "./FilterCalendarMain.data";
 
 const props = defineProps<IFilterCalendarMainProps>();
-const { selectedRange } = toRefs(props);
+const { selectedDates } = toRefs(props);
 
 const emit = defineEmits<IFilterCalendarMainEmits>();
-
-const calendarDiv = ref<HTMLDivElement>();
-const selectionDivs = ref<HTMLDivElement[]>([]);
-
-const selectionStyles = computed(() => {
-  if (!calendarDiv.value) return;
-  if (selectionDivs.value.length !== 2) return;
-
-  const [first, second] = selectionDivs.value;
-  const firstRect = first.getBoundingClientRect();
-  const secondRect = second.getBoundingClientRect();
-
-  const minRectLeft = Math.min(firstRect.left, secondRect.left);
-  const maxRectWidth = Math.max(firstRect.width, secondRect.width);
-  const leftOffset =
-    calendarDiv.value.scrollLeft + minRectLeft + maxRectWidth / 2;
-
-  return {
-    "--left": `${leftOffset}px`,
-    "--width": `${Math.abs(secondRect.left - firstRect.left)}px`,
-    "--height": `${firstRect.height}px`,
-  };
-});
-
-const selectionClass = computed(() => ({
-  "filter-calendar-main__selection--active": selectionStyles.value,
-}));
 
 const isCurrentDay = (date: Date): boolean => {
   const today = new Date();
@@ -74,34 +43,13 @@ const isCurrentDay = (date: Date): boolean => {
 };
 
 const isSelected = (date: Date): boolean => {
-  if (!selectedRange.value) return false;
+  if (!selectedDates.value.length) return false;
 
-  const isStart = selectedRange.value.start.getTime() === date.getTime();
-  const isEnd = selectedRange.value.end?.getTime() === date.getTime();
-  return isStart || isEnd;
+  const dateIndex = selectedDates.value.findIndex(
+    (item) => item.getTime() === date.getTime()
+  );
+  return dateIndex !== -1;
 };
-
-const handleSelectTrigger = (element: HTMLDivElement, date: Date) => {
-  emit("selectDate", date);
-
-  if (selectionDivs.value.length === 2) {
-    selectionDivs.value = [element];
-    return;
-  }
-
-  selectionDivs.value.push(element);
-};
-
-watch(
-  selectedRange,
-  (newRange) => {
-    if (newRange) return;
-    selectionDivs.value = [];
-  },
-  {
-    deep: true,
-  }
-);
 </script>
 
 <style scoped lang="scss" src="./FilterCalendarMain.scss" />

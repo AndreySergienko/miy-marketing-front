@@ -6,7 +6,7 @@
         Сбросить все
       </div>
       <FilterCalendarMain
-        :selected-range="range"
+        :selected-dates="dates"
         @select-date="calendarStore.selectDate"
       />
     </div>
@@ -17,7 +17,7 @@
 import { useCalendarStore } from "~/store/filters/calendar.store";
 
 const calendarStore = useCalendarStore();
-const { range } = storeToRefs(calendarStore);
+const { dates } = storeToRefs(calendarStore);
 </script>
 
 <style scoped lang="scss" src="./FilterCalendarController.scss" />

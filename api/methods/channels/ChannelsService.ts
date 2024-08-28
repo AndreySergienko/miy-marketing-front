@@ -42,11 +42,8 @@ export default class ChannelsService extends ApiService {
     });
   }
 
-  async getAll(dates: ICalendarRange | null, url?: string): Promise<IGetAll[]> {
-    let parsedDates = !dates ? undefined : `${dates.start.getTime()}`;
-    if (dates && dates.end) {
-      parsedDates = `${parsedDates},${dates.end.getTime()}`;
-    }
+  async getAll(dates: Date[], url?: string): Promise<IGetAll[]> {
+    const parsedDates = dates.map((item) => item.getTime()).join(",");
 
     const fullUrl = url ? this.apiUrl + "all" + url : this.apiUrl + "all";
     return await this.$api<IGetAll[]>(fullUrl, {

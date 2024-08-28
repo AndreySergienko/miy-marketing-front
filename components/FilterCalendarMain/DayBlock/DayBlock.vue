@@ -1,5 +1,9 @@
 <template>
-  <div ref="root" :class="['day-block', classes]" @click="handleClick">
+  <div
+    ref="root"
+    :class="['day-block', classes]"
+    @click="$emit('selectTriggered')"
+  >
     <span class="day-block__number">{{ day.number }}</span>
     <span class="day-block__week">{{ day.inWeek }}</span>
   </div>
@@ -19,11 +23,6 @@ const classes = computed(() => ({
   "day-block__current": isCurrent.value,
   "day-block__selected": isSelected.value,
 }));
-
-const handleClick = () => {
-  if (isSelected.value || !root.value) return;
-  emit("selectTriggered", root.value);
-};
 </script>
 
 <style scoped lang="scss" src="./DayBlock.scss" />
