@@ -1,61 +1,118 @@
 <template>
-  <AuthStateController>
-    <template #default="{ isAuth, logout }">
-      <AppHeader :is-auth="isAuth" :logout="logout" />
-    </template>
-  </AuthStateController>
-  <section class="authentication">
-    <div class="authentication__inner">
-      <div class="authentication__logo" />
-      <main class="authentication__info">
-        <slot />
-      </main>
+  <section class="authentication-layout">
+    <div class="authentication-layout__back">
+      <NuxtIcon
+        class="authentication-layout__back-icon"
+        name="auth-back"
+        filled
+      />
+      Назад
+    </div>
+    <div class="authentication-layout__left">
+      <NuxtImg
+        class="authentication-layout__left-img"
+        src="/dragon-new.png"
+        sizes="257px lg:549px"
+      />
+    </div>
+    <div class="authentication-layout__right">
+      <slot />
     </div>
   </section>
 </template>
-<script setup lang="ts">
-import AppHeader from "~/components/AppHeader/AppHeader.vue";
-import AuthStateController from "~/controllers/AuthStateController/AuthStateController.vue";
-</script>
+
+<script setup lang="ts"></script>
+
 <style lang="scss" scoped>
-  @use 'assets/styles/media';
-  .authentication{
-    &__inner {
-      display: flex;
-      background-color: var(--color-blue);
+@use "assets/styles/media";
 
-      @include media.media-breakpoint-down(l) {
-        margin-top: var(--indent-3xl);
-        background-color: var(--color-white);
-        justify-content: center;
-      }
+.authentication-layout {
+  position: relative;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  font-family: "Inter", sans-serif;
 
+  &__back {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--new-primary);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+
+    @include media.media-breakpoint-up(md) {
+      top: 40px;
+      left: 30px;
     }
 
-    &__logo {
-      background: url(../public/dragon__white.png) no-repeat;
-      height: 100%;
-      min-height: calc(100vh - 49px);
-      background-size: cover;
-      width: 100%;
-
-      @include media.media-breakpoint-down(l) {
-        display: none;
-      }
+    @include media.media-breakpoint-up(lm) {
+      left: 42px;
+      color: var(--new-white);
     }
 
-    &__info {
+    @include media.media-breakpoint-up(xxl) {
+      top: 60px;
+      left: 55px;
+    }
+
+    &-icon {
+      height: 11px;
       display: flex;
       align-items: center;
-      border: 1px solid transparent;
-      border-radius: 48px 0 0 48px;
-      background-color: var(--color-white);
-      width: 100%;
+      justify-content: center;
+    }
 
-      @include media.media-breakpoint-down(l) {
-        justify-content: center;
-        width: 100%;
+    :deep(.nuxt-icon) {
+      svg {
+        width: unset;
+        height: unset;
+        margin-bottom: unset;
+        vertical-align: unset;
       }
     }
   }
+
+  &__left {
+    display: none;
+    background: var(--new-primary);
+
+    @include media.media-breakpoint-up(lm) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 410px;
+    }
+
+    @include media.media-breakpoint-up(l) {
+      width: 752px;
+    }
+
+    @include media.media-breakpoint-up(xl) {
+      width: 826px;
+    }
+
+    @include media.media-breakpoint-up(xxl) {
+      width: 1266px;
+    }
+
+    &-img {
+      width: 257px;
+
+      @include media.media-breakpoint-up(l) {
+        width: 549px;
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 </style>
