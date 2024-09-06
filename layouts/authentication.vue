@@ -110,9 +110,11 @@
   }
 
   &__right {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
   }
 }
 </style>
