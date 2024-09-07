@@ -17,6 +17,9 @@ export default defineNuxtConfig({
       ],
     },
   },
+  components: {
+    dirs: ["~/components", "~/controllers"],
+  },
   experimental: {
     typedPages: true,
   },

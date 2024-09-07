@@ -2,6 +2,7 @@
   <div class="authentication-input">
     <label class="authentication-input__label" :for="uniqueId">
       {{ label }}
+      <slot name="icon" />
     </label>
     <input
       :id="uniqueId"

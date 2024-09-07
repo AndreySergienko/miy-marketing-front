@@ -6,9 +6,15 @@
   >
     <div class="authentication-forgot-password__title">Забыли пароль?</div>
     <div class="authentication-forgot-password__inner">
-      Забыли пароль?<br />Для восстановления пароля необходимо перейти в
-      <NuxtLink to="https://t.me/miy_ad_bot" external> тг бота </NuxtLink>
-      и прописать команду /help password.
+      Сброс пароля проходит через нашего
+      <NuxtLink
+        class="authentication-forgot-password__inner-link"
+        to="https://t.me/miy_ad_bot"
+        external
+      >
+        TG-бота.
+      </NuxtLink>
+      Для сброса пароля просто напишите <b>/help password.</b>
     </div>
   </div>
 </template>
