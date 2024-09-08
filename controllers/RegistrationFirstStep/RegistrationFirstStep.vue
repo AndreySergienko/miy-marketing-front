@@ -10,7 +10,12 @@
         <AuthenticationTokenHelp />
       </template>
     </AuthenticationInput>
-    <NuxtLink class="first-step__link" to="https://t.me/miy_ad_bot" external>
+    <NuxtLink
+      class="first-step__link"
+      to="https://t.me/miy_ad_bot"
+      external
+      target="_blank"
+    >
       Получить токен
     </NuxtLink>
     <AuthenticationButton :disabled="!meta.valid" @click="handleNextStep">

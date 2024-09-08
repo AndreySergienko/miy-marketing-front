@@ -1,6 +1,6 @@
 <template>
   <section class="authentication-layout">
-    <div class="authentication-layout__back">
+    <div class="authentication-layout__back" @click="$router.back()">
       <NuxtIcon
         class="authentication-layout__back-icon"
         name="auth-back"

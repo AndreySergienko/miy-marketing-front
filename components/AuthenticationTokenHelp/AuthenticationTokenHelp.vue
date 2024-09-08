@@ -15,6 +15,7 @@
         class="authentication-token-help__inner-link"
         to="https://t.me/miy_ad_bot"
         external
+        target="_blank"
       >
         TG-бота.
       </NuxtLink>
