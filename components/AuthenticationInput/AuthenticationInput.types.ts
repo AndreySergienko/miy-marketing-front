@@ -3,5 +3,5 @@ export interface AuthenticationInputProps {
   type: string;
   name: string;
   placeholder: string;
-  isDisabled?: boolean;
+  disabled?: boolean;
 }

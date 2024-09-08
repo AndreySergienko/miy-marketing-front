@@ -3,7 +3,8 @@
     <h1 class="registration-page__title">Регистрация</h1>
 
     <section class="registration-page__content">
-      <RegistrationFirstStep />
+      <RegistrationFirstStep v-if="isFirstStep" />
+      <RegistrationSecondStep v-else />
     </section>
 
     <footer class="registration-page__info">
@@ -19,6 +20,10 @@
 definePageMeta({
   layout: "authentication",
 });
+
+const route = useRoute();
+
+const isFirstStep = computed(() => !route.query.botToken);
 </script>
 
 <style lang="scss" scoped>

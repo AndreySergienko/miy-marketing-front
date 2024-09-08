@@ -8,6 +8,7 @@
       :id="uniqueId"
       :class="['authentication-input__input', inputClasses]"
       :type="type"
+      :disabled="disabled"
       v-model="value"
       :placeholder="placeholder"
     />
@@ -21,12 +22,12 @@
 import { AuthenticationInputProps } from "./AuthenticationInput.types";
 
 const props = defineProps<AuthenticationInputProps>();
-const { name, isDisabled } = toRefs(props);
+const { name, disabled } = toRefs(props);
 
 const { value, errorMessage } = useField(name);
 
 const inputClasses = computed(() => ({
-  "authentication-input__input--disabled": isDisabled.value,
+  "authentication-input__input--disabled": disabled.value,
   "authentication-input__input--error": errorMessage.value,
 }));
 

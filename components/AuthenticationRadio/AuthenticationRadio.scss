@@ -1,0 +1,49 @@
+.authentication-radio {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  &__label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--new-black);
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .authentication-radio__content {
+      border: 1px solid transparent;
+      background: var(--new-primary);
+
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--radio-border);
+    border-radius: 100%;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--new-white);
+      opacity: 1;
+      border-radius: inherit;
+    }
+  }
+}

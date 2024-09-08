@@ -1,67 +1,61 @@
-import { defineStore } from 'pinia'
-import AuthService from '~/api/methods/auth/AuthService'
+import { defineStore } from "pinia";
+import AuthService from "~/api/methods/auth/AuthService";
 import type {
   ILoginRequest,
   IRegistrationRequest,
-} from '~/api/methods/auth/auth.types'
-import { toPersonalProfile } from '~/utils/links'
-import { TPossibleError } from '~/types/api.types'
+} from "~/api/methods/auth/auth.types";
+import { toPersonalProfile } from "~/utils/links";
+import { TPossibleError } from "~/types/api.types";
 
-export const TOKEN_NAME = 'afToken'
+export const TOKEN_NAME = "afToken";
 
-export const useAuthStore = defineStore('global/auth', () => {
-  const authService = new AuthService()
-  /** Токен авторизации **/
-  const token = useCookie(TOKEN_NAME, {
-    secure: true,
-  })
+export const useAuthStore = defineStore("global/auth", () => {
+  const authService = new AuthService();
 
-  const isLoading = ref<boolean>(false)
+  const token = useCookie(TOKEN_NAME);
 
-  /** Проверка на наличие токена **/
-  const isAuth = computed<boolean>(() => !!token.value)
+  const isLoading = ref(false);
+
+  const isAuth = computed(() => token.value);
 
   /** Авторизация пользователя **/
   async function login(data: ILoginRequest) {
     try {
-      isLoading.value = true
-      const res = await authService.login(data)
-      console.log(res)
-      if (!res) return
-      console.log('LOGIN USER')
-      token.value = res.token
+      isLoading.value = true;
+      const res = await authService.login(data);
+      if (!res) return;
+      token.value = res.token;
 
-      toPersonalProfile()
+      toPersonalProfile();
     } catch (e: TPossibleError) {
-      useShowError(e)
+      useShowError(e);
     } finally {
-      isLoading.value = false
+      isLoading.value = false;
     }
   }
 
   /** Удаление сессии пользователя **/
   function logout() {
-    token.value = ''
-    const route = useRoute()
-    if (route.meta.layout !== 'authentication' || route.path !== '/')
-      return navigateTo('/')
+    token.value = "";
+    const route = useRoute();
+    if (route.meta.layout !== "authentication" || route.path !== "/")
+      return navigateTo("/");
   }
 
   /** Регистрация пользователя **/
-  async function registration(
-    data: IRegistrationRequest,
-    isShowGratitude: Ref<boolean>,
-  ) {
+  async function registration(data: IRegistrationRequest) {
     try {
-      isLoading.value = true
-      const response = await authService.registration(data)
-      if (!response) return
-      localStorage.setItem('userId', String(response.id))
-      isShowGratitude.value = true
+      isLoading.value = true;
+      const response = await authService.registration(data);
+      if (!response) return false;
+
+      localStorage.setItem("userId", String(response.id));
+      return true;
     } catch (e: TPossibleError) {
-      useShowError(e)
+      useShowError(e);
+      return false;
     } finally {
-      isLoading.value = false
+      isLoading.value = false;
     }
   }
 
@@ -72,5 +66,5 @@ export const useAuthStore = defineStore('global/auth', () => {
     login,
     logout,
     registration,
-  }
-})
+  };
+});
