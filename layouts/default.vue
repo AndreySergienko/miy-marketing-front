@@ -1,13 +1,12 @@
 <template>
-  <AuthStateController>
-    <template #default="{ isAuth, logout }">
-      <AppHeader :is-auth="isAuth" :logout="logout"/>
-    </template>
-  </AuthStateController>
-  <slot/>
+  <section class="default-layout">
+    <AppHeader />
+    <slot />
+  </section>
 </template>
 
-<script setup>
-  import AppHeader from '../components/AppHeader/AppHeader.vue';
-  import AuthStateController from "~/controllers/AuthStateController/AuthStateController.vue";
-</script>
+<script setup></script>
+
+<style lang="scss" scoped>
+@use "assets/styles/media";
+</style>
