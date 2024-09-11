@@ -1,0 +1,55 @@
+@use "assets/styles/media";
+.authentication-token-help {
+  position: relative;
+  cursor: help;
+
+  &--shown {
+    .authentication-token-help__inner {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+
+  :deep(.nuxt-icon) {
+    svg {
+      width: unset;
+      height: unset;
+      margin-bottom: unset;
+      vertical-align: unset;
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    color: var(--help-color);
+  }
+
+  &__inner {
+    padding: 15px;
+    position: absolute;
+    left: -100%;
+    opacity: 0;
+    width: 277px;
+    z-index: 1;
+    background-color: var(--new-white);
+    color: var(--color-black);
+    border: 1px solid var(--input-default-border);
+    border-radius: 10px;
+    font-size: 12px;
+    transition: 0.3s ease-in-out;
+    pointer-events: none;
+
+    &-link {
+      color: var(--new-primary);
+      text-decoration: none;
+    }
+
+    b {
+      font-weight: 500;
+    }
+  }
+}
