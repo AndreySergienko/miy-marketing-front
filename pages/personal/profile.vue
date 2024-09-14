@@ -122,6 +122,7 @@ definePageMeta({
   }
 
   @include media.media-breakpoint-up(l) {
+    margin-top: 62px;
     width: 400px;
   }
 
