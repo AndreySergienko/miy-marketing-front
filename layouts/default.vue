@@ -6,8 +6,4 @@
   </section>
 </template>
 
-<script setup></script>
-
-<style lang="scss" scoped>
-@use "assets/styles/media";
-</style>
+<script setup lang="ts"></script>
