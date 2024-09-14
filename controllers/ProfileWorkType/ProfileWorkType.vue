@@ -16,7 +16,7 @@
 <script setup lang="ts">
 const status = computed(() => ({
   text: "Подтвержден",
-  className: "profile-work-type__content-status--success",
+  className: "success",
 }));
 </script>
 

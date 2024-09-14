@@ -56,19 +56,19 @@
       font-weight: 500;
       line-height: 9px;
 
-      &--fail {
+      &.fail {
         color: var(--status-fail);
       }
 
-      &--wait {
+      &.wait {
         color: var(--status-wait);
       }
 
-      &--process {
+      &.process {
         color: var(--status-process);
       }
 
-      &--success {
+      &.success {
         color: var(--status-success);
       }
     }
