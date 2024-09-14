@@ -111,6 +111,27 @@ definePageMeta({
   display: flex;
   flex-direction: column;
   gap: 40px;
+  width: 328px;
+
+  @include media.media-breakpoint-up(md) {
+    width: 465px;
+  }
+
+  @include media.media-breakpoint-up(lm) {
+    width: 382px;
+  }
+
+  @include media.media-breakpoint-up(l) {
+    width: 400px;
+  }
+
+  @include media.media-breakpoint-up(xl) {
+    width: 472px;
+  }
+
+  @include media.media-breakpoint-up(xxl) {
+    width: 672px;
+  }
 
   &__block {
     display: flex;
