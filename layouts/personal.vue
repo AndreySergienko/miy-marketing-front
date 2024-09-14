@@ -3,6 +3,7 @@
     <AppHeader />
     <main>
       <PersonalNavigation />
+      <slot />
     </main>
     <AppFooter />
   </section>

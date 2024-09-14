@@ -1,204 +1,151 @@
 <template>
-  <UserController>
-    <template #default="{ userData, userRules, sendUser, isLoading }">
-      <ProfileContainer>
-        <template #form>
-          <VeeForm
-            v-slot="{ errors, meta }"
-            @submit="sendUser"
-            :validation-schema="userRules"
-          >
-            <div class="personal">
-              <div class="container">
-                <div class="personal__inner">
-                  <div class="personal__intro">
-                    <h3 class="personal__title">Общая информация</h3>
-                    <div class="personal__form">
-                      <SharedInput
-                        name="fio"
-                        v-model="userData.fio"
-                        type="text"
-                        :error="errors.fio"
-                      >
-                        ФИО
-                      </SharedInput>
-                      <div class="personal__form-item">
-                        <SharedInput
-                          name="inn"
-                          v-model="userData.inn"
-                          type="text"
-                          :error="errors.inn"
-                        >
-                          ИНН
-                        </SharedInput>
-                        <SharedInput
-                          name="email"
-                          v-model="userData.email"
-                          type="text"
-                          :error="errors.email"
-                        >
-                          Почта
-                        </SharedInput>
-                      </div>
-                    </div>
-                    <div class="personal__card">
-                      <div class="personal__card-inner">
-                        <h3 class="personal__card-title">Привязанная карта</h3>
-                        <div class="personal__card-form">
-                          <SharedInput
-                            name="cardNumber"
-                            v-model="userData.cardNumber"
-                            type="text"
-                            :error="errors.cardNumber"
-                          >
-                            Номер карты
-                          </SharedInput>
-                        </div>
-                      </div>
-                    </div>
-                    <SharedButton
-                      size="l"
-                      color="blue"
-                      class="personal__btn"
-                      :disabled="!meta.valid"
-                      :is-loading="isLoading"
-                      @click="sendUser"
-                    >
-                      Сохранить
-                    </SharedButton>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </VeeForm>
-        </template>
-      </ProfileContainer>
-    </template>
-  </UserController>
+  <main class="profile-page">
+    <section class="profile-page__block">
+      <div class="profile-page__block-text">
+        <h2 class="profile-page__block-text--title">Основное</h2>
+        <p class="profile-page__block-text--description">
+          Ваша персональная и контактная информация
+        </p>
+      </div>
+      <div class="profile-page__block-inputs">
+        <AuthenticationInput
+          label="ФИО"
+          type="text"
+          name="fio"
+          placeholder="Введите ФИО"
+        />
+        <AuthenticationInput
+          label="E-mail"
+          type="email"
+          name="email"
+          placeholder="Введите E-mail"
+        />
+        <AuthenticationInput
+          label="ИНН"
+          type="text"
+          name="inn"
+          placeholder="Введите ИНН"
+        />
+      </div>
+    </section>
+    <section class="profile-page__block">
+      <div class="profile-page__block-text">
+        <h2 class="profile-page__block-text--title">Реквизиты</h2>
+        <p class="profile-page__block-text--description">
+          Укажите ваши реквизиты
+        </p>
+      </div>
+      <div class="profile-page__block-inputs">
+        <AuthenticationInput
+          label="Название банка"
+          type="text"
+          name="bankName"
+          placeholder="Введите название банка"
+        />
+        <AuthenticationInput
+          label="БИК банка"
+          type="text"
+          name="bankBik"
+          placeholder="Введите БИК банка"
+        />
+        <AuthenticationInput
+          label="Корреспондентский счет"
+          type="text"
+          name="bankCorAccount"
+          placeholder="Введите корреспондентский счет"
+        />
+        <AuthenticationInput
+          label="Расчетный счет"
+          type="text"
+          name="bankCurAccount"
+          placeholder="Введите расчетный счет"
+        />
+      </div>
+    </section>
+    <section class="profile-page__block">
+      <div class="profile-page__block-text">
+        <h2 class="profile-page__block-text--title">Смена пароля</h2>
+        <p class="profile-page__block-text--description">
+          Обновить пароль учетной записи
+        </p>
+      </div>
+      <div class="profile-page__block-inputs">
+        <AuthenticationInput
+          label="Текущий пароль"
+          type="password"
+          name="password"
+          placeholder="Введите пароль"
+          show-password-icon
+        />
+        <AuthenticationInput
+          label="Новый пароль"
+          type="password"
+          name="newPassword"
+          placeholder="Введите новый пароль"
+          show-password-icon
+        />
+        <AuthenticationInput
+          label="Повторите пароль"
+          type="password"
+          name="repeatPassword"
+          placeholder="Повторите новый пароль"
+          show-password-icon
+        />
+      </div>
+    </section>
+    <DefaultButton class="profile-page__button"> Сохранить </DefaultButton>
+  </main>
 </template>
 
-<script setup>
-import UserController from '~/controllers/UserController/UserController.vue';
-  definePageMeta({
-    layout: 'personal'
-  })
+<script setup lang="ts">
+definePageMeta({
+  layout: "personal",
+});
 </script>
 
 <style lang="scss" scoped>
 @use "assets/styles/media";
 
-.personal {
-  position: relative;
-  overflow: hidden;
-  margin-top: var(--indent-3xl);
+.profile-page {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 
-  @include media.media-breakpoint-down(md) {
-    width: 150vw;
-  }
-
-  @include media.media-breakpoint-down(sm) {
-    width: 205vw;
-  }
-
-  &__inner {
-    display: flex;
-    gap: 95px;
-  }
-
-  &__intro {
-    width: 45%;
-  }
-
-  &__title {
-    margin-bottom: var(--indent-2xl);
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-semi-bold);
-
-    @include media.media-breakpoint-down(sm) {
-      font-size: var(--font-size-l);
-    }
-  }
-
-  &__form {
+  &__block {
     display: flex;
     flex-direction: column;
-    gap: var(--indent-3xl);
-    margin-bottom: var(--indent-2xl);
+    gap: 20px;
 
-    &-item {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--indent-3xl);
-      margin-bottom: var(--indent-2xl);
-
-      @include media.media-breakpoint-down(sm) {
-        display: flex;
-        flex-direction: column;
-      }
-    }
-  }
-
-  &__card {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: var(--indent-2xl);
-
-    &-title {
-      font-size: var(--font-size-l);
-      font-weight: var(--font-weight-semi-bold);
-      margin-bottom: var(--indent-l);
-
-      @include media.media-breakpoint-down(sm) {
-        font-size: var(--font-size-m);
-      }
-    }
-
-    &-form {
+    &-text {
       display: flex;
-      gap: var(--indent-l);
       flex-direction: column;
+      gap: 15px;
 
-      &__items {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--indent-l);
-
-        @include media.media-breakpoint-down(sm) {
-          display: flex;
-          flex-direction: column;
-          gap: var(--indent-s);
-          width: 50vw;
-        }
+      &--title {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 12px;
+        color: #2d3648;
       }
 
-      &__item {
-        display: flex;
+      &--description {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 10px;
+        color: #2d364880;
       }
+    }
 
-      &__input__password {
-        width: 100%;
-
-        @include media.media-breakpoint-down(sm) {
-          width: 20vw;
-        }
-      }
+    &-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
   }
 
-  &__icon {
-    margin: var(--indent-3xl) 0 0 var(--indent-s);
-    padding: 0;
-    box-sizing: border-box;
-    font-size: 50px;
-
-    @include media.media-breakpoint-down(sm) {
-      margin: var(--indent-l) 0 0 var(--indent-s);
-    }
-  }
-
-  &__btn {
-    padding: var(--indent-m) var(--indent-5xl);
-    margin-bottom: var(--indent-5xl);
+  &__button {
+    width: 105px;
   }
 }
 </style>

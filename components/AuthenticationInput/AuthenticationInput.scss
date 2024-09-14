@@ -1,4 +1,5 @@
 .authentication-input {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 13px;
@@ -21,7 +22,7 @@
     font-size: 14px;
     font-weight: 400;
     color: var(--new-black);
-    background: transparent;
+    background: var(--new-white);
     outline: none;
     transition: 0.3s ease-in-out;
 
@@ -42,6 +43,12 @@
     &--error {
       border-color: var(--error);
     }
+  }
+
+  &__password {
+    position: absolute;
+    right: 15px;
+    bottom: 13px;
   }
 
   &__error {
