@@ -18,6 +18,7 @@
     color: #918f9b;
     text-decoration: none;
     transition: 0.3s ease-in-out;
+    white-space: nowrap;
 
     &:hover:not(.personal-navigation__item--active) {
       color: #707073;
