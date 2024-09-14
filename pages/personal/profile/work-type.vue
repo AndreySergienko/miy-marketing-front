@@ -10,6 +10,17 @@
       </div>
       <DefaultButton class="work-type__header-button">Сохранить</DefaultButton>
     </header>
+    <section class="work-type__content">
+      <DefaultSelect
+        label="Статус налогоплательщика"
+        name="workType"
+        placeholder="Индивидуальный предприниматель"
+        :options="[
+          { label: 'Индивидуальный предприниматель', value: 'individual' },
+          { label: 'Самозанятый', value: 'self-employed' },
+        ]"
+      />
+    </section>
   </main>
 </template>
 
@@ -101,6 +112,10 @@ watch(
         vertical-align: unset;
       }
     }
+  }
+
+  &__content {
+    padding: 30px 16px 80px;
   }
 }
 </style>
