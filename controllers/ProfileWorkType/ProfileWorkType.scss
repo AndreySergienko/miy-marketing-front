@@ -1,0 +1,89 @@
+@use "assets/styles/media";
+
+.profile-work-type {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @include media.media-breakpoint-up(lm) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 10px;
+    border: 1px solid var(--color-light-gray);
+    background: var(--new-white);
+    padding: 30px;
+    width: 382px;
+  }
+
+  @include media.media-breakpoint-up(l) {
+    width: 401px;
+  }
+
+  @include media.media-breakpoint-up(xl) {
+    width: 374px;
+  }
+
+  @include media.media-breakpoint-up(xxl) {
+    width: 533px;
+  }
+
+  &__title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2d3648;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--color-light-gray);
+    background: var(--new-white);
+
+    &-title {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 10px;
+      color: #2d3648;
+    }
+
+    &-status {
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 9px;
+
+      &--fail {
+        color: var(--status-fail);
+      }
+
+      &--wait {
+        color: var(--status-wait);
+      }
+
+      &--process {
+        color: var(--status-process);
+      }
+
+      &--success {
+        color: var(--status-success);
+      }
+    }
+  }
+
+  &__action {
+    position: absolute;
+    right: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--new-primary);
+    cursor: pointer;
+
+    @include media.media-breakpoint-up(lm) {
+      position: static;
+    }
+  }
+}
