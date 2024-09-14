@@ -66,10 +66,18 @@
     &--item {
       height: 48px;
       padding: 18px 15px;
+      border-radius: 6px;
       font-size: 14px;
       font-weight: 400;
       color: #191a1c;
       line-height: 10px;
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(240, 245, 254, 1);
+        color: var(--new-primary);
+        font-weight: 500;
+      }
     }
   }
 }
