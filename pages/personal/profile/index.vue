@@ -115,21 +115,9 @@ const { user } = storeToRefs(userStore);
 
 const { meta, values } = useProfileForm(user);
 
-const handleSave = async () => {
-  if (!meta.valid) return;
-
-  const {
-    fio,
-    email,
-    inn,
-    bankName,
-    bankBik,
-    bankCorAccount,
-    bankCurAccount,
-    password,
-    newPassword,
-    repeatPassword,
-  } = values;
+const handleMainData = () => {
+  const { fio, email, inn, bankName, bankBik, bankCorAccount, bankCurAccount } =
+    values;
 
   userStore.updateUser({
     fio,
@@ -142,13 +130,23 @@ const handleSave = async () => {
       currentAccount: bankCurAccount,
     },
   });
+};
 
-  if (password && newPassword && newPassword === repeatPassword) {
-    userStore.updateUserPassword({
-      password,
-      newPassword,
-    });
-  }
+const handlePasswordData = () => {
+  const { password, newPassword, repeatPassword } = values;
+
+  if (!password || !newPassword || newPassword !== repeatPassword) return;
+  userStore.updateUserPassword({
+    password,
+    newPassword,
+  });
+};
+
+const handleSave = async () => {
+  if (!meta.valid) return;
+
+  handleMainData();
+  handlePasswordData();
 };
 </script>
 
