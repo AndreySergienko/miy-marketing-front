@@ -109,4 +109,8 @@ watch(
     }
   }
 }
+
+:deep(.profile-work-type-content) {
+  padding: 30px 16px 80px;
+}
 </style>

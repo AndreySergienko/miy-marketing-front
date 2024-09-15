@@ -77,6 +77,7 @@
       color: #191a1c;
       line-height: 10px;
       cursor: pointer;
+      transition: 0.3s ease-in-out;
 
       &:hover {
         background: rgba(240, 245, 254, 1);

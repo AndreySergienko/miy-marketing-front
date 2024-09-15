@@ -9,7 +9,7 @@
         {{ status.text }}
       </p>
     </div>
-    <p class="profile-work-type__action">Изменить</p>
+    <p class="profile-work-type__action" @click="handleClick">Изменить</p>
   </section>
 </template>
 
@@ -18,6 +18,12 @@ const status = computed(() => ({
   text: "Подтвержден",
   className: "success",
 }));
+
+const isOpenedPopup = useState("is-opened-work-type-popup", () => false);
+
+const handleClick = () => {
+  isOpenedPopup.value = true;
+};
 </script>
 
 <style scoped lang="scss" src="./ProfileWorkType.scss"></style>

@@ -97,6 +97,7 @@
       </section>
       <DefaultButton class="profile-page__button"> Сохранить </DefaultButton>
     </div>
+    <ProfileWorkTypePopup />
   </main>
 </template>
 

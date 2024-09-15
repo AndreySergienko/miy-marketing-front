@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
-  padding: 30px 16px 80px;
 }
 
 .file-input {
@@ -81,6 +80,7 @@
     border-radius: 10px;
     border: 1px dashed #d0d2d9;
     background: var(--new-white);
+    cursor: pointer;
 
     &-text {
       width: 220px;
