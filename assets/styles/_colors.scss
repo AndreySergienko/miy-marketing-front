@@ -28,3 +28,19 @@
   --status-process: #fb6107;
   --status-success: #05ab34;
 }
+
+.fail {
+  color: var(--status-fail);
+}
+
+.wait {
+  color: var(--status-wait);
+}
+
+.process {
+  color: var(--status-process);
+}
+
+.success {
+  color: var(--status-success);
+}

@@ -27,6 +27,10 @@
     outline: none;
     transition: 0.3s ease-in-out;
 
+    &:has(+ .default-select__options) &-arrow {
+      transform: translateY(-50%) rotate(180deg);
+    }
+
     &-selected {
       font-size: 14px;
       font-weight: 400;
@@ -43,6 +47,7 @@
       top: 50%;
       right: 15px;
       transform: translateY(-50%);
+      transition: 0.3s ease-in-out;
     }
 
     &:focus {

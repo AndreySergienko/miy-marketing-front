@@ -1,7 +1,12 @@
 <template>
   <main class="work-type-page">
     <header class="work-type__header">
-      <NuxtIcon class="work-type__header-back" name="page-back" filled />
+      <NuxtIcon
+        class="work-type__header-back"
+        name="page-back"
+        filled
+        @click="$router.back()"
+      />
       <div class="work-type__header-content">
         <h2 class="work-type__header-content--title">Ваш статус</h2>
         <p :class="['work-type__header-content--status', status.className]">
@@ -10,17 +15,7 @@
       </div>
       <DefaultButton class="work-type__header-button">Сохранить</DefaultButton>
     </header>
-    <section class="work-type__content">
-      <DefaultSelect
-        label="Статус налогоплательщика"
-        name="workType"
-        placeholder="Индивидуальный предприниматель"
-        :options="[
-          { label: 'Индивидуальный предприниматель', value: 'individual' },
-          { label: 'Самозанятый', value: 'self-employed' },
-        ]"
-      />
-    </section>
+    <ProfileWorkTypeContent />
   </main>
 </template>
 
@@ -112,10 +107,6 @@ watch(
         vertical-align: unset;
       }
     }
-  }
-
-  &__content {
-    padding: 30px 16px 80px;
   }
 }
 </style>
