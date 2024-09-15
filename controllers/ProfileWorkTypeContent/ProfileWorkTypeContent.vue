@@ -67,7 +67,6 @@ const status = computed(() => ({
 }));
 
 const fileRef = ref<HTMLInputElement>();
-const file = ref<File | { name: string }>();
 
 const fileInfo = computed(() => {
   const texts = {
@@ -78,37 +77,14 @@ const fileInfo = computed(() => {
   return texts[status.value.className as keyof typeof texts];
 });
 
-const handleFileChange = (event: Event) => {
-  const { files } = event.target as HTMLInputElement;
-  file.value = files?.[0];
-};
-
-const addFile = () => {
-  if (!fileRef.value) return;
-
-  fileRef.value.click();
-};
-
-const removeFile = () => {
-  if (!fileRef.value) return;
-
-  file.value = undefined;
-
-  fileRef.value.files = null;
-  fileRef.value.value = "";
-};
-
-const handleDragOver = (event: DragEvent) => {
-  if (!event.dataTransfer) return;
-  event.dataTransfer.dropEffect = "copy";
-};
-
-const handleDrop = (event: DragEvent) => {
-  const newFile = event.dataTransfer?.files[0];
-  if (newFile?.type !== "application/pdf") return;
-
-  file.value = newFile;
-};
+const {
+  file,
+  handleDragOver,
+  handleFileChange,
+  handleDrop,
+  addFile,
+  removeFile,
+} = useFileHandler(fileRef);
 </script>
 
 <style scoped lang="scss" src="./ProfileWorkTypeContent.scss"></style>
