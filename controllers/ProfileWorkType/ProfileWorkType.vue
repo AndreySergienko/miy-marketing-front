@@ -16,7 +16,7 @@
 <script setup lang="ts">
 const status = computed(() => ({
   text: "Подтвержден",
-  className: "success",
+  className: "accept",
 }));
 
 const isOpenedPopup = useState("is-opened-work-type-popup", () => false);

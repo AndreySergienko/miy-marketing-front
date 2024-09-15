@@ -23,14 +23,14 @@
 
   --radio-border: #c6c6c6;
 
-  --status-fail: #ff1212;
+  --status-reject: #ff1212;
   --status-wait: #969aa3;
   --status-process: #fb6107;
-  --status-success: #05ab34;
+  --status-accept: #05ab34;
 }
 
-.fail {
-  color: var(--status-fail);
+.reject {
+  color: var(--status-reject);
 }
 
 .wait {
@@ -41,6 +41,6 @@
   color: var(--status-process);
 }
 
-.success {
-  color: var(--status-success);
+.accept {
+  color: var(--status-accept);
 }

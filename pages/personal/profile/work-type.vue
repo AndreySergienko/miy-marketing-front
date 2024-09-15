@@ -30,7 +30,7 @@ const isMobile = useMediaQuery("(max-width: 768px)");
 
 const status = computed(() => ({
   text: "Подтвержден",
-  className: "success",
+  className: "accept",
 }));
 
 watch(
@@ -76,22 +76,6 @@ watch(
         font-size: 13px;
         font-weight: 500;
         line-height: 9px;
-
-        &.fail {
-          color: var(--status-fail);
-        }
-
-        &.wait {
-          color: var(--status-wait);
-        }
-
-        &.process {
-          color: var(--status-process);
-        }
-
-        &.success {
-          color: var(--status-success);
-        }
       }
     }
 

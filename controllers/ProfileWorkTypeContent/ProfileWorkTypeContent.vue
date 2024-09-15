@@ -63,7 +63,7 @@
 <script setup lang="ts">
 const status = computed(() => ({
   text: "Подтвержден",
-  className: "success",
+  className: "accept",
 }));
 
 const fileRef = ref<HTMLInputElement>();
@@ -71,7 +71,7 @@ const file = ref<File | { name: string }>();
 
 const fileInfo = computed(() => {
   const texts = {
-    fail: "Документ просрочен или не прошел проверку.",
+    reject: "Документ просрочен или не прошел проверку.",
     process: "Документ на проверке.",
   };
 
