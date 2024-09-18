@@ -22,4 +22,25 @@
   --help-color: #4c4c4c;
 
   --radio-border: #c6c6c6;
+
+  --status-reject: #ff1212;
+  --status-wait: #969aa3;
+  --status-process: #fb6107;
+  --status-accept: #05ab34;
+}
+
+.reject {
+  color: var(--status-reject);
+}
+
+.wait {
+  color: var(--status-wait);
+}
+
+.process {
+  color: var(--status-process);
+}
+
+.accept {
+  color: var(--status-accept);
 }

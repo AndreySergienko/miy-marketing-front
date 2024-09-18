@@ -1,5 +1,6 @@
 import ApiService from "~/api/core/ApiService";
 import type {
+  IUserPasswordRequest,
   IUserRequest,
   IUserResponse,
 } from "~/api/methods/user/user.types";
@@ -13,11 +14,18 @@ export default class UserService extends ApiService {
   }
 
   async getMe(): Promise<IUser> {
-    return await this.$authApi(this.userURL + "me");
+    return await this.$authApi(this.userURL + "me", { method: "get" });
   }
 
   async updateUser(data: IUserRequest): Promise<IUserResponse> {
     return await this.$authApi(this.userURL + "update", {
+      method: "put",
+      body: JSON.stringify(data),
+    });
+  }
+
+  async updateUserPassword(data: IUserPasswordRequest): Promise<IUserResponse> {
+    return await this.$authApi(this.userURL + "update/password", {
       method: "put",
       body: JSON.stringify(data),
     });

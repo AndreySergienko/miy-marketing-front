@@ -1,0 +1,33 @@
+@use "assets/styles/media";
+
+.personal-navigation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: auto;
+
+  @include media.media-breakpoint-up(md) {
+    gap: 20px;
+  }
+
+  &__item {
+    display: flex;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #918f9b;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    white-space: nowrap;
+
+    &:hover:not(.personal-navigation__item--active) {
+      color: #707073;
+    }
+
+    &--active {
+      background: var(--new-white);
+      color: #17181a;
+    }
+  }
+}
