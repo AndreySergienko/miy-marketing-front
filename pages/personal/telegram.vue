@@ -8,7 +8,7 @@
       :subscribers="1500"
       :is-active="false"
     />
-    <ChannelAdd />
+    <ChannelAdd v-if="canCreate" @click="addNewChannel" />
   </div>
 </template>
 
@@ -22,7 +22,9 @@ definePageMeta({
 const userStore = useUserStore();
 const { permissions } = storeToRefs(userStore);
 
-const cannotCreate = computed(() => !permissions.value.CAN_PUBLIC_CHANNEL);
+const canCreate = computed(() => permissions.value.CAN_PUBLIC_CHANNEL);
+
+const addNewChannel = () => navigateTo("/personal/connect");
 </script>
 
 <style scoped lang="scss">
