@@ -7,6 +7,7 @@
   gap: 25px;
   padding: 30px;
   border-radius: 10px;
+  cursor: pointer;
 
   &__more {
     --position: 30px;
@@ -14,7 +15,19 @@
     position: absolute;
     top: var(--position);
     right: var(--position);
-    cursor: pointer;
+
+    :deep(.nuxt-icon) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: unset;
+        height: unset;
+        margin-bottom: unset;
+        vertical-align: unset;
+      }
+    }
   }
 
   &__image {
