@@ -77,7 +77,7 @@ import type { IChannelDetailsProps } from "./ChannelDetails.types";
 const props = defineProps<IChannelDetailsProps>();
 const { id } = toRefs(props);
 
-const handleEdit = () => navigateTo(`/personal/location/${id.value}`);
+const handleEdit = () => navigateTo(`/personal/telegram/edit/${id.value}`);
 </script>
 
 <style scoped lang="scss" src="./ChannelDetails.scss"></style>

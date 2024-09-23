@@ -86,7 +86,7 @@ export const useChannelStore = defineStore("global/channel", () => {
       const response = await channelsService.check(channelName);
       if (!response) return;
       initialChannelData.value = response;
-      await navigateTo("/personal/location");
+      await navigateTo("/personal/telegram/edit");
     } catch (e) {
       useShowError(e);
     }
