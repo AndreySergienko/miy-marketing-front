@@ -1,0 +1,25 @@
+.default-back {
+  --icon-width: auto;
+  --icon-height: 11px;
+
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &__icon {
+    width: var(--icon-width);
+    height: var(--icon-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :deep(.nuxt-icon) {
+    svg {
+      width: unset;
+      height: unset;
+      margin-bottom: unset;
+      vertical-align: unset;
+    }
+  }
+}

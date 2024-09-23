@@ -1,13 +1,6 @@
 <template>
   <section class="authentication-layout">
-    <div class="authentication-layout__back" @click="$router.back()">
-      <NuxtIcon
-        class="authentication-layout__back-icon"
-        name="auth-back"
-        filled
-      />
-      Назад
-    </div>
+    <DefaultBack class="authentication-layout__back" @click="$router.back()" />
     <div class="authentication-layout__left">
       <NuxtImg
         class="authentication-layout__left-img"
@@ -37,13 +30,10 @@
     position: absolute;
     top: 30px;
     left: 20px;
-    display: flex;
-    align-items: center;
     gap: 15px;
     color: var(--new-primary);
     font-size: 15px;
     font-weight: 500;
-    cursor: pointer;
 
     @include media.media-breakpoint-up(md) {
       top: 40px;
@@ -58,22 +48,6 @@
     @include media.media-breakpoint-up(xxl) {
       top: 60px;
       left: 55px;
-    }
-
-    &-icon {
-      height: 11px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    :deep(.nuxt-icon) {
-      svg {
-        width: unset;
-        height: unset;
-        margin-bottom: unset;
-        vertical-align: unset;
-      }
     }
   }
 

@@ -20,6 +20,10 @@ body {
   }
 }
 
+body:has(#teleports > *) {
+  overflow: hidden;
+}
+
 #teleports:has(> *) {
   position: fixed;
   width: 100vw;
