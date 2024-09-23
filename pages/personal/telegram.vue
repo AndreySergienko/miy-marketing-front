@@ -2,7 +2,11 @@
   <div class="telegram-page">
     <ChannelCard v-bind="channelData" @click="showDetails = true" />
     <ChannelAdd v-if="canCreate" @click="addNewChannel" />
-    <ChannelDetails v-if="showDetails" v-bind="channelData" />
+    <ChannelDetails
+      v-if="showDetails"
+      v-bind="channelData"
+      @close="showDetails = false"
+    />
   </div>
 </template>
 
@@ -24,7 +28,7 @@ const channelData = {
   category: "Развлечение",
   subscribers: 1500,
   isActive: false,
-  url: "@kotiki",
+  url: "kotiki",
   dates: [
     {
       date: "08.08.2024",

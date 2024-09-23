@@ -10,9 +10,14 @@ export interface IChannelDetailsDate {
 }
 
 export interface IChannelDetailsProps {
+  id: number;
   image: string;
   title: string;
   category: string;
   url: string;
   dates: IChannelDetailsDate[];
+}
+
+export interface IChannelDetailsEmits {
+  (e: "close"): void;
 }

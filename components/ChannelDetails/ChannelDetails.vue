@@ -2,8 +2,14 @@
   <Teleport to="#teleports">
     <div class="channel-details">
       <header class="channel-details__header">
-        <DefaultBack class="channel-details__header-back" />
-        <DefaultButton class="channel-details__header-button">
+        <DefaultBack
+          class="channel-details__header-back"
+          @click="$emit('close')"
+        />
+        <DefaultButton
+          class="channel-details__header-button"
+          @click="handleEdit"
+        >
           Изменить
         </DefaultButton>
       </header>
@@ -21,7 +27,11 @@
             </tr>
             <tr>
               <th>Адрес</th>
-              <td>{{ url }}</td>
+              <td>
+                <NuxtLink :to="`https://t.me/${url}`" external target="_blank">
+                  @{{ url }}
+                </NuxtLink>
+              </td>
             </tr>
           </table>
         </section>
@@ -42,6 +52,20 @@
             </tr>
           </table>
         </section>
+        <footer class="channel-details__content-footer">
+          <DefaultButton
+            class="channel-details__content-footer-edit"
+            @click="handleEdit"
+          >
+            Редактировать
+          </DefaultButton>
+          <DefaultButton
+            class="channel-details__content-footer-close"
+            @click="$emit('close')"
+          >
+            Закрыть
+          </DefaultButton>
+        </footer>
       </div>
     </div>
   </Teleport>
@@ -51,6 +75,9 @@
 import type { IChannelDetailsProps } from "./ChannelDetails.types";
 
 const props = defineProps<IChannelDetailsProps>();
+const { id } = toRefs(props);
+
+const handleEdit = () => navigateTo(`/personal/location/${id.value}`);
 </script>
 
 <style scoped lang="scss" src="./ChannelDetails.scss"></style>
