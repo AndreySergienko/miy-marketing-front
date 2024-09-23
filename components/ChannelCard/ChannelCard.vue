@@ -1,8 +1,16 @@
 <template>
   <div class="channel-card">
     <div class="channel-card__more" v-outside-click="hideMoreMenu">
-      <NuxtIcon name="channel-card-dots" filled @click="toggleMoreMenu" />
-      <ChannelCardMoreMenu :is-active="showMoreMenu" @edit="" @delete="" />
+      <NuxtIcon
+        name="channel-card-dots"
+        filled
+        @click.stop.prevent="toggleMoreMenu"
+      />
+      <ChannelCardMoreMenu
+        :is-active="showMoreMenu"
+        @edit="handleEdit"
+        @delete=""
+      />
     </div>
     <NuxtImg class="channel-card__image" :src="image" />
     <div class="channel-card__content">
@@ -22,7 +30,7 @@
 import type { IChannelCardProps } from "./ChannelCard.types";
 
 const props = defineProps<IChannelCardProps>();
-const { subscribers, isActive } = toRefs(props);
+const { id, subscribers, isActive } = toRefs(props);
 
 const showMoreMenu = ref(false);
 
@@ -46,6 +54,8 @@ const toggleMoreMenu = () => {
 const hideMoreMenu = () => {
   showMoreMenu.value = false;
 };
+
+const handleEdit = () => navigateTo(`/personal/location/${id.value}`);
 </script>
 
 <style scoped lang="scss" src="./ChannelCard.scss"></style>
