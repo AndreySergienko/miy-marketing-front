@@ -1,0 +1,65 @@
+@use "assets/styles/media";
+
+.telegram-edit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  border-bottom: 1px solid #f0f1f6;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    &-back {
+      cursor: pointer;
+    }
+
+    &-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #2d3648;
+
+      @include media.media-breakpoint-up(md) {
+        font-size: 20px;
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    &-discard {
+      display: none;
+      background: transparent;
+      color: var(--new-primary);
+      border: 2px solid var(--new-primary);
+
+      &:hover,
+      &:active {
+        background: var(--new-primary);
+        color: var(--new-white);
+      }
+
+      @include media.media-breakpoint-up(md) {
+        display: flex;
+      }
+    }
+  }
+
+  :deep(.nuxt-icon) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: unset;
+      height: unset;
+      margin-bottom: unset;
+      vertical-align: unset;
+    }
+  }
+}
