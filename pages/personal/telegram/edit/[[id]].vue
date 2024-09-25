@@ -1,7 +1,18 @@
 <template>
   <main class="telegram-edit">
     <TelegramEditHeader title="Новый канал" />
-    <div class="telegram-edit__content"></div>
+    <div class="telegram-edit__content">
+      <TelegramEditMain
+        name="Котики"
+        url="@kotiki"
+        category="fun"
+        :categories="[
+          { label: 'Развлечение', value: 'fun' },
+          { label: 'Бизнес', value: 'business' },
+        ]"
+      />
+      <TelegramEditDates :dates="['08.09.2024']" />
+    </div>
   </main>
 </template>
 
@@ -37,6 +48,25 @@ definePageMeta({
 
   @include media.media-breakpoint-up(xxl) {
     padding: 0 278px;
+  }
+
+  &__content {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+
+    @include media.media-breakpoint-up(md) {
+      margin-top: 64px;
+    }
+
+    @include media.media-breakpoint-up(lm) {
+      margin-top: 74px;
+    }
+
+    @include media.media-breakpoint-up(l) {
+      margin-top: 70px;
+    }
   }
 }
 </style>

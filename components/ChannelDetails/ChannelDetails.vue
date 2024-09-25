@@ -28,8 +28,8 @@
             <tr>
               <th>Адрес</th>
               <td>
-                <NuxtLink :to="`https://t.me/${url}`" external target="_blank">
-                  @{{ url }}
+                <NuxtLink :to="formattedUrl" external target="_blank">
+                  {{ url }}
                 </NuxtLink>
               </td>
             </tr>
@@ -75,7 +75,9 @@
 import type { IChannelDetailsProps } from "./ChannelDetails.types";
 
 const props = defineProps<IChannelDetailsProps>();
-const { id } = toRefs(props);
+const { id, url } = toRefs(props);
+
+const formattedUrl = computed(() => `https://t.me/${url.value.slice(1)}`);
 
 const handleEdit = () => navigateTo(`/personal/telegram/edit/${id.value}`);
 </script>
