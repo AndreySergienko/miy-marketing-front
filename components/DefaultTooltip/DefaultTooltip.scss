@@ -2,6 +2,11 @@
 .default-tooltip {
   position: relative;
   cursor: help;
+  display: none;
+
+  @include media.media-breakpoint-up(md) {
+    display: block;
+  }
 
   &--shown {
     .default-tooltip__inner {
