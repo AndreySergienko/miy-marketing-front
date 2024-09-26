@@ -27,28 +27,21 @@ definePageMeta({
   layout: "telegram-edit",
 });
 
-const channelDates = ref<string[]>([]);
 const channelSlots = ref<Map<string, ISlotsItem[]>>(new Map());
 
+const channelDates = computed(() => Object.keys(channelSlots.value));
+
 const handleChangeDates = ({ dates }: { dates: string[] }) => {
-  channelDates.value = dates;
+  for (const [key] of channelSlots.value) {
+    if (dates.includes(key)) continue;
+    channelSlots.value.delete(key);
+  }
+
+  for (const newKey of dates) {
+    if (channelSlots.value.has(newKey)) continue;
+    channelSlots.value.set(newKey, [{ time: "", interval: "" }]);
+  }
 };
-
-watch(
-  channelDates,
-  (newDates) => {
-    for (const key in channelSlots.value) {
-      if (newDates.includes(key)) continue;
-      channelSlots.value.delete(key);
-    }
-
-    for (const newKey of newDates) {
-      if (channelSlots.value.has(newKey)) continue;
-      channelSlots.value.set(newKey, [{ time: "", interval: "" }]);
-    }
-  },
-  { deep: true }
-);
 </script>
 
 <style scoped lang="scss">
