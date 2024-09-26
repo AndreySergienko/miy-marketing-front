@@ -8,5 +8,8 @@ export interface ITelegramEditMainProps {
 }
 
 export interface ITelegramEditMainEmits {
-  (e: "changeData"): void;
+  (
+    e: "changeData",
+    data: { name: string; url: string; category: string }
+  ): void;
 }

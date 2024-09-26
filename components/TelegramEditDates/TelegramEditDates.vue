@@ -158,10 +158,7 @@ const getFormattedDate = (day: number) => {
   return `${formattedDay}.${month}.${year}`;
 };
 
-const { meta, values, setFieldValue } = useForm({
-  validationSchema: object({
-    dates: array().min(1, "").max(12, "").label(""),
-  }),
+const { values, setFieldValue } = useForm({
   initialValues: {
     dates: dates.value,
   },
@@ -170,7 +167,6 @@ const { meta, values, setFieldValue } = useForm({
 watch(
   () => values,
   () => {
-    if (!meta.value.valid) return;
     emit("changeData", values);
   },
   { deep: true }

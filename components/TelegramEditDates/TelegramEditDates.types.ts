@@ -3,5 +3,5 @@ export interface ITelegramEditDatesProps {
 }
 
 export interface ITelegramEditDatesEmits {
-  (e: "changeData"): void;
+  (e: "changeData", data: { dates: string[] }): void;
 }

@@ -11,7 +11,10 @@
           { label: 'Бизнес', value: 'business' },
         ]"
       />
-      <TelegramEditDates :dates="['08.09.2024']" />
+      <TelegramEditDates
+        :dates="channelDates"
+        @change-data="handleChangeDates"
+      />
     </div>
   </main>
 </template>
@@ -20,6 +23,12 @@
 definePageMeta({
   layout: "telegram-edit",
 });
+
+const channelDates = ref<string[]>([]);
+
+const handleChangeDates = ({ dates }: { dates: string[] }) => {
+  channelDates.value = dates;
+};
 </script>
 
 <style scoped lang="scss">
