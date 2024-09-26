@@ -1,13 +1,8 @@
-export interface ISlotProps {
-  time: string;
-  interval: string;
-  price: number;
-}
+import type { ISlotsItem } from "../TelegramEditSlots.types";
+
+export interface ISlotProps extends ISlotsItem {}
 
 export interface ISlotEmits {
-  (
-    e: "changeData",
-    data: { time: string; interval: string; price: number }
-  ): void;
+  (e: "changeData", data: ISlotsItem): void;
   (e: "remove"): void;
 }

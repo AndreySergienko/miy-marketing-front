@@ -34,10 +34,6 @@ const handleChangeDates = ({ dates }: { dates: string[] }) => {
   channelDates.value = dates;
 };
 
-const handleChangeSlots = ({ slots }: { slots: Map<string, ISlotsItem[]> }) => {
-  channelSlots.value = slots;
-};
-
 watch(
   channelDates,
   (newDates) => {
@@ -48,7 +44,7 @@ watch(
 
     for (const newKey of newDates) {
       if (channelSlots.value.has(newKey)) continue;
-      channelSlots.value.set(newKey, []);
+      channelSlots.value.set(newKey, [{ time: "", interval: "" }]);
     }
   },
   { deep: true }
@@ -84,21 +80,25 @@ watch(
   }
 
   &__content {
-    margin-top: 30px;
+    margin: 30px 0 130px;
     display: flex;
     flex-direction: column;
+    align-self: center;
+    max-width: 328px;
     gap: 60px;
 
     @include media.media-breakpoint-up(md) {
-      margin-top: 64px;
+      max-width: 466px;
+      margin: 64px 0 136px;
     }
 
     @include media.media-breakpoint-up(lm) {
-      margin-top: 74px;
+      margin: 74px 0 145px;
     }
 
     @include media.media-breakpoint-up(l) {
-      margin-top: 70px;
+      max-width: 534px;
+      margin: 70px 0 150px;
     }
   }
 }

@@ -20,6 +20,31 @@
     gap: 40px;
   }
 
+  .slots__item {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    &-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #191a1c;
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    &-add {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--new-primary);
+      cursor: pointer;
+    }
+  }
+
   :deep(.nuxt-icon) {
     display: flex;
     align-items: center;
