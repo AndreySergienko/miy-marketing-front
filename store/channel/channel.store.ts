@@ -57,15 +57,6 @@ export const useChannelStore = defineStore("global/channel", () => {
     }
   }
 
-  /** Получить список каналов для текущего юзера **/
-  async function getMy() {
-    try {
-      channels.value = await channelsService.getMy();
-    } catch (e) {
-      useShowError(e);
-    }
-  }
-
   /** Купить канал **/
   async function buy(slotId: number, dateIdx: number) {
     try {
@@ -114,7 +105,6 @@ export const useChannelStore = defineStore("global/channel", () => {
     update,
     buy,
     create,
-    getMy,
     getAll,
     formatAll,
     getAllFormat,

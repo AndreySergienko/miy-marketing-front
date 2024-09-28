@@ -1,69 +1,81 @@
-import { EProfileChannelsItemTypes } from '~/components/ProfileChannelsItem/ProfileChannelsItem.types'
+import { EProfileChannelsItemTypes } from "~/components/ProfileChannelsItem/ProfileChannelsItem.types";
 
 export interface IChannelsRegistrationBody {
-  categoriesId: number[]
-  description: string
-  link: string
-  name: string
-  days: string[]
-  slots: string[]
-  price: number
-  formatChannel: number
-  conditionCheck: string
+  categoriesId: number[];
+  description: string;
+  link: string;
+  name: string;
+  days: string[];
+  slots: string[];
+  price: number;
+  formatChannel: number;
+  conditionCheck: string;
 }
 
 export interface IInitialChannelData {
-  avatar: string
-  description: string
-  link: string
-  name: string
-  subscribers: number
+  avatar: string;
+  description: string;
+  link: string;
+  name: string;
+  subscribers: number;
 }
 
 export interface IChannelGetAll extends IInitialChannelData {
-  conditionCheck: string
-  days: string[]
-  formatChannelId: number
-  id: number
-  price: number
+  conditionCheck: string;
+  days: string[];
+  formatChannelId: number;
+  id: number;
+  price: number;
 }
 
 export interface ISlot {
-  channelId: number
-  id: Number
-  timestamp: string
+  channelId: number;
+  id: Number;
+  timestamp: string;
 }
 
 export interface IGetAll {
-  channel: IChannelGetAll
-  slots: ISlot[]
+  channel: IChannelGetAll;
+  slots: ISlot[];
 }
 
 export interface IFormat {
-  id: number
-  value: string
+  id: number;
+  value: string;
+}
+
+export interface IApiSlot {
+  price: number;
+  time: string;
+  formatId: number;
+}
+
+export interface IApiChannelsListItemDates {
+  date: string;
+  slots: IApiSlot[];
 }
 
 export interface IApiChannelsListItem extends IInitialChannelData {
-  categories: number[]
-  chatId: string
-  conditionCheck: string
-  days: string[]
-  formatChannelId: number
-  id: number
-  isCanPostMessage: boolean
-  price: number
-  slots: ISlot[]
-  statusId: number
+  categories: number[];
+  channelDates: IApiChannelsListItemDates[];
+  chatId: string;
+  conditionCheck: string;
+  days: string[];
+  formatChannelId: number;
+  id: number;
+  isCanPostMessage: boolean;
+  price: number;
+  slots: ISlot[];
+  statusId: number;
 }
 
 export interface IChannelsListItem extends IInitialChannelData {
-  id: number
-  categories: number[]
-  status: EProfileChannelsItemTypes
-  conditionCheck: string
-  days: string[]
-  formatChannelId: number
-  price: number
-  slots: ISlot[]
+  id: number;
+  categories: number[];
+  status: EProfileChannelsItemTypes;
+  conditionCheck: string;
+  days: string[];
+  formatChannelId: number;
+  price: number;
+  slots: ISlot[];
 }

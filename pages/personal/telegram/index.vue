@@ -1,17 +1,35 @@
 <template>
   <div class="telegram-page">
-    <ChannelCard v-bind="channelData" @click="showDetails = true" />
+    <ChannelCard
+      v-for="channelData in channels"
+      :key="channelData.id"
+      v-bind="channelData"
+      :category="getCategoryById(channelData.categoryId)"
+      @click="handleClickCard"
+    />
     <ChannelAdd v-if="canCreate" @click="addNewChannel" />
     <ChannelDetails
-      v-if="showDetails"
-      v-bind="channelData"
-      @close="showDetails = false"
+      v-if="showDetails && selectedChannel"
+      v-bind="selectedChannel"
+      :dates="getFormattedDates(selectedChannel.dates)"
+      :category="getCategoryById(selectedChannel.categoryId)"
+      @close="handleCloseDetails"
     />
   </div>
 </template>
 
 <script setup lang="ts">
+import type {
+  IMyChannel,
+  IMyChannelDate,
+} from "~/store/myChannels/myChannels.types";
+import type { ICategoriesItem } from "~/api/methods/categories/categories.types";
+import type { IFormat } from "~/api/methods/channels/channels.types";
+
+import { useCategoriesStore } from "~/store/categories/categories.store";
+import { useMyChannelsStore } from "~/store/myChannels/myChannels.store";
 import { useUserStore } from "~/store/user/user.store";
+import { useFormatsStore } from "~/store/formats/formats.store";
 
 definePageMeta({
   layout: "personal",
@@ -20,52 +38,70 @@ definePageMeta({
 const userStore = useUserStore();
 const { permissions } = storeToRefs(userStore);
 
-const channelData = {
-  id: 1,
-  image:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmCy16nhIbV3pI1qLYHMJKwbH2458oiC9EmA&s",
-  title: "Котики",
-  category: "Развлечение",
-  subscribers: 1500,
-  isActive: false,
-  url: "kotiki",
-  dates: [
-    {
-      date: "08.08.2024",
-      slots: [
-        {
-          time: "10:00",
-          format: "1/24",
-          price: 400,
-        },
-        {
-          time: "10:00",
-          format: "1/24",
-          price: 400,
-        },
-      ],
-    },
-    {
-      date: "09.08.2024",
-      slots: [
-        {
-          time: "10:00",
-          format: "1/24",
-          price: 400,
-        },
-        {
-          time: "10:00",
-          format: "1/24",
-          price: 400,
-        },
-      ],
-    },
-  ],
-};
+const myChannelsStore = useMyChannelsStore();
+const { channels, selectedChannel } = storeToRefs(myChannelsStore);
+
+const categoriesStore = useCategoriesStore();
+const { categories } = storeToRefs(categoriesStore);
+
+const formatsStore = useFormatsStore();
+const { formats } = storeToRefs(formatsStore);
+
+await useAsyncData(
+  "my-channels",
+  () => {
+    return Promise.allSettled([
+      formatsStore.fetch(),
+      categoriesStore.fetch(),
+      myChannelsStore.fetch(),
+    ]);
+  },
+  {
+    lazy: true,
+  }
+);
 
 const showDetails = ref(false);
 
 const canCreate = computed(() => permissions.value.CAN_PUBLIC_CHANNEL);
+
+const getCategoryById = computed(() => (id: number) => {
+  const category = categories.value.find(
+    (category: ICategoriesItem) => category.id === id
+  );
+  return category ? category.title : "";
+});
+
+const getFormattedDates = computed(() => (dates: IMyChannelDate) => {
+  const { slots } = dates;
+  const formattedSlots = slots.map((slot) => {
+    const interval = formats.value.find(
+      (format: IFormat) => format.id === slot.formatId
+    );
+    const { time, price } = slot;
+
+    return {
+      time,
+      price,
+      interval,
+    };
+  });
+
+  return {
+    ...dates,
+    slots: formattedSlots,
+  };
+});
+
+const handleClickCard = (channel: IMyChannel) => {
+  selectedChannel.value = channel;
+  showDetails.value = true;
+};
+
+const handleCloseDetails = () => {
+  selectedChannel.value = null;
+  showDetails.value = false;
+};
 
 const addNewChannel = () => navigateTo("/personal/connect");
 </script>
