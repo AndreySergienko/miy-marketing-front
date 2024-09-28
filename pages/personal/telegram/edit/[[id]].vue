@@ -3,13 +3,10 @@
     <TelegramEditHeader title="Новый канал" />
     <div class="telegram-edit__content">
       <TelegramEditMain
-        name="Котики"
-        url="@kotiki"
-        category="fun"
-        :categories="[
-          { label: 'Развлечение', value: 'fun' },
-          { label: 'Бизнес', value: 'business' },
-        ]"
+        :name="selectedChannel.name"
+        :url="selectedChannel.url"
+        :category="selectedChannel.categoryId"
+        :categories="formattedCategories"
       />
       <TelegramEditDates
         :dates="channelDates"
@@ -21,10 +18,50 @@
 </template>
 
 <script setup lang="ts">
+import { ICategoriesItem } from "~/api/methods/categories/categories.types";
 import type { ISlotsItem } from "~/components/TelegramEditSlots/TelegramEditSlots.types";
+import { useCategoriesStore } from "~/store/categories/categories.store";
+import { useFormatsStore } from "~/store/formats/formats.store";
+import { useMyChannelsStore } from "~/store/myChannels/myChannels.store";
+import { IMyChannel } from "~/store/myChannels/myChannels.types";
 
 definePageMeta({
   layout: "telegram-edit",
+});
+
+const route = useRoute();
+const id = computed(() => ("id" in route.params ? route.params.id : ""));
+
+const myChannelsStore = useMyChannelsStore();
+const { channels, selectedChannel } = storeToRefs(myChannelsStore);
+
+const categoriesStore = useCategoriesStore();
+const { categories } = storeToRefs(categoriesStore);
+
+const formatsStore = useFormatsStore();
+const { formats } = storeToRefs(formatsStore);
+
+await useAsyncData(
+  "edit-channel",
+  () => {
+    return Promise.allSettled([
+      formatsStore.fetch(),
+      categoriesStore.fetch(),
+      myChannelsStore.fetch(),
+    ]);
+  },
+  {
+    lazy: true,
+  }
+);
+
+const formattedCategories = computed(() => {
+  return categories.value.map((category: ICategoriesItem) => {
+    return {
+      label: category.title,
+      value: category.id,
+    };
+  });
 });
 
 const channelSlots = ref<Map<string, ISlotsItem[]>>(new Map());
@@ -42,6 +79,20 @@ const handleChangeDates = ({ dates }: { dates: string[] }) => {
     channelSlots.value.set(newKey, [{ time: "", interval: "" }]);
   }
 };
+
+watch(
+  channels,
+  (newChannels) => {
+    if (!newChannels.length || !+id) return;
+    const channel = newChannels.find(
+      (channel: IMyChannel) => channel.id === +id
+    );
+    if (!channel) return navigateTo("/personal/telegram");
+
+    selectedChannel.value = channel;
+  },
+  { deep: true, immediate: true }
+);
 </script>
 
 <style scoped lang="scss">
