@@ -44,11 +44,13 @@ const { formats } = storeToRefs(formatsStore);
 await useAsyncData(
   "edit-channel",
   () => {
-    return Promise.allSettled([
-      formatsStore.fetch(),
-      categoriesStore.fetch(),
-      myChannelsStore.fetch(),
-    ]);
+    const promises = [formatsStore.fetch(), categoriesStore.fetch()];
+
+    if (+id) {
+      promises.push(myChannelsStore.fetch());
+    }
+
+    return Promise.allSettled(promises);
   },
   {
     lazy: true,
@@ -83,7 +85,20 @@ const handleChangeDates = ({ dates }: { dates: string[] }) => {
 watch(
   channels,
   (newChannels) => {
-    if (!newChannels.length || !+id) return;
+    if (!+id) {
+      selectedChannel.value = {
+        id: 0,
+        title: "",
+        url: "",
+        subscribers: 0,
+        isActive: false,
+        categoryId: 0,
+        dates: [],
+      };
+      return;
+    }
+
+    if (!newChannels.length) return;
     const channel = newChannels.find(
       (channel: IMyChannel) => channel.id === +id
     );
