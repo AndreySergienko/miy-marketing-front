@@ -3,7 +3,7 @@
     <TelegramEditHeader title="Новый канал" />
     <div class="telegram-edit__content">
       <TelegramEditMain
-        :name="selectedChannel.name"
+        :name="selectedChannel.title"
         :url="selectedChannel.url"
         :category="selectedChannel.categoryId"
         :categories="formattedCategories"
