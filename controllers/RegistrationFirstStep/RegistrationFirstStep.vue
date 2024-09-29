@@ -7,7 +7,21 @@
       placeholder="Уникальный токен"
     >
       <template #icon>
-        <AuthenticationTokenHelp />
+        <DefaultTooltip>
+          Вы сможете получить уникальный ID через нашего
+          <NuxtLink
+            class="default-tooltip__inner-link"
+            to="https://t.me/miy_ad_bot"
+            external
+            target="_blank"
+          >
+            TG-бота.
+          </NuxtLink>
+          Для начала напишите в строке <b>/start</b>. Убедительная просьба
+          использовать один аккаунт при получении ID и при будущем осуществлении
+          рекламы. В обязательно порядке при размещении рекламы в TG каналах вы
+          должны быть админом.
+        </DefaultTooltip>
       </template>
     </AuthenticationInput>
     <NuxtLink

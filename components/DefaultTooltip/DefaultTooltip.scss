@@ -1,10 +1,15 @@
 @use "assets/styles/media";
-.authentication-token-help {
+.default-tooltip {
   position: relative;
   cursor: help;
+  display: none;
+
+  @include media.media-breakpoint-up(md) {
+    display: block;
+  }
 
   &--shown {
-    .authentication-token-help__inner {
+    .default-tooltip__inner {
       opacity: 1;
       pointer-events: all;
     }

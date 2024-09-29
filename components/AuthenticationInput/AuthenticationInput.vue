@@ -1,6 +1,6 @@
 <template>
   <div class="authentication-input">
-    <label class="authentication-input__label" :for="uniqueId">
+    <label v-if="label" class="authentication-input__label" :for="uniqueId">
       {{ label }}
       <slot name="icon" />
     </label>

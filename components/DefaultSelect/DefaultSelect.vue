@@ -1,6 +1,6 @@
 <template>
   <div class="default-select" v-outside-click="() => (isOpened = false)">
-    <label class="default-select__label" :for="uniqueId">
+    <label v-if="label" class="default-select__label" :for="uniqueId">
       {{ label }}
     </label>
     <div class="default-select__field" @click="isOpened = !isOpened">
@@ -11,6 +11,7 @@
         class="default-select__field-arrow"
         name="default-select-arrow"
         filled
+        v-if="!hideIcon"
       />
     </div>
     <div v-if="isOpened" class="default-select__options">

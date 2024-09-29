@@ -49,6 +49,7 @@ export const useCategoriesStore = defineStore("global/categories", () => {
     activeCategories,
     categories,
     getAll,
+    fetch: getAll,
     getQueryCategories,
   };
 });

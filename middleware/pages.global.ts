@@ -5,6 +5,6 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   if (authStore.isAuth && to.meta.layout === "authentication")
     return toPersonalProfile();
-  if (!authStore.isAuth && to.meta.layout === "personal")
-    return navigateTo("/");
+  // if (!authStore.isAuth && to.meta.layout === "personal")
+  //   return navigateTo("/");
 });

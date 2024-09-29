@@ -1,0 +1,80 @@
+.channel-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--new-white);
+  gap: 25px;
+  padding: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &__more {
+    --position: 30px;
+
+    position: absolute;
+    top: var(--position);
+    right: var(--position);
+
+    :deep(.nuxt-icon) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: unset;
+        height: unset;
+        margin-bottom: unset;
+        vertical-align: unset;
+      }
+    }
+  }
+
+  &__image {
+    --image-size: 50px;
+
+    appearance: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--image-size);
+    height: var(--image-size);
+    border-radius: 100%;
+    background: #d2d1d8;
+    object-fit: cover;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+    color: #2d3648;
+
+    & > * {
+      font-size: 15px;
+      line-height: 11px;
+    }
+
+    &-title {
+      font-weight: 600;
+    }
+
+    &-category {
+      margin-top: 3px;
+    }
+  }
+
+  &__status {
+    font-size: 14px;
+    font-weight: 600;
+
+    &--active {
+      color: #0bc154;
+    }
+
+    &--inactive {
+      color: #747476;
+    }
+  }
+}

@@ -4,8 +4,9 @@ export interface OptionsItem {
 }
 
 export interface DefaultSelectProps {
-  label: string;
+  label?: string;
   name: string;
   placeholder?: string;
   options: OptionsItem[];
+  hideIcon?: boolean;
 }

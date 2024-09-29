@@ -1,0 +1,29 @@
+.chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 10px 15px;
+  border-radius: 8px;
+  background: #f3f3f3;
+
+  &__label {
+    color: #191a1c;
+    font-size: 15px;
+  }
+
+  &__icon {
+    width: 19px;
+    height: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    :deep(svg) {
+      width: unset;
+      height: unset;
+      margin-bottom: unset;
+      vertical-align: unset;
+    }
+  }
+}
