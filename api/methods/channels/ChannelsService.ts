@@ -30,6 +30,13 @@ export default class ChannelsService extends ApiService {
     });
   }
 
+  async update(data: IChannelsRegistrationBody) {
+    return await this.$authApi(this.apiUrl + "update", {
+      method: "post",
+      body: data,
+    });
+  }
+
   async buy(slotId: number, dateIdx: number) {
     return await this.$authApi<{ message: string }>(this.apiUrl + "buy", {
       method: "post",

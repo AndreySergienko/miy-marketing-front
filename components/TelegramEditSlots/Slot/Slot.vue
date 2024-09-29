@@ -7,7 +7,7 @@
       hide-icon
     />
     <DefaultSelect
-      name="interval"
+      name="intervalId"
       :options="intervalOptions"
       placeholder="Интервал"
       hide-icon
@@ -23,10 +23,16 @@
 </template>
 
 <script setup lang="ts">
+import type { IFormat } from "~/api/methods/channels/channels.types";
 import type { ISlotProps, ISlotEmits } from "./Slot.types";
 
+import { useFormatsStore } from "~/store/formats/formats.store";
+
 const props = defineProps<ISlotProps>();
-const { time, interval, price } = toRefs(props);
+const { time, intervalId, price } = toRefs(props);
+
+const formatsStore = useFormatsStore();
+const { formats } = storeToRefs(formatsStore);
 
 const emit = defineEmits<ISlotEmits>();
 
@@ -40,21 +46,17 @@ const timeOptions = new Array(24).fill(0).map((_, i) => {
   };
 });
 
-const intervalOptions = [
-  {
-    value: "1",
-    label: "1/24",
-  },
-  {
-    value: "2",
-    label: "2/48",
-  },
-];
+const intervalOptions = computed(() =>
+  formats.value.map((format: IFormat) => ({
+    value: format.id,
+    label: format.value,
+  }))
+);
 
 const { values } = useForm({
   initialValues: {
     time: time.value,
-    interval: interval.value,
+    intervalId: intervalId.value,
     price: price.value,
   },
 });

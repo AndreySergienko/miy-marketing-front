@@ -1,5 +1,5 @@
 export interface ISlotsItem {
   time: string;
-  interval: string;
+  intervalId?: number;
   price?: number;
 }

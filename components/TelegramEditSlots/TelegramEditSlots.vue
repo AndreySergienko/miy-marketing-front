@@ -41,7 +41,7 @@ const getSlotTitle = (key: string) => {
 const handleAddSlot = (key: string) => {
   const slots = model.value.get(key) || [];
   if (slots.length === 12) return;
-  slots.push({ time: "", interval: "" });
+  slots.push({ time: "" });
 };
 
 const changeSlotData = (key: string, index: number, data: ISlotsItem) => {

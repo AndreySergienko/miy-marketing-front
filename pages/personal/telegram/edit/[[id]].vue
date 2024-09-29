@@ -1,12 +1,13 @@
 <template>
   <main class="telegram-edit">
-    <TelegramEditHeader title="Новый канал" />
+    <TelegramEditHeader title="Новый канал" @create="handleCreateEditChannel" />
     <div class="telegram-edit__content">
       <TelegramEditMain
-        :name="selectedChannel.title"
-        :url="selectedChannel.url"
-        :category="selectedChannel.categoryId"
+        :name="editingChannel.title"
+        :url="editingChannel.url"
+        :category="editingChannel.categoryId"
         :categories="formattedCategories"
+        @change-data="handleChangeMain"
       />
       <TelegramEditDates
         :dates="channelDates"
@@ -18,12 +19,17 @@
 </template>
 
 <script setup lang="ts">
-import { ICategoriesItem } from "~/api/methods/categories/categories.types";
+import type { ICategoriesItem } from "~/api/methods/categories/categories.types";
 import type { ISlotsItem } from "~/components/TelegramEditSlots/TelegramEditSlots.types";
+import type {
+  IMyChannel,
+  IMyChannelDateSlot,
+} from "~/store/myChannels/myChannels.types";
+import type { ITelegramEditMainData } from "~/components/TelegramEditMain/TelegramEditMain.types";
+
 import { useCategoriesStore } from "~/store/categories/categories.store";
 import { useFormatsStore } from "~/store/formats/formats.store";
 import { useMyChannelsStore } from "~/store/myChannels/myChannels.store";
-import { IMyChannel } from "~/store/myChannels/myChannels.types";
 
 definePageMeta({
   layout: "telegram-edit",
@@ -33,13 +39,12 @@ const route = useRoute();
 const id = computed(() => ("id" in route.params ? route.params.id : ""));
 
 const myChannelsStore = useMyChannelsStore();
-const { channels, selectedChannel } = storeToRefs(myChannelsStore);
+const { channels } = storeToRefs(myChannelsStore);
 
 const categoriesStore = useCategoriesStore();
 const { categories } = storeToRefs(categoriesStore);
 
 const formatsStore = useFormatsStore();
-const { formats } = storeToRefs(formatsStore);
 
 await useAsyncData(
   "edit-channel",
@@ -57,6 +62,8 @@ await useAsyncData(
   }
 );
 
+const editingChannel = ref<IMyChannel | null>(null);
+
 const formattedCategories = computed(() => {
   return categories.value.map((category: ICategoriesItem) => {
     return {
@@ -70,6 +77,12 @@ const channelSlots = ref<Map<string, ISlotsItem[]>>(new Map());
 
 const channelDates = computed(() => Object.keys(channelSlots.value));
 
+const handleChangeMain = ({ name, url, category }: ITelegramEditMainData) => {
+  editingChannel.value!.title = name;
+  editingChannel.value!.url = url;
+  editingChannel.value!.categoryId = +category;
+};
+
 const handleChangeDates = ({ dates }: { dates: string[] }) => {
   for (const [key] of channelSlots.value) {
     if (dates.includes(key)) continue;
@@ -78,18 +91,31 @@ const handleChangeDates = ({ dates }: { dates: string[] }) => {
 
   for (const newKey of dates) {
     if (channelSlots.value.has(newKey)) continue;
-    channelSlots.value.set(newKey, [{ time: "", interval: "" }]);
+    channelSlots.value.set(newKey, [{ time: "" }]);
   }
+};
+
+const handleCreateEditChannel = async () => {
+  if (!editingChannel.value) return;
+
+  if (id.value) {
+    await myChannelsStore.update(editingChannel.value);
+  } else {
+    await myChannelsStore.create(editingChannel.value);
+  }
+
+  return navigateTo("/personal/telegram");
 };
 
 watch(
   channels,
   (newChannels) => {
     if (!+id) {
-      selectedChannel.value = {
+      editingChannel.value = {
         id: 0,
         title: "",
         url: "",
+        image: "",
         subscribers: 0,
         isActive: false,
         categoryId: 0,
@@ -104,7 +130,23 @@ watch(
     );
     if (!channel) return navigateTo("/personal/telegram");
 
-    selectedChannel.value = channel;
+    editingChannel.value = channel;
+
+    for (const date of channel.dates) {
+      if (channelSlots.value.has(date)) continue;
+
+      const slots = date.slots.map((slot: IMyChannelDateSlot) => {
+        const { time, price, formatId } = slot;
+
+        return {
+          time,
+          price,
+          intervalId: formatId,
+        };
+      });
+
+      channelSlots.value.set(date, slots.length ? slots : [{ time: "" }]);
+    }
   },
   { deep: true, immediate: true }
 );

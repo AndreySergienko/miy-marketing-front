@@ -1,15 +1,22 @@
 import { EProfileChannelsItemTypes } from "~/components/ProfileChannelsItem/ProfileChannelsItem.types";
 
-export interface IChannelsRegistrationBody {
-  categoriesId: number[];
-  description: string;
-  link: string;
-  name: string;
-  days: string[];
-  slots: string[];
-  price: number;
+export interface IChannelsRegistrationDateSlot {
+  time: string;
   formatChannel: number;
-  conditionCheck: string;
+  price: number;
+}
+
+export interface IChannelsRegistrationDate {
+  date: string;
+  slots: IChannelsRegistrationDateSlot[];
+}
+
+export interface IChannelsRegistrationBody {
+  id?: number;
+  name: string;
+  link: string;
+  categoriesId: number[];
+  channelDates: IChannelsRegistrationDate[];
 }
 
 export interface IInitialChannelData {

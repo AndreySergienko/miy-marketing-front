@@ -26,8 +26,6 @@
 </template>
 
 <script setup lang="ts">
-import { object, string } from "yup";
-
 import type {
   ITelegramEditMainProps,
   ITelegramEditMainEmits,
@@ -38,12 +36,7 @@ const { name, url, category } = toRefs(props);
 
 const emit = defineEmits<ITelegramEditMainEmits>();
 
-const { meta, values } = useForm({
-  validationSchema: object({
-    name: string().required(rules.required).label(""),
-    url: string().required(rules.required).label(""),
-    category: string().required(rules.required).label(""),
-  }),
+const { values } = useForm({
   initialValues: {
     name: name.value,
     url: url.value,
@@ -54,7 +47,6 @@ const { meta, values } = useForm({
 watch(
   () => values,
   () => {
-    if (!meta.value.valid) return;
     emit("changeData", values);
   },
   { deep: true }
