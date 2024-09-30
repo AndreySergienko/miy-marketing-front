@@ -103,7 +103,10 @@ const { meta, values } = useForm({
 });
 
 const handleRegister = async () => {
-  const isSuccess = await authStore.registration(values);
+  const isSuccess = await authStore.registration({
+    ...values,
+    isNotification: true,
+  });
   if (!isSuccess) return;
 
   return navigateTo("/authentication/complete");

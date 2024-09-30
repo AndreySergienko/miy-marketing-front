@@ -123,6 +123,7 @@ const handleMainData = () => {
     fio,
     email,
     inn,
+    isNotification: true,
     bank: {
       name: bankName,
       bik: bankBik,
@@ -143,8 +144,6 @@ const handlePasswordData = () => {
 };
 
 const handleSave = async () => {
-  if (!meta.valid) return;
-
   handleMainData();
   handlePasswordData();
 };
