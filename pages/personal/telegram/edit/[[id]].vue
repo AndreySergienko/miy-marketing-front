@@ -51,7 +51,7 @@ await useAsyncData(
   () => {
     const promises = [formatsStore.fetch(), categoriesStore.fetch()];
 
-    if (+id) {
+    if (+(id.value ?? "")) {
       promises.push(myChannelsStore.fetch());
     }
 
@@ -99,18 +99,16 @@ const handleCreateEditChannel = async () => {
   if (!editingChannel.value) return;
 
   if (id.value) {
-    await myChannelsStore.update(editingChannel.value);
+    await myChannelsStore.update(editingChannel.value, channelSlots.value);
   } else {
-    await myChannelsStore.create(editingChannel.value);
+    await myChannelsStore.create(editingChannel.value, channelSlots.value);
   }
-
-  return navigateTo("/personal/telegram");
 };
 
 watch(
   channels,
   (newChannels) => {
-    if (!+id) {
+    if (!+(id.value ?? "")) {
       editingChannel.value = {
         id: 0,
         title: "",
@@ -126,7 +124,7 @@ watch(
 
     if (!newChannels.length) return;
     const channel = newChannels.find(
-      (channel: IMyChannel) => channel.id === +id
+      (channel: IMyChannel) => channel.id === +id.value!
     );
     if (!channel) return navigateTo("/personal/telegram");
 
@@ -136,12 +134,12 @@ watch(
       if (channelSlots.value.has(date)) continue;
 
       const slots = date.slots.map((slot: IMyChannelDateSlot) => {
-        const { time, price, formatId } = slot;
+        const { timestamp, price, formatChannelId } = slot;
 
         return {
-          time,
+          time: timestamp,
           price,
-          intervalId: formatId,
+          intervalId: formatChannelId,
         };
       });
 

@@ -64,6 +64,10 @@ export default class ChannelsService extends ApiService {
       this.apiUrl + "my",
       {
         method: "get",
+        params: {
+          page: 1,
+          size: 100,
+        },
       }
     );
 

@@ -5,7 +5,7 @@
       :key="channelData.id"
       v-bind="channelData"
       :category="getCategoryById(channelData.categoryId)"
-      @click="handleClickCard"
+      @click="handleClickCard(channelData)"
     />
     <ChannelAdd v-if="canCreate" @click="addNewChannel" />
     <ChannelDetails
@@ -72,25 +72,30 @@ const getCategoryById = computed(() => (id: number) => {
   return category ? category.title : "";
 });
 
-const getFormattedDates = computed(() => (dates: IMyChannelDate) => {
-  const { slots } = dates;
-  const formattedSlots = slots.map((slot) => {
-    const interval = formats.value.find(
-      (format: IFormat) => format.id === slot.formatId
-    );
-    const { time, price } = slot;
+const getFormattedDates = computed(() => (dates: IMyChannelDate[]) => {
+  const formattedDates = dates.map((date) => {
+    const { slots } = date;
+
+    const formattedSlots = slots.map((slot) => {
+      const interval = formats.value.find(
+        (format: IFormat) => format.id === slot.formatChannelId
+      );
+      const { timestamp, price } = slot;
+
+      return {
+        time: timestamp,
+        price,
+        interval: interval.value,
+      };
+    });
 
     return {
-      time,
-      price,
-      interval,
+      ...date,
+      slots: formattedSlots,
     };
   });
 
-  return {
-    ...dates,
-    slots: formattedSlots,
-  };
+  return formattedDates;
 });
 
 const handleClickCard = (channel: IMyChannel) => {

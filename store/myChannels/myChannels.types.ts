@@ -1,6 +1,6 @@
 export interface IMyChannelDateSlot {
-  time: string;
-  formatId: number;
+  timestamp: string;
+  formatChannelId: number;
   price: number;
 }
 

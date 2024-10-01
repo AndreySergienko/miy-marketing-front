@@ -47,7 +47,7 @@
             </tr>
             <tr v-for="(slot, slotIndex) in date.slots" :key="slotIndex">
               <td>{{ slot.time }}</td>
-              <td>{{ slot.format }}</td>
+              <td>{{ slot.interval }}</td>
               <td>{{ slot.price }}</td>
             </tr>
           </table>

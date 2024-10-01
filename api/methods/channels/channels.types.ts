@@ -53,8 +53,8 @@ export interface IFormat {
 
 export interface IApiSlot {
   price: number;
-  time: string;
-  formatId: number;
+  timestamp: string;
+  formatChannelId: number;
 }
 
 export interface IApiChannelsListItemDates {
