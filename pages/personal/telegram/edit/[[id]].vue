@@ -1,5 +1,5 @@
 <template>
-  <main class="telegram-edit">
+  <main v-if="editingChannel" class="telegram-edit">
     <TelegramEditHeader title="Новый канал" @create="handleCreateEditChannel" />
     <div class="telegram-edit__content">
       <TelegramEditMain
@@ -74,8 +74,16 @@ const formattedCategories = computed(() => {
 });
 
 const channelSlots = ref<Map<string, ISlotsItem[]>>(new Map());
+const channelDates = computed(() => {
+  const result = [];
 
-const channelDates = computed(() => Object.keys(channelSlots.value));
+  for (const [key] of channelSlots.value) {
+    if (!channelSlots.value.has(key)) continue;
+    result.push(key);
+  }
+
+  return result;
+});
 
 const handleChangeMain = ({ name, url, category }: ITelegramEditMainData) => {
   editingChannel.value!.title = name;
@@ -143,7 +151,7 @@ watch(
         };
       });
 
-      channelSlots.value.set(date, slots.length ? slots : [{ time: "" }]);
+      channelSlots.value.set(date.date, slots.length ? slots : [{ time: "" }]);
     }
   },
   { deep: true, immediate: true }
