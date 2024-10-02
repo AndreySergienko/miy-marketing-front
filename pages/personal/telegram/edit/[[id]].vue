@@ -39,7 +39,7 @@ const route = useRoute();
 const id = computed(() => ("id" in route.params ? route.params.id : ""));
 
 const myChannelsStore = useMyChannelsStore();
-const { channels } = storeToRefs(myChannelsStore);
+const { channels, initialChannelData } = storeToRefs(myChannelsStore);
 
 const categoriesStore = useCategoriesStore();
 const { categories } = storeToRefs(categoriesStore);
@@ -117,10 +117,16 @@ watch(
   channels,
   (newChannels) => {
     if (!+(id.value ?? "")) {
+      if (!initialChannelData.value) {
+        return navigateTo("/personal/telegram");
+      }
+
+      const { link, name } = initialChannelData.value;
+
       editingChannel.value = {
         id: 0,
-        title: "",
-        url: "",
+        title: name,
+        url: link,
         image: "",
         subscribers: 0,
         isActive: false,

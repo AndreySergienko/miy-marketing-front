@@ -1,18 +1,18 @@
-import {useAlertStore} from "~/store/alert/alert.store";
-import type {TPossibleError} from "~/types/api.types";
+import { useAlertStore } from "~/store/alert/alert.store";
+import type { TNewError, TPossibleError } from "~/types/api.types";
 
 export function useShowError(e: TPossibleError) {
-  const alertStore = useAlertStore()
+  const alertStore = useAlertStore();
 
-  // @ts-ignore
-  if (e?.response?._data?.message) {
-    alertStore.showError({
-      // @ts-ignore
-      title: e.response._data.message
-    })
-  } else {
-    alertStore.showError({
-      title: 'Что-то пошло не так'
-    })
+  const errorData = (e as { data: TNewError })?.data;
+
+  if ("message" in errorData) {
+    alertStore.showError({ title: errorData.message });
+    return;
   }
+
+  const values = Object.values(errorData?.[0]) ?? [];
+  const title = values?.[0]?.[0] ?? "Что-то пошло не так";
+
+  alertStore.showError({ title });
 }

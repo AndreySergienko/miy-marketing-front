@@ -1,13 +1,15 @@
 export interface ISuccessResponse {
-    message: string;
+  message: string;
 }
 
 export interface IError {
   response: {
     _data: {
       message: string;
-    }
-  }
+    };
+  };
 }
 
-export type TPossibleError = IError | unknown
+export type TNewError = Record<string, string[]>[];
+
+export type TPossibleError = IError | TNewError | unknown;

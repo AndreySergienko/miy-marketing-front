@@ -1,20 +1,25 @@
 <template>
   <div class="telegram-page">
-    <ChannelCard
-      v-for="channelData in channels"
-      :key="channelData.id"
-      v-bind="channelData"
-      :category="getCategoryById(channelData.categoryId)"
-      @click="handleClickCard(channelData)"
-    />
-    <ChannelAdd v-if="canCreate" @click="addNewChannel" />
-    <ChannelDetails
-      v-if="showDetails && selectedChannel"
-      v-bind="selectedChannel"
-      :dates="getFormattedDates(selectedChannel.dates)"
-      :category="getCategoryById(selectedChannel.categoryId)"
-      @close="handleCloseDetails"
-    />
+    <div v-if="!channels.length && !canCreate" class="telegram-page__empty">
+      Заполните данные для дальнейшей работы
+    </div>
+    <div v-else class="telegram-page__content">
+      <ChannelCard
+        v-for="channelData in channels"
+        :key="channelData.id"
+        v-bind="channelData"
+        :category="getCategoryById(channelData.categoryId)"
+        @click="handleClickCard(channelData)"
+      />
+      <ChannelAdd v-if="canCreate" @click="addNewChannel" />
+      <ChannelDetails
+        v-if="showDetails && selectedChannel"
+        v-bind="selectedChannel"
+        :dates="getFormattedDates(selectedChannel.dates)"
+        :category="getCategoryById(selectedChannel.categoryId)"
+        @close="handleCloseDetails"
+      />
+    </div>
   </div>
 </template>
 
@@ -115,21 +120,37 @@ const addNewChannel = () => navigateTo("/personal/connect");
 @use "assets/styles/media";
 .telegram-page {
   margin-top: 24px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
 
   @include media.media-breakpoint-up(md) {
     margin-top: 21px;
-    grid-template-columns: repeat(2, 1fr);
   }
 
-  @include media.media-breakpoint-up(lm) {
-    grid-template-columns: repeat(3, 1fr);
+  &__empty {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
   }
 
-  @include media.media-breakpoint-up(xxl) {
-    grid-template-columns: repeat(4, 1fr);
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+
+    @include media.media-breakpoint-up(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include media.media-breakpoint-up(lm) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include media.media-breakpoint-up(xxl) {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 }
 </style>
