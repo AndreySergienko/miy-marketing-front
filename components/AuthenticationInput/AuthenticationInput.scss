@@ -1,0 +1,60 @@
+.authentication-input {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--new-black);
+  }
+
+  &__input {
+    width: 100%;
+    padding: 18px 15px;
+    border-radius: 10px;
+    border: 1px solid;
+    border-color: var(--input-default-border);
+    height: 46px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--new-black);
+    background: var(--new-white);
+    outline: none;
+    transition: 0.3s ease-in-out;
+
+    &::placeholder {
+      color: var(--input-placeholder);
+    }
+
+    &:focus {
+      border-color: var(--new-primary);
+    }
+
+    &--disabled {
+      pointer-events: none;
+      background: var(--input-disabled);
+      color: var(--input-placeholder);
+    }
+
+    &--error {
+      border-color: var(--error);
+    }
+  }
+
+  &__password {
+    position: absolute;
+    right: 15px;
+    bottom: 13px;
+  }
+
+  &__error {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--error);
+  }
+}

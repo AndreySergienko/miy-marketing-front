@@ -1,14 +1,12 @@
 import ApiService from "~/api/core/ApiService";
+import type { IMyChannel } from "~/store/myChannels/myChannels.types";
 import type {
   IApiChannelsListItem,
-  IChannelsListItem,
   IChannelsRegistrationBody,
   IInitialChannelData,
   IGetAll,
   IFormat,
 } from "./channels.types";
-import { API_ITEM_TYPES } from "~/components/ProfileChannelsItem/ProfileChannelsItem.types";
-import { ICalendarRange } from "~/store/filters/calendar.store";
 
 export default class ChannelsService extends ApiService {
   private readonly apiUrl: string;
@@ -27,6 +25,13 @@ export default class ChannelsService extends ApiService {
 
   async register(data: IChannelsRegistrationBody) {
     return await this.$authApi(this.apiUrl + "registration", {
+      method: "post",
+      body: data,
+    });
+  }
+
+  async update(data: IChannelsRegistrationBody) {
+    return await this.$authApi(this.apiUrl + "update", {
       method: "post",
       body: data,
     });
@@ -54,29 +59,27 @@ export default class ChannelsService extends ApiService {
     });
   }
 
-  async getMy(): Promise<IChannelsListItem[]> {
+  async getMy(): Promise<IMyChannel[]> {
     const data = await this.$authApi<IApiChannelsListItem[]>(
       this.apiUrl + "my",
       {
         method: "get",
+        params: {
+          page: 1,
+          size: 100,
+        },
       }
     );
 
     return data.map((item) => ({
       id: item.id,
-      slots: item.slots,
-      avatar: item.avatar,
-      description: item.description,
-      categories: item.categories,
-      name: item.name,
-      link: item.link,
-      status:
-        API_ITEM_TYPES[item.statusId as keyof typeof API_ITEM_TYPES] || "",
-      conditionCheck: item.conditionCheck,
-      days: item.days,
-      formatChannelId: item.formatChannelId,
-      price: item.price,
+      image: item.avatar,
+      title: item.name,
+      categoryId: item.categories[0],
+      url: item.link,
       subscribers: item.subscribers,
+      isActive: item.statusId === 2,
+      dates: item.channelDates,
     }));
   }
 

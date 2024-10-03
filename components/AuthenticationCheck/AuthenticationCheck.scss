@@ -1,0 +1,55 @@
+.authentication-check {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  &__label {
+    flex: 1;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: var(--new-black);
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .authentication-check__content {
+      border: 2px solid transparent;
+      background: var(--new-primary);
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 21px;
+    height: 21px;
+    border: 2px solid rgba(236, 235, 239, 1);
+    cursor: pointer;
+    border-radius: 5px;
+    user-select: none;
+
+    &-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--new-white);
+    }
+
+    :deep(.nuxt-icon) {
+      svg {
+        width: unset;
+        height: unset;
+        margin-bottom: unset;
+        vertical-align: unset;
+      }
+    }
+  }
+}

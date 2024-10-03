@@ -1,0 +1,34 @@
+@use "assets/styles/media";
+
+.channel-add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 246px;
+  border-radius: 10px;
+  background-color: var(--new-white);
+  color: var(--new-primary);
+  border: 1px dashed #d2d1d8;
+  cursor: pointer;
+  user-select: none;
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    :deep(svg) {
+      width: unset;
+      height: unset;
+      margin-bottom: unset;
+      vertical-align: unset;
+    }
+  }
+
+  &__text {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 11px;
+  }
+}

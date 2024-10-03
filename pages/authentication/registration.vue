@@ -1,120 +1,72 @@
 <template>
-  <AuthController>
-    <template #default="{ isShowGratitude, registrationData, registrationRules, sendRegistration, isLoading }">
-      <AuthContainer v-if="!isShowGratitude" >
-        <template #form>
-          <VeeForm class="form" v-slot="{ errors, meta }" :validation-schema="registrationRules">
-            <SharedInput name="fio" v-model="registrationData.fio" type="text" :error="errors.fio">ФИО</SharedInput>
-            <div class="form__item">
-              <SharedInput name="uniqueBotId" v-model="registrationData.uniqueBotId" type="text" :error="errors.uniqueBotId">Уникальный id
-                <SharedIdbot />
-              </SharedInput>
-              <SharedInput name="inn" v-model="registrationData.inn" type="text" :error="errors.inn">ИНН</SharedInput>
-              <SharedInput name="email" v-model="registrationData.email" type="text" :error="errors.email">Почта</SharedInput>
-              <SharedInput name="password" v-model="registrationData.password" :type="showPassword ? 'text' : 'password'" :error="errors.password">Пароль
-                <template #icon>
-                  <nuxt-icon v-if="showPassword" name="eye-off" @click="showPassword = !showPassword"></nuxt-icon>
-                  <nuxt-icon v-else name="eye" @click="showPassword = !showPassword"></nuxt-icon>
-                </template>
-              </SharedInput>
-            </div>
-            <div class="form__checkbox">
-              <span class="form__checkbox-title">Публикация рекламных постов в</span>
-              <div class="form__checkbox-items">
-                <SharedGroupRadio v-model="registrationData.isNotification">
-                    <template #default="{ updateValue }">
-                      <SharedRadio v-for="radio in radios" :checked="radio.checked" name="notification" :key="radio.text" :value="radio.value" @change="updateValue">{{ radio.text }}</SharedRadio>
-                    </template>
-                </SharedGroupRadio>
-              </div>
-              <div class="form__checkbox-confidential">
-                <SharedCheckbox v-model="isChecked">Согласен на обработку персональных данных, получение рассылок, а также с <a target="_blank" href="/Politic confidential/privacy__policy.pdf">Политикой конфиденциальности.</a></SharedCheckbox>
-              </div>
-            </div>
-            <div class="btn__registration">
-              <SharedButton size="l" color="blue" :isDisabled="!meta.valid || !isChecked || isLoading" @click="sendRegistration" :is-loading="isLoading">Создать</SharedButton>
-            </div>
-          </VeeForm>
-        </template>
-      </AuthContainer>
-      <div v-else class="gratitude">
-        <SharedGratitude />
-      </div>
-    </template>
-  </AuthController>
+  <main class="registration-page">
+    <h1 class="registration-page__title">Регистрация</h1>
+
+    <section class="registration-page__content">
+      <RegistrationFirstStep v-if="isFirstStep" />
+      <RegistrationSecondStep v-else />
+    </section>
+
+    <footer class="registration-page__info">
+      Уже есть аккаунт?
+      <NuxtLink class="registration-page__info-link" to="/authentication/login">
+        Войти
+      </NuxtLink>
+    </footer>
+  </main>
 </template>
 
 <script setup lang="ts">
-  import AuthController from '~/controllers/AuthController/AuthController.vue';
-  import {radios} from "~/modules/pages/registration/registration.data";
+definePageMeta({
+  layout: "authentication",
+});
 
-  const showPassword = ref(false)
+const route = useRoute();
 
-  definePageMeta({
-    layout: 'authentication'
-  })
-
-  const isChecked = ref(false)
+const isFirstStep = computed(() => !route.query.botToken);
 </script>
 
 <style lang="scss" scoped>
-@use 'assets/styles/media';
+@use "assets/styles/media";
 
-  .form {
+.registration-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 320px;
+
+  @include media.media-breakpoint-up(md) {
+    width: 466px;
+  }
+
+  @include media.media-breakpoint-up(lm) {
+    width: 313px;
+  }
+
+  &__title {
+    color: var(--new-black);
+    font-size: 25px;
+    font-weight: 600;
+  }
+
+  &__content {
+    margin-top: 30px;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    gap: var(--indent-xl);
+    justify-content: center;
+    align-items: center;
+  }
 
-    @include media.media-breakpoint-down(l) {
-      align-items: center;
-    }
+  &__info {
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 400;
 
-    &__item {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--indent-l);
-
-      @include media.media-breakpoint-down(l) {
-        width: 100%;
-      }
-
-      @include media.media-breakpoint-down(sm) {
-        display: flex;
-        flex-direction: column;
-      }
-    }
-
-    &__checkbox {
-      display: flex;
-      flex-direction: column;
-      gap: var(--indent-m);
-
-      @include media.media-breakpoint-down(l) {
-        width: 100%;
-      }
-
-      &-title {
-        font-size: var(--font-size-m);
-        font-weight: var(--font-weight-medium);
-
-        @include media.media-breakpoint-down(sm) {
-          font-size: var(--font-size-s);
-        }
-      }
-
-      &-items {
-        display: grid;
-        align-items: center;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--indent-s);
-      }
-
-      &-confidential {
-        display: flex;
-        align-items: center;
-        font-size: var(--font-size-s);
-        font-weight: var(--font-weight-medium);
-      }
+    &-link {
+      text-decoration: none;
+      color: var(--new-primary);
     }
   }
+}
 </style>

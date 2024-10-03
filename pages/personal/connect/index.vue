@@ -19,7 +19,7 @@
       size="l"
       color="blue"
       :is-disabled="!channelName"
-      @click="channelsStore.check(channelName)"
+      @click="myChannelsStore.check(channelName)"
     >
       Проверить
     </SharedButton>
@@ -27,13 +27,13 @@
 </template>
 
 <script setup lang="ts">
-import { useChannelStore } from "~/store/channel/channel.store";
+import { useMyChannelsStore } from "~/store/myChannels/myChannels.store";
 
 definePageMeta({
   layout: "personal",
 });
 
-const channelsStore = useChannelStore();
+const myChannelsStore = useMyChannelsStore();
 
 const channelName = ref("");
 </script>

@@ -1,0 +1,60 @@
+@use "assets/styles/media";
+
+.telegram-edit-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 15px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .slots__item {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    &-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #191a1c;
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    &-add {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--new-primary);
+      cursor: pointer;
+    }
+  }
+
+  :deep(.nuxt-icon) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: unset;
+      height: unset;
+      margin-bottom: unset;
+      vertical-align: unset;
+    }
+  }
+}

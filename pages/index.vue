@@ -29,9 +29,6 @@
     <div class="contacts">
       <AppContacts />
     </div>
-    <div class="footer">
-      <AppFooter />
-    </div>
   </div>
 </template>
 <script setup lang="ts">
