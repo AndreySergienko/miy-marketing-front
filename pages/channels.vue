@@ -12,7 +12,7 @@
         </div>
         <FilterCalendarController />
         <div class="card__list">
-          <div v-for="channel in channelsAll" class="card__list-item">
+          <div v-for="channel in channelsAll" class="card__list-items">
             <SharedCard
               v-for="date in channel.channelDates"
               :key="channel.id"
@@ -209,6 +209,10 @@ watch(dates, async () => await fetchChannels(true), { deep: true });
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--indent-2xl);
+
+  &-items {
+    display: contents;
+  }
 
   @include media.media-breakpoint-down(xl) {
     grid-template-columns: repeat(3, 1fr);
