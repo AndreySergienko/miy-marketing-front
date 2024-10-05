@@ -107,7 +107,6 @@
         }
       }
 
-      &--devs,
       &--copyright {
         font-size: 12px;
         font-weight: 400;
@@ -115,18 +114,6 @@
 
         @include media.media-breakpoint-up(md) {
           font-size: 16px;
-        }
-      }
-
-      &--devs {
-        margin-top: 16px;
-
-        @include media.media-breakpoint-up(md) {
-          margin-top: 0;
-        }
-
-        .highlight {
-          color: #ff6b00;
         }
       }
 

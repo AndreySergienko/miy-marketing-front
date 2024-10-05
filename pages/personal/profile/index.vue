@@ -72,13 +72,13 @@
           </p>
         </div>
         <div class="profile-page__block-inputs">
-          <AuthenticationInput
-            label="Текущий пароль"
-            type="password"
-            name="password"
-            placeholder="Введите пароль"
-            show-password-icon
-          />
+<!--          <AuthenticationInput-->
+<!--            label="Текущий пароль"-->
+<!--            type="password"-->
+<!--            name="password"-->
+<!--            placeholder="Введите пароль"-->
+<!--            show-password-icon-->
+<!--          />-->
           <AuthenticationInput
             label="Новый пароль"
             type="password"

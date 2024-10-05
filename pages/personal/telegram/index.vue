@@ -1,7 +1,8 @@
 <template>
   <div class="telegram-page">
     <div v-if="!channels.length && !canCreate" class="telegram-page__empty">
-      Заполните данные для дальнейшей работы
+      <p>Заполните данные для дальнейшей работы</p>
+      <nuxt-link class="stylish-link" to="/personal/profile">Заполнить здесь</nuxt-link>
     </div>
     <div v-else class="telegram-page__content">
       <ChannelCard
@@ -116,8 +117,41 @@ const handleCloseDetails = () => {
 const addNewChannel = () => navigateTo("/personal/connect");
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="scss" >
 @use "assets/styles/media";
+
+.stylish-link {
+  top: 30px;
+  text-decoration: none; // Убирает подчеркивание
+  color: #3498db; // Начальный цвет текста
+  position: relative; // Для абсолютного позиционирования псевдоэлементов
+  font-weight: bold; // Полужирный текст
+  padding: 5px 10px; // Отступы вокруг текста
+  border-radius: 5px; // Скругленные углы
+  transition: background-color 0.3s, color 0.3s; // Плавные переходы
+
+  &::after {
+    content: ''; // Содержимое псевдоэлемента
+    position: absolute; // Абсолютное позиционирование
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px; // Высота подчеркивания
+    background: #3498db; // Цвет подчеркивания
+    transform: scaleX(0); // Начальное состояние подчеркивания
+    transition: transform 0.3s; // Плавный переход
+  }
+
+  &:hover {
+    color: #2980b9; // Цвет текста при наведении
+
+    &::after {
+      transform: scaleX(1); // Подчеркивание при наведении
+    }
+  }
+}
+
+
 .telegram-page {
   margin-top: 24px;
 
@@ -127,9 +161,6 @@ const addNewChannel = () => navigateTo("/personal/connect");
 
   &__empty {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 20px;
     font-weight: 600;
     text-align: center;

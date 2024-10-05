@@ -1,8 +1,13 @@
 <template>
   <header class="app-header" v-outside-click="handleOutsideClick">
-    <h1 class="app-header__title">On-Developer</h1>
+    <NuxtLink class="app-header__links--item" to="/">
+      <h1 class="app-header__title">On-Developer</h1>
+    </NuxtLink>
     <div :class="['app-header__content', contentClass]">
       <div class="app-header__links">
+        <NuxtLink class="app-header__links--item" to="/personal/profile">
+          Личный кабинет
+        </NuxtLink>
         <NuxtLink class="app-header__links--item" to="/#benefit">
           Преимущества
         </NuxtLink>
