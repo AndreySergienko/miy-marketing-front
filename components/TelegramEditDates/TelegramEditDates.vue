@@ -43,7 +43,7 @@
         </div>
       </main>
       <div class="calendar__divider"></div>
-      <footer class="calendar__footer">
+      <footer class="calendar__footer" v-if="values.dates.length > 0">
         <h3 class="calendar__footer-title">Выбранные даты</h3>
         <div class="calendar__footer-chips">
           <TelegramEditDatesChip

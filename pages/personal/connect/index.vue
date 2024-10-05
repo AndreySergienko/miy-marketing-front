@@ -11,6 +11,7 @@
       name="channelName"
       type="text"
       v-model="channelName"
+
     >
       Название канала
     </SharedInput>
@@ -20,6 +21,7 @@
       color="blue"
       :is-disabled="!channelName"
       @click="myChannelsStore.check(channelName)"
+      id="inputField"
     >
       Проверить
     </SharedButton>
@@ -28,6 +30,12 @@
 
 <script setup lang="ts">
 import { useMyChannelsStore } from "~/store/myChannels/myChannels.store";
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    document.getElementById('inputField').click();
+  }
+});
 
 definePageMeta({
   layout: "personal",

@@ -41,9 +41,29 @@ export interface ISlot {
   timestamp: string;
 }
 
+export interface IGetAllDateSlot {
+  id: number;
+  timestamp: string;
+  formatChannelId: number;
+  price: number;
+}
+
+export interface IGetAllDate {
+  id: number;
+  date: string;
+  slots: IGetAllDateSlot[];
+}
+
 export interface IGetAll {
-  channel: IChannelGetAll;
-  slots: ISlot[];
+  days: string[];
+  id: number;
+  name: string;
+  subscribers: number;
+  link: string;
+  description: string;
+  avatar: string;
+  conditionCheck: string;
+  channelDates: IGetAllDate[];
 }
 
 export interface IFormat {

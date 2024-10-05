@@ -7,6 +7,7 @@
       label="Название"
       type="text"
       placeholder="Введите название"
+      disabled
     />
     <AuthenticationInput
       class="telegram-edit-main__input"
@@ -14,6 +15,7 @@
       label="Ссылка на канал"
       type="text"
       placeholder="Введите ссылку"
+      disabled
     />
     <DefaultSelect
       class="telegram-edit-main__input"

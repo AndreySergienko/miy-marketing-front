@@ -12,37 +12,43 @@
         </div>
         <FilterCalendarController />
         <div class="card__list">
-          <SharedCard
-            v-for="card in channelsAll"
-            :key="card.channel.id"
-            :price="card.channel.price"
-            :currency="'RUB'"
-            :subscribers="card.channel.subscribers"
-            :avatar="card.channel.avatar"
-            :interval="currentFormat(card.channel.formatChannelId)"
-          >
-            <template #title>
-              <SharedCardTitle>{{ card.channel.name }}</SharedCardTitle>
-            </template>
-            <template #description>
-              <SharedCardText>{{ card.channel.description }}</SharedCardText>
-            </template>
-            <template #actions>
-              <div v-if="!permissions?.CAN_BUY">
-                Авторизуйтесь и добавьте почту
-              </div>
-              <div v-else-if="!card.slots.length">Нет доступных слотов</div>
-              <SharedButton
-                v-else
-                class="action__button"
-                color="blue"
-                @click="setInfoChannel(card.slots, card.channel.days)"
-              >
-                Выбрать дату
-                <nuxt-icon class="action__button-icon" name="chevron" filled />
-              </SharedButton>
-            </template>
-          </SharedCard>
+          <div v-for="channel in channelsAll" class="card__list-items">
+            <SharedCard
+              v-for="date in channel.channelDates"
+              :key="channel.id"
+              :price="date.slots[0].price"
+              :currency="'RUB'"
+              :subscribers="channel.subscribers"
+              :avatar="channel.avatar"
+              :interval="currentFormat(date.slots[0].formatChannelId)"
+            >
+              <template #title>
+                <SharedCardTitle>{{ channel.name }}</SharedCardTitle>
+              </template>
+              <template #description>
+                <SharedCardText>{{ channel.description }}</SharedCardText>
+              </template>
+              <template #actions>
+                <div v-if="!permissions?.CAN_BUY">
+                  Авторизуйтесь и добавьте почту
+                </div>
+                <div v-else-if="!date.slots.length">Нет доступных слотов</div>
+                <SharedButton
+                  v-else
+                  class="action__button"
+                  color="blue"
+                  @click="setInfoChannel(channel, date)"
+                >
+                  Выбрать дату
+                  <nuxt-icon
+                    class="action__button-icon"
+                    name="chevron"
+                    filled
+                  />
+                </SharedButton>
+              </template>
+            </SharedCard>
+          </div>
         </div>
       </div>
     </div>
@@ -92,7 +98,7 @@ const channelStore = useChannelStore();
 const userStore = useUserStore();
 
 const { getAllFormat } = useChannelStore();
-const { formatAll } = toRefs(channelStore);
+const { formatAll, isLoading, channelsAll } = storeToRefs(channelStore);
 
 const currentFormat = (formatChannelId: number) => {
   const format = formatAll.value.find((item) => item.id === formatChannelId);
@@ -108,9 +114,7 @@ const calendarStore = useCalendarStore();
 const { dates } = storeToRefs(calendarStore);
 
 const { permissions } = storeToRefs(userStore);
-const { isLoading } = storeToRefs(channelStore);
 const { getQueryCategories, activeCategories } = storeToRefs(categoriesStore);
-const { channelsAll } = storeToRefs(channelStore);
 const alertStore = useAlertStore();
 const {
   clearInfoChannel,
@@ -205,6 +209,10 @@ watch(dates, async () => await fetchChannels(true), { deep: true });
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--indent-2xl);
+
+  &-items {
+    display: contents;
+  }
 
   @include media.media-breakpoint-down(xl) {
     grid-template-columns: repeat(3, 1fr);
