@@ -1,7 +1,10 @@
 <template>
   <div class="telegram-page">
     <div v-if="!channels.length && !canCreate" class="telegram-page__empty">
-      Заполните данные для дальнейшей работы
+        <p>Заполните данные для дальнейшей работы</p>
+        <DefaultButton class="telegram-page__button" @click="returnProfile">
+          Заполнить здесь
+        </DefaultButton>
     </div>
     <div v-else class="telegram-page__content">
       <ChannelCard
@@ -35,6 +38,13 @@ import { useCategoriesStore } from "~/store/categories/categories.store";
 import { useMyChannelsStore } from "~/store/myChannels/myChannels.store";
 import { useUserStore } from "~/store/user/user.store";
 import { useFormatsStore } from "~/store/formats/formats.store";
+import { useRouter } from 'vue-router';
+
+ const router = useRouter();
+
+function returnProfile () {
+  router.push('/personal/profile');
+}
 
 definePageMeta({
   layout: "personal",
@@ -118,6 +128,7 @@ const addNewChannel = () => navigateTo("/personal/connect");
 
 <style scoped lang="scss">
 @use "assets/styles/media";
+
 .telegram-page {
   margin-top: 24px;
 
@@ -125,14 +136,18 @@ const addNewChannel = () => navigateTo("/personal/connect");
     margin-top: 21px;
   }
 
+  &__button {
+    margin-top: 25px;
+  }
+
   &__empty {
-    width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
     font-size: 20px;
     font-weight: 600;
     text-align: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   &__content {

@@ -15,11 +15,8 @@
     <div class="app-footer__info">
       <div class="app-footer__info-company">
         <h2 class="app-footer__info-company--name">On-Developer</h2>
-        <p class="app-footer__info-company--devs">
-          Разработка сайта <span class="highlight">Я</span>Р студия
-        </p>
         <p class="app-footer__info-company--copyright">
-          © ОN DEVELOPERс 2021-2024
+          © ОN DEVELOPER с 2021-2024
         </p>
       </div>
       <div class="app-footer__info-contacts">

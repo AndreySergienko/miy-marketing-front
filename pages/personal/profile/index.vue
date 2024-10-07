@@ -1,6 +1,6 @@
 <template>
   <main class="profile-page">
-    <ProfileWorkType />
+    <ProfileWorkType v-if="false" />
     <div class="profile-page__content">
       <section class="profile-page__block">
         <div class="profile-page__block-text">
@@ -64,7 +64,7 @@
           />
         </div>
       </section>
-      <section class="profile-page__block">
+      <section v-if="false" class="profile-page__block">
         <div class="profile-page__block-text">
           <h2 class="profile-page__block-text--title">Смена пароля</h2>
           <p class="profile-page__block-text--description">

@@ -9,7 +9,7 @@
     </NuxtLink>
     <NuxtLink
       to="/personal/telegram"
-      class="personal-navigation__item"
+     :class="['personal-navigation__item', { 'personal-navigation__item--active': route.path === '/personal/connect' }]"
       exact-active-class="personal-navigation__item--active"
     >
       Мои каналы
@@ -24,6 +24,10 @@
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+</script>
 
 <style scoped lang="scss" src="./PersonalNavigation.scss"></style>
