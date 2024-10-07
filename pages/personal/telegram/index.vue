@@ -1,8 +1,10 @@
 <template>
   <div class="telegram-page">
     <div v-if="!channels.length && !canCreate" class="telegram-page__empty">
-      <p>Заполните данные для дальнейшей работы</p>
-      <nuxt-link class="stylish-link" to="/personal/profile">Заполнить здесь</nuxt-link>
+        <p>Заполните данные для дальнейшей работы</p>
+        <DefaultButton class="telegram-page__button" @click="returnProfile">
+          Заполнить здесь
+        </DefaultButton>
     </div>
     <div v-else class="telegram-page__content">
       <ChannelCard
@@ -36,6 +38,13 @@ import { useCategoriesStore } from "~/store/categories/categories.store";
 import { useMyChannelsStore } from "~/store/myChannels/myChannels.store";
 import { useUserStore } from "~/store/user/user.store";
 import { useFormatsStore } from "~/store/formats/formats.store";
+import { useRouter } from 'vue-router';
+
+ const router = useRouter();
+
+function returnProfile () {
+  router.push('/personal/profile');
+}
 
 definePageMeta({
   layout: "personal",
@@ -117,40 +126,8 @@ const handleCloseDetails = () => {
 const addNewChannel = () => navigateTo("/personal/connect");
 </script>
 
-<style scoped lang="scss" >
+<style scoped lang="scss">
 @use "assets/styles/media";
-
-.stylish-link {
-  top: 30px;
-  text-decoration: none; // Убирает подчеркивание
-  color: #3498db; // Начальный цвет текста
-  position: relative; // Для абсолютного позиционирования псевдоэлементов
-  font-weight: bold; // Полужирный текст
-  padding: 5px 10px; // Отступы вокруг текста
-  border-radius: 5px; // Скругленные углы
-  transition: background-color 0.3s, color 0.3s; // Плавные переходы
-
-  &::after {
-    content: ''; // Содержимое псевдоэлемента
-    position: absolute; // Абсолютное позиционирование
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px; // Высота подчеркивания
-    background: #3498db; // Цвет подчеркивания
-    transform: scaleX(0); // Начальное состояние подчеркивания
-    transition: transform 0.3s; // Плавный переход
-  }
-
-  &:hover {
-    color: #2980b9; // Цвет текста при наведении
-
-    &::after {
-      transform: scaleX(1); // Подчеркивание при наведении
-    }
-  }
-}
-
 
 .telegram-page {
   margin-top: 24px;
@@ -159,11 +136,18 @@ const addNewChannel = () => navigateTo("/personal/connect");
     margin-top: 21px;
   }
 
+  &__button {
+    margin-top: 25px;
+  }
+
   &__empty {
+    display: flex;
     width: 100%;
     font-size: 20px;
     font-weight: 600;
     text-align: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   &__content {

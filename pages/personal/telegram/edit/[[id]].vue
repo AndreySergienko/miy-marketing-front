@@ -12,8 +12,13 @@
       <TelegramEditDates
         :dates="channelDates"
         @change-data="handleChangeDates"
+        ref="editDates"
+
       />
-      <TelegramEditSlots v-model="channelSlots" />
+      <TelegramEditSlots
+          v-model="channelSlots"
+          @remove-last-child="removeDates"
+      />
     </div>
   </main>
 </template>
@@ -31,9 +36,18 @@ import { useCategoriesStore } from "~/store/categories/categories.store";
 import { useFormatsStore } from "~/store/formats/formats.store";
 import { useMyChannelsStore } from "~/store/myChannels/myChannels.store";
 
+const editDates = ref(null)
+
+function removeDates  () {
+  if(editDates.value) {
+    editDates.value.handleRemoveDate();
+  }
+}
+
 definePageMeta({
   layout: "telegram-edit",
 });
+
 
 const route = useRoute();
 const id = computed(() => ("id" in route.params ? route.params.id : ""));

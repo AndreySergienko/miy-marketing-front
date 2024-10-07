@@ -26,12 +26,15 @@
 
 <script setup lang="ts">
 import type { ISlotsItem } from "./TelegramEditSlots.types";
+import {date} from "yup";
+
 
 const model = defineModel<Map<string, ISlotsItem[]>>();
 
 const getSlotTitle = (key: string) => {
   const slices = key.split(".");
   const date = new Date(+slices[2], +slices[1] - 1, +slices[0]);
+
 
   return `${date.getDate()} ${date.toLocaleString("default", {
     month: "long",
@@ -49,11 +52,20 @@ const changeSlotData = (key: string, index: number, data: ISlotsItem) => {
   slots[index] = data;
 };
 
+const emit = defineEmits<{ (event: 'remove-last-child', index: number): void }>()
+
+
 const handleRemoveSlot = (key: string, index: number) => {
   const slots = model.value.get(key) || [];
-  if (slots.length === 1) return;
+  if (slots.length === 1) {
+    emit('remove-last-child', index)
+  }
   slots.splice(index, 1);
 };
+
+
+
+
 </script>
 
 <style scoped lang="scss" src="./TelegramEditSlots.scss"></style>

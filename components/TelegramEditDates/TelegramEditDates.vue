@@ -146,8 +146,8 @@ const handleAddDate = (day: number) => {
 const handleRemoveDate = (index: number) => {
   const tempDates = [...values.dates];
   tempDates.splice(index, 1);
-
   setFieldValue("dates", tempDates as never);
+
 };
 
 const getFormattedDate = (day: number) => {
@@ -171,6 +171,11 @@ watch(
   },
   { deep: true }
 );
+
+defineExpose({
+  handleRemoveDate
+})
+
 </script>
 
 <style scoped lang="scss" src="./TelegramEditDates.scss"></style>
