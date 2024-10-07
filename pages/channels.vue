@@ -82,9 +82,6 @@
       <nuxt-icon class="more__icon" name="arrow" filled />
     </div>
   </div>
-  <div class="footer">
-    <AppFooter />
-  </div>
 </template>
 <script setup lang="ts">
 import { useChannelStore } from "~/store/channel/channel.store";

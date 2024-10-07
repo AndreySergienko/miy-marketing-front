@@ -3,7 +3,7 @@
     <h1 class="app-header__title" @click="navigateTo('/')">On-Developer</h1>
     <div :class="['app-header__content', contentClass]">
       <div class="app-header__links">
-        <NuxtLink class="app-header__links--item" to="/personal/profile">
+        <NuxtLink class="app-header__links--item" to="/personal/profile" v-if="isAuth">
           Личный кабинет
         </NuxtLink>
         <NuxtLink class="app-header__links--item" to="/#benefit">
