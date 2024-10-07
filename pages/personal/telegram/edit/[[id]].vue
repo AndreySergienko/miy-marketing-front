@@ -10,10 +10,11 @@
         @change-data="handleChangeMain"
       />
       <TelegramEditDates
+        ref="editDates"
         :dates="channelDates"
         @change-data="handleChangeDates"
       />
-      <TelegramEditSlots v-model="channelSlots" />
+      <TelegramEditSlots v-model="channelSlots" @remove-last-child="editDates.handleRemoveDate" />
     </div>
   </main>
 </template>
@@ -35,6 +36,7 @@ definePageMeta({
   layout: "telegram-edit",
 });
 
+const editDates = ref(null)
 const route = useRoute();
 const id = computed(() => ("id" in route.params ? route.params.id : ""));
 
