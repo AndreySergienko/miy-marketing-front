@@ -171,6 +171,10 @@ watch(
   },
   { deep: true }
 );
+
+defineExpose({
+  handleRemoveDate
+})
 </script>
 
 <style scoped lang="scss" src="./TelegramEditDates.scss"></style>
