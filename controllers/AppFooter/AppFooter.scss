@@ -42,15 +42,42 @@
 
   &__info {
     display: flex;
-    flex-direction: column-reverse;
+    justify-content: space-between;
     gap: 36px;
+    align-self: normal;
 
-    @include media.media-breakpoint-up(md) {
-      width: 100%;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
+    @include media.media-breakpoint-down(l) {
       gap: 0;
+    }
+
+    @include media.media-breakpoint-down(md) {
+      width: 100%;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    &-documents {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+      font-size: 12px;
+
+      @include media.media-breakpoint-down(md) {
+        text-align: start;
+      }
+
+      @include media.media-breakpoint-up(md) {
+        padding: 10px;
+        font-size: 16px;
+      }
+
+      
+      & a {
+        color: var(--color-blue);
+        text-decoration: none;
+      }
     }
 
     &-contacts {
