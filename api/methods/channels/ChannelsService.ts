@@ -78,7 +78,7 @@ export default class ChannelsService extends ApiService {
       categoryId: item.categories[0],
       url: item.link,
       subscribers: item.subscribers,
-      isActive: item.statusId === 2,
+      isActive: item.statusId !== 3,
       dates: item.channelDates,
     }));
   }
