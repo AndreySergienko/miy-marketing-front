@@ -48,7 +48,15 @@ export default class ChannelsService extends ApiService {
   }
 
   async getAll(dates: Date[], url?: string): Promise<IGetAll[]> {
-    const parsedDates = dates.map((item) => item.getTime()).join(",");
+    const parsedDates = dates
+      .map((item) => {
+        const day = item.getDate();
+        const month = item.getMonth() + 1;
+        const year = item.getFullYear();
+
+        return `${day}.${month}.${year}`;
+      })
+      .join(",");
 
     const fullUrl = url ? this.apiUrl + "all" + url : this.apiUrl + "all";
     return await this.$api<IGetAll[]>(fullUrl, {
@@ -78,7 +86,7 @@ export default class ChannelsService extends ApiService {
       categoryId: item.categories[0],
       url: item.link,
       subscribers: item.subscribers,
-      isActive: item.statusId !== 3,
+      isActive: item.statusId === 3,
       dates: item.channelDates,
     }));
   }
