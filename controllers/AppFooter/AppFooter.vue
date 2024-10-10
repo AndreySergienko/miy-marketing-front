@@ -15,22 +15,17 @@
     <div class="app-footer__info">
       <div class="app-footer__info-company">
         <h2 class="app-footer__info-company--name">On-Developer</h2>
-        <p class="app-footer__info-company--copyright">
-          © ОN DEVELOPER 2024
-        </p>
+        <p class="app-footer__info-company--copyright">© ОN DEVELOPER 2024</p>
       </div>
       <div class="app-footer__info-documents">
-        <a 
-          href="/Politic confidential/personal__data.pdf"
-          target="_blank"
-          >
+        <a href="/Politic confidential/personal__data.pdf" target="_blank">
           Согласие на обработку персональных данных
         </a>
-        <a 
-          href="/Politic confidential/public__offer.pdf"
-          target="_blank"
-          >
+        <a href="/Politic confidential/public__offer.pdf" target="_blank">
           Публичная оферта
+        </a>
+        <a href="/Politic confidential/privacy__policy.pdf" target="_blank">
+          Политика конфиденциальности
         </a>
       </div>
       <div class="app-footer__info-contacts">
@@ -65,7 +60,6 @@
   </footer>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss" src="./AppFooter.scss"></style>

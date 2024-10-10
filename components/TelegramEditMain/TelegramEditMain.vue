@@ -15,7 +15,6 @@
       label="Ссылка на канал"
       type="text"
       placeholder="Введите ссылку"
-      disabled
     />
     <DefaultSelect
       class="telegram-edit-main__input"
