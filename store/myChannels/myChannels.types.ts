@@ -14,6 +14,7 @@ export interface IMyChannel {
   image: string;
   title: string;
   categoryId: number;
+  conditionCheck: string;
   subscribers: number;
   isActive: boolean;
   url: string;

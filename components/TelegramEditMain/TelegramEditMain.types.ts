@@ -4,6 +4,7 @@ export interface ITelegramEditMainData {
   name: string;
   url: string;
   category: string;
+  conditionCheck: string;
 }
 
 export interface ITelegramEditMainProps extends ITelegramEditMainData {

@@ -16,6 +16,13 @@
       type="text"
       placeholder="Введите ссылку"
     />
+    <AuthenticationInput
+      class="telegram-edit-main__input"
+      name="conditionCheck"
+      label="Критерии модерации"
+      type="text"
+      placeholder="Текст"
+    />
     <DefaultSelect
       class="telegram-edit-main__input"
       label="Категория"
@@ -33,13 +40,14 @@ import type {
 } from "./TelegramEditMain.types";
 
 const props = defineProps<ITelegramEditMainProps>();
-const { name, url, category } = toRefs(props);
+const { name, url, conditionCheck, category } = toRefs(props);
 
 const emit = defineEmits<ITelegramEditMainEmits>();
 
 const { values } = useForm({
   initialValues: {
     name: name.value,
+    conditionCheck: conditionCheck.value,
     url: url.value,
     category: category.value,
   },

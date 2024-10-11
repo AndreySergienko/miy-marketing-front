@@ -84,6 +84,7 @@ export const useMyChannelsStore = defineStore("global/my-channels", () => {
       id: mainData.id || undefined,
       name: mainData.title,
       link: mainData.url,
+      conditionCheck: mainData.conditionCheck,
       categoriesId: [mainData.categoryId],
       channelDates,
     };

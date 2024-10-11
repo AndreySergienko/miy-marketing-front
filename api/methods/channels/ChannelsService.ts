@@ -83,6 +83,7 @@ export default class ChannelsService extends ApiService {
       id: item.id,
       image: item.avatar,
       title: item.name,
+      conditionCheck: item.conditionCheck,
       categoryId: item.categories[0],
       url: item.link,
       subscribers: item.subscribers,
