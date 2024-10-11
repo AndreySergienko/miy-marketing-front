@@ -23,6 +23,7 @@ export interface IUser {
   email: string;
   inn: string;
   fio: string;
+  isNotification: boolean;
   permissions: TPermissionsScopesKeys[];
   bank?: IUserBank;
   document?: IUserDocument;

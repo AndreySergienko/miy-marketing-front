@@ -28,6 +28,9 @@
             name="inn"
             placeholder="Введите ИНН"
           />
+          <AuthenticationCheck name="isNotification">
+            Уведомлять при публикации канала
+          </AuthenticationCheck>
         </div>
       </section>
       <section class="profile-page__block">
@@ -113,17 +116,25 @@ definePageMeta({
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
 
-const { meta, values } = useProfileForm(user);
+const { values } = useProfileForm(user);
 
 const handleMainData = () => {
-  const { fio, email, inn, bankName, bankBik, bankCorAccount, bankCurAccount } =
-    values;
+  const {
+    fio,
+    email,
+    inn,
+    bankName,
+    bankBik,
+    bankCorAccount,
+    bankCurAccount,
+    isNotification,
+  } = values;
 
   userStore.updateUser({
     fio,
     email,
     inn,
-    isNotification: true,
+    isNotification,
     bank: {
       name: bankName,
       bik: bankBik,
