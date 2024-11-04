@@ -50,7 +50,8 @@ export default class ChannelsService extends ApiService {
   async getAll(dates: Date[], url?: string): Promise<IGetAll[]> {
     const parsedDates = dates
       .map((item) => {
-        const day = item.getDate();
+        let incorrectDay = String(item.getDate())
+        const day = incorrectDay.length === 1 ? `0${incorrectDay}` : incorrectDay;
         const month = item.getMonth() + 1;
         const year = item.getFullYear();
 
