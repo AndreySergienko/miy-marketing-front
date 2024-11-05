@@ -77,6 +77,10 @@ await useAsyncData(
 
 const editingChannel = ref<IMyChannel | null>(null);
 
+onMounted(() => {
+  if (editingChannel.value !== null) editingChannel.value!.categoryId = 1
+})
+
 const formattedCategories = computed(() => {
   return categories.value.map((category: ICategoriesItem) => {
     return {
