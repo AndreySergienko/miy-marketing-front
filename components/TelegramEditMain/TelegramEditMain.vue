@@ -38,6 +38,7 @@ import type {
   ITelegramEditMainProps,
   ITelegramEditMainEmits,
 } from "./TelegramEditMain.types";
+import {object, string} from "yup";
 
 const props = defineProps<ITelegramEditMainProps>();
 const { name, url, conditionCheck, category } = toRefs(props);
@@ -51,6 +52,9 @@ const { values } = useForm({
     url: url.value,
     category: category.value,
   },
+  validationSchema: object({
+    category: string().required(rules.required)
+  })
 });
 
 watch(
