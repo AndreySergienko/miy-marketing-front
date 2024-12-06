@@ -1,5 +1,4 @@
 <template>
-  <Teleport to="#teleports">
     <div class="channel-details">
       <header class="channel-details__header">
         <DefaultBack
@@ -49,26 +48,17 @@
               <td>{{ slot.time }}</td>
               <td>{{ slot.interval }}</td>
               <td>{{ slot.price }}</td>
+              <td v-if="tdActions">
+                <slot name="tdActions" :slotId="slot.id" :dateIdx="index" />
+              </td>
             </tr>
           </table>
         </section>
         <footer class="channel-details__content-footer">
-          <DefaultButton
-            class="channel-details__content-footer-edit"
-            @click="handleEdit"
-          >
-            Редактировать
-          </DefaultButton>
-          <DefaultButton
-            class="channel-details__content-footer-close"
-            @click="$emit('close')"
-          >
-            Закрыть
-          </DefaultButton>
+         <slot name="actions" :handle-edit="handleEdit" />
         </footer>
       </div>
     </div>
-  </Teleport>
 </template>
 
 <script setup lang="ts">
@@ -78,7 +68,6 @@ const props = defineProps<IChannelDetailsProps>();
 const { id, url } = toRefs(props);
 
 const formattedUrl = computed(() => `https://t.me/${url.value.slice(1)}`);
-
 const handleEdit = () => navigateTo(`/personal/telegram/edit/${id.value}`);
 </script>
 

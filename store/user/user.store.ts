@@ -19,9 +19,7 @@ export const useUserStore = defineStore("global/user", () => {
   const user = ref<IUser | null>(null);
 
   /** Права пользоватлея **/
-  const permissions = ref<
-    Partial<Record<TPermissionsScopesKeys, TPermissionsScopesKeys>>
-  >({});
+  const permissions = ref<Record<TPermissionsScopesKeys, TPermissionsScopesKeys>>({} as Record<TPermissionsScopesKeys, TPermissionsScopesKeys>);
 
   /** Получить юзера **/
   async function getMe() {

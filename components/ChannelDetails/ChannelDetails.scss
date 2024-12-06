@@ -141,29 +141,5 @@
         }
       }
     }
-
-    &-footer {
-      display: none;
-
-      @include media.media-breakpoint-up(md) {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 60px;
-        padding-bottom: 50px;
-      }
-
-      &-close {
-        background: transparent;
-        color: #717d96;
-        transition: color 0.3s ease-in-out;
-
-        &:hover,
-        &:active {
-          background: transparent;
-          color: rgb(113, 125, 150, 0.5);
-        }
-      }
-    }
   }
 }

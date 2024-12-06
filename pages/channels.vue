@@ -12,15 +12,11 @@
         </div>
         <FilterCalendarController />
         <div class="card__list">
-          <div v-for="channel in channelsAll" class="card__list-items">
+          <div v-for="channel in channelsAll" :key="channel.id" class="card__list-items">
             <SharedCard
-              v-for="date in channel.channelDates"
-              :key="channel.id"
-              :price="date.slots[0].price"
               :currency="'RUB'"
               :subscribers="channel.subscribers"
               :avatar="channel.avatar"
-              :interval="currentFormat(date.slots[0].formatChannelId)"
             >
               <template #title>
                 <SharedCardTitle>{{ channel.name }}</SharedCardTitle>
@@ -32,12 +28,12 @@
                 <div v-if="!permissions?.CAN_BUY">
                   Авторизуйтесь и добавьте почту
                 </div>
-                <div v-else-if="!date.slots.length">Нет доступных слотов</div>
+                <div v-else-if="!channel.channelDates.length">Нет доступных слотов</div>
                 <SharedButton
                   v-else
                   class="action__button"
                   color="blue"
-                  @click="setInfoChannel(channel, date)"
+                  @click="setInfoChannel(channel)"
                 >
                   Выбрать дату
                   <nuxt-icon
@@ -53,28 +49,14 @@
       </div>
     </div>
 
-    <SharedModal v-if="activeSlots.length" @close="clearInfoChannel">
+    <SharedModal v-if="activeChannel" @close="clearInfoChannel">
       <div class="modal-telegram">
-        <SharedSelect
-          title="Выбрать дату"
-          :selected="dateIdx"
-          :options="days"
-          @select="dateIdx = $event"
+        <ChannelDetails
+          v-bind="activeChannel"
+          :dates="getFormattedDates(activeChannel.dates)"
+          :category="getCategoryById(activeChannel.categoryId)"
+          @close="clearInfoChannel"
         />
-        <SharedSelect
-          title="Выбрать время"
-          :selected="slotId"
-          :options="times"
-          @select="slotId = $event"
-        />
-        <SharedButton
-          :is-disabled="!slotId || isLoading || !dateIdx"
-          :is-loading="isLoading"
-          class="modal-telegram__btn"
-          color="blue"
-          @click="buy"
-          >Купить</SharedButton
-        >
       </div>
     </SharedModal>
     <div class="more" v-if="channelsAll.length > 0">
@@ -118,10 +100,15 @@ const {
   setInfoChannel,
   slotId,
   times,
-  activeSlots,
+  activeChannel,
   dateIdx,
   days,
 } = useBuyChannel();
+
+watch(activeChannel, () => {
+  console.log('activeChannel.value', activeChannel.value)
+})
+
 
 const buy = async () => {
   if (!slotId.value) {

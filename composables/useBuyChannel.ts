@@ -8,13 +8,10 @@ import type { ISharedSelectOption } from "~/components/SharedSelect/SharedSelect
 export function useBuyChannel() {
   const activeSlots = ref<IGetAllDateSlot[]>([]);
   const activeDays = ref<IGetAllDate[]>([]);
+  const activeChannel = ref<IGetAll | null>(null)
 
-  const slotId = ref<string>("");
-  const dateIdx = ref<string>("");
-
-  const setInfoChannel = (channel: IGetAll, date: IGetAllDate) => {
-    activeSlots.value = date.slots;
-    activeDays.value = channel.channelDates;
+  const setInfoChannel = (channel: IGetAll) => {
+    activeChannel.value = channel
   };
 
   const times = computed<ISharedSelectOption[]>(() => {
@@ -35,15 +32,14 @@ export function useBuyChannel() {
     });
   });
 
-  const clearInfoChannel = () => (activeSlots.value = []);
+  const clearInfoChannel = () => (activeChannel.value = null);
 
   return {
-    dateIdx,
     activeSlots,
-    slotId,
     setInfoChannel,
     times,
     days,
     clearInfoChannel,
+    activeChannel,
   };
 }

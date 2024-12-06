@@ -56,9 +56,11 @@ onUnmounted(() => {
     position: relative;
 
     min-width: 200px;
+    width: 100%;
     min-height: 200px;
+    height: 100%;
 
-    background: #fff;
+    overflow-y: auto;
   }
 
   &__close {
