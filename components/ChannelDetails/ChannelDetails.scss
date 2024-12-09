@@ -83,7 +83,8 @@
     }
 
     &-block {
-      margin-top: 40px;
+      // margin-top: 40px;
+      padding: 40px 0;
       display: flex;
       flex-direction: column;
       gap: 25px;
@@ -111,6 +112,14 @@
           tr th {
             font-weight: 600;
           }
+        }
+
+        td {
+          border-top: var(--border);
+        }
+
+        td button {
+          width: 100%;
         }
 
         th:not(:last-child),

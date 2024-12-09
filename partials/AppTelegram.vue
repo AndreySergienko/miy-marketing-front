@@ -56,12 +56,12 @@
            url: activeChannel.link
           }"
           :dates="getFormattedDates(activeChannel.channelDates)"
-          :category="getCategoryById(activeChannel.categoryId)"
+          :category="activeChannel.categories[0].description"
           @close="clearInfoChannel"
           td-actions
         >
           <template #tdActions="{ slotId, dateIdx }">
-            <DefaultButton @click="buy(+slotId, +dateIdx)">
+            <DefaultButton class="buy" @click="buy(+slotId, +dateIdx)">
               Купить
             </DefaultButton>
           </template>
@@ -80,24 +80,19 @@ import { useUserStore } from "~/store/user/user.store";
 import { useAlertStore } from "~/store/alert/alert.store";
 import { useCalendarStore } from "~/store/filters/calendar.store";
 import FilterCalendarController from "~/controllers/FilterCalendarController/FilterCalendarController.vue";
-import type {IMyChannelDate} from "~/store/myChannels/myChannels.types";
-import type {IFormat} from "~/api/methods/channels/channels.types";
-import type {ICategoriesItem} from "~/api/methods/categories/categories.types";
 import {useFormatsStore} from "~/store/formats/formats.store";
-
-// TODO удалить неиспользуемые переменные
+import { useFormattedDates } from "~/composables/useDateFormatter";
 
 const channelStore = useChannelStore();
 const userStore = useUserStore();
 
 
 const { getAllFormat } = useChannelStore();
-const { formatAll, isLoading, channelsAll } = storeToRefs(channelStore);
+const { channelsAll } = storeToRefs(channelStore);
 
 
-// TODO убрать дубляжи кода с telegram/index
 const categoriesStore = useCategoriesStore();
-const { categories, getQueryCategories, activeCategories } = storeToRefs(categoriesStore);
+const {getQueryCategories, activeCategories } = storeToRefs(categoriesStore);
 
 const formatsStore = useFormatsStore();
 const { formats } = storeToRefs(formatsStore);
@@ -115,44 +110,11 @@ await useAsyncData(
   }
 );
 
-// TODO тоже вынести в composables, можно в тот же самый
-const getCategoryById = computed(() => (id: number) => {
-  const category = categories.value.find(
-    (category: ICategoriesItem) => category.id === id
-  );
-  return category ? category.title : "";
-});
-
-
-const getFormattedDates = computed(() => (dates: IMyChannelDate[]) => {
-  const formattedDates = dates.map((date) => {
-    const { slots } = date;
-
-    const formattedSlots = slots.map((slot) => {
-      const interval = formats.value.find(
-        (format: IFormat) => format.id === slot.formatChannelId
-      );
-      const { timestamp, price, id } = slot;
-
-      return {
-        id,
-        time: timestamp,
-        price,
-        interval: interval.value,
-      };
-    });
-
-    return {
-      ...date,
-      slots: formattedSlots,
-    };
-  });
-
-  return formattedDates;
-});
+/** format */
+const {getFormattedDates} = useFormattedDates(formats);
 
 /** pagination **/
-const { paginationQuery, incrementPage } = usePagination();
+const { paginationQuery } = usePagination();
 /** categories **/
 const calendarStore = useCalendarStore();
 const { dates } = storeToRefs(calendarStore);
@@ -162,9 +124,7 @@ const alertStore = useAlertStore();
 const {
   clearInfoChannel,
   setInfoChannel,
-  times,
   activeChannel,
-  days,
 } = useBuyChannel();
 
 const buy = async (slotId: number, dateIdx: number) => {
@@ -291,6 +251,10 @@ watch(dates, async () => await fetchChannels(true), { deep: true });
     margin: 0 auto;
     width: 150px;
   }
+}
+
+.buy {
+  width: 100%;
 }
 
 .action__button {

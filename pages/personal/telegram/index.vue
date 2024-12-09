@@ -49,8 +49,6 @@ import type {
   IMyChannelDate,
 } from "~/store/myChannels/myChannels.types";
 import type { ICategoriesItem } from "~/api/methods/categories/categories.types";
-import type { IFormat } from "~/api/methods/channels/channels.types";
-
 import { useCategoriesStore } from "~/store/categories/categories.store";
 import { useMyChannelsStore } from "~/store/myChannels/myChannels.store";
 import { useUserStore } from "~/store/user/user.store";
@@ -63,7 +61,7 @@ function returnProfile () {
   router.push('/personal/profile');
 }
 
-definePageMeta({
+definePageMeta ({
   layout: "personal",
 });
 
@@ -104,31 +102,7 @@ const getCategoryById = computed(() => (id: number) => {
   return category ? category.title : "";
 });
 
-const getFormattedDates = computed(() => (dates: IMyChannelDate[]) => {
-  const formattedDates = dates.map((date) => {
-    const { slots } = date;
-
-    const formattedSlots = slots.map((slot) => {
-      const interval = formats.value.find(
-        (format: IFormat) => format.id === slot.formatChannelId
-      );
-      const { timestamp, price } = slot;
-
-      return {
-        time: timestamp,
-        price,
-        interval: interval.value,
-      };
-    });
-
-    return {
-      ...date,
-      slots: formattedSlots,
-    };
-  });
-
-  return formattedDates;
-});
+const {getFormattedDates} = useFormattedDates(formats);
 
 const handleClickCard = (channel: IMyChannel) => {
   selectedChannel.value = channel;
@@ -208,8 +182,5 @@ const addNewChannel = () => navigateTo("/personal/connect");
       }
     }
   }
-  }
 }
-
-
 </style>

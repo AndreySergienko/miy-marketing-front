@@ -1,10 +1,10 @@
 <template>
     <div class="channel-details">
       <header class="channel-details__header">
-        <DefaultBack
+        <!-- <DefaultBack
           class="channel-details__header-back"
           @click="$emit('close')"
-        />
+        /> -->
         <DefaultButton
           class="channel-details__header-button"
           @click="handleEdit"
@@ -13,6 +13,7 @@
         </DefaultButton>
       </header>
       <div class="channel-details__content">
+        <nuxt-icon v-if="tdActions" class="modal__close" name="close" filled @click="$emit('close')" :style="{ fontSize: '36px', position: 'absolute', top: '20px', right: '20px' }" />
         <NuxtImg class="channel-details__content-image" :src="image" />
         <h2 class="channel-details__content-title">{{ title }}</h2>
         <section class="channel-details__content-block">
@@ -66,6 +67,12 @@ import type { IChannelDetailsProps } from "./ChannelDetails.types";
 
 const props = defineProps<IChannelDetailsProps>();
 const { id, url } = toRefs(props);
+
+interface IChannelDetailsEmits {
+  (e: 'close'): void;
+}
+
+const emit = defineEmits<IChannelDetailsEmits>()
 
 const formattedUrl = computed(() => `https://t.me/${url.value.slice(1)}`);
 const handleEdit = () => navigateTo(`/personal/telegram/edit/${id.value}`);
