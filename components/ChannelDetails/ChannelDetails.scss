@@ -4,7 +4,12 @@
   position: fixed;
   inset: 0;
   background-color: #818fc2;
-  overflow: auto;
+  max-height: 100vh;
+  overflow-y: auto;
+  
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 
   @include media.media-breakpoint-up(md) {
     position: absolute;
