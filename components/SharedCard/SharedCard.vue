@@ -3,7 +3,7 @@
     <div class="card__inner">
       <img class="card__img" :src="avatar" alt="Аватар" />
       <slot name="title" />
-      <div class="card__price">{{ formattedPrice }}</div>
+<!--      <div class="card__price">{{ formattedPrice }}</div>-->
       <slot name="description" />
       <div class="card__icons">
         <div class="card__icon">
@@ -12,12 +12,12 @@
           </div>
           <nuxt-icon class="card__icon-img__people" name="people"/>
         </div>
-        <div class="card__icon">
-          <div class="card__icon-text">
-            {{ interval}}
-          </div>
-          <nuxt-icon class="card__icon-img__people" name="clock"/>
-        </div>
+<!--        <div class="card__icon">-->
+<!--          <div class="card__icon-text">-->
+<!--            {{ interval}}-->
+<!--          </div>-->
+<!--          <nuxt-icon class="card__icon-img__people" name="clock"/>-->
+<!--        </div>-->
       </div>
       <div class="card__calendar">
         <div class="card__calendar-text">
@@ -38,14 +38,14 @@
   const avatar = computed<string>(() => {
     if (props.avatar) return props.avatar;
     return '/tg.png'
-  }) 
+  })
 
-  const formattedPrice = computed(() => {
-  return new Intl.NumberFormat('ru-RU', {
-    style: 'currency',
-    currency: props.currency,
-  }).format(props.price);
-});
+//   const formattedPrice = computed(() => {
+//   return new Intl.NumberFormat('ru-RU', {
+//     style: 'currency',
+//     currency: props.currency,
+//   }).format(props.price);
+// });
 
 </script>
 

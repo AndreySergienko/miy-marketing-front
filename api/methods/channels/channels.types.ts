@@ -55,7 +55,6 @@ export interface IGetAllDate {
 }
 
 export interface IGetAll {
-  days: string[];
   id: number;
   name: string;
   subscribers: number;

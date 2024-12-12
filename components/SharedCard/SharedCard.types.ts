@@ -1,8 +1,8 @@
 
 export interface ISharedCardProps {
-  price: number;
+  price?: number;
   subscribers: number;
   avatar: string;
-  interval: string;
+  interval?: string;
   currency: string;
 }

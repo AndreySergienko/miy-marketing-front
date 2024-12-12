@@ -16,6 +16,7 @@ export interface IChannelDetailsProps {
   category: string;
   url: string;
   dates: IChannelDetailsDate[];
+  tdActions?: boolean;
 }
 
 export interface IChannelDetailsEmits {
