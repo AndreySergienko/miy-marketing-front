@@ -10,9 +10,10 @@ export function useFormattedDates(formats: Ref<IFormat[]>) {
         const interval = formats.value.find(
           (format: IFormat) => format.id === slot.formatChannelId
         );
-        const { timestamp, price } = slot;
+        const { timestamp, price, id } = slot;
 
         return {
+          id,
           time: timestamp,
           price,
           interval: interval?.value

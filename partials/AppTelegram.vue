@@ -61,7 +61,7 @@
           td-actions
         >
           <template #tdActions="{ slotId, dateIdx }">
-            <DefaultButton class="buy" @click="buy(+slotId, +dateIdx, activeChannel)">
+            <DefaultButton class="buy" @click="buy(+slotId, +dateIdx)">
               Купить
             </DefaultButton>
           </template>
@@ -127,8 +127,7 @@ const {
   activeChannel,
 } = useBuyChannel();
 
-const buy = async (slotId: number, dateIdx: number, test) => {
-  console.log(slotId, dateIdx, test)
+const buy = async (slotId: number, dateIdx: number) => {
   if (!slotId) {
     alertStore.showError({ title: "Укажите время" });
     return;
