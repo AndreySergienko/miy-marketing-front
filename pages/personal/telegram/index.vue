@@ -55,6 +55,7 @@ import { useUserStore } from "~/store/user/user.store";
 import { useFormatsStore } from "~/store/formats/formats.store";
 import { useRouter } from 'vue-router';
 import { useFormattedDates } from "~/composables/useFormattedDates";
+import SharedModal from "~/components/SharedModal/SharedModal.vue";
 
  const router = useRouter();
 
@@ -114,6 +115,8 @@ const handleCloseDetails = () => {
   selectedChannel.value = null;
   showDetails.value = false;
 };
+
+const { modalContent, handleOutClick } = useModal(handleCloseDetails);
 
 const addNewChannel = () => navigateTo("/personal/connect");
 </script>

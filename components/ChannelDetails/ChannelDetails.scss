@@ -87,6 +87,12 @@
       line-height: 15px;
     }
 
+    &-footer {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: var(--indent-l);
+    }
+
     &-block {
       padding: 40px 0;
       display: flex;

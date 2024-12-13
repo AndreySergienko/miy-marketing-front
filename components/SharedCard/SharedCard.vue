@@ -40,6 +40,10 @@
     return '/tg.png'
   })
 
+  const hasActiveDates = computed(() => {
+    return props.channelDates && props.channelDates.length > 0;
+  });
+
 //   const formattedPrice = computed(() => {
 //   return new Intl.NumberFormat('ru-RU', {
 //     style: 'currency',
@@ -49,14 +53,16 @@
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @use 'assets/styles/media';
 
   .card {
-    border-radius: 25px;
     margin-bottom: var(--indent-3xl);
     transition: box-shadow 0.3ms;
     width: 20vw;
+
+    border: 1px solid var(--color-light-gray);
+    border-radius: 25px;
 
     @include media.media-breakpoint-down (xl) {
       width: 26vw;
@@ -78,6 +84,18 @@
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
+    &--disabled {
+    background-color: gray;
+    opacity: 0.6;
+    pointer-events: none;
+    box-shadow: none;
+
+    .card__calendar,
+    .card__icons {
+      display: none;
+    }
+  }
+
     &__img {
       width: 200px;
       border-radius: 25px;
@@ -92,9 +110,6 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-
-      border: 1px solid var(--color-light-gray);
-      border-radius: 25px;
     }
 
     &__price {
