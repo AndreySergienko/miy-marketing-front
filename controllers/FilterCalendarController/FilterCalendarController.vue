@@ -1,6 +1,6 @@
 <template>
   <section class="filter-calendar">
-    <h1 class="filter-calendar__title">Доступные даты для публикаций</h1>
+    <h1 class="filter-calendar__title">Витрина</h1>
     <div class="filter-calendar__content">
       <div class="filter-calendar__content-reset" @click="calendarStore.reset" v-if="dates.length > 0">
         Сбросить все

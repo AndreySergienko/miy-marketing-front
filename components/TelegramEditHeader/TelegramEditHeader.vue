@@ -20,7 +20,7 @@
         class="telegram-edit-header__right-create"
         @click="$emit('create')"
       >
-        Создать канал
+        Сохранить
       </DefaultButton>
     </div>
   </header>

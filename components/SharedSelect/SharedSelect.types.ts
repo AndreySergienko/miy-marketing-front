@@ -8,6 +8,7 @@ export interface ISharedSelectProps {
   selected: string;
   options: ISharedSelectOption[];
   placeholder?: string;
+  filter?: boolean; 
 }
 
 export interface ISharedSelectEmits {

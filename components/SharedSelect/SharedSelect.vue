@@ -4,7 +4,7 @@
     v-outside-click="() => (isOpened = false)"
   >
     <span class="shared-select__title">{{ title }}</span>
-    <div class="shared-select__field" @click="isOpened = !isOpened">
+    <div class="shared-select__field" :class="{'shared-select__field-filter': props.filter}" @click="isOpened = !isOpened">
       <div class="shared-select__field-selected">{{ selectedText }}</div>
       <NuxtIcon class="shared-select__field-arrow" name="select-arrow" filled />
     </div>
@@ -104,6 +104,10 @@ const handleOptionClick = (value: string) => {
         width: 100%;
         height: 100%;
       }
+    }
+
+    &-filter {
+      height: 35px;
     }
   }
 

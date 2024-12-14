@@ -9,6 +9,23 @@
             главной странице. У нас вы найдете каналы по теме "экономика,
             бизнес", где ваша реклама будет наиболее эффективной.
           </SharedText>
+          <div class="tg__header">
+            <div class="tg__categories">
+              <SharedCategories
+                :active-categories="activeCategories"
+                :categories-list="categories"
+                @set-category="categoriesStore.updateActiveCategories"
+              />  
+            </div>
+            <div class="tg__filters">
+              <SharedFilter
+                v-for="filter in filters"
+                :key="filter.key"
+                :title="filter.title"
+                v-model="filterValues[filter.key]"
+              />
+            </div>
+          </div>
         </div>
         <FilterCalendarController />
         <div class="card__list">
@@ -93,23 +110,30 @@ const { channelsAll } = storeToRefs(channelStore);
 
 
 const categoriesStore = useCategoriesStore();
-const {getQueryCategories, activeCategories } = storeToRefs(categoriesStore);
+const {getQueryCategories, activeCategories, categories } = storeToRefs(categoriesStore);
+console.log('Категории:', categories.value)
+const { getAll } = useCategoriesStore();
 
 const formatsStore = useFormatsStore();
 const { formats } = storeToRefs(formatsStore);
 
-await useAsyncData(
-  "my-channels",
-  () => {
-    return Promise.allSettled([
-      formatsStore.fetch(),
-      categoriesStore.fetch(),
-    ]);
-  },
-  {
-    lazy: true,
-  }
-);
+// await useAsyncData(
+//   "my-channels",
+//   () => {
+//     return Promise.allSettled([
+//       formatsStore.fetch(),
+//       categoriesStore.fetch(),
+//     ]);
+//   },
+//   {
+//     lazy: true,
+//   }
+// );
+
+onMounted(() => {
+  getAll();
+  getAllFormat();
+})
 
 /** format */
 const {getFormattedDates} = useFormattedDates(formats);
@@ -128,6 +152,58 @@ const {
   activeChannel,
 } = useBuyChannel();
 
+/**filters */
+const filters = [
+  { key: "price", title: "цена" },
+  { key: "time", title: "время" },
+  { key: "interval", title: "интервал" },
+  { key: "subscribers", title: "подписчики" },
+];
+
+const filterValues = reactive({
+  price: { from: "", to: "" },
+  time: { from: "", to: "" },
+  interval: "",
+  subscribers: { from: "", to: "" },
+});
+
+const fetchChannels = async () => {
+  const params = new URLSearchParams();
+
+  if (filterValues.price.from || filterValues.price.to) {
+    params.append("price_from", filterValues.price.from);
+    params.append("price_to", filterValues.price.to);
+  }
+  if (filterValues.time.from || filterValues.time.to) {
+    params.append("time_from", filterValues.time.from);
+    params.append("time_to", filterValues.time.to);
+  }
+  if (filterValues.interval) {
+    params.append("interval", filterValues.interval);
+  }
+  if (filterValues.subscribers.from || filterValues.subscribers.to) {
+    params.append("subscribers_from", filterValues.subscribers.from);
+    params.append("subscribers_to", filterValues.subscribers.to);
+  }
+
+  // Вывод query в консоль
+  console.log("Query отправляется на бэк:", params.toString());
+
+  const { data, error } = await useFetch(
+    `https://on-developer.ru/api/v1/channels/all?${params.toString()}`
+  );
+
+  if (error.value) {
+    console.error("Ошибка при загрузке каналов:", error.value);
+    return;
+  }
+
+  channelsAll.value = data.value || [];
+};
+
+watch(filterValues, fetchChannels, { deep: true });
+onMounted(fetchChannels);
+
 const buy = async (slotId: number, dateIdx: number) => {
   if (!slotId) {
     alertStore.showError({ title: "Укажите время" });
@@ -141,16 +217,16 @@ const buy = async (slotId: number, dateIdx: number) => {
   clearInfoChannel();
 };
 
-async function fetchChannels(isMounted?: boolean) {
+async function fetchChannelsWithStore(isMounted?: boolean) {
   const fullPath = getQueryCategories.value
     ? paginationQuery.value + "&" + getQueryCategories.value
     : paginationQuery.value;
   await channelStore.getAll({ dates: dates.value, url: fullPath, isMounted });
 }
 
-watch(paginationQuery, async () => await fetchChannels());
+watch(paginationQuery, async () => await fetchChannelsWithStore());
 
-watch(activeCategories, async () => await fetchChannels(true), { deep: true });
+watch(activeCategories, async () => await fetchChannelsWithStore(true), { deep: true });
 
 useAsyncData(() =>
   channelStore.getAll({
@@ -160,11 +236,7 @@ useAsyncData(() =>
   })
 );
 
-onMounted(() => {
-  getAllFormat();
-});
-
-watch(dates, async () => await fetchChannels(true), { deep: true });
+watch(dates, async () => await fetchChannelsWithStore(true), { deep: true });
 </script>
 
 <style scoped lang="scss">
@@ -187,11 +259,35 @@ watch(dates, async () => await fetchChannels(true), { deep: true });
   &__text {
     width: 50%;
     text-align: center;
-    margin-bottom: var(--indent-4xl);
 
     @include media.media-breakpoint-down(sm) {
       width: 95%;
     }
+  }
+  &__header {
+    max-width: calc(100vw - 32px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    &-title {
+    align-self: flex-start;
+    font-size: 30px;
+    line-height: 21px;
+    font-weight: 700;
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: 18px;
+      max-width: 300px;
+    }
+  }
+  }
+
+  &__filters {
+    display: flex;
+    justify-content: center;
+    gap: var(--indent-xl);
   }
 }
 

@@ -40,23 +40,14 @@
       line-height: 9px;
     }
   }
-
-  &__current {
-    background: #fb4d6c;
-  }
-
-  &__selected {
-    background-color: #0038ff;
-  }
-
   &__current,
   &__selected {
     .day-block__number {
-      color: #fff;
+      color: var(--color-black);
     }
 
     .day-block__week {
-      color: rgba(255, 255, 255, 0.8);
+      color: var(--color-black);
     }
   }
 }
