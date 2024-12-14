@@ -117,21 +117,17 @@ const { getAll } = useCategoriesStore();
 const formatsStore = useFormatsStore();
 const { formats } = storeToRefs(formatsStore);
 
-// await useAsyncData(
-//   "my-channels",
-//   () => {
-//     return Promise.allSettled([
-//       formatsStore.fetch(),
-//       categoriesStore.fetch(),
-//     ]);
-//   },
-//   {
-//     lazy: true,
-//   }
-// );
+await useAsyncData(
+     "my-channels",
+     async () => {
+       const results = await Promise.allSettled([formatsStore.fetch(), categoriesStore.fetch()]);
+       console.log("Результат подгрузки:", results);
+       return results;
+     },
+     { lazy: true }
+);
 
 onMounted(() => {
-  getAll();
   getAllFormat();
 })
 

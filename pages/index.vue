@@ -48,7 +48,7 @@ const { getAll } = useCategoriesStore();
 const isAppTelegramVisible = ref(false);
 
 onMounted(() => {
-  getAll();
+  // getAll();
   // getAllFormat();
 
   const options = {
