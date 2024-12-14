@@ -40,10 +40,6 @@
     return '/tg.png'
   })
 
-  const hasActiveDates = computed(() => {
-    return props.channelDates && props.channelDates.length > 0;
-  });
-
 //   const formattedPrice = computed(() => {
 //   return new Intl.NumberFormat('ru-RU', {
 //     style: 'currency',
@@ -60,6 +56,7 @@
     margin-bottom: var(--indent-3xl);
     transition: box-shadow 0.3ms;
     width: 20vw;
+    cursor: pointer;
 
     border: 1px solid var(--color-light-gray);
     border-radius: 25px;
@@ -85,15 +82,9 @@
     }
 
     &--disabled {
-    background-color: gray;
+    background-color: rgba(0, 0, 0, 0.1);
     opacity: 0.6;
     pointer-events: none;
-    box-shadow: none;
-
-    .card__calendar,
-    .card__icons {
-      display: none;
-    }
   }
 
     &__img {
