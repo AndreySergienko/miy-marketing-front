@@ -81,7 +81,7 @@ import { useAlertStore } from "~/store/alert/alert.store";
 import { useCalendarStore } from "~/store/filters/calendar.store";
 import FilterCalendarController from "~/controllers/FilterCalendarController/FilterCalendarController.vue";
 import {useFormatsStore} from "~/store/formats/formats.store";
-import { useFormattedDates } from "~/composables/useFormattedDates";
+import { useDateFormatter } from "~/composables/useDateFormatter";
 
 const channelStore = useChannelStore();
 const userStore = useUserStore();
@@ -112,7 +112,7 @@ await useAsyncData(
 );
 
 /** format */
-const {getFormattedDates} = useFormattedDates(formats);
+const {getFormattedDates} = useDateFormatter(formats);
 
 /** pagination **/
 const { paginationQuery } = usePagination();
