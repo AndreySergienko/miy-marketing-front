@@ -5,7 +5,7 @@
       <div v-if="props.title === 'интервал'">
         <SharedSelect
           :title="props.title"
-          :selected="internalValue"
+          :selected="String(internalValue)"
           :options="intervalOptions"
           filter
           @select="updateValue($event)"
@@ -62,7 +62,7 @@ import type { ISharedSelectOption } from "../SharedSelect/SharedSelect.types";
 const props = defineProps<ISharedFilterProps>();
 const emit = defineEmits(["update:modelValue"]);
 
-const internalValue = ref({ from: "", to: "" });
+const internalValue = ref({ from: "", to: ""});
 
 const intervalOptions: ISharedSelectOption[] = [
   { value: "1/24", title: "1/24" },

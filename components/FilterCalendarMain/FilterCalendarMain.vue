@@ -62,7 +62,7 @@ const currentMonthIndex = ref(0)
 const months = getMonthsFromToday()
 
 const visibleMonths = computed(() => [months[currentMonthIndex.value]])
-console.log("Месяц", currentMonthIndex.value)
+// console.log("Месяц", currentMonthIndex.value)
 
 const prevMonths = () => {
   if(currentMonthIndex.value > 0) {

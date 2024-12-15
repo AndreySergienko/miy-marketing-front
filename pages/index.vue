@@ -2,12 +2,12 @@
   <div class="main">
     <div class="categories" v-if="categoriesStore.categories.length">
       <div class="categories__inner">
-        <!-- <SharedCategories
+        <SharedCategories
           v-if="isAppTelegramVisible"
           :active-categories="activeCategories"
           :categories-list="categories"
           @set-category="categoriesStore.updateActiveCategories"
-        /> -->
+        />
       </div>
     </div>
     <div class="logo" />
@@ -45,10 +45,11 @@ const channelStore = useChannelStore();
 // const {getAllFormat} = useChannelStore()
 const { categories, activeCategories } = storeToRefs(categoriesStore);
 const { getAll } = useCategoriesStore();
+
 const isAppTelegramVisible = ref(false);
 
 onMounted(() => {
-  // getAll();
+  getAll();
   // getAllFormat();
 
   const options = {
