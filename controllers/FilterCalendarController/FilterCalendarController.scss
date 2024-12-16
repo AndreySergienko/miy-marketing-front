@@ -3,7 +3,7 @@
 .filter-calendar {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: var(--indent-l);
   max-width: calc(100vw - 32px);
 
   @include media.media-breakpoint-down(sm) {

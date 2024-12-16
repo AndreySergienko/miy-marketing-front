@@ -9,6 +9,24 @@
             бизнес", где ваша реклама будет наиболее эффективной.
           </SharedText>
         </div>
+        <div class="tg__header">
+          <div class="tg__categories">
+            <SharedCategories
+              :active-categories="activeCategories"
+              :categories-list="categories"
+              @set-category="categoriesStore.updateActiveCategories"
+            />
+          </div>
+          <div class="tg__filters">
+            <SharedFilter
+            v-for="filter in filters"
+            :key="filter.key"
+            :title="filter.title"
+            :type="filter.type"
+            v-model="filterValues[filter.key]"
+          />
+          </div>
+        </div>
         <FilterCalendarController />
         <div class="card__list">
           <div v-for="channel in channelsAll" :key="channel.id" class="card__list-items">
@@ -92,24 +110,26 @@ const { channelsAll } = storeToRefs(channelStore);
 
 
 const categoriesStore = useCategoriesStore();
-const {getQueryCategories, activeCategories} = storeToRefs(categoriesStore);
-
+const {getQueryCategories, activeCategories } = storeToRefs(categoriesStore);
+const {categories} = storeToRefs(categoriesStore)
+console.log('Категории:', categories.value)
 
 const formatsStore = useFormatsStore();
 const { formats } = storeToRefs(formatsStore);
 
 await useAsyncData(
   "my-channels",
-  () => {
-    return Promise.allSettled([
-      formatsStore.fetch(),
-      categoriesStore.fetch(),
-    ]);
+  async () => {
+    await formatsStore.fetch();
+    await categoriesStore.fetch();
+    console.log("Категории после загрузки:", categories.value);
   },
-  {
-    lazy: true,
-  }
+  { lazy: true }
 );
+
+onMounted(() => {
+  getAllFormat();
+})
 
 /** format */
 const {getFormattedDates} = useDateFormatter(formats);
@@ -128,6 +148,58 @@ const {
   activeChannel,
 } = useBuyChannel();
 
+/**filters */
+const filters = [
+  { key: "price", title: "цена" },
+  { key: "time", title: "время" },
+  { key: "interval", title: "интервал" },
+  { key: "subscribers", title: "подписчики" },
+];
+
+const filterValues = reactive({
+  price: { from: "", to: "" },
+  time: { from: "", to: "" },
+  interval: "",
+  subscribers: { from: "", to: "" },
+});
+
+const fetchChannels = async () => {
+  const params = new URLSearchParams();
+
+  if (filterValues.price.from || filterValues.price.to) {
+    params.append("price_from", filterValues.price.from);
+    params.append("price_to", filterValues.price.to);
+  }
+  if (filterValues.time.from || filterValues.time.to) {
+    params.append("time_from", filterValues.time.from);
+    params.append("time_to", filterValues.time.to);
+  }
+  if (filterValues.interval) {
+    params.append("interval", filterValues.interval);
+  }
+  if (filterValues.subscribers.from || filterValues.subscribers.to) {
+    params.append("subscribers_from", filterValues.subscribers.from);
+    params.append("subscribers_to", filterValues.subscribers.to);
+  }
+
+  // Вывод query в консоль
+  console.log("Query отправляется на бэк:", params.toString());
+
+  const { data, error } = await useFetch(
+    `https://on-developer.ru/api/v1/channels/all?${params.toString()}`
+  );
+
+  if (error.value) {
+    console.error("Ошибка при загрузке каналов:", error.value);
+    return;
+  }
+
+  channelsAll.value = data.value || [];
+};
+
+watch(filterValues, fetchChannels, { deep: true });
+onMounted(fetchChannels);
+
 const buy = async (slotId: number, dateIdx: number) => {
   if (!slotId) {
     alertStore.showError({ title: "Укажите время" });
@@ -141,16 +213,16 @@ const buy = async (slotId: number, dateIdx: number) => {
   clearInfoChannel();
 };
 
-async function fetchChannels(isMounted?: boolean) {
+async function fetchChannelsWithStore(isMounted?: boolean) {
   const fullPath = getQueryCategories.value
     ? paginationQuery.value + "&" + getQueryCategories.value
     : paginationQuery.value;
   await channelStore.getAll({ dates: dates.value, url: fullPath, isMounted });
 }
 
-watch(paginationQuery, async () => await fetchChannels());
+watch(paginationQuery, async () => await fetchChannelsWithStore());
 
-watch(activeCategories, async () => await fetchChannels(true), { deep: true });
+watch(activeCategories, async () => await fetchChannelsWithStore(true), { deep: true });
 
 useAsyncData(() =>
   channelStore.getAll({
@@ -160,7 +232,7 @@ useAsyncData(() =>
   })
 );
 
-watch(dates, async () => await fetchChannels(true), { deep: true });
+watch(dates, async () => await fetchChannelsWithStore(true), { deep: true });
 </script>
 
 <style scoped lang="scss">

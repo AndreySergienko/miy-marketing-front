@@ -36,16 +36,18 @@
         <div class="filter__item-title">{{ props.title }}</div>
         <div class="filter__item-form">
           <SharedInput
-            v-model="internalValue.from"
+            v-model="formattedValue.from"
             :name="`${props.title}-from`"
-            type="text"
+            type="time-local"
             placeholder="с"
+            @input="onTimeInput('from', $event)"
           />
           <SharedInput
-            v-model="internalValue.to"
+            v-model="formattedValue.to"
             :name="`${props.title}-to`"
-            type="text"
+            type="time-local"
             placeholder="по"
+            @input="onTimeInput('to', $event)"
           />
         </div>
       </div>
@@ -62,7 +64,8 @@ import type { ISharedSelectOption } from "../SharedSelect/SharedSelect.types";
 const props = defineProps<ISharedFilterProps>();
 const emit = defineEmits(["update:modelValue"]);
 
-const internalValue = ref({ from: "", to: ""});
+const internalValue = ref({ from: "", to: "" });
+const formattedValue = ref({ from: "", to: "" });
 
 const intervalOptions: ISharedSelectOption[] = [
   { value: "1/24", title: "1/24" },
@@ -73,6 +76,16 @@ const intervalOptions: ISharedSelectOption[] = [
 const updateValue = (value: string | { from: string; to: string }) => {
   internalValue.value = value;
   emit("update:modelValue", value);
+};
+
+const onTimeInput = (key: "from" | "to", event: Event) => {
+  const input = event.target as HTMLInputElement;
+  const date = new Date(input.value);
+  const timestamp = date.getTime();
+
+  internalValue.value[key] = isNaN(timestamp) ? "" : timestamp;
+  formattedValue.value[key] = input.value;
+  emit("update:modelValue", internalValue.value);
 };
 
 watch(internalValue, (newValue) => emit("update:modelValue", newValue), { deep: true });
