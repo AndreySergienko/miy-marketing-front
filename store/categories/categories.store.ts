@@ -27,6 +27,7 @@ export const useCategoriesStore = defineStore("global/categories", () => {
   /** Получить список категорий **/
   const getAll = async () => {
     try {
+      if(categories.value.length) return;
       const data = await categoriesService.getAll();
       categories.value = transform(data);
     } catch (e) {

@@ -67,13 +67,14 @@
             name="bankCurAccount"
             placeholder="Введите расчетный счет"
           />
-          <SharedTooltip
-          v-if="activeToolTip"
-          :is-active="activeToolTip"
-          class="profile-channels-item__panel-controls--tooltip"
-          text="*Если у вас статус ИП, то необходимо указать реквизиты ИП"
-          border-color="#ffd0d0"
-        />
+          <transition name="fade">
+            <SharedTooltip
+              :is-active="activeToolTip"
+              class="profile-channels-item__panel-controls--tooltip"
+              text="*Если у вас статус ИП, то необходимо указать реквизиты ИП"
+              border-color="#ffd0d0"
+            />
+          </transition>
           </div>
         </div>
       </section>

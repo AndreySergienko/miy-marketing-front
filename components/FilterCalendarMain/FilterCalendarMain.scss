@@ -2,7 +2,8 @@
 
 .filter-calendar-main {
   position: relative;
-  overflow: auto;
+  overflow: hidden;
+  padding: 0 var(--indent-xl);
 
   &__action-next, &__action-prev {
     font-size: 24px;
@@ -24,6 +25,7 @@
     align-items: center;
     gap: 29px;
 
+
     @include media.media-breakpoint-down(sm) {
       gap: 15px;
     }
@@ -44,8 +46,12 @@
       &__content {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 0 var(--indent-xl);
+        gap: var(--indent-xl);
+        padding: 0 var(--indent-m);
+        max-width: 1000px;
+        overflow-x: auto;
+        scrollbar-width: thin;
+
 
         @include media.media-breakpoint-down(sm) {
           gap: 5px;
