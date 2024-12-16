@@ -4,6 +4,21 @@
   position: relative;
   overflow: auto;
 
+  &__action-next, &__action-prev {
+    font-size: 24px;
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+  }
+
+  &__action-next {
+    right: 0;
+  }
+
+  &__action-prev {
+    left: 0;
+  }
+
   &__calendar {
     display: flex;
     align-items: center;
@@ -30,6 +45,7 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        padding: 0 var(--indent-xl);
 
         @include media.media-breakpoint-down(sm) {
           gap: 5px;

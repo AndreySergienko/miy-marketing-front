@@ -1,7 +1,7 @@
 import type { IMyChannelDate } from "~/store/myChannels/myChannels.types";
 import type { IFormat } from "~/api/methods/channels/channels.types";
 
-export function useFormattedDates(formats: Ref<IFormat[]>) {
+export function useDateFormatter(formats: Ref<IFormat[]>) {
   const getFormattedDates = computed(() => (dates: IMyChannelDate[]) => {
     const formattedDates = dates.map((date) => {
       const { slots } = date;

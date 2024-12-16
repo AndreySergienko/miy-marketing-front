@@ -21,22 +21,24 @@ const style = computed(() => ({
   @use 'assets/styles/media';
 .shared-tooltip {
   padding: var(--indent-m);
+  width: max-content;
   position: absolute;
   z-index: 2;
   left: 13px;
   display: none;
-  border: 1px solid var(--color-blue);
+  border: 1px solid transparent;
   box-shadow: 4px 4px 5px 0 #0000000d;
-  font-size: var(--font-size-m);
+  font-size: var(--font-size-s);
   font-weight: var(--font-weight-medium);
-  background: #fff;
-  color: var(--color-black);
+  background: rgba(0, 0, 0, .60);
+  color: var(--color-white);
   box-sizing: border-box;
 
   &--active {
     display: flex;
   }
   @include media.media-breakpoint-down(sm) {
+    width: auto;
     font-size: var(--font-size-s);
   }
 }

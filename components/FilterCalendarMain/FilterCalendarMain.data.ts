@@ -26,19 +26,37 @@ export const getDaysByMonth = (month: number): IMonthDay[] => {
   return result;
 };
 
-export const getMonthsFromToday = (): IMonth[] => {
+// export const getMonthsFromToday = (): IMonth[] => {
+//   const date = new Date();
+//   date.setHours(0, 0, 0, 0);
+
+//   const months: IMonth[] = [];
+
+//   do {
+//     months.push({
+//       index: date.getMonth() + 1,
+//       name: date.toLocaleString("ru-RU", { month: "long" }),
+//     });
+//     date.setMonth(date.getMonth() + 1);
+//   } while (date.getMonth() !== 0);
+
+//   return months;
+// };
+export const getMonthsFromToday = (range: number = 12): IMonth[] => {
   const date = new Date();
   date.setHours(0, 0, 0, 0);
 
   const months: IMonth[] = [];
 
-  do {
+  // Добавляем определенное количество месяцев (вперед и назад)
+  for (let i = -range; i <= range; i++) {
+    const tempDate = new Date(date);
+    tempDate.setMonth(date.getMonth() + i); // Сдвиг месяца
     months.push({
-      index: date.getMonth() + 1,
-      name: date.toLocaleString("ru-RU", { month: "long" }),
+      index: tempDate.getMonth() + 1, // Номер месяца
+      name: tempDate.toLocaleString("ru-RU", { month: "long", year: "numeric" }),
     });
-    date.setMonth(date.getMonth() + 1);
-  } while (date.getMonth() !== 0);
+  }
 
   return months;
 };

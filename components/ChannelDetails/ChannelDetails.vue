@@ -14,7 +14,7 @@
       </header>
       <div class="channel-details__content">
         <nuxt-icon v-if="tdActions" class="modal__close" name="close" filled @click="$emit('close')" :style="{ fontSize: '36px', position: 'absolute', top: '20px', right: '20px' }" />
-        <NuxtImg class="channel-details__content-image" :src="image" />
+        <NuxtImg class="channel-details__content-image" :src="image || '/tg.png'"/>
         <h2 class="channel-details__content-title">{{ title }}</h2>
         <section class="channel-details__content-block">
           <h3 class="channel-details__content-block--title">

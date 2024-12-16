@@ -5,8 +5,7 @@
         <div class="tg__text">
           <SharedTitle>Telegram-каналы</SharedTitle>
           <SharedText>
-            Выберите каналы для размещения вашей рекламы из списка на нашей
-            главной странице. У нас вы найдете каналы по теме "экономика,
+            Выберите каналы для размещения вашей рекламы из списка на витрине. У нас вы найдете каналы по теме "экономика,
             бизнес", где ваша реклама будет наиболее эффективной.
           </SharedText>
         </div>
@@ -17,6 +16,7 @@
               :currency="'RUB'"
               :subscribers="channel.subscribers"
               :avatar="channel.avatar"
+              :class="{ 'card--disabled': !channel.channelDates.length }"
             >
               <template #title>
                 <SharedCardTitle>{{ channel.name }}</SharedCardTitle>
@@ -81,7 +81,7 @@ import { useAlertStore } from "~/store/alert/alert.store";
 import { useCalendarStore } from "~/store/filters/calendar.store";
 import FilterCalendarController from "~/controllers/FilterCalendarController/FilterCalendarController.vue";
 import {useFormatsStore} from "~/store/formats/formats.store";
-import { useFormattedDates } from "~/composables/useDateFormatter";
+import { useDateFormatter } from "~/composables/useDateFormatter";
 
 const channelStore = useChannelStore();
 const userStore = useUserStore();
@@ -92,7 +92,8 @@ const { channelsAll } = storeToRefs(channelStore);
 
 
 const categoriesStore = useCategoriesStore();
-const {getQueryCategories, activeCategories } = storeToRefs(categoriesStore);
+const {getQueryCategories, activeCategories} = storeToRefs(categoriesStore);
+
 
 const formatsStore = useFormatsStore();
 const { formats } = storeToRefs(formatsStore);
@@ -111,7 +112,7 @@ await useAsyncData(
 );
 
 /** format */
-const {getFormattedDates} = useFormattedDates(formats);
+const {getFormattedDates} = useDateFormatter(formats);
 
 /** pagination **/
 const { paginationQuery } = usePagination();
@@ -159,10 +160,6 @@ useAsyncData(() =>
   })
 );
 
-onMounted(() => {
-  getAllFormat();
-});
-
 watch(dates, async () => await fetchChannels(true), { deep: true });
 </script>
 
@@ -186,11 +183,35 @@ watch(dates, async () => await fetchChannels(true), { deep: true });
   &__text {
     width: 50%;
     text-align: center;
-    margin-bottom: var(--indent-4xl);
 
     @include media.media-breakpoint-down(sm) {
       width: 95%;
     }
+  }
+  &__header {
+    max-width: calc(100vw - 32px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    &-title {
+    align-self: flex-start;
+    font-size: 30px;
+    line-height: 21px;
+    font-weight: 700;
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: 18px;
+      max-width: 300px;
+    }
+  }
+  }
+
+  &__filters {
+    display: flex;
+    justify-content: center;
+    gap: var(--indent-xl);
   }
 }
 

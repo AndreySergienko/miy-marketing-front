@@ -54,6 +54,8 @@ import { useMyChannelsStore } from "~/store/myChannels/myChannels.store";
 import { useUserStore } from "~/store/user/user.store";
 import { useFormatsStore } from "~/store/formats/formats.store";
 import { useRouter } from 'vue-router';
+import { useDateFormatter } from "~/composables/useDateFormatter";
+import SharedModal from "~/components/SharedModal/SharedModal.vue";
 
  const router = useRouter();
 
@@ -102,7 +104,7 @@ const getCategoryById = computed(() => (id: number) => {
   return category ? category.title : "";
 });
 
-const {getFormattedDates} = useFormattedDates(formats);
+const {getFormattedDates} = useDateFormatter(formats);
 
 const handleClickCard = (channel: IMyChannel) => {
   selectedChannel.value = channel;
@@ -113,6 +115,8 @@ const handleCloseDetails = () => {
   selectedChannel.value = null;
   showDetails.value = false;
 };
+
+const { modalContent, handleOutClick } = useModal(handleCloseDetails);
 
 const addNewChannel = () => navigateTo("/personal/connect");
 </script>

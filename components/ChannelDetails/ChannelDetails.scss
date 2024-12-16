@@ -4,7 +4,12 @@
   position: fixed;
   inset: 0;
   background-color: #818fc2;
-  overflow: auto;
+  max-height: 100vh;
+  overflow-y: auto;
+  
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 
   @include media.media-breakpoint-up(md) {
     position: absolute;
@@ -80,6 +85,12 @@
       font-size: 20px;
       font-weight: 700;
       line-height: 15px;
+    }
+
+    &-footer {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: var(--indent-l);
     }
 
     &-block {

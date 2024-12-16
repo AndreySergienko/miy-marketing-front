@@ -56,12 +56,25 @@
             name="bankCorAccount"
             placeholder="Введите корреспондентский счет"
           />
-          <AuthenticationInput
+          <div
+            class="profile-page__input-item"
+            @mouseover="activeToolTip = true"
+            @mouseleave="activeToolTip = false"
+            >
+            <AuthenticationInput
             label="Расчетный счет"
             type="text"
             name="bankCurAccount"
             placeholder="Введите расчетный счет"
           />
+          <SharedTooltip
+          v-if="activeToolTip"
+          :is-active="activeToolTip"
+          class="profile-channels-item__panel-controls--tooltip"
+          text="*Если у вас статус ИП, то необходимо указать реквизиты ИП"
+          border-color="#ffd0d0"
+        />
+          </div>
         </div>
       </section>
       <section v-if="false" class="profile-page__block">
@@ -143,6 +156,8 @@
 import AuthenticationRadio from "~/components/AuthenticationRadio/AuthenticationRadio.vue";
 import { useUserStore } from "~/store/user/user.store";
 
+const activeToolTip = ref(false)
+
 definePageMeta({
   layout: "personal",
 });
@@ -196,6 +211,10 @@ const handleSave = async () => {
 
 <style lang="scss" scoped>
 @use "assets/styles/media";
+
+.profile-page__input-item {
+  position: relative;
+}
 
 .profile-page {
   position: relative;

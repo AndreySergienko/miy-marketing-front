@@ -49,14 +49,17 @@
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @use 'assets/styles/media';
 
   .card {
-    border-radius: 25px;
     margin-bottom: var(--indent-3xl);
     transition: box-shadow 0.3ms;
     width: 20vw;
+    cursor: pointer;
+
+    border: 1px solid var(--color-light-gray);
+    border-radius: 25px;
 
     @include media.media-breakpoint-down (xl) {
       width: 26vw;
@@ -78,6 +81,12 @@
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
+    &--disabled {
+    background-color: rgba(0, 0, 0, 0.1);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
     &__img {
       width: 200px;
       border-radius: 25px;
@@ -92,9 +101,6 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-
-      border: 1px solid var(--color-light-gray);
-      border-radius: 25px;
     }
 
     &__price {
