@@ -18,28 +18,34 @@ const style = computed(() => ({
 </script>
 
 <style scoped lang="scss">
-  @use 'assets/styles/media';
+@use 'assets/styles/media';
+
 .shared-tooltip {
   padding: var(--indent-m);
   width: max-content;
   position: absolute;
   z-index: 2;
   left: 13px;
-  display: none;
+  opacity: 0;
   border: 1px solid transparent;
+  border-radius: 10px;
   box-shadow: 4px 4px 5px 0 #0000000d;
   font-size: var(--font-size-s);
   font-weight: var(--font-weight-medium);
-  background: rgba(0, 0, 0, .60);
+  background: rgba(0, 0, 0, 0.6);
   color: var(--color-white);
   box-sizing: border-box;
+  transition: opacity 0.3s ease;
 
   &--active {
-    display: flex;
+    opacity: 1;
+    transition: opacity 0.3s ease;
   }
+
   @include media.media-breakpoint-down(sm) {
     width: auto;
     font-size: var(--font-size-s);
   }
 }
 </style>
+

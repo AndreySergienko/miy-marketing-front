@@ -52,6 +52,10 @@ export const getMonthsFromToday = (range: number = 12): IMonth[] => {
   for (let i = -range; i <= range; i++) {
     const tempDate = new Date(date);
     tempDate.setMonth(date.getMonth() + i); // Сдвиг месяца
+
+    // Увеличиваем год на 1
+    tempDate.setFullYear(tempDate.getFullYear() + 1);
+
     months.push({
       index: tempDate.getMonth() + 1, // Номер месяца
       name: tempDate.toLocaleString("ru-RU", { month: "long", year: "numeric" }),

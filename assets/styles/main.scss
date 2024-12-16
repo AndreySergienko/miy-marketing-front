@@ -29,7 +29,7 @@ body:has(#teleports > *) {
   width: 100vw;
   height: 100vh;
   top: 0;
-  z-index: 999;
+  z-index: 10;
   background: rgba(17, 17, 17, 0.4);
 }
 
@@ -52,3 +52,5 @@ body:has(#teleports > *) {
     transform: translateX(-100px);
   }
 }
+
+

@@ -16,28 +16,31 @@
       />
       <ChannelAdd v-if="canCreate" @click="addNewChannel" />
       <Teleport to="#teleports">
-        <ChannelDetails
-          v-if="showDetails && selectedChannel"
-          v-bind="selectedChannel"
-          :dates="getFormattedDates(selectedChannel.dates)"
-          :category="getCategoryById(selectedChannel.categoryId)"
-          @close="handleCloseDetails"
-        >
-          <template #actions="{ handleEdit }">
-            <DefaultButton
-              class="telegram-page__content-footer-edit"
-              @click="handleEdit"
+        <div class="modal" v-if="showDetails && selectedChannel" @click="handleOutClick">
+          <div class="modal__inner" ref="modalContent">
+            <ChannelDetails
+              v-bind="selectedChannel"
+              :dates="getFormattedDates(selectedChannel.dates)"
+              :category="getCategoryById(selectedChannel.categoryId)"
+              @close="handleCloseDetails"
             >
-              Редактировать
-            </DefaultButton>
-            <DefaultButton
-              class="telegram-page__content-footer-close"
-              @click="handleCloseDetails"
-            >
-              Закрыть
-            </DefaultButton>
-          </template>
-        </ChannelDetails>
+              <template #actions="{ handleEdit }">
+                <DefaultButton
+                  class="telegram-page__content-footer-edit"
+                  @click="handleEdit"
+                >
+                  Редактировать
+                </DefaultButton>
+                <DefaultButton
+                  class="telegram-page__content-footer-close"
+                  @click="handleCloseDetails"
+                >
+                  Закрыть
+                </DefaultButton>
+              </template>
+            </ChannelDetails>
+          </div>
+        </div>
       </Teleport>
     </div>
   </div>
@@ -55,7 +58,6 @@ import { useUserStore } from "~/store/user/user.store";
 import { useFormatsStore } from "~/store/formats/formats.store";
 import { useRouter } from 'vue-router';
 import { useDateFormatter } from "~/composables/useDateFormatter";
-import SharedModal from "~/components/SharedModal/SharedModal.vue";
 
  const router = useRouter();
 
@@ -123,6 +125,13 @@ const addNewChannel = () => navigateTo("/personal/connect");
 
 <style scoped lang="scss">
 @use "assets/styles/media";
+
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+}
 
 .telegram-page {
   margin-top: 24px;

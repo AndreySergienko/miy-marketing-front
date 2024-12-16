@@ -16,7 +16,7 @@
               :currency="'RUB'"
               :subscribers="channel.subscribers"
               :avatar="channel.avatar"
-              :class="{ 'card--disabled': !channel.channelDates.length }"
+              :class="{ 'card--disabled': !channel.channelDates.length && permissions?.CAN_BUY }"
             >
               <template #title>
                 <SharedCardTitle>{{ channel.name }}</SharedCardTitle>
