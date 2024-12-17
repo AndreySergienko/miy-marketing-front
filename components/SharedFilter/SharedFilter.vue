@@ -38,14 +38,14 @@
           <SharedInput
             v-model="formattedValue.from"
             :name="`${props.title}-from`"
-            type="time-local"
+            type="datetime-local"
             placeholder="с"
             @input="onTimeInput('from', $event)"
           />
           <SharedInput
             v-model="formattedValue.to"
             :name="`${props.title}-to`"
-            type="time-local"
+            type="datetime-local"
             placeholder="по"
             @input="onTimeInput('to', $event)"
           />
