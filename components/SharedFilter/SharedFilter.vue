@@ -36,15 +36,15 @@
         <div class="filter__item-title">{{ props.title }}</div>
         <div class="filter__item-form">
           <SharedInput
-            v-model="internalValue.from"
+            v-model="timeFrom"
             :name="`${props.title}-from`"
-            type="text"
+            type="time"
             placeholder="с"
           />
           <SharedInput
-            v-model="internalValue.to"
+            v-model="timeTo"
             :name="`${props.title}-to`"
-            type="text"
+            type="time"
             placeholder="по"
           />
         </div>
@@ -62,7 +62,7 @@ import type { ISharedSelectOption } from "../SharedSelect/SharedSelect.types";
 const props = defineProps<ISharedFilterProps>();
 const emit = defineEmits(["update:modelValue"]);
 
-const internalValue = ref({ from: "", to: ""});
+const internalValue = ref({ from: "", to: "" });
 
 const intervalOptions: ISharedSelectOption[] = [
   { value: "1/24", title: "1/24" },
@@ -70,6 +70,26 @@ const intervalOptions: ISharedSelectOption[] = [
   { value: "30/24", title: "30/24" },
 ];
 
+const timeFrom = ref("");
+const timeTo = ref("");
+
+// Преобразование времени в timestamp
+const timeToTimestamp = (time: string): number => {
+  if (!time) return 0;
+  const [hours, minutes] = time.split(":").map(Number);
+  return hours * 3600 + minutes * 60;
+};
+
+// Обновление значений времени
+watch([timeFrom, timeTo], ([from, to]) => {
+  internalValue.value = {
+    from: timeToTimestamp(from),
+    to: timeToTimestamp(to),
+  };
+  emit("update:modelValue", internalValue.value);
+});
+
+// Обновление значения фильтра
 const updateValue = (value: string | { from: string; to: string }) => {
   internalValue.value = value;
   emit("update:modelValue", value);
@@ -95,7 +115,7 @@ watch(internalValue, (newValue) => emit("update:modelValue", newValue), { deep: 
         gap: var(--indent-s);
 
         & .field {
-          width: 80px;
+          width: 83px;
           height: 40px;
         }
       }
