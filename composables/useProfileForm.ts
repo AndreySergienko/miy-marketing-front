@@ -13,7 +13,9 @@ export const useProfileForm = (user: Ref<IUser | null>) => {
 
   const { meta, values } = useForm({
     validationSchema: object({
-      fio: string().required(rules.required).label(""),
+      firstName: string().required(rules.required).label(""),
+      lastName: string().required(rules.required).label(""),
+      middleName: string().required(rules.required).label(""),
       email: string().email(rules.email).required(rules.required).label(""),
       inn: string()
         .required(rules.required)
@@ -31,7 +33,9 @@ export const useProfileForm = (user: Ref<IUser | null>) => {
       repeatPassword: passwordRules,
     }),
     initialValues: {
-      fio: user.value?.fio,
+      firstName: user.value?.firstName,
+      lastName: user.value?.lastName,
+      middleName: user.value?.middleName,
       email: user.value?.email,
       inn: user.value?.inn,
       isNotification: user.value?.isNotification,
