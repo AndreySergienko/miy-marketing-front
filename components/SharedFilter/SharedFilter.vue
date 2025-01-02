@@ -2,7 +2,7 @@
   <div class="filter">
     <div class="filter__inner">
       <!-- Интервал -->
-      <div v-if="props.title === 'интервал'">
+      <div class="filter__item" v-if="props.title === 'интервал'">
         <SharedSelect
           :title="props.title"
           :selected="String(internalValue)"
@@ -16,13 +16,13 @@
       <div class="filter__item" v-else-if="props.title === 'цена' || props.title === 'подписчики'">
         <div class="filter__item-title">{{ props.title }}</div>
         <div class="filter__item-form">
-          <SharedInput
+          <AuthenticationInput
             v-model="internalValue.from"
             :name="`${props.title}-from`"
             type="text"
             placeholder="от"
           />
-          <SharedInput
+          <AuthenticationInput
             v-model="internalValue.to"
             :name="`${props.title}-to`"
             type="text"
@@ -35,13 +35,13 @@
       <div class="filter__item" v-else-if="props.title === 'время'">
         <div class="filter__item-title">{{ props.title }}</div>
         <div class="filter__item-form">
-          <SharedInput
+          <AuthenticationInput
             v-model="timeFrom"
             :name="`${props.title}-from`"
             type="time"
             placeholder="с"
           />
-          <SharedInput
+          <AuthenticationInput
             v-model="timeTo"
             :name="`${props.title}-to`"
             type="time"
@@ -58,6 +58,7 @@ import SharedInput from "../SharedInput/SharedInput.vue";
 import SharedSelect from "../SharedSelect/SharedSelect.vue";
 import type { ISharedFilterProps } from "./SharedFilter.types";
 import type { ISharedSelectOption } from "../SharedSelect/SharedSelect.types";
+import AuthenticationInput from "../AuthenticationInput/AuthenticationInput.vue";
 
 const props = defineProps<ISharedFilterProps>();
 const emit = defineEmits(["update:modelValue"]);
@@ -112,20 +113,8 @@ watch(internalValue, (newValue) => emit("update:modelValue", newValue), { deep: 
 
       &-form {
         display: flex;
-        gap: var(--indent-s);
-
-        & .field {
-          width: 83px;
-          height: 40px;
-        }
-      }
-    }
-
-    &__inner {
-      & .shared-select {
-        & .shared-select__field {
-          height: 35px;
-        }
+        flex-direction: column;
+        gap: var(--indent-m);
       }
     }
   }

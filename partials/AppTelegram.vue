@@ -27,6 +27,7 @@
           />
           </div>
         </div>
+        <h1 class="tg__showcase">Витрина</h1>
         <FilterCalendarController />
         <div class="card__list">
           <div v-for="channel in channelsAll" :key="channel.id" class="card__list-items">
@@ -110,9 +111,7 @@ const { channelsAll } = storeToRefs(channelStore);
 
 
 const categoriesStore = useCategoriesStore();
-const {getQueryCategories, activeCategories } = storeToRefs(categoriesStore);
-const {categories} = storeToRefs(categoriesStore)
-console.log('Категории:', categories.value)
+const {getQueryCategories, activeCategories, categories} = storeToRefs(categoriesStore);
 
 const formatsStore = useFormatsStore();
 const { formats } = storeToRefs(formatsStore);
@@ -122,7 +121,6 @@ await useAsyncData(
   async () => {
     await formatsStore.fetch();
     await categoriesStore.fetch();
-    console.log("Категории после загрузки:", categories.value);
   },
   { lazy: true }
 );
@@ -163,7 +161,7 @@ const filterValues = reactive({
   subscribers: { from: "", to: "" },
 });
 
-const fetchChannels = async () => {
+const fetchChannels = async (isMounted = false) => {
   const params = new URLSearchParams();
 
   if (filterValues.price.from || filterValues.price.to) {
@@ -182,11 +180,15 @@ const fetchChannels = async () => {
     params.append("subscribers_to", filterValues.subscribers.to);
   }
 
-  console.log("Query отправляется на бэк:", params.toString());
+  const fullPath = getQueryCategories.value
+    ? paginationQuery.value + "&" + getQueryCategories.value
+    : paginationQuery.value;
 
-  const { data, error } = await useFetch(
-    `https://on-developer.ru/api/v1/channels/all?${params.toString()}`
-  );
+  const url = `https://on-developer.ru/api/v1/channels/all?${params.toString()}&${fullPath}`;
+
+  // console.log("Query отправляется на бэк:", url);
+
+  const { data, error } = await useFetch(url);
 
   if (error.value) {
     console.error("Ошибка при загрузке каналов:", error.value);
@@ -194,10 +196,14 @@ const fetchChannels = async () => {
   }
 
   channelsAll.value = data.value || [];
+
+  if (isMounted) {
+    await channelStore.getAll({ dates: dates.value, url: fullPath, isMounted });
+  }
 };
 
-watch(filterValues, fetchChannels, { deep: true });
-onMounted(fetchChannels);
+watch(filterValues, async () => await fetchChannels(), { deep: true });
+onMounted(async () => await fetchChannels(true));
 
 const buy = async (slotId: number, dateIdx: number) => {
   if (!slotId) {
@@ -212,16 +218,8 @@ const buy = async (slotId: number, dateIdx: number) => {
   clearInfoChannel();
 };
 
-async function fetchChannelsWithStore(isMounted?: boolean) {
-  const fullPath = getQueryCategories.value
-    ? paginationQuery.value + "&" + getQueryCategories.value
-    : paginationQuery.value;
-  await channelStore.getAll({ dates: dates.value, url: fullPath, isMounted });
-}
-
-watch(paginationQuery, async () => await fetchChannelsWithStore());
-
-watch(activeCategories, async () => await fetchChannelsWithStore(true), { deep: true });
+watch(paginationQuery, async () => await fetchChannels(true));
+watch(activeCategories, async () => await fetchChannels(true), { deep: true });
 
 useAsyncData(() =>
   channelStore.getAll({
@@ -231,11 +229,12 @@ useAsyncData(() =>
   })
 );
 
-watch(dates, async () => await fetchChannelsWithStore(true), { deep: true });
+watch(dates, async () => await fetchChannels(true), { deep: true });
 </script>
 
 <style scoped lang="scss">
 @use "assets/styles/media";
+
 .tg {
   padding-top: 150px;
   margin-top: -50px;
@@ -264,7 +263,7 @@ watch(dates, async () => await fetchChannelsWithStore(true), { deep: true });
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    margin-bottom: var(--indent-xl);
 
     &-title {
     align-self: flex-start;
@@ -282,7 +281,19 @@ watch(dates, async () => await fetchChannelsWithStore(true), { deep: true });
   &__filters {
     display: flex;
     justify-content: center;
-    gap: var(--indent-xl);
+    gap: var(--indent-3xl);
+  }
+
+  &__showcase {
+    font-size: 30px;
+    line-height: 21px;
+    font-weight: 700;
+    margin-bottom: var(--indent-xl);
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: 18px;
+      max-width: 300px;
+    }
   }
 }
 

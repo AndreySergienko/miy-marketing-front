@@ -86,11 +86,16 @@ const handleOptionClick = (value: string) => {
     background: #fff;
     cursor: pointer;
     user-select: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+
+    &:hover {
+      border-color: var(--color-blue);
+    }
 
     &-selected {
       flex: 1;
       overflow: hidden;
-      font-size: var(--font-size-m);
+      font-size: var(--font-size-s);
       font-weight: var(--font-weight-medium);
     }
 

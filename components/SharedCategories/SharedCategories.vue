@@ -12,7 +12,7 @@
                 'categories__item',
                 activeCategories[String(categoriesItem.id)] && 'active',
               ]"
-              @click="emit('setCategory', categoriesItem.id)"
+              @click="$emit('setCategory', categoriesItem.id)"
             >
               <div class="categories__item-text">
                 {{ categoriesItem.title }}
@@ -59,9 +59,9 @@ const showCategories = () => {
 <style lang="scss" scoped>
 @use "assets/styles/media";
 .categories {
-  position: fixed;
   z-index: 10;
-  margin-bottom: var(--indent-5xl);
+  margin-bottom: var(--indent-l);
+  max-width: calc(100vw - 32px);
 
   @include media.media-breakpoint-down(sm) {
     margin-bottom: var(--indent-3xl);

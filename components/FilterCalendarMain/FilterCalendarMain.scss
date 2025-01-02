@@ -51,7 +51,7 @@
         max-width: 1000px;
         overflow-x: auto;
         scrollbar-width: thin;
-
+        scrollbar-color: var(--color-blue) transparent;
 
         @include media.media-breakpoint-down(sm) {
           gap: 5px;
