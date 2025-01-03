@@ -194,23 +194,6 @@ const handleMainData = () => {
     isNotification,
   } = values;
 
-  const mainData = {
-    lastName,
-    firstName,
-    middleName,
-    email,
-    inn,
-    isNotification,
-    bank: {
-      name: bankName,
-      bik: bankBik,
-      correspondentAccount: bankCorAccount,
-      currentAccount: bankCurAccount,
-    },
-  };
-
-  console.log("Данные для обновления пользователя:", mainData);
-
   userStore.updateUser({
     lastName,
     firstName,

@@ -117,7 +117,6 @@ const { meta, values } = useForm({
 });
 
 const handleRegister = async () => {
-  console.log("Отправляемые данные:", values);
   const isSuccess = await authStore.registration({
     ...values,
     isNotification: true,
