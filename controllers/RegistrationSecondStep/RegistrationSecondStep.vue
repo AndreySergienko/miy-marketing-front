@@ -19,10 +19,22 @@
         />
       </div>
       <AuthenticationInput
-        name="fio"
-        label="ФИО"
+        name="lastName"
+        label="Фамилия"
         type="text"
-        placeholder="Введите ваши ФИО"
+        placeholder="Введите вашу фамилию"
+      />
+      <AuthenticationInput
+        name="firstName"
+        label="Имя"
+        type="text"
+        placeholder="Введите ваше имя"
+      />
+      <AuthenticationInput
+        name="middleName"
+        label="Отчество"
+        type="text"
+        placeholder="Введите ваше отчество"
       />
       <AuthenticationInput
         name="email"
@@ -80,7 +92,9 @@ const { meta, values } = useForm({
       .min(4, rules.minId)
       .label(""),
     workType: string().required(rules.required).label(""),
-    fio: string().required(rules.required).min(8, rules.minName).label(""),
+    lastName: string().required(rules.required).min(2, rules.minLastName).label(""),
+    firstName: string().required(rules.required).min(2, rules.minFirstName).label(""),
+    middleName: string().required(rules.required).min(2, rules.minMiddleName).label(""),
     email: string().email(rules.email).required(rules.required).label(""),
     inn: string()
       .required(rules.required)

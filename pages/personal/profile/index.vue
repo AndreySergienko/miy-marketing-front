@@ -11,10 +11,22 @@
         </div>
         <div class="profile-page__block-inputs">
           <AuthenticationInput
-            label="ФИО"
+            label="Фамилия"
             type="text"
-            name="fio"
-            placeholder="Введите ФИО"
+            name="lastName"
+            placeholder="Введите вашу фамилию"
+          />
+          <AuthenticationInput
+            label="Имя"
+            type="text"
+            name="firstName"
+            placeholder="Введите ваше имя"
+          />
+          <AuthenticationInput
+            label="Отчество"
+            type="text"
+            name="middleName"
+            placeholder="Введите ваше отчество"
           />
           <AuthenticationInput
             label="E-mail"
@@ -170,7 +182,9 @@ const { values } = useProfileForm(user);
 
 const handleMainData = () => {
   const {
-    fio,
+    lastName,
+    firstName,
+    middleName,
     email,
     inn,
     bankName,
@@ -181,7 +195,9 @@ const handleMainData = () => {
   } = values;
 
   userStore.updateUser({
-    fio,
+    lastName,
+    firstName,
+    middleName,
     email,
     inn,
     isNotification,
