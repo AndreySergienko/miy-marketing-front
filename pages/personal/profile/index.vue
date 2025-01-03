@@ -13,19 +13,19 @@
           <AuthenticationInput
             label="Фамилия"
             type="text"
-            name="lastName"
+            name="lastname"
             placeholder="Введите вашу фамилию"
           />
           <AuthenticationInput
             label="Имя"
             type="text"
-            name="firstName"
+            name="name"
             placeholder="Введите ваше имя"
           />
           <AuthenticationInput
             label="Отчество"
             type="text"
-            name="middleName"
+            name="surname"
             placeholder="Введите ваше отчество"
           />
           <AuthenticationInput
@@ -182,9 +182,9 @@ const { values } = useProfileForm(user);
 
 const handleMainData = () => {
   const {
-    lastName,
-    firstName,
-    middleName,
+    lastname,
+    name,
+    surname,
     email,
     inn,
     bankName,
@@ -195,9 +195,9 @@ const handleMainData = () => {
   } = values;
 
   userStore.updateUser({
-    lastName,
-    firstName,
-    middleName,
+    lastname,
+    name,
+    surname,
     email,
     inn,
     isNotification,
