@@ -7,6 +7,7 @@ import type {
   IGetAll,
   IFormat,
 } from "./channels.types";
+import type { IFilterValues } from "~/types/filters";
 
 export default class ChannelsService extends ApiService {
   private readonly apiUrl: string;
@@ -98,5 +99,36 @@ export default class ChannelsService extends ApiService {
       method: "post",
       body: JSON.stringify({ channelName }),
     });
+  }
+
+  async fetchChannelsWithFilters(
+    filterValues: IFilterValues,
+    paginationQuery: string,
+    getQueryCategories: string | null): Promise<IGetAll[]> {
+    const params = new URLSearchParams();
+  
+    if (filterValues.price.from || filterValues.price.to) {
+      params.append("price_from", filterValues.price.from);
+      params.append("price_to", filterValues.price.to);
+    }
+    if (filterValues.time.from || filterValues.time.to) {
+      params.append("time_from", String(filterValues.time.from));
+      params.append("time_to", String(filterValues.time.to));
+    }
+    if (filterValues.interval) {
+      params.append("interval", filterValues.interval);
+    }
+    if (filterValues.subscribers.from || filterValues.subscribers.to) {
+      params.append("subscribers_from", filterValues.subscribers.from);
+      params.append("subscribers_to", filterValues.subscribers.to);
+    }
+  
+    const fullPath = getQueryCategories
+      ? `${paginationQuery}&${getQueryCategories}`
+      : paginationQuery;
+  
+    const fullUrl = `${this.apiUrl}all?${params.toString()}&${fullPath}`;
+  
+    return await this.$api<IGetAll[]>(fullUrl, { method: "get" });
   }
 }

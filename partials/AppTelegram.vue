@@ -86,7 +86,7 @@
           </template>
         </ChannelDetails>
     </SharedModal>
-    <a href="/channels" class="more" v-if="channelsAll.length > 0">
+    <a href="/channels" class="more" v-if="channelsAll && channelsAll.length > 0">
       <p class="more__text">Смотреть еще</p>
       <nuxt-icon class="more__icon" name="arrow" filled />
     </a>
@@ -101,6 +101,7 @@ import { useCalendarStore } from "~/store/filters/calendar.store";
 import FilterCalendarController from "~/controllers/FilterCalendarController/FilterCalendarController.vue";
 import {useFormatsStore} from "~/store/formats/formats.store";
 import { useDateFormatter } from "~/composables/useDateFormatter";
+import type { IFilter, IFilterValues } from "~/types/filters";
 
 const channelStore = useChannelStore();
 const userStore = useUserStore();
@@ -147,62 +148,37 @@ const {
 } = useBuyChannel();
 
 /**filters */
-const filters = [
+const filters: IFilter[] = [
   { key: "price", title: "цена" },
   { key: "time", title: "время" },
   { key: "interval", title: "интервал" },
   { key: "subscribers", title: "подписчики" },
 ];
 
-const filterValues = reactive({
+const filterValues: IFilterValues = reactive({
   price: { from: "", to: "" },
   time: { from: "", to: "" },
   interval: "",
   subscribers: { from: "", to: "" },
 });
 
-const fetchChannels = async (isMounted = false) => {
-  const params = new URLSearchParams();
-
-  if (filterValues.price.from || filterValues.price.to) {
-    params.append("price_from", filterValues.price.from);
-    params.append("price_to", filterValues.price.to);
-  }
-  if (filterValues.time.from || filterValues.time.to) {
-    params.append("time_from", String(filterValues.time.from));
-    params.append("time_to", String(filterValues.time.to));
-  }
-  if (filterValues.interval) {
-    params.append("interval", filterValues.interval);
-  }
-  if (filterValues.subscribers.from || filterValues.subscribers.to) {
-    params.append("subscribers_from", filterValues.subscribers.from);
-    params.append("subscribers_to", filterValues.subscribers.to);
-  }
-
-  const fullPath = getQueryCategories.value
-    ? paginationQuery.value + "&" + getQueryCategories.value
-    : paginationQuery.value;
-
-  const url = `https://on-developer.ru/api/v1/channels/all?${params.toString()}&${fullPath}`;
-
-  // console.log("Query отправляется на бэк:", url);
-
-  const { data, error } = await useFetch(url);
-
-  if (error.value) {
-    console.error("Ошибка при загрузке каналов:", error.value);
-    return;
-  }
-
-  channelsAll.value = data.value || [];
-
-  if (isMounted) {
-    await channelStore.getAll({ dates: dates.value, url: fullPath, isMounted });
-  }
+const fetchChannels = async () => {
+  await channelStore.fetchChannelsWithFilters(
+    filterValues,
+    paginationQuery.value,
+    getQueryCategories.value
+  );
 };
+watch(filterValues, fetchChannels, { deep: true });
+watch(paginationQuery, fetchChannels);
+watch(getQueryCategories, fetchChannels);
 
-watch(filterValues, async () => await fetchChannels(), { deep: true });
+onMounted(fetchChannels);
+
+watch(filterValues, async () => {
+  await fetchChannels(), { deep: true }
+});
+
 onMounted(async () => await fetchChannels(true));
 
 const buy = async (slotId: number, dateIdx: number) => {

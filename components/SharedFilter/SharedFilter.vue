@@ -56,14 +56,14 @@
 <script setup lang="ts">
 import SharedInput from "../SharedInput/SharedInput.vue";
 import SharedSelect from "../SharedSelect/SharedSelect.vue";
-import type { ISharedFilterProps } from "./SharedFilter.types";
+import type { ISharedFilterProps, ISharedFilterRang } from "./SharedFilter.types";
 import type { ISharedSelectOption } from "../SharedSelect/SharedSelect.types";
 import AuthenticationInput from "../AuthenticationInput/AuthenticationInput.vue";
 
 const props = defineProps<ISharedFilterProps>();
 const emit = defineEmits(["update:modelValue"]);
 
-const internalValue = ref({ from: "", to: "" });
+const internalValue = ref<ISharedFilterRang>({ from: "", to: "" });
 
 const intervalOptions: ISharedSelectOption[] = [
   { value: "1/24", title: "1/24" },
@@ -71,8 +71,8 @@ const intervalOptions: ISharedSelectOption[] = [
   { value: "30/24", title: "30/24" },
 ];
 
-const timeFrom = ref("");
-const timeTo = ref("");
+const timeFrom = ref<string>("");
+const timeTo = ref<string>("");
 
 // Преобразование времени в timestamp
 const timeToTimestamp = (time: string): number => {
@@ -96,7 +96,13 @@ const updateValue = (value: string | { from: string; to: string }) => {
   emit("update:modelValue", value);
 };
 
-watch(internalValue, (newValue) => emit("update:modelValue", newValue), { deep: true });
+watch(
+  internalValue.value,
+  (newValue) => {
+    emit("update:modelValue", newValue);
+  },
+  { deep: true }
+);
 </script>
 
 

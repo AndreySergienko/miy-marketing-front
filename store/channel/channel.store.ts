@@ -6,6 +6,7 @@ import type {
 } from "~/api/methods/channels/channels.types";
 import ChannelsService from "~/api/methods/channels/ChannelsService";
 import { useAlertStore } from "~/store/alert/alert.store";
+import type { IFilterValues } from "~/types/filters";
 
 export const useChannelStore = defineStore("global/channel", () => {
   const alertStore = useAlertStore();
@@ -81,6 +82,24 @@ export const useChannelStore = defineStore("global/channel", () => {
     }
   }
 
+  /**Отфильтрованный канал */
+  async function fetchChannelsWithFilters(
+    filterValues: IFilterValues,
+    paginationQuery: string,
+    getQueryCategories: string | null
+  ) {
+    try {
+      const channelList = await channelsService.fetchChannelsWithFilters(
+        filterValues,
+        paginationQuery,
+        getQueryCategories
+      );
+      channelsAll.value = channelList;
+    } catch (e) {
+      useShowError(e);
+    }
+  }
+
   return {
     channels,
     channelsAll,
@@ -91,5 +110,6 @@ export const useChannelStore = defineStore("global/channel", () => {
     formatAll,
     getAllFormat,
     isLoading,
+    fetchChannelsWithFilters,
   };
 });
