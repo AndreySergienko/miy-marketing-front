@@ -261,7 +261,7 @@ watch(dates, async () => await fetchChannels(true), { deep: true });
   }
 
   &__showcase {
-    font-size: 30px;
+    font-size: var(--font-size-l);
     line-height: 21px;
     font-weight: 700;
     margin-bottom: var(--indent-xl);
