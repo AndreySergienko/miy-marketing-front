@@ -258,6 +258,12 @@ watch(dates, async () => await fetchChannels(true), { deep: true });
     display: flex;
     justify-content: center;
     gap: var(--indent-3xl);
+
+
+    @include media.media-breakpoint-down(sm) {
+      flex-direction: column;
+      gap: var(--indent-l);
+    }
   }
 
   &__showcase {

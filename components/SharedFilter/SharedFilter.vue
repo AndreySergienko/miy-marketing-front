@@ -107,6 +107,8 @@ watch(
 
 
 <style scoped lang="scss">
+  @use "assets/styles/media";
+  
   .filter {
     &__item {
       display: flex;

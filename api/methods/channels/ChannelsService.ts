@@ -108,19 +108,19 @@ export default class ChannelsService extends ApiService {
     const params = new URLSearchParams();
   
     if (filterValues.price.from || filterValues.price.to) {
-      params.append("price_from", filterValues.price.from);
-      params.append("price_to", filterValues.price.to);
+      params.append("priceMin", filterValues.price.from);
+      params.append("priceMax", filterValues.price.to);
     }
     if (filterValues.time.from || filterValues.time.to) {
-      params.append("time_from", String(filterValues.time.from));
-      params.append("time_to", String(filterValues.time.to));
+      params.append("dateMin", String(filterValues.time.from));
+      params.append("dateMax", String(filterValues.time.to));
     }
     if (filterValues.interval) {
-      params.append("interval", filterValues.interval);
+      params.append("intervalId", filterValues.interval);
     }
     if (filterValues.subscribers.from || filterValues.subscribers.to) {
-      params.append("subscribers_from", filterValues.subscribers.from);
-      params.append("subscribers_to", filterValues.subscribers.to);
+      params.append("subscribersMin", filterValues.subscribers.from);
+      params.append("subscribersMax", filterValues.subscribers.to);
     }
   
     const fullPath = getQueryCategories
@@ -128,7 +128,7 @@ export default class ChannelsService extends ApiService {
       : paginationQuery;
   
     const fullUrl = `${this.apiUrl}all?${params.toString()}&${fullPath}`;
-  
+
     return await this.$api<IGetAll[]>(fullUrl, { method: "get" });
   }
 }

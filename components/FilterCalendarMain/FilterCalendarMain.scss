@@ -53,8 +53,13 @@
         scrollbar-width: thin;
         scrollbar-color: var(--color-blue) transparent;
 
+        @include media.media-breakpoint-down(md) {
+          max-width: 820px;
+        }
+
         @include media.media-breakpoint-down(sm) {
-          gap: 5px;
+          max-width: 310px;
+          gap: var(--indent-xl);
         }
       }
     }

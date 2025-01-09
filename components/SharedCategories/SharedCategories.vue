@@ -64,7 +64,7 @@ const showCategories = () => {
   max-width: calc(100vw - 32px);
 
   @include media.media-breakpoint-down(sm) {
-    margin-bottom: var(--indent-3xl);
+    margin-bottom: var(--indent-s);
   }
 
   &__inner {
