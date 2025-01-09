@@ -2,7 +2,7 @@
   <div class="filter">
     <div class="filter__inner">
       <!-- Интервал -->
-      <div v-if="props.title === 'интервал'">
+      <div class="filter__item" v-if="props.title === 'интервал'">
         <SharedSelect
           :title="props.title"
           :selected="String(internalValue)"
@@ -16,13 +16,13 @@
       <div class="filter__item" v-else-if="props.title === 'цена' || props.title === 'подписчики'">
         <div class="filter__item-title">{{ props.title }}</div>
         <div class="filter__item-form">
-          <SharedInput
+          <AuthenticationInput
             v-model="internalValue.from"
             :name="`${props.title}-from`"
             type="text"
             placeholder="от"
           />
-          <SharedInput
+          <AuthenticationInput
             v-model="internalValue.to"
             :name="`${props.title}-to`"
             type="text"
@@ -35,16 +35,16 @@
       <div class="filter__item" v-else-if="props.title === 'время'">
         <div class="filter__item-title">{{ props.title }}</div>
         <div class="filter__item-form">
-          <SharedInput
-            v-model="internalValue.from"
+          <AuthenticationInput
+            v-model="timeFrom"
             :name="`${props.title}-from`"
-            type="text"
+            type="time"
             placeholder="с"
           />
-          <SharedInput
-            v-model="internalValue.to"
+          <AuthenticationInput
+            v-model="timeTo"
             :name="`${props.title}-to`"
-            type="text"
+            type="time"
             placeholder="по"
           />
         </div>
@@ -56,13 +56,14 @@
 <script setup lang="ts">
 import SharedInput from "../SharedInput/SharedInput.vue";
 import SharedSelect from "../SharedSelect/SharedSelect.vue";
-import type { ISharedFilterProps } from "./SharedFilter.types";
+import type { ISharedFilterProps, ISharedFilterRang } from "./SharedFilter.types";
 import type { ISharedSelectOption } from "../SharedSelect/SharedSelect.types";
+import AuthenticationInput from "../AuthenticationInput/AuthenticationInput.vue";
 
 const props = defineProps<ISharedFilterProps>();
 const emit = defineEmits(["update:modelValue"]);
 
-const internalValue = ref({ from: "", to: ""});
+const internalValue = ref<ISharedFilterRang>({ from: "", to: "" });
 
 const intervalOptions: ISharedSelectOption[] = [
   { value: "1/24", title: "1/24" },
@@ -70,16 +71,44 @@ const intervalOptions: ISharedSelectOption[] = [
   { value: "30/24", title: "30/24" },
 ];
 
+const timeFrom = ref<string>("");
+const timeTo = ref<string>("");
+
+// Преобразование времени в timestamp
+const timeToTimestamp = (time: string): number => {
+  if (!time) return 0;
+  const [hours, minutes] = time.split(":").map(Number);
+  return hours * 3600 + minutes * 60;
+};
+
+// Обновление значений времени
+watch([timeFrom, timeTo], ([from, to]) => {
+  internalValue.value = {
+    from: timeToTimestamp(from),
+    to: timeToTimestamp(to),
+  };
+  emit("update:modelValue", internalValue.value);
+});
+
+// Обновление значения фильтра
 const updateValue = (value: string | { from: string; to: string }) => {
   internalValue.value = value;
   emit("update:modelValue", value);
 };
 
-watch(internalValue, (newValue) => emit("update:modelValue", newValue), { deep: true });
+watch(
+  internalValue.value,
+  (newValue) => {
+    emit("update:modelValue", newValue);
+  },
+  { deep: true }
+);
 </script>
 
 
 <style scoped lang="scss">
+  @use "assets/styles/media";
+  
   .filter {
     &__item {
       display: flex;
@@ -92,20 +121,8 @@ watch(internalValue, (newValue) => emit("update:modelValue", newValue), { deep: 
 
       &-form {
         display: flex;
-        gap: var(--indent-s);
-
-        & .field {
-          width: 80px;
-          height: 40px;
-        }
-      }
-    }
-
-    &__inner {
-      & .shared-select {
-        & .shared-select__field {
-          height: 35px;
-        }
+        flex-direction: column;
+        gap: var(--indent-m);
       }
     }
   }

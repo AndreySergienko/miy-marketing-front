@@ -3,9 +3,6 @@
     <div class="filter-calendar-main__action-prev" @click="prevMonths">
       <nuxt-icon name="default-round-back" filled/>
     </div>
-    <div class="filter-calendar-main__action-next" @click="nextMonths">
-      <nuxt-icon name="default-round-next" filled/>
-    </div>
     <div class="filter-calendar-main__calendar">
       <div
         v-for="month in visibleMonths"
@@ -26,6 +23,9 @@
           />
         </div>
       </div>
+    </div>
+    <div class="filter-calendar-main__action-next" @click="nextMonths">
+      <nuxt-icon name="default-round-next" filled/>
     </div>
   </div>
 </template>

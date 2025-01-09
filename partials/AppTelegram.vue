@@ -9,6 +9,25 @@
             бизнес", где ваша реклама будет наиболее эффективной.
           </SharedText>
         </div>
+        <div class="tg__header">
+          <div class="tg__categories">
+            <SharedCategories
+              :active-categories="activeCategories"
+              :categories-list="categories"
+              @set-category="categoriesStore.updateActiveCategories"
+            />
+          </div>
+          <div class="tg__filters">
+            <SharedFilter
+            v-for="filter in filters"
+            :key="filter.key"
+            :title="filter.title"
+            :type="filter.type"
+            v-model="filterValues[filter.key]"
+          />
+          </div>
+        </div>
+        <h1 class="tg__showcase">Витрина</h1>
         <FilterCalendarController />
         <div class="card__list">
           <div v-for="channel in channelsAll" :key="channel.id" class="card__list-items">
@@ -67,7 +86,7 @@
           </template>
         </ChannelDetails>
     </SharedModal>
-    <a href="/channels" class="more" v-if="channelsAll.length > 0">
+    <a href="/channels" class="more" v-if="channelsAll && channelsAll.length > 0">
       <p class="more__text">Смотреть еще</p>
       <nuxt-icon class="more__icon" name="arrow" filled />
     </a>
@@ -82,6 +101,7 @@ import { useCalendarStore } from "~/store/filters/calendar.store";
 import FilterCalendarController from "~/controllers/FilterCalendarController/FilterCalendarController.vue";
 import {useFormatsStore} from "~/store/formats/formats.store";
 import { useDateFormatter } from "~/composables/useDateFormatter";
+import type { IFilter, IFilterValues } from "~/types/filters";
 
 const channelStore = useChannelStore();
 const userStore = useUserStore();
@@ -92,24 +112,23 @@ const { channelsAll } = storeToRefs(channelStore);
 
 
 const categoriesStore = useCategoriesStore();
-const {getQueryCategories, activeCategories} = storeToRefs(categoriesStore);
-
+const {getQueryCategories, activeCategories, categories} = storeToRefs(categoriesStore);
 
 const formatsStore = useFormatsStore();
 const { formats } = storeToRefs(formatsStore);
 
 await useAsyncData(
   "my-channels",
-  () => {
-    return Promise.allSettled([
-      formatsStore.fetch(),
-      categoriesStore.fetch(),
-    ]);
+  async () => {
+    await formatsStore.fetch();
+    await categoriesStore.fetch();
   },
-  {
-    lazy: true,
-  }
+  { lazy: true }
 );
+
+onMounted(() => {
+  getAllFormat();
+})
 
 /** format */
 const {getFormattedDates} = useDateFormatter(formats);
@@ -128,6 +147,41 @@ const {
   activeChannel,
 } = useBuyChannel();
 
+/**filters */
+const filters: IFilter[] = [
+  { key: "price", title: "цена" },
+  { key: "time", title: "время" },
+  { key: "interval", title: "интервал" },
+  { key: "subscribers", title: "подписчики" },
+];
+
+const filterValues: IFilterValues = reactive({
+  price: { from: "", to: "" },
+  time: { from: "", to: "" },
+  interval: "",
+  subscribers: { from: "", to: "" },
+});
+
+const fetchChannels = async () => {
+  await channelStore.getAll({
+    dates: dates.value,
+    filterValues: filterValues,
+    paginationQuery: paginationQuery.value,
+    getQueryCategories: getQueryCategories.value,
+    isMounted: true,
+  });
+};
+
+watch(
+  [filterValues, paginationQuery, getQueryCategories],
+  async () => {
+    await fetchChannels();
+  },
+  { deep: true }
+);
+
+onMounted(fetchChannels);
+
 const buy = async (slotId: number, dateIdx: number) => {
   if (!slotId) {
     alertStore.showError({ title: "Укажите время" });
@@ -141,30 +195,12 @@ const buy = async (slotId: number, dateIdx: number) => {
   clearInfoChannel();
 };
 
-async function fetchChannels(isMounted?: boolean) {
-  const fullPath = getQueryCategories.value
-    ? paginationQuery.value + "&" + getQueryCategories.value
-    : paginationQuery.value;
-  await channelStore.getAll({ dates: dates.value, url: fullPath, isMounted });
-}
-
-watch(paginationQuery, async () => await fetchChannels());
-
-watch(activeCategories, async () => await fetchChannels(true), { deep: true });
-
-useAsyncData(() =>
-  channelStore.getAll({
-    dates: dates.value,
-    url: paginationQuery.value,
-    isMounted: true,
-  })
-);
-
-watch(dates, async () => await fetchChannels(true), { deep: true });
+watch(dates, async () => await fetchChannels(), { deep: true });
 </script>
 
 <style scoped lang="scss">
 @use "assets/styles/media";
+
 .tg {
   padding-top: 150px;
   margin-top: -50px;
@@ -193,7 +229,7 @@ watch(dates, async () => await fetchChannels(true), { deep: true });
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    margin-bottom: var(--indent-xl);
 
     &-title {
     align-self: flex-start;
@@ -211,7 +247,25 @@ watch(dates, async () => await fetchChannels(true), { deep: true });
   &__filters {
     display: flex;
     justify-content: center;
-    gap: var(--indent-xl);
+    gap: var(--indent-3xl);
+
+
+    @include media.media-breakpoint-down(sm) {
+      flex-direction: column;
+      gap: var(--indent-l);
+    }
+  }
+
+  &__showcase {
+    font-size: var(--font-size-l);
+    line-height: 21px;
+    font-weight: 700;
+    margin-bottom: var(--indent-xl);
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: 18px;
+      max-width: 300px;
+    }
   }
 }
 

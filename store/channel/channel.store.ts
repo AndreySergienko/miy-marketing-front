@@ -6,6 +6,7 @@ import type {
 } from "~/api/methods/channels/channels.types";
 import ChannelsService from "~/api/methods/channels/ChannelsService";
 import { useAlertStore } from "~/store/alert/alert.store";
+import type { IFilterValues } from "~/types/filters";
 
 export const useChannelStore = defineStore("global/channel", () => {
   const alertStore = useAlertStore();
@@ -36,15 +37,24 @@ export const useChannelStore = defineStore("global/channel", () => {
   /** Получение всего списка каналов **/
   async function getAll({
     dates,
-    url,
+    filterValues,
+    paginationQuery,
+    getQueryCategories,
     isMounted,
   }: {
     dates: Date[];
-    url: string;
+    filterValues?: IFilterValues;
+    paginationQuery?: string;
+    getQueryCategories?: string | null;
     isMounted?: boolean;
   }) {
     try {
-      const channelList = await channelsService.getAll(dates, url);
+      const channelList = await channelsService.getAll(
+        dates,
+        filterValues,
+        paginationQuery,
+        getQueryCategories
+      );
       if (isMounted) {
         channelsAll.value = channelList;
       } else {
