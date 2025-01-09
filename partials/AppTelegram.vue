@@ -163,23 +163,24 @@ const filterValues: IFilterValues = reactive({
 });
 
 const fetchChannels = async () => {
-  await channelStore.fetchChannelsWithFilters(
-    filterValues,
-    paginationQuery.value,
-    getQueryCategories.value
-  );
+  await channelStore.getAll({
+    dates: dates.value,
+    filterValues: filterValues,
+    paginationQuery: paginationQuery.value,
+    getQueryCategories: getQueryCategories.value,
+    isMounted: true,
+  });
 };
-watch(filterValues, fetchChannels, { deep: true });
-watch(paginationQuery, fetchChannels);
-watch(getQueryCategories, fetchChannels);
+
+watch(
+  [filterValues, paginationQuery, getQueryCategories],
+  async () => {
+    await fetchChannels();
+  },
+  { deep: true }
+);
 
 onMounted(fetchChannels);
-
-watch(filterValues, async () => {
-  await fetchChannels(), { deep: true }
-});
-
-onMounted(async () => await fetchChannels(true));
 
 const buy = async (slotId: number, dateIdx: number) => {
   if (!slotId) {
@@ -194,18 +195,7 @@ const buy = async (slotId: number, dateIdx: number) => {
   clearInfoChannel();
 };
 
-watch(paginationQuery, async () => await fetchChannels(true));
-watch(activeCategories, async () => await fetchChannels(true), { deep: true });
-
-useAsyncData(() =>
-  channelStore.getAll({
-    dates: dates.value,
-    url: paginationQuery.value,
-    isMounted: true,
-  })
-);
-
-watch(dates, async () => await fetchChannels(true), { deep: true });
+watch(dates, async () => await fetchChannels(), { deep: true });
 </script>
 
 <style scoped lang="scss">

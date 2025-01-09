@@ -48,10 +48,15 @@ export default class ChannelsService extends ApiService {
     });
   }
 
-  async getAll(dates: Date[], url?: string): Promise<IGetAll[]> {
+  async getAll(
+    dates: Date[],
+    filterValues?: IFilterValues,
+    paginationQuery?: string,
+    getQueryCategories?: string | null
+  ): Promise<IGetAll[]> {
     const parsedDates = dates
       .map((item) => {
-        let incorrectDay = String(item.getDate())
+        let incorrectDay = String(item.getDate());
         const day = incorrectDay.length === 1 ? `0${incorrectDay}` : incorrectDay;
         const month = item.getMonth() + 1;
         const year = item.getFullYear();
@@ -60,12 +65,34 @@ export default class ChannelsService extends ApiService {
       })
       .join(",");
 
-    const fullUrl = url ? this.apiUrl + "all" + url : this.apiUrl + "all";
+    const params = new URLSearchParams();
+
+    if (filterValues) {
+      if (filterValues.price.from || filterValues.price.to) {
+        params.append("priceMin", filterValues.price.from);
+        params.append("priceMax", filterValues.price.to);
+      }
+      if (filterValues.time.from || filterValues.time.to) {
+        params.append("dateMin", String(filterValues.time.from));
+        params.append("dateMax", String(filterValues.time.to));
+      }
+      if (filterValues.interval) {
+        params.append("intervalId", filterValues.interval);
+      }
+      if (filterValues.subscribers.from || filterValues.subscribers.to) {
+        params.append("subscribersMin", filterValues.subscribers.from);
+        params.append("subscribersMax", filterValues.subscribers.to);
+      }
+    }
+
+    const fullPath = getQueryCategories
+      ? `${paginationQuery}&${getQueryCategories}`
+      : paginationQuery;
+
+    const fullUrl = `${this.apiUrl}all?dates=${parsedDates}&${params.toString()}&${fullPath}`;
+
     return await this.$api<IGetAll[]>(fullUrl, {
       method: "get",
-      params: {
-        dates: parsedDates,
-      },
     });
   }
 
@@ -99,36 +126,5 @@ export default class ChannelsService extends ApiService {
       method: "post",
       body: JSON.stringify({ channelName }),
     });
-  }
-
-  async fetchChannelsWithFilters(
-    filterValues: IFilterValues,
-    paginationQuery: string,
-    getQueryCategories: string | null): Promise<IGetAll[]> {
-    const params = new URLSearchParams();
-  
-    if (filterValues.price.from || filterValues.price.to) {
-      params.append("priceMin", filterValues.price.from);
-      params.append("priceMax", filterValues.price.to);
-    }
-    if (filterValues.time.from || filterValues.time.to) {
-      params.append("dateMin", String(filterValues.time.from));
-      params.append("dateMax", String(filterValues.time.to));
-    }
-    if (filterValues.interval) {
-      params.append("intervalId", filterValues.interval);
-    }
-    if (filterValues.subscribers.from || filterValues.subscribers.to) {
-      params.append("subscribersMin", filterValues.subscribers.from);
-      params.append("subscribersMax", filterValues.subscribers.to);
-    }
-  
-    const fullPath = getQueryCategories
-      ? `${paginationQuery}&${getQueryCategories}`
-      : paginationQuery;
-  
-    const fullUrl = `${this.apiUrl}all?${params.toString()}&${fullPath}`;
-
-    return await this.$api<IGetAll[]>(fullUrl, { method: "get" });
   }
 }

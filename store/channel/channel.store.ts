@@ -37,15 +37,24 @@ export const useChannelStore = defineStore("global/channel", () => {
   /** Получение всего списка каналов **/
   async function getAll({
     dates,
-    url,
+    filterValues,
+    paginationQuery,
+    getQueryCategories,
     isMounted,
   }: {
     dates: Date[];
-    url: string;
+    filterValues?: IFilterValues;
+    paginationQuery?: string;
+    getQueryCategories?: string | null;
     isMounted?: boolean;
   }) {
     try {
-      const channelList = await channelsService.getAll(dates, url);
+      const channelList = await channelsService.getAll(
+        dates,
+        filterValues,
+        paginationQuery,
+        getQueryCategories
+      );
       if (isMounted) {
         channelsAll.value = channelList;
       } else {
@@ -82,24 +91,6 @@ export const useChannelStore = defineStore("global/channel", () => {
     }
   }
 
-  /**Отфильтрованный канал */
-  async function fetchChannelsWithFilters(
-    filterValues: IFilterValues,
-    paginationQuery: string,
-    getQueryCategories: string | null
-  ) {
-    try {
-      const channelList = await channelsService.fetchChannelsWithFilters(
-        filterValues,
-        paginationQuery,
-        getQueryCategories
-      );
-      channelsAll.value = channelList;
-    } catch (e) {
-      useShowError(e);
-    }
-  }
-
   return {
     channels,
     channelsAll,
@@ -110,6 +101,5 @@ export const useChannelStore = defineStore("global/channel", () => {
     formatAll,
     getAllFormat,
     isLoading,
-    fetchChannelsWithFilters,
   };
 });
