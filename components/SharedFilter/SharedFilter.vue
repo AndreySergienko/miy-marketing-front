@@ -38,13 +38,13 @@
           <AuthenticationInput
             v-model="timeFrom"
             :name="`${props.title}-from`"
-            type="time"
+            type="datetime-local"
             placeholder="с"
           />
           <AuthenticationInput
             v-model="timeTo"
             :name="`${props.title}-to`"
-            type="time"
+            type="datetime-local"
             placeholder="по"
           />
         </div>
@@ -54,7 +54,6 @@
 </template>
 
 <script setup lang="ts">
-import SharedInput from "../SharedInput/SharedInput.vue";
 import SharedSelect from "../SharedSelect/SharedSelect.vue";
 import type { ISharedFilterProps, ISharedFilterRang } from "./SharedFilter.types";
 import type { ISharedSelectOption } from "../SharedSelect/SharedSelect.types";
@@ -74,11 +73,9 @@ const intervalOptions: ISharedSelectOption[] = [
 const timeFrom = ref<string>("");
 const timeTo = ref<string>("");
 
-// Преобразование времени в timestamp
-const timeToTimestamp = (time: string): number => {
-  if (!time) return 0;
-  const [hours, minutes] = time.split(":").map(Number);
-  return hours * 3600 + minutes * 60;
+const timeToTimestamp = (datetime: string): number => {
+  if (!datetime) return 0;
+  return new Date(datetime).getTime();
 };
 
 // Обновление значений времени
