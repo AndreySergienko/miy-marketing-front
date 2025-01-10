@@ -57,7 +57,6 @@ const hideMoreMenu = () => {
 };
 
 const handleEdit = () => navigateTo(`/personal/telegram/edit/${id.value}`);
-const handleDelete = () =>
 </script>
 
 <style scoped lang="scss" src="./ChannelCard.scss"></style>
