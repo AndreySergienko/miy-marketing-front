@@ -68,6 +68,7 @@ export const useMyChannelsStore = defineStore("global/my-channels", () => {
     try {
       if (!channelId) return useShowError({ title: 'Отсутствует id канала' })
       await channelsService.remove(channelId);
+      channels.value = channels.value.filter(channel => channel.id !== channelId)
     } catch (e) {
       useShowError(e);
     }
