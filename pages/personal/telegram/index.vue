@@ -13,6 +13,7 @@
         v-bind="channelData"
         :category="getCategoryById(channelData.categoryId)"
         @click="handleClickCard(channelData)"
+        @delete="myChannelsStore.remove"
       />
       <ChannelAdd v-if="canCreate" @click="addNewChannel" />
       <Teleport to="#teleports">

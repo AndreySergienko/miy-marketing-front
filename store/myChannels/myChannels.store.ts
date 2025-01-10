@@ -63,6 +63,16 @@ export const useMyChannelsStore = defineStore("global/my-channels", () => {
     }
   }
 
+  /** Удалить канал **/
+  async function remove(channelId: number) {
+    try {
+      if (!channelId) return useShowError({ title: 'Отсутствует id канала' })
+      await channelsService.remove(channelId);
+    } catch (e) {
+      useShowError(e);
+    }
+  }
+
   const getCreationData = (
     mainData: IMyChannel,
     dates: Map<string, ISlotsItem[]>
@@ -91,6 +101,7 @@ export const useMyChannelsStore = defineStore("global/my-channels", () => {
   };
 
   return {
+    remove,
     channels,
     selectedChannel,
     initialChannelData,

@@ -127,4 +127,11 @@ export default class ChannelsService extends ApiService {
       body: JSON.stringify({ channelName }),
     });
   }
+
+  async remove(channelId: number) {
+    return await this.$authApi(this.apiUrl + "remove", {
+      method: "post",
+      body: JSON.stringify({ channelId }),
+    });
+  }
 }
