@@ -102,6 +102,7 @@ import FilterCalendarController from "~/controllers/FilterCalendarController/Fil
 import {useFormatsStore} from "~/store/formats/formats.store";
 import { useDateFormatter } from "~/composables/useDateFormatter";
 import type { IFilter, IFilterValues } from "~/types/filters";
+import { debounce } from "~/utils/debounce";
 
 const channelStore = useChannelStore();
 const userStore = useUserStore();
@@ -162,7 +163,7 @@ const filterValues: IFilterValues = reactive({
   subscribers: { from: "", to: "" },
 });
 
-const fetchChannels = async () => {
+const fetchChannels = debounce(async () => {
   await channelStore.getAll({
     dates: dates.value,
     filterValues: filterValues,
@@ -170,7 +171,7 @@ const fetchChannels = async () => {
     getQueryCategories: getQueryCategories.value,
     isMounted: true,
   });
-};
+}, 500);
 
 watch(
   [filterValues, paginationQuery, getQueryCategories],
