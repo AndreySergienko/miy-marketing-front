@@ -71,7 +71,12 @@ const errorCategory = () => {
   }
 };
 
-defineExpose({ errorCategory });
+const validateCategory = (): boolean => {
+  errorCategory();
+  return errors.category === "";
+};
+
+defineExpose({ validateCategory });
 
 watch(
   () => values,

@@ -126,7 +126,7 @@ const handleChangeDates = ({ dates }: { dates: string[] }) => {
 const editMain = ref(null);
 
 const handleCreateEditChannel = async () => {
-  const isCategoryValid = editMain.value?.errorCategory();
+  const isCategoryValid = editMain.value?.validateCategory();
   if (!isCategoryValid) {
     return;
   }
