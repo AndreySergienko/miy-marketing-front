@@ -35,7 +35,7 @@ export const useUserStore = defineStore("global/user", () => {
         permissions.value[permission] = permission;
       }
     } catch (e) {
-      useShowError(e);
+      console.log(e)
     }
   }
 
