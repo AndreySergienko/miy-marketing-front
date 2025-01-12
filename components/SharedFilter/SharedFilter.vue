@@ -65,9 +65,9 @@ const emit = defineEmits(["update:modelValue"]);
 const internalValue = ref<ISharedFilterRang>({ from: "", to: "" });
 
 const intervalOptions: ISharedSelectOption[] = [
-  { value: "1/24", title: "1/24" },
-  { value: "1/48", title: "1/48" },
-  { value: "30/24", title: "30/24" },
+  { value: "1", title: "1/24" },
+  { value: "2", title: "1/48" },
+  { value: "3", title: "30/24" },
 ];
 
 const timeFrom = ref<string>("");
