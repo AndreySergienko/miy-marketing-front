@@ -40,11 +40,11 @@ export const useMyChannelsStore = defineStore("global/my-channels", () => {
     dates: Map<string, ISlotsItem[]>
   ) {
     try {
-      if (mainData.categoryId) {
-        await alertStore.showError({
-          title: 'Укажите категорию канала'
-        })
-      }
+      // if (mainData.categoryId) {
+      //   await alertStore.showError({
+      //     title: 'Укажите категорию канала'
+      //   })
+      // }
       const data = getCreationData(mainData, dates);
 
       const response = await channelsService.register(data);

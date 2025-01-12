@@ -23,13 +23,16 @@
       type="text"
       placeholder="Текст"
     />
-    <DefaultSelect
-      class="telegram-edit-main__input"
-      label="Категория"
-      name="category"
-      placeholder="Развлечение"
-      :options="categories"
-    />
+    <div class="telegram-edit-main__input">
+      <DefaultSelect
+        label="Категория"
+        name="category"
+        :options="categories"
+        v-model="values.category"
+        @click="errorCategory"
+      />
+      <p v-if="errors.category" class="error-message">{{ errors.category }}</p>
+    </div>
   </section>
 </template>
 
@@ -38,12 +41,15 @@ import type {
   ITelegramEditMainProps,
   ITelegramEditMainEmits,
 } from "./TelegramEditMain.types";
-import {string} from "yup";
+import { string } from "yup";
 
 const props = defineProps<ITelegramEditMainProps>();
 const { name, url, conditionCheck, category } = toRefs(props);
-
 const emit = defineEmits<ITelegramEditMainEmits>();
+
+const errors = reactive({
+  category: "",
+});
 
 const { values } = useForm({
   initialValues: {
@@ -53,9 +59,19 @@ const { values } = useForm({
     category: category.value,
   },
   validationSchema: {
-    category: string().required(rules.required).label("")
-  }
+    category: string().required(rules.required).label("Категория"),
+  },
 });
+
+const errorCategory = () => {
+  if (values.category === 0) {
+    errors.category = "* Укажите категорию канала";
+  } else {
+    errors.category = "";
+  }
+};
+
+defineExpose({ errorCategory });
 
 watch(
   () => values,

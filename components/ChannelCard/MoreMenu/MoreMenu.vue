@@ -1,9 +1,9 @@
 <template>
   <div :class="['more-menu', rootClasses]">
-    <span class="more-menu__item" @click="$emit('edit')">Редактировать</span>
+    <span class="more-menu__item" @click.stop="$emit('edit')">Редактировать</span>
     <span
       class="more-menu__item more-menu__item--remove"
-      @click="$emit('delete')"
+      @click.stop="$emit('delete')"
     >
       Удалить
     </span>
