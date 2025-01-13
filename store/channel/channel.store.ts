@@ -58,12 +58,7 @@ export const useChannelStore = defineStore("global/channel", () => {
       if (isMounted) {
         channelsAll.value = channelList;
       } else {
-        // Добавляем только уникальные элементы
-        const existingChannelIds = new Set(channelsAll.value.map((channel) => channel.id));
-        const uniqueChannels = channelList.filter(
-          (channel) => !existingChannelIds.has(channel.id)
-        );
-        channelsAll.value.push(...uniqueChannels);
+        channelsAll.value.push(...channelList);
       }
     } catch (e) {
       useShowError(e);
