@@ -1,51 +1,72 @@
 <template>
   <div class="filter">
     <div class="filter__inner">
-      <!-- Интервал -->
-      <div class="filter__item" v-if="props.title === 'интервал'">
+      <div class="filter__item">
         <SharedSelect
-          :title="props.title"
-          :selected="String(internalValue)"
+          title="Интервал"
+          :selected="intervalId"
           :options="intervalOptions"
           filter
-          @select="updateValue($event)"
+          @select="updateValue('intervalId', $event)"
         />
       </div>
 
-      <!-- Цена или Подписчики -->
-      <div class="filter__item" v-else-if="props.title === 'цена' || props.title === 'подписчики'">
-        <div class="filter__item-title">{{ props.title }}</div>
+      <div class="filter__item">
+        <div class="filter__item-title">Цена</div>
         <div class="filter__item-form">
-          <AuthenticationInput
-            v-model="internalValue.from"
-            :name="`${props.title}-from`"
+          <SharedInput
+            v-model="priceMin"
+            name="price-min"
             type="text"
             placeholder="от"
+            @input="updateValue('priceMin', priceMin)"
           />
-          <AuthenticationInput
-            v-model="internalValue.to"
-            :name="`${props.title}-to`"
+          <SharedInput
+            v-model="priceMax"
+            name="price-max"
             type="text"
             placeholder="до"
+            @input="updateValue('priceMax', priceMax)"
           />
         </div>
       </div>
 
-      <!-- Время -->
-      <div class="filter__item" v-else-if="props.title === 'время'">
-        <div class="filter__item-title">{{ props.title }}</div>
+      <div class="filter__item">
+        <div class="filter__item-title">Время</div>
         <div class="filter__item-form">
-          <AuthenticationInput
-            v-model="timeFrom"
-            :name="`${props.title}-from`"
+          <SharedInput
+            v-model="dateMin"
+            name="date-min"
             type="datetime-local"
             placeholder="с"
+            @input="updateValue('dateMin', dateMin)"
           />
-          <AuthenticationInput
-            v-model="timeTo"
-            :name="`${props.title}-to`"
+          <SharedInput
+            v-model="dateMax"
+            name="date-max"
             type="datetime-local"
             placeholder="по"
+            @input="updateValue('dateMax', dateMax)"
+          />
+        </div>
+      </div>
+
+      <div class="filter__item">
+        <div class="filter__item-title">Подписчики</div>
+        <div class="filter__item-form">
+          <SharedInput
+            v-model="subscribersMin"
+            name="subscribers-min"
+            type="text"
+            placeholder="от"
+            @input="updateValue('subscribersMin', subscribersMin)"
+          />
+          <SharedInput
+            v-model="subscribersMax"
+            name="subscribers-max"
+            type="text"
+            placeholder="до"
+            @input="updateValue('subscribersMax', subscribersMax)"
           />
         </div>
       </div>
@@ -55,57 +76,59 @@
 
 <script setup lang="ts">
 import SharedSelect from "../SharedSelect/SharedSelect.vue";
-import type { ISharedFilterProps, ISharedFilterRang } from "./SharedFilter.types";
-import type { ISharedSelectOption } from "../SharedSelect/SharedSelect.types";
-import AuthenticationInput from "../AuthenticationInput/AuthenticationInput.vue";
 import { useChannelStore } from "~/store/channel/channel.store";
+import type { IFormat } from "~/api/methods/channels/channels.types";
 
-const channelStore = useChannelStore()
+const channelStore = useChannelStore();
 
-const props = defineProps<ISharedFilterProps>();
 const emit = defineEmits(["update:modelValue"]);
 
-const internalValue = ref<ISharedFilterRang>({ from: "", to: "" });
+const priceMin = ref<string>("");
+const priceMax = ref<string>("");
+const dateMin = ref<string>("");
+const dateMax = ref<string>("");
+const subscribersMin = ref<string>("");
+const subscribersMax = ref<string>("");
+const intervalId = ref<string>("");
 
 const intervalOptions = computed(() =>
-  channelStore.formatAll.map((format) => ({
-    value: format.id.toString(), 
+  channelStore.formatAll.map((format:IFormat) => ({
+    value: format.id.toString(),
     title: format.value,
   }))
 );
 
-const timeFrom = ref<string>("");
-const timeTo = ref<string>("");
+const currentFilters = computed(() => ({
+  priceMin: priceMin.value,
+  priceMax: priceMax.value,
+  dateMin: dateMin.value,
+  dateMax: dateMax.value,
+  subscribersMin: subscribersMin.value,
+  subscribersMax: subscribersMax.value,
+  intervalId: intervalId.value,
+}));
 
-const timeToTimestamp = (datetime: string): number => {
-  if (!datetime) return 0;
-  return new Date(datetime).getTime();
+// Обновление значений фильтров
+const updateValue = (key: string, value: string) => {
+  let updatedValue;
+
+  // Преобразование значений фильтра времени в timestamp
+  if (key === "dateMin" || key === "dateMax") {
+    const updatedFilters = {
+      dateMin: dateMin.value ? new Date(dateMin.value).getTime().toString() : "",
+      dateMax: dateMax.value ? new Date(dateMax.value).getTime().toString() : "",
+    };
+    updatedValue = updatedFilters;
+    // Обновление значения фильтра интервал
+  } else if (key === "intervalId") {
+    intervalId.value = value
+  } else {
+    updatedValue = { [key]: value };
+  }
+
+  emit("update:modelValue", { ...currentFilters.value, ...updatedValue });
 };
-
-// Обновление значений времени
-watch([timeFrom, timeTo], ([from, to]) => {
-  internalValue.value = {
-    from: timeToTimestamp(from),
-    to: timeToTimestamp(to),
-  };
-  emit("update:modelValue", internalValue.value);
-});
-
-// Обновление значения фильтра
-const updateValue = (value: string | { from: string; to: string }) => {
-  internalValue.value = value;
-  emit("update:modelValue", value);
-};
-
-watch(
-  internalValue.value,
-  (newValue) => {
-    emit("update:modelValue", newValue);
-  },
-  { deep: true }
-);
 </script>
-
 
 <style scoped lang="scss">
   @use "assets/styles/media";

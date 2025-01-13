@@ -68,26 +68,26 @@ export default class ChannelsService extends ApiService {
     const params = new URLSearchParams();
 
     if (filterValues) {
-      if (filterValues.price.from) {
-        params.append("priceMin", filterValues.price.from);
+      if (filterValues.priceMin) {
+        params.append("priceMin", filterValues.priceMin);
       }
-      if (filterValues.price.to) {
-        params.append("priceMax", filterValues.price.to);
+      if (filterValues.priceMax) {
+        params.append("priceMax", filterValues.priceMax);
       }
-      if (filterValues.time.from) {
-        params.append("dateMin", String(filterValues.time.from));
+      if (filterValues.dateMin) {
+        params.append("dateMin", String(filterValues.dateMin));
       }
-      if (filterValues.time.to) {
-        params.append("dateMax", String(filterValues.time.to));
+      if (filterValues.dateMax) {
+        params.append("dateMax", String(filterValues.dateMax));
       }
-      if (filterValues.interval) {
-        params.append("intervalId", filterValues.interval);
+      if (filterValues.intervalId) {
+        params.append("intervalId", filterValues.intervalId);
       }
-      if (filterValues.subscribers.from) {
-        params.append("subscribersMin", filterValues.subscribers.from);
+      if (filterValues.subscribersMin) {
+        params.append("subscribersMin", filterValues.subscribersMin);
       }
-      if (filterValues.subscribers.to) {
-        params.append("subscribersMax", filterValues.subscribers.to);
+      if (filterValues.subscribersMax) {
+        params.append("subscribersMax", filterValues.subscribersMax);
       }
     }
 
