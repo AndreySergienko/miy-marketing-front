@@ -84,7 +84,7 @@ const channelStore = useChannelStore();
 
 const emit = defineEmits(["update:modelValue"]);
 
-const priceMin = ref<string>("");
+const priceMin = ref<string>(""); 
 const priceMax = ref<string>("");
 const dateMin = ref<string>("");
 const dateMax = ref<string>("");
@@ -93,43 +93,36 @@ const subscribersMax = ref<string>("");
 const intervalId = ref<string>("");
 
 const intervalOptions = computed(() =>
-  channelStore.formatAll.map((format:IFormat) => ({
+  channelStore.formatAll.map((format: IFormat) => ({
     value: format.id.toString(),
     title: format.value,
   }))
 );
 
-const currentFilters = computed(() => ({
+// Преобразование значений в объект фильтров
+const currentFilters = () => ({
   priceMin: priceMin.value,
   priceMax: priceMax.value,
-  dateMin: dateMin.value,
-  dateMax: dateMax.value,
+  dateMin: dateMin.value ? new Date(dateMin.value).getTime().toString() : "",
+  dateMax: dateMax.value ? new Date(dateMax.value).getTime().toString() : "",
   subscribersMin: subscribersMin.value,
   subscribersMax: subscribersMax.value,
   intervalId: intervalId.value,
-}));
+});
 
 // Обновление значений фильтров
 const updateValue = (key: string, value: string) => {
   let updatedValue;
-
-  // Преобразование значений фильтра времени в timestamp
-  if (key === "dateMin" || key === "dateMax") {
-    const updatedFilters = {
-      dateMin: dateMin.value ? new Date(dateMin.value).getTime().toString() : "",
-      dateMax: dateMax.value ? new Date(dateMax.value).getTime().toString() : "",
-    };
-    updatedValue = updatedFilters;
-    // Обновление значения фильтра интервал
-  } else if (key === "intervalId") {
-    intervalId.value = value
+   if (key === "intervalId") {
+    intervalId.value = value;
   } else {
     updatedValue = { [key]: value };
   }
 
-  emit("update:modelValue", { ...currentFilters.value, ...updatedValue });
+  emit("update:modelValue", currentFilters());
 };
 </script>
+
 
 <style scoped lang="scss">
   @use "assets/styles/media";
