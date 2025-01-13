@@ -1,15 +1,6 @@
 <template>
   <div class="filter">
     <div class="filter__inner">
-      <div class="filter__item">
-        <SharedSelect
-          title="Интервал"
-          :selected="intervalId"
-          :options="intervalOptions"
-          filter
-          @select="updateValue('intervalId', $event)"
-        />
-      </div>
 
       <div class="filter__item">
         <div class="filter__item-title">Цена</div>
@@ -49,6 +40,16 @@
             @input="updateValue('dateMax', dateMax)"
           />
         </div>
+      </div>
+
+      <div class="filter__item">
+        <SharedSelect
+          title="Интервал"
+          :selected="intervalId"
+          :options="intervalOptions"
+          filter
+          @select="updateValue('intervalId', $event)"
+        />
       </div>
 
       <div class="filter__item">
@@ -134,6 +135,10 @@ const updateValue = (key: string, value: string) => {
   @use "assets/styles/media";
   
   .filter {
+    &__inner {
+      display: flex;
+      gap: var(--indent-3xl);
+    }
     &__item {
       display: flex;
       flex-direction: column;
