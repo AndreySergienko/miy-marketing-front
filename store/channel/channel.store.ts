@@ -18,9 +18,12 @@ export const useChannelStore = defineStore("global/channel", () => {
   const channelsAll = ref<IGetAll[]>([]);
   const initialChannelData = ref<IInitialChannelData | null>(null);
   const isLoading = ref<boolean>(false);
+  const countAllChannels = ref<number>(0)
 
   /** Формат */
   const formatAll = ref<IFormat[]>([]);
+
+  const isMore = computed<boolean>(() =>  countAllChannels.value > channelsAll.value.length)
 
   /** Получение списка интервалов */
   async function getAllFormat() {
@@ -49,16 +52,17 @@ export const useChannelStore = defineStore("global/channel", () => {
     isMounted?: boolean;
   }) {
     try {
-      const channelList = await channelsService.getAll(
+      const { list, countChannels } = await channelsService.getAll(
         dates,
         filterValues,
         paginationQuery,
         getQueryCategories
       );
+      countAllChannels.value = countChannels
       if (isMounted) {
-        channelsAll.value = channelList;
+        channelsAll.value = list;
       } else {
-        channelsAll.value.push(...channelList);
+        channelsAll.value.push(...list);
       }
     } catch (e) {
       useShowError(e);
@@ -101,5 +105,6 @@ export const useChannelStore = defineStore("global/channel", () => {
     formatAll,
     getAllFormat,
     isLoading,
+    isMore
   };
 });

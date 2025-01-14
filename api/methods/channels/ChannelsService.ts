@@ -1,11 +1,11 @@
 import ApiService from "~/api/core/ApiService";
 import type { IMyChannel } from "~/store/myChannels/myChannels.types";
-import type {
+import {
   IApiChannelsListItem,
   IChannelsRegistrationBody,
   IInitialChannelData,
   IGetAll,
-  IFormat,
+  IFormat, IGetAllResponse,
 } from "./channels.types";
 import type { IFilterValues } from "~/types/filters";
 
@@ -53,7 +53,7 @@ export default class ChannelsService extends ApiService {
     filterValues?: IFilterValues,
     paginationQuery?: string,
     getQueryCategories?: string | null
-  ): Promise<IGetAll[]> {
+  ): Promise<IGetAllResponse> {
     const parsedDates = dates
       .map((item) => {
         let incorrectDay = String(item.getDate());
@@ -95,9 +95,11 @@ export default class ChannelsService extends ApiService {
       ? `${paginationQuery}&${getQueryCategories}`
       : paginationQuery;
 
-    const fullUrl = `${this.apiUrl}all?dates=${parsedDates}&${params.toString()}&${fullPath}`;
+    const computedParsedDates = parsedDates ? `dates=${parsedDates}` : ''
+    const computedParams = String(params) ? `&${String(params)}` : ''
+    const fullUrl = `${this.apiUrl}all?${computedParsedDates}${computedParams}&${fullPath}`;
 
-    return await this.$api<IGetAll[]>(fullUrl, {
+    return await this.$api<IGetAllResponse>(fullUrl, {
       method: "get",
     });
   }

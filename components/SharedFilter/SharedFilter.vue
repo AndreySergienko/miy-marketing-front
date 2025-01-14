@@ -32,6 +32,7 @@
             placeholder="с"
             @input="updateValue('dateMin', dateMin)"
           />
+
           <SharedInput
             v-model="dateMax"
             name="date-max"
