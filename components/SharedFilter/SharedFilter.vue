@@ -38,13 +38,13 @@
           <AuthenticationInput
             v-model="timeFrom"
             :name="`${props.title}-from`"
-            type="datetime-local"
+            type="time"
             placeholder="с"
           />
           <AuthenticationInput
             v-model="timeTo"
             :name="`${props.title}-to`"
-            type="datetime-local"
+            type="time"
             placeholder="по"
           />
         </div>
@@ -77,16 +77,17 @@ const intervalOptions = computed(() =>
 const timeFrom = ref<string>("");
 const timeTo = ref<string>("");
 
-const timeToTimestamp = (datetime: string): number => {
-  if (!datetime) return 0;
-  return new Date(datetime).getTime();
+const formatTime = (time: string): string => {
+  if (!time) return "";
+  const [hours, minutes] = time.split(":");
+  return `${hours}.${minutes}`;
 };
 
 // Обновление значений времени
 watch([timeFrom, timeTo], ([from, to]) => {
   internalValue.value = {
-    from: timeToTimestamp(from),
-    to: timeToTimestamp(to),
+    from: formatTime(from),
+    to: formatTime(to),
   };
   emit("update:modelValue", internalValue.value);
 });
