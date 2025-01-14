@@ -28,7 +28,7 @@
           <SharedInput
             v-model="dateMin"
             name="date-min"
-            type="datetime-local"
+            type="time"
             placeholder="с"
             @input="updateValue('dateMin', dateMin)"
           />
@@ -36,7 +36,7 @@
           <SharedInput
             v-model="dateMax"
             name="date-max"
-            type="datetime-local"
+            type="time"
             placeholder="по"
             @input="updateValue('dateMax', dateMax)"
           />
@@ -104,12 +104,19 @@ const intervalOptions = computed(() =>
 const currentFilters = () => ({
   priceMin: priceMin.value,
   priceMax: priceMax.value,
-  dateMin: dateMin.value ? new Date(dateMin.value).getTime().toString() : "",
-  dateMax: dateMax.value ? new Date(dateMax.value).getTime().toString() : "",
+  dateMin: dateMin.value ? formatTime(dateMin.value) : "",
+  dateMax: dateMax.value ? formatTime(dateMax.value) : "",
   subscribersMin: subscribersMin.value,
   subscribersMax: subscribersMax.value,
   intervalId: intervalId.value,
 });
+
+const formatTime = (time: string): string => {
+  if (!time) return "";
+  const [hours, minutes] = time.split(":");
+  return `${hours}.${minutes}`;
+};
+
 
 // Обновление значений фильтров
 const updateValue = (key: string, value: string) => {

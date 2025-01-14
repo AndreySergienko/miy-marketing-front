@@ -60,45 +60,30 @@ export default class ChannelsService extends ApiService {
         const day = incorrectDay.length === 1 ? `0${incorrectDay}` : incorrectDay;
         const month = item.getMonth() + 1;
         const year = item.getFullYear();
-
+  
         return `${day}.${month}.${year}`;
       })
       .join(",");
-
-    const params = new URLSearchParams();
-
-    if (filterValues) {
-      if (filterValues.priceMin) {
-        params.append("priceMin", filterValues.priceMin);
-      }
-      if (filterValues.priceMax) {
-        params.append("priceMax", filterValues.priceMax);
-      }
-      if (filterValues.dateMin) {
-        params.append("dateMin", String(filterValues.dateMin));
-      }
-      if (filterValues.dateMax) {
-        params.append("dateMax", String(filterValues.dateMax));
-      }
-      if (filterValues.intervalId) {
-        params.append("intervalId", filterValues.intervalId);
-      }
-      if (filterValues.subscribersMin) {
-        params.append("subscribersMin", filterValues.subscribersMin);
-      }
-      if (filterValues.subscribersMax) {
-        params.append("subscribersMax", filterValues.subscribersMax);
-      }
-    }
-
-    const fullPath = getQueryCategories
-      ? `${paginationQuery}&${getQueryCategories}`
-      : paginationQuery;
-
-    const computedParsedDates = parsedDates ? `dates=${parsedDates}` : ''
-    const computedParams = String(params) ? `&${String(params)}` : ''
-    const fullUrl = `${this.apiUrl}all?${computedParsedDates}${computedParams}&${fullPath}`;
-
+  
+    const keysAndValuesFilter = {
+      priceMin: filterValues?.priceMin,
+      priceMax: filterValues?.priceMax,
+      dateMin: filterValues?.dateMin,
+      dateMax: filterValues?.dateMax,
+      intervalId: filterValues?.intervalId,
+      subscribersMin: filterValues?.subscribersMin,
+      subscribersMax: filterValues?.subscribersMax,
+    };
+  
+    let filterQuery = "";
+    Object.entries(keysAndValuesFilter).forEach(([key, value]) => {
+      if (!value) return;
+      filterQuery += `&${key}=${value}`;
+    });
+  
+    const categoriesQuery = getQueryCategories ? `&${getQueryCategories}` : "";
+    const fullUrl = `${this.apiUrl}all?dates=${parsedDates}${filterQuery}&${paginationQuery}${categoriesQuery}`;
+  
     return await this.$api<IGetAllResponse>(fullUrl, {
       method: "get",
     });
