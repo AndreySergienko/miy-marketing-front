@@ -32,7 +32,6 @@ const input = computed({
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 13px;
 
     &__name {
       display: flex;

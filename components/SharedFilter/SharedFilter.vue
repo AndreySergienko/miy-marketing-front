@@ -139,6 +139,12 @@ const updateValue = (key: string, value: string) => {
     &__inner {
       display: flex;
       gap: var(--indent-3xl);
+
+      @include media.media-breakpoint-down (sm) {
+        margin-top: var(--indent-m);
+        flex-direction: column;
+        gap: var(--indent-xl);
+      }
     }
     &__item {
       display: flex;
@@ -147,6 +153,7 @@ const updateValue = (key: string, value: string) => {
 
       &-title {
         font-size: var(--font-size-m);
+        margin-bottom: var(--indent-m);
       }
 
       &-form {

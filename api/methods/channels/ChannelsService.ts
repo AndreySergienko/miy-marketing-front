@@ -67,23 +67,15 @@ export default class ChannelsService extends ApiService {
       })
       .join(",");
   
-    const keysAndValuesFilter = {
-      priceMin: filterValues?.priceMin,
-      priceMax: filterValues?.priceMax,
-      dateMin: filterValues?.dateMin,
-      dateMax: filterValues?.dateMax,
-      intervalId: filterValues?.intervalId,
-      subscribersMin: filterValues?.subscribersMin,
-      subscribersMax: filterValues?.subscribersMax,
-    };
-  
     const params = new URLSearchParams();
   
-    Object.entries(keysAndValuesFilter).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== "") {
-        params.append(key, String(value));
-      }
-    });
+    if (filterValues) {
+      Object.entries(filterValues).forEach(([key, value]) => {
+        if (value !== undefined && value !== null && value !== "") {
+          params.append(key, String(value));
+        }
+      });
+    }
   
     const queryParts: string[] = [];
     if (parsedDates) queryParts.push(`dates=${parsedDates}`);
