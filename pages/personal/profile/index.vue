@@ -46,7 +46,7 @@
         <div class="profile-page__block-text">
           <h2 class="profile-page__block-text--title">Реквизиты</h2>
           <p class="profile-page__block-text--description">
-            Укажите ваши реквизиты
+            Если у вас статус ИП, то необходимо указать реквизиты ИП
           </p>
         </div>
         <div class="profile-page__block-inputs">
@@ -79,14 +79,6 @@
             name="bankCurAccount"
             placeholder="Введите расчетный счет"
           />
-          <transition name="fade">
-            <SharedTooltip
-              :is-active="activeToolTip"
-              class="profile-channels-item__panel-controls--tooltip"
-              text="*Если у вас статус ИП, то необходимо указать реквизиты ИП"
-              border-color="#ffd0d0"
-            />
-          </transition>
           </div>
         </div>
       </section>
