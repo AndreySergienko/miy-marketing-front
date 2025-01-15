@@ -3,7 +3,7 @@
     <div class="filter__inner">
 
       <div class="filter__item">
-        <div class="filter__item-title">Цена</div>
+        <div class="filter__item-title">цена</div>
         <div class="filter__item-form">
           <SharedInput
             v-model="priceMin"
@@ -23,7 +23,7 @@
       </div>
 
       <div class="filter__item">
-        <div class="filter__item-title">Время</div>
+        <div class="filter__item-title">время</div>
         <div class="filter__item-form">
           <SharedInput
             v-model="dateMin"
@@ -45,7 +45,7 @@
 
       <div class="filter__item">
         <SharedSelect
-          title="Интервал"
+          title="интервал"
           :selected="intervalId"
           :options="intervalOptions"
           filter
@@ -54,7 +54,7 @@
       </div>
 
       <div class="filter__item">
-        <div class="filter__item-title">Подписчики</div>
+        <div class="filter__item-title">подписчики</div>
         <div class="filter__item-form">
           <SharedInput
             v-model="subscribersMin"
