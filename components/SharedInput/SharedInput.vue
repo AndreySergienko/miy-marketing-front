@@ -36,10 +36,10 @@ const input = computed({
     &__name {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      font-weight: 500;
+      font-size: var(--font-size-m);
+      font-weight: var(--font-weight-medium);
       color: var(--new-black);
+      margin-bottom: var(--indent-s);
     }
 
     &__input {

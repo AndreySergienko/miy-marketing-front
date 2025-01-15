@@ -153,7 +153,6 @@ const updateValue = (key: string, value: string) => {
 
       &-title {
         font-size: var(--font-size-m);
-        margin-bottom: var(--indent-m);
       }
 
       &-form {
