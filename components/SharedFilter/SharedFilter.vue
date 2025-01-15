@@ -152,6 +152,7 @@ const updateValue = (key: string, value: string) => {
       align-items: flex-start;
 
       &-title {
+        margin-left: var(--indent-m);
         font-size: var(--font-size-m);
       }
 

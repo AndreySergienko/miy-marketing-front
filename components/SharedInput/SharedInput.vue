@@ -39,6 +39,7 @@ const input = computed({
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
       color: var(--new-black);
+      margin-left: var(--indent-m);
       margin-bottom: var(--indent-s);
     }
 
