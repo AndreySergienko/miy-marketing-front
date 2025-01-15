@@ -57,9 +57,11 @@ export default class ChannelsService extends ApiService {
     const parsedDates = dates
       .map((item) => {
         let incorrectDay = String(item.getDate());
-        const day = incorrectDay.length === 1 ? `0${incorrectDay}` : incorrectDay;
-        const month = item.getMonth() + 1;
+        let incorrectMonth = String(item.getMonth() + 1);
         const year = item.getFullYear();
+  
+        const day = incorrectDay.length === 1 ? `0${incorrectDay}` : incorrectDay;
+        let month = incorrectMonth.length === 1 ? `0${incorrectMonth}` : incorrectMonth;
   
         return `${day}.${month}.${year}`;
       })
@@ -75,14 +77,27 @@ export default class ChannelsService extends ApiService {
       subscribersMax: filterValues?.subscribersMax,
     };
   
-    let filterQuery = "";
+    const params = new URLSearchParams();
+  
     Object.entries(keysAndValuesFilter).forEach(([key, value]) => {
-      if (!value) return;
-      filterQuery += `&${key}=${value}`;
+      if (value !== undefined && value !== null && value !== "") {
+        params.append(key, String(value));
+      }
     });
   
-    const categoriesQuery = getQueryCategories ? `&${getQueryCategories}` : "";
-    const fullUrl = `${this.apiUrl}all?dates=${parsedDates}${filterQuery}&${paginationQuery}${categoriesQuery}`;
+    const queryParts: string[] = [];
+    if (parsedDates) queryParts.push(`dates=${parsedDates}`);
+    const filterQuery = params.toString();
+    if (filterQuery) queryParts.push(filterQuery);
+    if (paginationQuery) queryParts.push(paginationQuery);
+    if (getQueryCategories) {
+      if (getQueryCategories !== "categories=") {
+        queryParts.push(getQueryCategories);
+      }
+    }
+  
+    const fullQueryString = queryParts.join("&");
+    const fullUrl = `${this.apiUrl}all${fullQueryString ? `?${fullQueryString}` : ""}`;
   
     return await this.$api<IGetAllResponse>(fullUrl, {
       method: "get",
