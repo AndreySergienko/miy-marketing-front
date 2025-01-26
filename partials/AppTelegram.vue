@@ -74,6 +74,7 @@
            ...activeChannel,
            url: activeChannel.link
           }"
+          :image="activeChannel.avatar"
           :dates="getFormattedDates(activeChannel.channelDates)"
           :category="activeChannel.categories[0].description"
           @close="clearInfoChannel"
