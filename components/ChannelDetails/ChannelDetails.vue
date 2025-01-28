@@ -28,7 +28,7 @@
             <tr>
               <th>Адрес</th>
               <td>
-                <NuxtLink :to="formattedUrl" external target="_blank">
+                <NuxtLink :to="url" external target="_blank">
                   {{ url }}
                 </NuxtLink>
               </td>
@@ -74,7 +74,6 @@ interface IChannelDetailsEmits {
 
 const emit = defineEmits<IChannelDetailsEmits>()
 
-const formattedUrl = computed(() => `https://t.me/${url.value.slice(1)}`);
 const handleEdit = () => navigateTo(`/personal/telegram/edit/${id.value}`);
 </script>
 
