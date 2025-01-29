@@ -57,48 +57,40 @@ export default class ChannelsService extends ApiService {
     const parsedDates = dates
       .map((item) => {
         let incorrectDay = String(item.getDate());
-        const day = incorrectDay.length === 1 ? `0${incorrectDay}` : incorrectDay;
-        const month = item.getMonth() + 1;
+        let incorrectMonth = String(item.getMonth() + 1);
         const year = item.getFullYear();
-
+  
+        const day = incorrectDay.length === 1 ? `0${incorrectDay}` : incorrectDay;
+        let month = incorrectMonth.length === 1 ? `0${incorrectMonth}` : incorrectMonth;
+  
         return `${day}.${month}.${year}`;
       })
       .join(",");
-
+  
     const params = new URLSearchParams();
-
+  
     if (filterValues) {
-      if (filterValues.price.from) {
-        params.append("priceMin", filterValues.price.from);
-      }
-      if (filterValues.price.to) {
-        params.append("priceMax", filterValues.price.to);
-      }
-      if (filterValues.time.from) {
-        params.append("dateMin", String(filterValues.time.from));
-      }
-      if (filterValues.time.to) {
-        params.append("dateMax", String(filterValues.time.to));
-      }
-      if (filterValues.interval) {
-        params.append("intervalId", filterValues.interval);
-      }
-      if (filterValues.subscribers.from) {
-        params.append("subscribersMin", filterValues.subscribers.from);
-      }
-      if (filterValues.subscribers.to) {
-        params.append("subscribersMax", filterValues.subscribers.to);
+      Object.entries(filterValues).forEach(([key, value]) => {
+        if (value !== undefined && value !== null && value !== "") {
+          params.append(key, String(value));
+        }
+      });
+    }
+  
+    const queryParts: string[] = [];
+    if (parsedDates) queryParts.push(`dates=${parsedDates}`);
+    const filterQuery = params.toString();
+    if (filterQuery) queryParts.push(filterQuery);
+    if (paginationQuery) queryParts.push(paginationQuery);
+    if (getQueryCategories) {
+      if (getQueryCategories !== "categories=") {
+        queryParts.push(getQueryCategories);
       }
     }
-
-    const fullPath = getQueryCategories
-      ? `${paginationQuery}&${getQueryCategories}`
-      : paginationQuery;
-
-    const computedParsedDates = parsedDates ? `dates=${parsedDates}` : ''
-    const computedParams = String(params) ? `&${String(params)}` : ''
-    const fullUrl = `${this.apiUrl}all?${computedParsedDates}${computedParams}&${fullPath}`;
-
+  
+    const fullQueryString = queryParts.join("&");
+    const fullUrl = `${this.apiUrl}all${fullQueryString ? `?${fullQueryString}` : ""}`;
+  
     return await this.$api<IGetAllResponse>(fullUrl, {
       method: "get",
     });

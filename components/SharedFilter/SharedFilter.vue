@@ -1,51 +1,74 @@
 <template>
   <div class="filter">
     <div class="filter__inner">
-      <!-- Интервал -->
-      <div class="filter__item" v-if="props.title === 'интервал'">
-        <SharedSelect
-          :title="props.title"
-          :selected="String(internalValue)"
-          :options="intervalOptions"
-          filter
-          @select="updateValue($event)"
-        />
-      </div>
 
-      <!-- Цена или Подписчики -->
-      <div class="filter__item" v-else-if="props.title === 'цена' || props.title === 'подписчики'">
-        <div class="filter__item-title">{{ props.title }}</div>
+      <div class="filter__item">
+        <div class="filter__item-title">цена</div>
         <div class="filter__item-form">
-          <AuthenticationInput
-            v-model="internalValue.from"
-            :name="`${props.title}-from`"
+          <SharedInput
+            v-model="priceMin"
+            name="price-min"
             type="text"
             placeholder="от"
+            @input="updateValue('priceMin', priceMin)"
           />
-          <AuthenticationInput
-            v-model="internalValue.to"
-            :name="`${props.title}-to`"
+          <SharedInput
+            v-model="priceMax"
+            name="price-max"
             type="text"
             placeholder="до"
+            @input="updateValue('priceMax', priceMax)"
           />
         </div>
       </div>
 
-      <!-- Время -->
-      <div class="filter__item" v-else-if="props.title === 'время'">
-        <div class="filter__item-title">{{ props.title }}</div>
+      <div class="filter__item">
+        <div class="filter__item-title">время</div>
         <div class="filter__item-form">
-          <AuthenticationInput
-            v-model="timeFrom"
-            :name="`${props.title}-from`"
+          <SharedInput
+            v-model="dateMin"
+            name="date-min"
             type="time"
             placeholder="с"
+            @input="updateValue('dateMin', dateMin)"
           />
-          <AuthenticationInput
-            v-model="timeTo"
-            :name="`${props.title}-to`"
+
+          <SharedInput
+            v-model="dateMax"
+            name="date-max"
             type="time"
             placeholder="по"
+            @input="updateValue('dateMax', dateMax)"
+          />
+        </div>
+      </div>
+
+      <div class="filter__item">
+        <SharedSelect
+          title="интервал"
+          :selected="intervalId"
+          :options="intervalOptions"
+          filter
+          @select="updateValue('intervalId', $event)"
+        />
+      </div>
+
+      <div class="filter__item">
+        <div class="filter__item-title">подписчики</div>
+        <div class="filter__item-form">
+          <SharedInput
+            v-model="subscribersMin"
+            name="subscribers-min"
+            type="text"
+            placeholder="от"
+            @input="updateValue('subscribersMin', subscribersMin)"
+          />
+          <SharedInput
+            v-model="subscribersMax"
+            name="subscribers-max"
+            type="text"
+            placeholder="до"
+            @input="updateValue('subscribersMax', subscribersMax)"
           />
         </div>
       </div>
@@ -55,27 +78,38 @@
 
 <script setup lang="ts">
 import SharedSelect from "../SharedSelect/SharedSelect.vue";
-import type { ISharedFilterProps, ISharedFilterRang } from "./SharedFilter.types";
-import type { ISharedSelectOption } from "../SharedSelect/SharedSelect.types";
-import AuthenticationInput from "../AuthenticationInput/AuthenticationInput.vue";
 import { useChannelStore } from "~/store/channel/channel.store";
+import type { IFormat } from "~/api/methods/channels/channels.types";
 
-const channelStore = useChannelStore()
+const channelStore = useChannelStore();
 
-const props = defineProps<ISharedFilterProps>();
 const emit = defineEmits(["update:modelValue"]);
 
-const internalValue = ref<ISharedFilterRang>({ from: "", to: "" });
+const priceMin = ref<string>(""); 
+const priceMax = ref<string>("");
+const dateMin = ref<string>("");
+const dateMax = ref<string>("");
+const subscribersMin = ref<string>("");
+const subscribersMax = ref<string>("");
+const intervalId = ref<string>("");
 
 const intervalOptions = computed(() =>
-  channelStore.formatAll.map((format) => ({
-    value: format.id.toString(), 
+  channelStore.formatAll.map((format: IFormat) => ({
+    value: format.id.toString(),
     title: format.value,
   }))
 );
 
-const timeFrom = ref<string>("");
-const timeTo = ref<string>("");
+// Преобразование значений в объект фильтров
+const currentFilters = () => ({
+  priceMin: priceMin.value,
+  priceMax: priceMax.value,
+  dateMin: dateMin.value ? formatTime(dateMin.value) : "",
+  dateMax: dateMax.value ? formatTime(dateMax.value) : "",
+  subscribersMin: subscribersMin.value,
+  subscribersMax: subscribersMax.value,
+  intervalId: intervalId.value,
+});
 
 const formatTime = (time: string): string => {
   if (!time) return "";
@@ -83,28 +117,18 @@ const formatTime = (time: string): string => {
   return `${hours}.${minutes}`;
 };
 
-// Обновление значений времени
-watch([timeFrom, timeTo], ([from, to]) => {
-  internalValue.value = {
-    from: formatTime(from),
-    to: formatTime(to),
-  };
-  emit("update:modelValue", internalValue.value);
-});
 
-// Обновление значения фильтра
-const updateValue = (value: string | { from: string; to: string }) => {
-  internalValue.value = value;
-  emit("update:modelValue", value);
+// Обновление значений фильтров
+const updateValue = (key: string, value: string) => {
+  let updatedValue;
+   if (key === "intervalId") {
+    intervalId.value = value;
+  } else {
+    updatedValue = { [key]: value };
+  }
+
+  emit("update:modelValue", currentFilters());
 };
-
-watch(
-  internalValue.value,
-  (newValue) => {
-    emit("update:modelValue", newValue);
-  },
-  { deep: true }
-);
 </script>
 
 
@@ -112,12 +136,23 @@ watch(
   @use "assets/styles/media";
   
   .filter {
+    &__inner {
+      display: flex;
+      gap: var(--indent-3xl);
+
+      @include media.media-breakpoint-down (sm) {
+        margin-top: var(--indent-m);
+        flex-direction: column;
+        gap: var(--indent-xl);
+      }
+    }
     &__item {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
 
       &-title {
+        margin-left: var(--indent-m);
         font-size: var(--font-size-m);
       }
 
