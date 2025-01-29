@@ -4,8 +4,7 @@
       <div class="contact__title">
         <SharedTitle>Контакты</SharedTitle>
         <SharedText>
-          Свяжитесь с нами для консультации или заказа рекламной кампании. Мы всегда
-          на связи и готовы помочь вам добиться успеха в продвижении в телеграмме.
+          Всегда рады Вам помочь и выслушать предложения.
         </SharedText>
       </div>
       <div class="contact__items">
@@ -19,7 +18,7 @@
         </div>
         <div class="contact__item">
           <h3 class="contact__item-title">Адрес</h3>
-          <SharedText>РФ, г. Москва, вн.тер. г. муниципальный округ Раменки, км МЖД Киевское 5-й, д. 1, стр. 1, помещ. 3/3</SharedText>
+          <SharedText>121471, Г.МОСКВА, ВН.ТЕР.Г. МУНИЦИПАЛЬНЫЙ ОКРУГ ОЧАКОВО-МАТВЕЕВСКОЕ, УЛ РЯБИНОВАЯ, Д. 26, СТР. 1, ПОМЕЩ. 115</SharedText>
         </div>
         <div class="contact__item">
           <h3 class="contact__item-title">ИНН</h3>
