@@ -18,7 +18,7 @@
             />
           </div>
           <div class="tg__filters">
-            <SharedFilter
+            <FilterAppTelegram
               v-model="filterValues"
             />
           </div>
@@ -99,6 +99,7 @@ import {useFormatsStore} from "~/store/formats/formats.store";
 import { useDateFormatter } from "~/composables/useDateFormatter";
 import type {IFilterValues } from "~/types/filters";
 import { debounce } from "~/utils/debounce";
+import FilterAppTelegram from "~/components/FilterAppTelegram/FilterAppTelegram.vue";
 
 const channelStore = useChannelStore();
 const userStore = useUserStore();
