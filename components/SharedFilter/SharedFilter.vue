@@ -38,13 +38,13 @@
           <AuthenticationInput
             v-model="timeFrom"
             :name="`${props.title}-from`"
-            type="datetime-local"
+            type="time"
             placeholder="с"
           />
           <AuthenticationInput
             v-model="timeTo"
             :name="`${props.title}-to`"
-            type="datetime-local"
+            type="time"
             placeholder="по"
           />
         </div>
@@ -58,31 +58,36 @@ import SharedSelect from "../SharedSelect/SharedSelect.vue";
 import type { ISharedFilterProps, ISharedFilterRang } from "./SharedFilter.types";
 import type { ISharedSelectOption } from "../SharedSelect/SharedSelect.types";
 import AuthenticationInput from "../AuthenticationInput/AuthenticationInput.vue";
+import { useChannelStore } from "~/store/channel/channel.store";
+
+const channelStore = useChannelStore()
 
 const props = defineProps<ISharedFilterProps>();
 const emit = defineEmits(["update:modelValue"]);
 
 const internalValue = ref<ISharedFilterRang>({ from: "", to: "" });
 
-const intervalOptions: ISharedSelectOption[] = [
-  { value: "1/24", title: "1/24" },
-  { value: "1/48", title: "1/48" },
-  { value: "30/24", title: "30/24" },
-];
+const intervalOptions = computed(() =>
+  channelStore.formatAll.map((format) => ({
+    value: format.id.toString(), 
+    title: format.value,
+  }))
+);
 
 const timeFrom = ref<string>("");
 const timeTo = ref<string>("");
 
-const timeToTimestamp = (datetime: string): number => {
-  if (!datetime) return 0;
-  return new Date(datetime).getTime();
+const formatTime = (time: string): string => {
+  if (!time) return "";
+  const [hours, minutes] = time.split(":");
+  return `${hours}.${minutes}`;
 };
 
 // Обновление значений времени
 watch([timeFrom, timeTo], ([from, to]) => {
   internalValue.value = {
-    from: timeToTimestamp(from),
-    to: timeToTimestamp(to),
+    from: formatTime(from),
+    to: formatTime(to),
   };
   emit("update:modelValue", internalValue.value);
 });

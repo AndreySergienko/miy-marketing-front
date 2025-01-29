@@ -54,7 +54,7 @@ export interface IGetAllDate {
   slots: IGetAllDateSlot[];
 }
 
-export interface IGetAll {
+export interface IChannelResponse {
   id: number;
   name: string;
   subscribers: number;
@@ -63,6 +63,14 @@ export interface IGetAll {
   avatar: string;
   conditionCheck: string;
   channelDates: IGetAllDate[];
+}
+
+export interface IGetAllResponse {
+  list: IChannelResponse[];
+  countChannels: number;
+}
+
+export interface IGetAll extends IChannelResponse {
 }
 
 export interface IFormat {

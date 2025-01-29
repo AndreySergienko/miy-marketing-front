@@ -1,11 +1,11 @@
 import ApiService from "~/api/core/ApiService";
 import type { IMyChannel } from "~/store/myChannels/myChannels.types";
-import type {
+import {
   IApiChannelsListItem,
   IChannelsRegistrationBody,
   IInitialChannelData,
   IGetAll,
-  IFormat,
+  IFormat, IGetAllResponse,
 } from "./channels.types";
 import type { IFilterValues } from "~/types/filters";
 
@@ -53,7 +53,7 @@ export default class ChannelsService extends ApiService {
     filterValues?: IFilterValues,
     paginationQuery?: string,
     getQueryCategories?: string | null
-  ): Promise<IGetAll[]> {
+  ): Promise<IGetAllResponse> {
     const parsedDates = dates
       .map((item) => {
         let incorrectDay = String(item.getDate());
@@ -68,19 +68,25 @@ export default class ChannelsService extends ApiService {
     const params = new URLSearchParams();
 
     if (filterValues) {
-      if (filterValues.price.from || filterValues.price.to) {
+      if (filterValues.price.from) {
         params.append("priceMin", filterValues.price.from);
+      }
+      if (filterValues.price.to) {
         params.append("priceMax", filterValues.price.to);
       }
-      if (filterValues.time.from || filterValues.time.to) {
+      if (filterValues.time.from) {
         params.append("dateMin", String(filterValues.time.from));
+      }
+      if (filterValues.time.to) {
         params.append("dateMax", String(filterValues.time.to));
       }
       if (filterValues.interval) {
         params.append("intervalId", filterValues.interval);
       }
-      if (filterValues.subscribers.from || filterValues.subscribers.to) {
+      if (filterValues.subscribers.from) {
         params.append("subscribersMin", filterValues.subscribers.from);
+      }
+      if (filterValues.subscribers.to) {
         params.append("subscribersMax", filterValues.subscribers.to);
       }
     }
@@ -89,9 +95,11 @@ export default class ChannelsService extends ApiService {
       ? `${paginationQuery}&${getQueryCategories}`
       : paginationQuery;
 
-    const fullUrl = `${this.apiUrl}all?dates=${parsedDates}&${params.toString()}&${fullPath}`;
+    const computedParsedDates = parsedDates ? `dates=${parsedDates}` : ''
+    const computedParams = String(params) ? `&${String(params)}` : ''
+    const fullUrl = `${this.apiUrl}all?${computedParsedDates}${computedParams}&${fullPath}`;
 
-    return await this.$api<IGetAll[]>(fullUrl, {
+    return await this.$api<IGetAllResponse>(fullUrl, {
       method: "get",
     });
   }

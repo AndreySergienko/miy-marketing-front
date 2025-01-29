@@ -4,7 +4,7 @@ export interface ISharedInputProps {
     type: string;
     error?: string;
     isDisabled?: boolean;
-    placeholder: string;
+    placeholder?: string;
 }
 
 export interface ISharedInputEmits {

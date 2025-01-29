@@ -74,6 +74,7 @@
            ...activeChannel,
            url: activeChannel.link
           }"
+          :image="activeChannel.avatar"
           :dates="getFormattedDates(activeChannel.channelDates)"
           :category="activeChannel.categories[0].description"
           @close="clearInfoChannel"
@@ -86,7 +87,7 @@
           </template>
         </ChannelDetails>
     </SharedModal>
-    <a href="/channels" class="more" v-if="channelsAll && channelsAll.length > 0">
+    <a href="/channels" class="more" v-if="isMore && channelsAll.length > 0">
       <p class="more__text">Смотреть еще</p>
       <nuxt-icon class="more__icon" name="arrow" filled />
     </a>
@@ -109,7 +110,7 @@ const userStore = useUserStore();
 
 
 const { getAllFormat } = useChannelStore();
-const { channelsAll } = storeToRefs(channelStore);
+const { channelsAll, isMore } = storeToRefs(channelStore);
 
 
 const categoriesStore = useCategoriesStore();

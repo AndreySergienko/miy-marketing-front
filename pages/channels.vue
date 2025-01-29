@@ -59,7 +59,7 @@
         />
       </div>
     </SharedModal>
-    <div class="more" v-if="channelsAll.length > 0">
+    <div class="more" v-if="isMore && channelsAll.length > 0">
       <p class="more__text" @click="incrementPage">Смотреть еще</p>
       <nuxt-icon class="more__icon" name="arrow" filled />
     </div>
@@ -77,7 +77,7 @@ const channelStore = useChannelStore();
 const userStore = useUserStore();
 
 const { getAllFormat } = useChannelStore();
-const { formatAll, isLoading, channelsAll } = storeToRefs(channelStore);
+const { formatAll, isMore, channelsAll } = storeToRefs(channelStore);
 
 const currentFormat = (formatChannelId: number) => {
   const format = formatAll.value.find((item) => item.id === formatChannelId);
