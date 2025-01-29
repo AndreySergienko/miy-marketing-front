@@ -40,6 +40,8 @@
 import type {
   ITelegramEditMainProps,
   ITelegramEditMainEmits,
+  ITelegramEditMainError,
+  ITelegramEditMainExpose,
 } from "./TelegramEditMain.types";
 import { string } from "yup";
 
@@ -47,7 +49,7 @@ const props = defineProps<ITelegramEditMainProps>();
 const { name, url, conditionCheck, category } = toRefs(props);
 const emit = defineEmits<ITelegramEditMainEmits>();
 
-const errors = reactive({
+const errors: ITelegramEditMainError = reactive({
   category: "",
 });
 
@@ -63,8 +65,8 @@ const { values } = useForm({
   },
 });
 
-const errorCategory = () => {
-  if (values.category === 0) {
+const errorCategory = (): void => {
+  if (!values.category) {
     errors.category = "* Укажите категорию канала";
   } else {
     errors.category = "";
@@ -76,7 +78,7 @@ const validateCategory = (): boolean => {
   return errors.category === "";
 };
 
-defineExpose({ validateCategory });
+defineExpose<ITelegramEditMainExpose>({ validateCategory });
 
 watch(
   () => values,
