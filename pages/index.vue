@@ -13,9 +13,6 @@
     <div class="FAQ">
       <AppFAQ />
     </div>
-    <div class="charge">
-      <div class="container">Cервисный сбор для паблишеров составляет 15%</div>
-    </div>
     <div class="contacts">
       <AppContacts />
     </div>
@@ -57,20 +54,6 @@ import AppTelegram from "../partials/AppTelegram.vue";
 
   @include media.media-breakpoint-down(sm) {
     display: none;
-  }
-}
-.charge {
-  margin-bottom: var(--indent-5xl);
-  display: flex;
-  text-align: center;
-  font-size: var(--font-size-l);
-
-  @include media.media-breakpoint-down(md) {
-    font-size: 30px;
-  }
-
-  @include media.media-breakpoint-down(sm) {
-    font-size: var(--font-size-m);
   }
 }
 </style>
