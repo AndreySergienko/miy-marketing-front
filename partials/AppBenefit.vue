@@ -1,8 +1,3 @@
-<script setup lang="ts">
-import SharedText from '~/components/SharedText/SharedText.vue';
-
-</script>
-
 <template>
   <div class="benefit" id="benefit">
     <div class="container">
