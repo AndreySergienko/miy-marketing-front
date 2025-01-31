@@ -12,7 +12,7 @@
           <SharedText class="benefit__reference-text">
             *“Налоговый кэшбэк”- программа выплаты суммы налога с Вашей прибыли на платформе по итогам каждого месяца.<br> 
             Поторопитесь! Количество мест ограничено.<br>
-            С условиями акции можно ознакомиться по ссылке
+            С условиями акции можно ознакомиться <br> по ссылке
           </SharedText>
         </div>
       </shared-animation>
@@ -85,6 +85,13 @@
           font-size: var(--font-size-s);
         }
       }
+    }
+  }
+
+  br:last-child {
+    display: none;
+    @include media.media-breakpoint-down(sm) {
+      display: initial;
     }
   }
 </style>

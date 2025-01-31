@@ -4,7 +4,7 @@
       <shared-animation>
         <div class="intro__inner">
           <h1 class="intro__title">
-            Платформа для рекламных интеграций в Telegram
+            Платформа <br> для рекламных интеграций <br> в Telegram
           </h1>
           <SharedText>
             Автоматизированное управление рекламными интеграциями с модерацией контента 
