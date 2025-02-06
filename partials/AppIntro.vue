@@ -8,7 +8,7 @@
           </h1>
           <SharedText>
             Автоматизированное управление рекламными интеграциями с модерацией контента 
-            в соответствие с критериями паблишера, маркировкой	 и передачей данных в ОРД без комиссии
+            в соответствие с критериями паблишера, маркировкой	 и передачей данных в ОРД без&nbsp;комиссии
           </SharedText>
         </div>
       </shared-animation>
@@ -59,6 +59,14 @@
         font-size: 30px;
         font-weight: var(--font-weight-bold)
       }
+    }
+  }
+
+  br:last-child {
+    display: none;
+
+    @include media.media-breakpoint-down(xl) {
+      display: initial;
     }
   }
 </style>
