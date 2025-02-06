@@ -61,12 +61,4 @@
       }
     }
   }
-
-  br:last-child {
-    display: none;
-
-    @include media.media-breakpoint-down(xl) {
-      display: initial;
-    }
-  }
 </style>
