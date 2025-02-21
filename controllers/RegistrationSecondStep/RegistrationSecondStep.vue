@@ -39,7 +39,7 @@
               :key="taxRate.id"
               name="taxRateId"
               :label="taxRate.value"
-              :value="taxRate.id.toString()"
+              :value="String(taxRate.id)"
             />
           </div>
         </div>
@@ -115,10 +115,6 @@ const { isLoading } = storeToRefs(authStore);
 
 const taxRateStore = useTaxRateStore();
 const { taxRates } = storeToRefs(taxRateStore);
-
-onMounted(() => {
-  taxRateStore.fetchTaxRates();
-});
 
 const { meta, values } = useForm({
   validationSchema: object({
