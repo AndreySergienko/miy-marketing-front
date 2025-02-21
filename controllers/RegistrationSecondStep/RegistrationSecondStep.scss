@@ -9,7 +9,11 @@
     flex-direction: column;
     gap: 20px;
 
-    &-radios {
+    &-tax_rate-title {
+      margin-bottom: var(--indent-m);
+    }
+
+    &-radios, &-tax_rate-radios {
       display: flex;
       align-items: center;
       gap: 30px;
