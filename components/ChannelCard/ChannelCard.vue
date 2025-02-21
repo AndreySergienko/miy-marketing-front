@@ -9,7 +9,7 @@
       <ChannelCardMoreMenu
         :is-active="showMoreMenu"
         @edit="handleEdit"
-        @delete=""
+        @delete="emits('delete', id)"
       />
     </div>
     <NuxtImg class="channel-card__image" :src="image" />
@@ -27,9 +27,10 @@
 </template>
 
 <script setup lang="ts">
-import type { IChannelCardProps } from "./ChannelCard.types";
+import {IChannelCardEmits, IChannelCardProps} from "./ChannelCard.types";
 
 const props = defineProps<IChannelCardProps>();
+const emits = defineEmits<IChannelCardEmits>()
 const { id, subscribers, isActive } = toRefs(props);
 
 const showMoreMenu = ref(false);

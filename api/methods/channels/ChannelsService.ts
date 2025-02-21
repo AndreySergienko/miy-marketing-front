@@ -1,12 +1,13 @@
 import ApiService from "~/api/core/ApiService";
 import type { IMyChannel } from "~/store/myChannels/myChannels.types";
-import type {
+import {
   IApiChannelsListItem,
   IChannelsRegistrationBody,
   IInitialChannelData,
   IGetAll,
-  IFormat,
+  IFormat, IGetAllResponse,
 } from "./channels.types";
+import type { IFilterValues } from "~/types/filters";
 
 export default class ChannelsService extends ApiService {
   private readonly apiUrl: string;
@@ -47,15 +48,59 @@ export default class ChannelsService extends ApiService {
     });
   }
 
-  async getAll(dates: Date[], url?: string): Promise<IGetAll[]> {
-    const parsedDates = dates.map((item) => item.getTime()).join(",");
+  async getAll(
+    dates: Date[],
+    filterValues?: IFilterValues,
+    paginationQuery?: string,
+    getQueryCategories?: string | null
+  ): Promise<IGetAllResponse> {
+    const parsedDates = dates
+      .map((item) => {
+        let incorrectDay = String(item.getDate());
+        const day = incorrectDay.length === 1 ? `0${incorrectDay}` : incorrectDay;
+        const month = item.getMonth() + 1;
+        const year = item.getFullYear();
 
-    const fullUrl = url ? this.apiUrl + "all" + url : this.apiUrl + "all";
-    return await this.$api<IGetAll[]>(fullUrl, {
+        return `${day}.${month}.${year}`;
+      })
+      .join(",");
+
+    const params = new URLSearchParams();
+
+    if (filterValues) {
+      if (filterValues.price.from) {
+        params.append("priceMin", filterValues.price.from);
+      }
+      if (filterValues.price.to) {
+        params.append("priceMax", filterValues.price.to);
+      }
+      if (filterValues.time.from) {
+        params.append("dateMin", String(filterValues.time.from));
+      }
+      if (filterValues.time.to) {
+        params.append("dateMax", String(filterValues.time.to));
+      }
+      if (filterValues.interval) {
+        params.append("intervalId", filterValues.interval);
+      }
+      if (filterValues.subscribers.from) {
+        params.append("subscribersMin", filterValues.subscribers.from);
+      }
+      if (filterValues.subscribers.to) {
+        params.append("subscribersMax", filterValues.subscribers.to);
+      }
+    }
+
+    const fullPath = getQueryCategories
+      ? `${paginationQuery}&${getQueryCategories}`
+      : paginationQuery;
+
+    const computedParsedDates = parsedDates ? `dates=${parsedDates}` : ''
+    const computedParams = String(params) ? `&${String(params)}` : ''
+    const fullUrl = `${this.apiUrl}all?${computedParsedDates}${computedParams}&${fullPath}`;
+
+    return await this.$api<IGetAllResponse>(fullUrl, {
       method: "get",
-      params: {
-        dates: parsedDates,
-      },
     });
   }
 
@@ -75,10 +120,11 @@ export default class ChannelsService extends ApiService {
       id: item.id,
       image: item.avatar,
       title: item.name,
+      conditionCheck: item.conditionCheck,
       categoryId: item.categories[0],
       url: item.link,
       subscribers: item.subscribers,
-      isActive: item.statusId === 2,
+      isActive: item.statusId === 3,
       dates: item.channelDates,
     }));
   }
@@ -87,6 +133,13 @@ export default class ChannelsService extends ApiService {
     return await this.$authApi(this.apiUrl + "check", {
       method: "post",
       body: JSON.stringify({ channelName }),
+    });
+  }
+
+  async remove(channelId: number) {
+    return await this.$authApi(this.apiUrl + "remove", {
+      method: "post",
+      body: JSON.stringify({ channelId }),
     });
   }
 }

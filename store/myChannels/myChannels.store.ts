@@ -2,9 +2,11 @@ import ChannelsService from "~/api/methods/channels/ChannelsService";
 import type { IMyChannel } from "./myChannels.types";
 import type { ISlotsItem } from "~/components/TelegramEditSlots/TelegramEditSlots.types";
 import type { IInitialChannelData } from "~/api/methods/channels/channels.types";
+import {useAlertStore} from "~/store/alert/alert.store";
 
 export const useMyChannelsStore = defineStore("global/my-channels", () => {
   const channelsService = new ChannelsService();
+  const alertStore = useAlertStore()
 
   const channels = ref<IMyChannel[]>([]);
   const selectedChannel = ref<IMyChannel | null>(null);
@@ -38,6 +40,11 @@ export const useMyChannelsStore = defineStore("global/my-channels", () => {
     dates: Map<string, ISlotsItem[]>
   ) {
     try {
+      if (mainData.categoryId) {
+        await alertStore.showError({
+          title: 'Укажите категорию канала'
+        })
+      }
       const data = getCreationData(mainData, dates);
 
       const response = await channelsService.register(data);
@@ -58,6 +65,17 @@ export const useMyChannelsStore = defineStore("global/my-channels", () => {
       const response = await channelsService.update(data);
       if (!response) return;
       await navigateTo("/personal/telegram");
+    } catch (e) {
+      useShowError(e);
+    }
+  }
+
+  /** Удалить канал **/
+  async function remove(channelId: number) {
+    try {
+      if (!channelId) return useShowError({ title: 'Отсутствует id канала' })
+      await channelsService.remove(channelId);
+      channels.value = channels.value.filter(channel => channel.id !== channelId)
     } catch (e) {
       useShowError(e);
     }
@@ -84,12 +102,14 @@ export const useMyChannelsStore = defineStore("global/my-channels", () => {
       id: mainData.id || undefined,
       name: mainData.title,
       link: mainData.url,
+      conditionCheck: mainData.conditionCheck,
       categoriesId: [mainData.categoryId],
       channelDates,
     };
   };
 
   return {
+    remove,
     channels,
     selectedChannel,
     initialChannelData,

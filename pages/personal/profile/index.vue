@@ -1,6 +1,6 @@
 <template>
   <main class="profile-page">
-    <ProfileWorkType />
+    <ProfileWorkType v-if="false" />
     <div class="profile-page__content">
       <section class="profile-page__block">
         <div class="profile-page__block-text">
@@ -11,10 +11,22 @@
         </div>
         <div class="profile-page__block-inputs">
           <AuthenticationInput
-            label="ФИО"
+            label="Фамилия"
             type="text"
-            name="fio"
-            placeholder="Введите ФИО"
+            name="lastname"
+            placeholder="Введите вашу фамилию"
+          />
+          <AuthenticationInput
+            label="Имя"
+            type="text"
+            name="name"
+            placeholder="Введите ваше имя"
+          />
+          <AuthenticationInput
+            label="Отчество"
+            type="text"
+            name="surname"
+            placeholder="Введите ваше отчество"
           />
           <AuthenticationInput
             label="E-mail"
@@ -34,7 +46,7 @@
         <div class="profile-page__block-text">
           <h2 class="profile-page__block-text--title">Реквизиты</h2>
           <p class="profile-page__block-text--description">
-            Укажите ваши реквизиты
+            Если у вас статус ИП, то необходимо указать реквизиты ИП
           </p>
         </div>
         <div class="profile-page__block-inputs">
@@ -56,15 +68,21 @@
             name="bankCorAccount"
             placeholder="Введите корреспондентский счет"
           />
-          <AuthenticationInput
+          <div
+            class="profile-page__input-item"
+            @mouseover="activeToolTip = true"
+            @mouseleave="activeToolTip = false"
+            >
+            <AuthenticationInput
             label="Расчетный счет"
             type="text"
             name="bankCurAccount"
             placeholder="Введите расчетный счет"
           />
+          </div>
         </div>
       </section>
-      <section class="profile-page__block">
+      <section v-if="false" class="profile-page__block">
         <div class="profile-page__block-text">
           <h2 class="profile-page__block-text--title">Смена пароля</h2>
           <p class="profile-page__block-text--description">
@@ -99,12 +117,51 @@
         Сохранить
       </DefaultButton>
     </div>
+    <div class="profile-page__radio-content">
+      <div class="profile-page__radio-content-instruction">
+        Если Вы выбрали <span class="weight">уведомительный порядок</span>, то
+        при каждой заявке на рекламную интеграцию ТГ-бот платформы будет
+        отправлять сообщение с информацией о потенциальной интеграции и Вам
+        предстоит подтвердить или отклонить сделку исходя из критериев контента.
+        В случае положительного ответа ТГ-бот опубликует рекламу.
+        <br />
+        Если Вы выбрали <span class="weight">автоматический порядок</span>, то
+        заявки на рекламные интеграции, которую будут поступать с нашей
+        платформы будут модерироваться нашей командой исходя из ваших критериев,
+        которые вы прописали при размещении ТГ-канала на платформу. В этом
+        <span class="weight">
+          случае Вы должны проставить даты и всегда оставлять указанный/-е
+          временной/-е слот/-ы и интервал для рекламных интеграций, поступающих
+          с ON-Developer в календаре рекламных интеграций Вашего канала
+        </span>
+        . <br />
+        ТГ-бот опубликует, удалит пост, а средства автоматически поступят на
+        карту, которую вы привязали в личном кабинете.
+      </div>
+      <div class="profile-page__radio-content-controls">
+        <AuthenticationRadio
+          class="profile-page__radio-content-controls--item"
+          :value="true"
+          label="Уведомительный порядок"
+          name="isNotification"
+        />
+        <AuthenticationRadio
+          class="profile-page__radio-content-controls--item"
+          :value="false"
+          label="Автоматический порядок"
+          name="isNotification"
+        />
+      </div>
+    </div>
     <ProfileWorkTypePopup />
   </main>
 </template>
 
 <script setup lang="ts">
+import AuthenticationRadio from "~/components/AuthenticationRadio/AuthenticationRadio.vue";
 import { useUserStore } from "~/store/user/user.store";
+
+const activeToolTip = ref(false)
 
 definePageMeta({
   layout: "personal",
@@ -113,17 +170,29 @@ definePageMeta({
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
 
-const { meta, values } = useProfileForm(user);
+const { values } = useProfileForm(user);
 
 const handleMainData = () => {
-  const { fio, email, inn, bankName, bankBik, bankCorAccount, bankCurAccount } =
-    values;
-
-  userStore.updateUser({
-    fio,
+  const {
+    lastname,
+    name,
+    surname,
     email,
     inn,
-    isNotification: true,
+    bankName,
+    bankBik,
+    bankCorAccount,
+    bankCurAccount,
+    isNotification,
+  } = values;
+
+  userStore.updateUser({
+    lastname,
+    name,
+    surname,
+    email,
+    inn,
+    isNotification,
     bank: {
       name: bankName,
       bik: bankBik,
@@ -152,10 +221,15 @@ const handleSave = async () => {
 <style lang="scss" scoped>
 @use "assets/styles/media";
 
+.profile-page__input-item {
+  position: relative;
+}
+
 .profile-page {
-  margin-top: 40px;
   position: relative;
   width: 328px;
+  display: flex;
+  flex-direction: column;
 
   @include media.media-breakpoint-up(md) {
     width: 465px;
@@ -171,6 +245,7 @@ const handleSave = async () => {
     flex-direction: column;
     gap: 40px;
     width: 328px;
+    order: 2;
 
     @include media.media-breakpoint-up(md) {
       width: 465px;
@@ -215,7 +290,7 @@ const handleSave = async () => {
       &--description {
         font-size: 14px;
         font-weight: 500;
-        line-height: 10px;
+        line-height: 20px;
         color: #2d364880;
       }
     }
@@ -229,6 +304,40 @@ const handleSave = async () => {
 
   &__button {
     width: 105px;
+  }
+
+  &__radio-content {
+    order: 1;
+    margin-top: 40px;
+    border: 1px solid var(--new-primary);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: var(--new-white);
+
+    @include media.media-breakpoint-up(lm) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      max-width: 420px;
+    }
+
+    &-instruction {
+      font-size: 12px;
+      font-weight: 500;
+
+      .weight {
+        font-weight: 700;
+      }
+    }
+
+    &-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
   }
 }
 </style>

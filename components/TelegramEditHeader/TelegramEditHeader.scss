@@ -1,6 +1,10 @@
 @use "assets/styles/media";
 
 .telegram-edit-header {
+  z-index: 20;
+  position: sticky;
+  top: 0;
+  background: var(--new-white);
   display: flex;
   justify-content: space-between;
   align-items: center;

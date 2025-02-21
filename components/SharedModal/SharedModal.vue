@@ -2,10 +2,8 @@
   <ClientOnly>
     <teleport to="body">
       <Transition name="modal">
-        <div class="modal">
-          <div class="modal__inner">
-            <nuxt-icon class="modal__close" name="close" filled @click="emits('close')" />
-
+        <div class="modal" @click="handleOutClick">
+          <div class="modal__inner" ref="modalContent">
             <slot />
           </div>
         </div>
@@ -15,6 +13,8 @@
 </template>
 
 <script setup lang="ts">
+import { useModal } from '~/composables/useModal';
+
 interface ISharedModalProps {
   show?: boolean;
 }
@@ -27,16 +27,16 @@ interface ISharedModalEmits {
 const emits = defineEmits<ISharedModalEmits>()
 const props = defineProps<ISharedModalProps>()
 
-onMounted(() => {
-  document.body.classList.add('hidden')
-})
+const closeModal = () => {
+  emits('update:show', false);
+  emits('close', true)
+}
 
-onUnmounted(() => {
-  document.body.classList.remove('hidden')
-})
+const {modalContent, handleOutClick} = useModal(closeModal)
 </script>
 <style scoped lang="scss">
 .modal {
+  background-color: rgba(0, 0, 0, .55);
   position: fixed;
   left: 0;
   top: 0;
@@ -45,30 +45,25 @@ onUnmounted(() => {
 
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, .55);
+  
 
   display: flex;
   justify-content: center;
   align-items: center;
-
-  &__inner {
-    padding: var(--indent-3xl);
-    position: relative;
-
-    min-width: 200px;
-    min-height: 200px;
-
-    background: #fff;
-  }
 
   &__close {
     position: absolute;
     right: 10px;
     top: 10px;
     font-size: 36px;
+    color: white;
 
     cursor: pointer;
     z-index: 12;
+
+    :deep(path) {
+      fill: black;
+    }
   }
 }
 

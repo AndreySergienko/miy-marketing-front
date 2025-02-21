@@ -5,10 +5,10 @@
         <div class="contacts__inner">
           <SharedContacts />
           <iframe
-            class="contacts__map"
-            src="https://yandex.ru/map-widget/v1/?um=constructor%3A0ac83c30029fc4deea7465f04dbaec8f68c6459c2bdfc053d2e1d31405ed4ec8&amp;source=constructor"
+            class="contacts__map" 
+            src="https://yandex.ru/map-widget/v1/?um=constructor%3A52be1ab397af5f79b40d92aee7745010e7a1bcd7eed0e14b2e63c7a1ce32c234&amp;source=constructor"
             width="900"
-            height="500"
+            height="500" 
           ></iframe>
         </div>
       </shared-animation>

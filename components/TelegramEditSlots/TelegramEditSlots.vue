@@ -26,7 +26,6 @@
 
 <script setup lang="ts">
 import type { ISlotsItem } from "./TelegramEditSlots.types";
-
 const model = defineModel<Map<string, ISlotsItem[]>>();
 
 const getSlotTitle = (key: string) => {
@@ -49,9 +48,14 @@ const changeSlotData = (key: string, index: number, data: ISlotsItem) => {
   slots[index] = data;
 };
 
+const emit = defineEmits<{ (event: 'remove-last-child', index: number): void }>()
+
+
 const handleRemoveSlot = (key: string, index: number) => {
   const slots = model.value.get(key) || [];
-  if (slots.length === 1) return;
+  if (slots.length === 1) {
+    emit('remove-last-child', index)
+  }
   slots.splice(index, 1);
 };
 </script>

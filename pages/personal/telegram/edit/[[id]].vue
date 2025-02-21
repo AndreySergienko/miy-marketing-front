@@ -6,14 +6,19 @@
         :name="editingChannel.title"
         :url="editingChannel.url"
         :category="editingChannel.categoryId"
+        :condition-check="editingChannel.conditionCheck"
         :categories="formattedCategories"
         @change-data="handleChangeMain"
       />
       <TelegramEditDates
         :dates="channelDates"
         @change-data="handleChangeDates"
+        ref="editDates"
       />
-      <TelegramEditSlots v-model="channelSlots" />
+      <TelegramEditSlots
+        v-model="channelSlots"
+        @remove-last-child="removeDates"
+      />
     </div>
   </main>
 </template>
@@ -30,6 +35,14 @@ import type { ITelegramEditMainData } from "~/components/TelegramEditMain/Telegr
 import { useCategoriesStore } from "~/store/categories/categories.store";
 import { useFormatsStore } from "~/store/formats/formats.store";
 import { useMyChannelsStore } from "~/store/myChannels/myChannels.store";
+
+const editDates = ref(null);
+
+function removeDates() {
+  if (editDates.value) {
+    editDates.value.handleRemoveDate();
+  }
+}
 
 definePageMeta({
   layout: "telegram-edit",
@@ -85,10 +98,16 @@ const channelDates = computed(() => {
   return result;
 });
 
-const handleChangeMain = ({ name, url, category }: ITelegramEditMainData) => {
+const handleChangeMain = ({
+  name,
+  url,
+  category,
+  conditionCheck,
+}: ITelegramEditMainData) => {
   editingChannel.value!.title = name;
   editingChannel.value!.url = url;
   editingChannel.value!.categoryId = +category;
+  editingChannel.value!.conditionCheck = conditionCheck;
 };
 
 const handleChangeDates = ({ dates }: { dates: string[] }) => {
@@ -127,6 +146,7 @@ watch(
         id: 0,
         title: name,
         url: link,
+        conditionCheck: "",
         image: "",
         subscribers: 0,
         isActive: false,

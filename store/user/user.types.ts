@@ -22,7 +22,10 @@ export interface IUserDocument {
 export interface IUser {
   email: string;
   inn: string;
-  fio: string;
+  name: string;
+  lastname: string;
+  surname: string;
+  isNotification: boolean;
   permissions: TPermissionsScopesKeys[];
   bank?: IUserBank;
   document?: IUserDocument;

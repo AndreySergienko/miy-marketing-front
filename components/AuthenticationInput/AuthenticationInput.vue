@@ -29,9 +29,16 @@
 import { AuthenticationInputProps } from "./AuthenticationInput.types";
 
 const props = defineProps<AuthenticationInputProps>();
+
 const { name, showPasswordIcon, type, disabled } = toRefs(props);
 
 const { value, errorMessage } = useField(name);
+
+const emit = defineEmits(["update:modelValue"]);
+
+watch(value, (newValue) => {
+  emit("update:modelValue", newValue);
+});
 
 const inputClasses = computed(() => ({
   "authentication-input__input--disabled": disabled.value,

@@ -43,7 +43,7 @@
         </div>
       </main>
       <div class="calendar__divider"></div>
-      <footer class="calendar__footer">
+      <footer class="calendar__footer" v-if="values.dates.length > 0">
         <h3 class="calendar__footer-title">Выбранные даты</h3>
         <div class="calendar__footer-chips">
           <TelegramEditDatesChip
@@ -146,8 +146,8 @@ const handleAddDate = (day: number) => {
 const handleRemoveDate = (index: number) => {
   const tempDates = [...values.dates];
   tempDates.splice(index, 1);
-
   setFieldValue("dates", tempDates as never);
+
 };
 
 const getFormattedDate = (day: number) => {
@@ -171,6 +171,11 @@ watch(
   },
   { deep: true }
 );
+
+defineExpose({
+  handleRemoveDate
+})
+
 </script>
 
 <style scoped lang="scss" src="./TelegramEditDates.scss"></style>

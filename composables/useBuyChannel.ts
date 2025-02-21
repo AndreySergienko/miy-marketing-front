@@ -1,45 +1,45 @@
-import type { ISlot } from '~/api/methods/channels/channels.types'
-import type { ISharedSelectOption } from '~/components/SharedSelect/SharedSelect.types'
-import { convertUtcDateToTime } from '~/utils/date'
+import type {
+  IGetAll,
+  IGetAllDate,
+  IGetAllDateSlot,
+} from "~/api/methods/channels/channels.types";
+import type { ISharedSelectOption } from "~/components/SharedSelect/SharedSelect.types";
 
 export function useBuyChannel() {
-  const activeSlots = ref<ISlot[]>([])
-  const activeDays = ref<string[]>([])
-  const slotId = ref<string>('')
-  const dateIdx = ref<string>('')
+  const activeSlots = ref<IGetAllDateSlot[]>([]);
+  const activeDays = ref<IGetAllDate[]>([]);
+  const activeChannel = ref<IGetAll | null>(null)
 
-  const setInfoChannel = (slots: ISlot[], days: string[]) => {
-    activeSlots.value = slots
-    activeDays.value = days
-  }
+  const setInfoChannel = (channel: IGetAll) => {
+    activeChannel.value = channel
+  };
 
   const times = computed<ISharedSelectOption[]>(() => {
     return activeSlots.value.map((slot) => {
       return {
-        title: String(convertUtcDateToTime(+slot.timestamp)),
+        title: slot.timestamp,
         value: String(slot.id),
-      }
-    })
-  })
+      };
+    });
+  });
 
   const days = computed<ISharedSelectOption[]>(() => {
-    return activeDays.value.map((day, idx) => {
+    return activeDays.value.map((day) => {
       return {
-        title: day,
-        value: String(idx),
-      }
-    })
-  })
+        title: day.date,
+        value: String(day.id),
+      };
+    });
+  });
 
-  const clearInfoChannel = () => (activeSlots.value = [])
+  const clearInfoChannel = () => (activeChannel.value = null);
 
   return {
-    dateIdx,
     activeSlots,
-    slotId,
     setInfoChannel,
     times,
     days,
     clearInfoChannel,
-  }
+    activeChannel,
+  };
 }

@@ -1,4 +1,4 @@
-import { object, string } from "yup";
+import { boolean, object, string } from "yup";
 import type { IUser } from "~/store/user/user.types";
 import { validateInn } from "~/utils/validator.ts/inn.validator";
 
@@ -13,12 +13,15 @@ export const useProfileForm = (user: Ref<IUser | null>) => {
 
   const { meta, values } = useForm({
     validationSchema: object({
-      fio: string().required(rules.required).label(""),
+      name: string().required(rules.required).label(""),
+      lastname: string().required(rules.required).label(""),
+      surname: string().required(rules.required).label(""),
       email: string().email(rules.email).required(rules.required).label(""),
       inn: string()
         .required(rules.required)
         .test("validateInn", rules.inn, validateInn)
         .label(""),
+      isNotification: boolean().label(""),
 
       bankName: string().label(""),
       bankBik: string().label(""),
@@ -30,9 +33,12 @@ export const useProfileForm = (user: Ref<IUser | null>) => {
       repeatPassword: passwordRules,
     }),
     initialValues: {
-      fio: user.value?.fio,
+      name: user.value?.name,
+      lastname: user.value?.lastname,
+      surname: user.value?.surname,
       email: user.value?.email,
       inn: user.value?.inn,
+      isNotification: user.value?.isNotification,
 
       bankName: user.value?.bank?.name,
       bankBik: user.value?.bank?.bik,

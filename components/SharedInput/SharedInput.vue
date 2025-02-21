@@ -2,7 +2,7 @@
     <div class="field">
         <span class="field__name" ><slot /></span>
         <keep-alive>
-          <VeeField :class="{'field__input': true, 'field__input-error': error, 'disabled': isDisabled}" v-model="input" :name="name" :type="type"/>
+          <VeeField :class="{'field__input': true, 'field__input-error': error, 'disabled': isDisabled}" v-model="input" :name="name" :type="type" :placeholder="placeholder"/>
         </keep-alive>
         <i class="field__icon"><slot name="icon" /></i>
         <span class="field__error" v-if="error">{{ error }}</span>

@@ -1,8 +1,11 @@
 <template>
   <div class="filter-calendar-main">
+    <div class="filter-calendar-main__action-prev" @click="prevMonths">
+      <nuxt-icon name="default-round-back" filled/>
+    </div>
     <div class="filter-calendar-main__calendar">
       <div
-        v-for="month in getMonthsFromToday()"
+        v-for="month in visibleMonths"
         :key="month.index"
         class="filter-calendar-main__calendar-month"
       >
@@ -20,6 +23,9 @@
           />
         </div>
       </div>
+    </div>
+    <div class="filter-calendar-main__action-next" @click="nextMonths">
+      <nuxt-icon name="default-round-next" filled/>
     </div>
   </div>
 </template>
@@ -50,6 +56,24 @@ const isSelected = (date: Date): boolean => {
   );
   return dateIndex !== -1;
 };
+
+const currentMonthIndex = ref(0)
+
+const months = getMonthsFromToday()
+
+const visibleMonths = computed(() => [months[currentMonthIndex.value]])
+
+const prevMonths = () => {
+  if(currentMonthIndex.value > 0) {
+    currentMonthIndex.value--
+  }
+}
+
+const nextMonths = () => {
+  if(currentMonthIndex.value < months.length - 1) {
+    currentMonthIndex.value++
+  }
+}
 </script>
 
 <style scoped lang="scss" src="./FilterCalendarMain.scss" />

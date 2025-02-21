@@ -6,6 +6,7 @@ import type {
 } from "~/api/methods/channels/channels.types";
 import ChannelsService from "~/api/methods/channels/ChannelsService";
 import { useAlertStore } from "~/store/alert/alert.store";
+import type { IFilterValues } from "~/types/filters";
 
 export const useChannelStore = defineStore("global/channel", () => {
   const alertStore = useAlertStore();
@@ -17,9 +18,12 @@ export const useChannelStore = defineStore("global/channel", () => {
   const channelsAll = ref<IGetAll[]>([]);
   const initialChannelData = ref<IInitialChannelData | null>(null);
   const isLoading = ref<boolean>(false);
+  const countAllChannels = ref<number>(0)
 
   /** Формат */
   const formatAll = ref<IFormat[]>([]);
+
+  const isMore = computed<boolean>(() =>  countAllChannels.value > channelsAll.value.length)
 
   /** Получение списка интервалов */
   async function getAllFormat() {
@@ -36,19 +40,29 @@ export const useChannelStore = defineStore("global/channel", () => {
   /** Получение всего списка каналов **/
   async function getAll({
     dates,
-    url,
+    filterValues,
+    paginationQuery,
+    getQueryCategories,
     isMounted,
   }: {
     dates: Date[];
-    url: string;
+    filterValues?: IFilterValues;
+    paginationQuery?: string;
+    getQueryCategories?: string | null;
     isMounted?: boolean;
   }) {
     try {
-      const channelList = await channelsService.getAll(dates, url);
+      const { list, countChannels } = await channelsService.getAll(
+        dates,
+        filterValues,
+        paginationQuery,
+        getQueryCategories
+      );
+      countAllChannels.value = countChannels
       if (isMounted) {
-        channelsAll.value = channelList;
+        channelsAll.value = list;
       } else {
-        channelsAll.value.push(...channelList);
+        channelsAll.value.push(...list);
       }
     } catch (e) {
       useShowError(e);
@@ -91,5 +105,6 @@ export const useChannelStore = defineStore("global/channel", () => {
     formatAll,
     getAllFormat,
     isLoading,
+    isMore
   };
 });

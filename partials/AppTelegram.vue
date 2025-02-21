@@ -5,73 +5,89 @@
         <div class="tg__text">
           <SharedTitle>Telegram-каналы</SharedTitle>
           <SharedText>
-            Выберите каналы для размещения вашей рекламы из списка на нашей
-            главной странице. У нас вы найдете каналы по теме "экономика,
+            Выберите каналы для размещения вашей рекламы из списка на витрине. У нас вы найдете каналы по теме "экономика,
             бизнес", где ваша реклама будет наиболее эффективной.
           </SharedText>
         </div>
+        <div class="tg__header">
+          <div class="tg__categories">
+            <SharedCategories
+              :active-categories="activeCategories"
+              :categories-list="categories"
+              @set-category="categoriesStore.updateActiveCategories"
+            />
+          </div>
+          <div class="tg__filters">
+            <SharedFilter
+            v-for="filter in filters"
+            :key="filter.key"
+            :title="filter.title"
+            :type="filter.type"
+            v-model="filterValues[filter.key]"
+          />
+          </div>
+        </div>
+        <h1 class="tg__showcase">Витрина</h1>
         <FilterCalendarController />
         <div class="card__list">
-          <SharedCard
-            v-for="card in channelsAll"
-            :key="card.channel.id"
-            :price="card.channel.price"
-            :currency="'RUB'"
-            :subscribers="card.channel.subscribers"
-            :avatar="card.channel.avatar"
-            :interval="currentFormat(card.channel.formatChannelId)"
-          >
-            <template #title>
-              <SharedCardTitle>{{ card.channel.name }}</SharedCardTitle>
-            </template>
-            <template #description>
-              <SharedCardText>{{ card.channel.description }}</SharedCardText>
-            </template>
-            <template #actions>
-              <div v-if="!permissions?.CAN_BUY">
-                Авторизуйтесь и добавьте почту
-              </div>
-              <div v-else-if="!card.slots.length">Нет доступных слотов</div>
-              <SharedButton
-                v-else
-                class="action__button"
-                color="blue"
-                @click="setInfoChannel(card.slots, card.channel.days)"
-              >
-                Выбрать дату
-                <nuxt-icon class="action__button-icon" name="chevron" filled />
-              </SharedButton>
-            </template>
-          </SharedCard>
+          <div v-for="channel in channelsAll" :key="channel.id" class="card__list-items">
+            <SharedCard
+              :currency="'RUB'"
+              :subscribers="channel.subscribers"
+              :avatar="channel.avatar"
+              :class="{ 'card--disabled': !channel.channelDates.length && permissions?.CAN_BUY }"
+            >
+              <template #title>
+                <SharedCardTitle>{{ channel.name }}</SharedCardTitle>
+              </template>
+              <template #description>
+                <SharedCardText>{{ channel.description }}</SharedCardText>
+              </template>
+              <template #actions>
+                <div v-if="!permissions?.CAN_BUY">
+                  Авторизуйтесь и добавьте почту
+                </div>
+                <div v-else-if="!channel.channelDates.length">Нет доступных слотов</div>
+                <SharedButton
+                  v-else
+                  class="action__button"
+                  color="blue"
+                  @click="setInfoChannel(channel)"
+                >
+                  Выбрать дату
+                  <nuxt-icon
+                    class="action__button-icon"
+                    name="chevron"
+                    filled
+                  />
+                </SharedButton>
+              </template>
+            </SharedCard>
+          </div>
         </div>
       </div>
     </div>
 
-    <SharedModal v-if="activeSlots.length" @close="clearInfoChannel">
-      <div class="modal-telegram">
-        <SharedSelect
-          title="Выбрать дату"
-          :selected="dateIdx"
-          :options="days"
-          @select="dateIdx = $event"
-        />
-        <SharedSelect
-          title="Выбрать время"
-          :selected="slotId"
-          :options="times"
-          @select="slotId = $event"
-        />
-        <SharedButton
-          :is-disabled="!slotId || isLoading || !dateIdx"
-          :is-loading="isLoading"
-          class="modal-telegram__btn"
-          color="blue"
-          @click="buy"
-          >Купить</SharedButton
+    <SharedModal v-if="activeChannel" @close="clearInfoChannel">
+        <ChannelDetails
+          v-bind="{
+           ...activeChannel,
+           url: activeChannel.link
+          }"
+          :image="activeChannel.avatar"
+          :dates="getFormattedDates(activeChannel.channelDates)"
+          :category="activeChannel.categories[0].description"
+          @close="clearInfoChannel"
+          td-actions
         >
-      </div>
+          <template #tdActions="{ slotId, dateIdx }">
+            <DefaultButton class="buy" @click="buy(+slotId, +dateIdx)">
+              Купить
+            </DefaultButton>
+          </template>
+        </ChannelDetails>
     </SharedModal>
-    <a href="/channels" class="more" v-if="channelsAll.length > 0">
+    <a href="/channels" class="more" v-if="isMore && channelsAll.length > 0">
       <p class="more__text">Смотреть еще</p>
       <nuxt-icon class="more__icon" name="arrow" filled />
     </a>
@@ -84,84 +100,109 @@ import { useUserStore } from "~/store/user/user.store";
 import { useAlertStore } from "~/store/alert/alert.store";
 import { useCalendarStore } from "~/store/filters/calendar.store";
 import FilterCalendarController from "~/controllers/FilterCalendarController/FilterCalendarController.vue";
+import {useFormatsStore} from "~/store/formats/formats.store";
+import { useDateFormatter } from "~/composables/useDateFormatter";
+import type { IFilter, IFilterValues } from "~/types/filters";
+import { debounce } from "~/utils/debounce";
 
 const channelStore = useChannelStore();
 const userStore = useUserStore();
 
+
 const { getAllFormat } = useChannelStore();
-const { formatAll } = toRefs(channelStore);
+const { channelsAll, isMore } = storeToRefs(channelStore);
 
-const currentFormat = (formatChannelId: number) => {
-  const format = formatAll.value.find((item) => item.id === formatChannelId);
-  if (!format) return "Нет подходящего формата";
-  return format.value;
-};
 
-/** pagination **/
-const { paginationQuery, incrementPage } = usePagination();
-/** categories **/
 const categoriesStore = useCategoriesStore();
-const calendarStore = useCalendarStore();
-const { dates } = storeToRefs(calendarStore);
+const {getQueryCategories, activeCategories, categories} = storeToRefs(categoriesStore);
 
-const { permissions } = storeToRefs(userStore);
-const { isLoading } = storeToRefs(channelStore);
-const { getQueryCategories, activeCategories } = storeToRefs(categoriesStore);
-const { channelsAll } = storeToRefs(channelStore);
-const alertStore = useAlertStore();
-const {
-  clearInfoChannel,
-  setInfoChannel,
-  slotId,
-  times,
-  activeSlots,
-  dateIdx,
-  days,
-} = useBuyChannel();
+const formatsStore = useFormatsStore();
+const { formats } = storeToRefs(formatsStore);
 
-const buy = async () => {
-  if (!slotId.value) {
-    alertStore.showError({ title: "Укажите время" });
-    return;
-  }
-  if (!dateIdx.value && +dateIdx.value !== 0) {
-    console.log(dateIdx.value);
-
-    alertStore.showError({ title: "Укажите дату" });
-    return;
-  }
-  await channelStore.buy(+slotId.value, +dateIdx.value);
-  clearInfoChannel();
-};
-
-async function fetchChannels(isMounted?: boolean) {
-  const fullPath = getQueryCategories.value
-    ? paginationQuery.value + "&" + getQueryCategories.value
-    : paginationQuery.value;
-  await channelStore.getAll({ dates: dates.value, url: fullPath, isMounted });
-}
-
-watch(paginationQuery, async () => await fetchChannels());
-
-watch(activeCategories, async () => await fetchChannels(true), { deep: true });
-
-useAsyncData(() =>
-  channelStore.getAll({
-    dates: dates.value,
-    url: paginationQuery.value,
-    isMounted: true,
-  })
+await useAsyncData(
+  "my-channels",
+  async () => {
+    await formatsStore.fetch();
+    await categoriesStore.fetch();
+  },
+  { lazy: true }
 );
 
 onMounted(() => {
   getAllFormat();
+})
+
+/** format */
+const {getFormattedDates} = useDateFormatter(formats);
+
+/** pagination **/
+const { paginationQuery } = usePagination();
+/** categories **/
+const calendarStore = useCalendarStore();
+const { dates } = storeToRefs(calendarStore);
+
+const { permissions } = storeToRefs(userStore);
+const alertStore = useAlertStore();
+const {
+  clearInfoChannel,
+  setInfoChannel,
+  activeChannel,
+} = useBuyChannel();
+
+/**filters */
+const filters: IFilter[] = [
+  { key: "price", title: "цена" },
+  { key: "time", title: "время" },
+  { key: "interval", title: "интервал" },
+  { key: "subscribers", title: "подписчики" },
+];
+
+const filterValues: IFilterValues = reactive({
+  price: { from: "", to: "" },
+  time: { from: "", to: "" },
+  interval: "",
+  subscribers: { from: "", to: "" },
 });
 
-watch(dates, async () => await fetchChannels(true), { deep: true });
+const fetchChannels = debounce(async () => {
+  await channelStore.getAll({
+    dates: dates.value,
+    filterValues: filterValues,
+    paginationQuery: paginationQuery.value,
+    getQueryCategories: getQueryCategories.value,
+    isMounted: true,
+  });
+}, 500);
+
+watch(
+  [filterValues, paginationQuery, getQueryCategories],
+  async () => {
+    await fetchChannels();
+  },
+  { deep: true }
+);
+
+onMounted(fetchChannels);
+
+const buy = async (slotId: number, dateIdx: number) => {
+  if (!slotId) {
+    alertStore.showError({ title: "Укажите время" });
+    return;
+  }
+  if (!dateIdx && +dateIdx !== 0) {
+    alertStore.showError({ title: "Укажите дату" });
+    return;
+  }
+  await channelStore.buy(slotId, dateIdx);
+  clearInfoChannel();
+};
+
+watch(dates, async () => await fetchChannels(), { deep: true });
 </script>
 
 <style scoped lang="scss">
 @use "assets/styles/media";
+
 .tg {
   padding-top: 150px;
   margin-top: -50px;
@@ -180,10 +221,52 @@ watch(dates, async () => await fetchChannels(true), { deep: true });
   &__text {
     width: 50%;
     text-align: center;
-    margin-bottom: var(--indent-4xl);
 
     @include media.media-breakpoint-down(sm) {
       width: 95%;
+    }
+  }
+  &__header {
+    max-width: calc(100vw - 32px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--indent-xl);
+
+    &-title {
+    align-self: flex-start;
+    font-size: 30px;
+    line-height: 21px;
+    font-weight: 700;
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: 18px;
+      max-width: 300px;
+    }
+  }
+  }
+
+  &__filters {
+    display: flex;
+    justify-content: center;
+    gap: var(--indent-3xl);
+
+
+    @include media.media-breakpoint-down(sm) {
+      flex-direction: column;
+      gap: var(--indent-l);
+    }
+  }
+
+  &__showcase {
+    font-size: var(--font-size-l);
+    line-height: 21px;
+    font-weight: 700;
+    margin-bottom: var(--indent-xl);
+
+    @include media.media-breakpoint-down(sm) {
+      font-size: 18px;
+      max-width: 300px;
     }
   }
 }
@@ -192,6 +275,10 @@ watch(dates, async () => await fetchChannels(true), { deep: true });
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--indent-2xl);
+
+  &-items {
+    display: contents;
+  }
 
   @include media.media-breakpoint-down(xl) {
     grid-template-columns: repeat(3, 1fr);
@@ -241,6 +328,10 @@ watch(dates, async () => await fetchChannels(true), { deep: true });
     margin: 0 auto;
     width: 150px;
   }
+}
+
+.buy {
+  width: 100%;
 }
 
 .action__button {

@@ -3,7 +3,7 @@
     <div class="card__inner">
       <img class="card__img" :src="avatar" alt="Аватар" />
       <slot name="title" />
-      <div class="card__price">{{ formattedPrice }}</div>
+<!--      <div class="card__price">{{ formattedPrice }}</div>-->
       <slot name="description" />
       <div class="card__icons">
         <div class="card__icon">
@@ -12,12 +12,12 @@
           </div>
           <nuxt-icon class="card__icon-img__people" name="people"/>
         </div>
-        <div class="card__icon">
-          <div class="card__icon-text">
-            {{ interval}}
-          </div>
-          <nuxt-icon class="card__icon-img__people" name="clock"/>
-        </div>
+<!--        <div class="card__icon">-->
+<!--          <div class="card__icon-text">-->
+<!--            {{ interval}}-->
+<!--          </div>-->
+<!--          <nuxt-icon class="card__icon-img__people" name="clock"/>-->
+<!--        </div>-->
       </div>
       <div class="card__calendar">
         <div class="card__calendar-text">
@@ -38,25 +38,28 @@
   const avatar = computed<string>(() => {
     if (props.avatar) return props.avatar;
     return '/tg.png'
-  }) 
+  })
 
-  const formattedPrice = computed(() => {
-  return new Intl.NumberFormat('ru-RU', {
-    style: 'currency',
-    currency: props.currency,
-  }).format(props.price);
-});
+//   const formattedPrice = computed(() => {
+//   return new Intl.NumberFormat('ru-RU', {
+//     style: 'currency',
+//     currency: props.currency,
+//   }).format(props.price);
+// });
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @use 'assets/styles/media';
 
   .card {
-    border-radius: 25px;
     margin-bottom: var(--indent-3xl);
     transition: box-shadow 0.3ms;
     width: 20vw;
+    cursor: pointer;
+
+    border: 1px solid var(--color-light-gray);
+    border-radius: 25px;
 
     @include media.media-breakpoint-down (xl) {
       width: 26vw;
@@ -78,6 +81,12 @@
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
+    &--disabled {
+    background-color: rgba(0, 0, 0, 0.1);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
     &__img {
       width: 200px;
       border-radius: 25px;
@@ -92,9 +101,6 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-
-      border: 1px solid var(--color-light-gray);
-      border-radius: 25px;
     }
 
     &__price {

@@ -1,11 +1,10 @@
 <template>
-  <Teleport to="#teleports">
     <div class="channel-details">
       <header class="channel-details__header">
-        <DefaultBack
+        <!-- <DefaultBack
           class="channel-details__header-back"
           @click="$emit('close')"
-        />
+        /> -->
         <DefaultButton
           class="channel-details__header-button"
           @click="handleEdit"
@@ -14,7 +13,8 @@
         </DefaultButton>
       </header>
       <div class="channel-details__content">
-        <NuxtImg class="channel-details__content-image" :src="image" />
+        <nuxt-icon v-if="tdActions" class="modal__close" name="close" filled @click="$emit('close')" :style="{ fontSize: '36px', position: 'absolute', top: '20px', right: '20px' }" />
+        <NuxtImg class="channel-details__content-image" :src="image || '/tg.png'"/>
         <h2 class="channel-details__content-title">{{ title }}</h2>
         <section class="channel-details__content-block">
           <h3 class="channel-details__content-block--title">
@@ -28,7 +28,7 @@
             <tr>
               <th>Адрес</th>
               <td>
-                <NuxtLink :to="formattedUrl" external target="_blank">
+                <NuxtLink :to="url" external target="_blank">
                   {{ url }}
                 </NuxtLink>
               </td>
@@ -49,26 +49,17 @@
               <td>{{ slot.time }}</td>
               <td>{{ slot.interval }}</td>
               <td>{{ slot.price }}</td>
+              <td v-if="tdActions">
+                <slot name="tdActions" :slotId="slot.id" :dateIdx="index" />
+              </td>
             </tr>
           </table>
         </section>
         <footer class="channel-details__content-footer">
-          <DefaultButton
-            class="channel-details__content-footer-edit"
-            @click="handleEdit"
-          >
-            Редактировать
-          </DefaultButton>
-          <DefaultButton
-            class="channel-details__content-footer-close"
-            @click="$emit('close')"
-          >
-            Закрыть
-          </DefaultButton>
+         <slot name="actions" :handle-edit="handleEdit" />
         </footer>
       </div>
     </div>
-  </Teleport>
 </template>
 
 <script setup lang="ts">
@@ -77,7 +68,11 @@ import type { IChannelDetailsProps } from "./ChannelDetails.types";
 const props = defineProps<IChannelDetailsProps>();
 const { id, url } = toRefs(props);
 
-const formattedUrl = computed(() => `https://t.me/${url.value.slice(1)}`);
+interface IChannelDetailsEmits {
+  (e: 'close'): void;
+}
+
+const emit = defineEmits<IChannelDetailsEmits>()
 
 const handleEdit = () => navigateTo(`/personal/telegram/edit/${id.value}`);
 </script>

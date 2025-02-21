@@ -6,3 +6,7 @@ export interface IChannelCardProps {
   subscribers: number;
   isActive: boolean;
 }
+
+export interface IChannelCardEmits {
+  (event: 'delete', channelId: number): void;
+}

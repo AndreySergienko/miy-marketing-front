@@ -29,6 +29,7 @@
 import { onBeforeMount } from "vue";
 import { useChannelStore } from "~/store/channel/channel.store";
 
+
 definePageMeta({
   layout: "personal",
 });
