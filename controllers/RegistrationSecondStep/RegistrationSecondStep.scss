@@ -9,7 +9,14 @@
     flex-direction: column;
     gap: 20px;
 
-    &-radios {
+    &-tax_rate-title {
+      margin-bottom: var(--indent-m);
+      & h4 {
+        font-weight: 500;
+      }
+    }
+
+    &-radios, &-tax_rate-radios {
       display: flex;
       align-items: center;
       gap: 30px;

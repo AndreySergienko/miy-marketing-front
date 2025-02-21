@@ -11,13 +11,39 @@
     </div>
     <div class="second-step__content">
       <div class="second-step__content-radios">
-        <AuthenticationRadio name="workType" label="ИП" value="individual" />
+        <AuthenticationRadio 
+          name="workType" 
+          label="ИП" 
+          value="individual"
+          v-model="values.workType"
+          />
         <AuthenticationRadio
           name="workType"
+
           label="Самозанятый"
           value="self_employed"
+          v-model="values.workType"
         />
       </div>
+      <Transition name="fade">
+        <div 
+          class="second-step__content-tax_rate" 
+          v-if="values.workType === 'individual'"
+        >
+          <div class="second-step__content-tax_rate-title">
+            <h4>Налоговый режим</h4>
+          </div>
+          <div class="second-step__content-tax_rate-radios">
+            <AuthenticationRadio
+              v-for="taxRate in taxRates"
+              :key="taxRate.id"
+              name="taxRateId"
+              :label="taxRate.value"
+              :value="String(taxRate.id)"
+            />
+          </div>
+        </div>
+      </Transition>
       <AuthenticationInput
         name="lastname"
         label="Фамилия"
@@ -76,14 +102,19 @@
 </template>
 
 <script setup lang="ts">
-import { boolean, object, string } from "yup";
+import { boolean, number, object, string } from "yup";
 import { useAuthStore } from "~/store/auth/auth.store";
 import { validateInn } from "~/utils/validator.ts/inn.validator";
+
+import { useTaxRateStore } from "~/store/tax-rate/tax-rate.store";
 
 const route = useRoute();
 
 const authStore = useAuthStore();
 const { isLoading } = storeToRefs(authStore);
+
+const taxRateStore = useTaxRateStore();
+const { taxRates } = storeToRefs(taxRateStore);
 
 const { meta, values } = useForm({
   validationSchema: object({
@@ -92,6 +123,13 @@ const { meta, values } = useForm({
       .min(4, rules.minId)
       .label(""),
     workType: string().required(rules.required).label(""),
+    taxRateId: number()
+      .when("workType", {
+        is: "individual",
+        then: (schema) => schema.required(rules.required),
+        otherwise: (schema) => schema.notRequired(),
+      })
+      .label(""),
     lastname: string().required(rules.required).min(2, rules.minLastName).label(""),
     name: string().required(rules.required).min(2, rules.minFirstName).label(""),
     surname: string().required(rules.required).min(2, rules.minMiddleName).label(""),
@@ -113,6 +151,7 @@ const { meta, values } = useForm({
   initialValues: {
     uniqueBotId: route.query.botToken,
     workType: "individual",
+    taxRateId: 1,
   },
 });
 
@@ -120,6 +159,7 @@ const handleRegister = async () => {
   const isSuccess = await authStore.registration({
     ...values,
     isNotification: true,
+    taxRateId: values.workType === "individual" ? Number(values.taxRateId) : null
   });
   if (!isSuccess) return;
 
