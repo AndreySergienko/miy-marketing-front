@@ -31,7 +31,7 @@
           v-if="values.workType === 'individual'"
         >
           <div class="second-step__content-tax_rate-title">
-            <h4>Налоговый режим</h4>
+            <p>Налоговый режим</p>
           </div>
           <div class="second-step__content-tax_rate-radios">
             <AuthenticationRadio
