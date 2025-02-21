@@ -11,6 +11,9 @@
 
     &-tax_rate-title {
       margin-bottom: var(--indent-m);
+      & h4 {
+        font-weight: 500;
+      }
     }
 
     &-radios, &-tax_rate-radios {
