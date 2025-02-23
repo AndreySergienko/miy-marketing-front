@@ -11,7 +11,8 @@
 
     &-tax_rate-title {
       margin-bottom: var(--indent-m);
-      & h4 {
+      & p {
+        font-size: 14px;
         font-weight: 500;
       }
     }
