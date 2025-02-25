@@ -10,7 +10,7 @@
         </div>
         <div class="benefit__reference">
           <SharedText class="benefit__reference-text">
-            *“Налоговый кэшбэк”- программа выплаты суммы налога с Вашей прибыли на платформе по итогам каждого месяца.<br> 
+            *“Налоговый кэшбэк”- программа выплаты суммы налога с Вашей прибыли на платформе по&nbsp;итогам каждого месяца.<br> 
             Поторопитесь! Количество мест ограничено.<br>
             С условиями акции можно ознакомиться <br> 
             <a class="tax__cash-back" href="/Politic confidential/public__offer.pdf" target="_blank">
