@@ -23,6 +23,10 @@
       gap: 30px;
     }
 
+    &-tax_rate-input {
+      margin-top: var(--indent-l);
+    }
+
     &-link {
       text-decoration: none;
       color: var(--new-primary);

@@ -37,11 +37,26 @@
             <AuthenticationRadio
               v-for="taxRate in taxRates"
               :key="taxRate.id"
-              name="taxRateId"
+              name="taxRate"
               :label="taxRate.value"
-              :value="String(taxRate.id)"
+              :value="taxRate.value"
+              v-model="values.taxRate"
             />
           </div>
+          <Transition name="fade">
+            <div 
+              class="second-step__content-tax_rate-input" 
+              v-if="values.taxRate === 'иной'"
+            >
+              <AuthenticationInput
+                name="customTaxRate"
+                label="Укажите налоговый режим"
+                type="text"
+                placeholder="Например, 10% или 12.5%"
+                v-model="values.customTaxRate"
+              />
+            </div>
+          </Transition>
         </div>
       </Transition>
       <AuthenticationInput
@@ -102,7 +117,7 @@
 </template>
 
 <script setup lang="ts">
-import { boolean, number, object, string } from "yup";
+import { boolean, object, string } from "yup";
 import { useAuthStore } from "~/store/auth/auth.store";
 import { validateInn } from "~/utils/validator.ts/inn.validator";
 
@@ -123,9 +138,17 @@ const { meta, values } = useForm({
       .min(4, rules.minId)
       .label(""),
     workType: string().required(rules.required).label(""),
-    taxRateId: number()
+    taxRate: string()
       .when("workType", {
         is: "individual",
+        then: (schema) => schema.required(rules.required),
+        otherwise: (schema) => schema.notRequired(),
+      })
+      .label(""),
+    customTaxRate: string()
+      .when(["workType", "taxRate"], {
+        is: (workType: string, taxRate: string) =>
+          workType === "individual" && taxRate === "иной",
         then: (schema) => schema.required(rules.required),
         otherwise: (schema) => schema.notRequired(),
       })
@@ -151,15 +174,19 @@ const { meta, values } = useForm({
   initialValues: {
     uniqueBotId: route.query.botToken,
     workType: "individual",
-    taxRateId: 1,
+    taxRate: "6%",
+    customTaxRate: ""
   },
 });
 
 const handleRegister = async () => {
+  const taxRateValue =
+    values.taxRate === "иной" ? values.customTaxRate : values.taxRate;
+
   const isSuccess = await authStore.registration({
     ...values,
     isNotification: true,
-    taxRateId: values.workType === "individual" ? Number(values.taxRateId) : null
+    taxRate: values.workType === "individual" ? taxRateValue : null,
   });
   if (!isSuccess) return;
 
