@@ -49,10 +49,11 @@
               v-if="values.taxRate === 'иной'"
             >
               <AuthenticationInput
+                class="tax-rate__input"
                 name="customTaxRate"
                 label="Укажите налоговый режим"
-                type="text"
-                placeholder="Например, 10% или 12.5%"
+                type="number"
+                placeholder="Например, 10 или 12.5"
                 v-model="values.customTaxRate"
               />
             </div>
@@ -117,7 +118,7 @@
 </template>
 
 <script setup lang="ts">
-import { boolean, object, string } from "yup";
+import { boolean, number, object, string } from "yup";
 import { useAuthStore } from "~/store/auth/auth.store";
 import { validateInn } from "~/utils/validator.ts/inn.validator";
 
@@ -145,7 +146,8 @@ const { meta, values } = useForm({
         otherwise: (schema) => schema.notRequired(),
       })
       .label(""),
-    customTaxRate: string()
+    customTaxRate: number()
+      .typeError(rules.taxRate)
       .when(["workType", "taxRate"], {
         is: (workType: string, taxRate: string) =>
           workType === "individual" && taxRate === "иной",
@@ -175,13 +177,18 @@ const { meta, values } = useForm({
     uniqueBotId: route.query.botToken,
     workType: "individual",
     taxRate: "6%",
-    customTaxRate: ""
+    customTaxRate: null
   },
 });
 
 const handleRegister = async () => {
-  const taxRateValue =
-    values.taxRate === "иной" ? values.customTaxRate : values.taxRate;
+  let taxRateValue;
+
+  if (values.taxRate === "иной") {
+    taxRateValue = String(values.customTaxRate);
+  } else {
+    taxRateValue = values.taxRate ? values.taxRate.replace('%', '') : null;
+  }
 
   const isSuccess = await authStore.registration({
     ...values,
