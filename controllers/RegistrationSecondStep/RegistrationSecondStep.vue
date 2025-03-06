@@ -37,11 +37,27 @@
             <AuthenticationRadio
               v-for="taxRate in taxRates"
               :key="taxRate.id"
-              name="taxRateId"
+              name="taxRate"
               :label="taxRate.value"
-              :value="String(taxRate.id)"
+              :value="taxRate.value"
+              v-model="values.taxRate"
             />
           </div>
+          <Transition name="fade">
+            <div 
+              class="second-step__content-tax_rate-input" 
+              v-if="values.taxRate === 'иной'"
+            >
+              <AuthenticationInput
+                class="tax-rate__input"
+                name="customTaxRate"
+                label="Укажите налоговый режим"
+                type="number"
+                placeholder="Например, 10 или 12.5"
+                v-model="values.customTaxRate"
+              />
+            </div>
+          </Transition>
         </div>
       </Transition>
       <AuthenticationInput
@@ -123,9 +139,18 @@ const { meta, values } = useForm({
       .min(4, rules.minId)
       .label(""),
     workType: string().required(rules.required).label(""),
-    taxRateId: number()
+    taxRate: string()
       .when("workType", {
         is: "individual",
+        then: (schema) => schema.required(rules.required),
+        otherwise: (schema) => schema.notRequired(),
+      })
+      .label(""),
+    customTaxRate: number()
+      .typeError(rules.taxRate)
+      .when(["workType", "taxRate"], {
+        is: (workType: string, taxRate: string) =>
+          workType === "individual" && taxRate === "иной",
         then: (schema) => schema.required(rules.required),
         otherwise: (schema) => schema.notRequired(),
       })
@@ -151,15 +176,24 @@ const { meta, values } = useForm({
   initialValues: {
     uniqueBotId: route.query.botToken,
     workType: "individual",
-    taxRateId: 1,
+    taxRate: "6%",
+    customTaxRate: null
   },
 });
 
 const handleRegister = async () => {
+  let taxRateValue;
+
+  if (values.taxRate === "иной") {
+    taxRateValue = String(values.customTaxRate);
+  } else {
+    taxRateValue = values.taxRate ? values.taxRate.replace('%', '') : null;
+  }
+
   const isSuccess = await authStore.registration({
     ...values,
     isNotification: true,
-    taxRateId: values.workType === "individual" ? Number(values.taxRateId) : null
+    taxRate: values.workType === "individual" ? taxRateValue : null,
   });
   if (!isSuccess) return;
 
