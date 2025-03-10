@@ -57,16 +57,18 @@ export default class ChannelsService extends ApiService {
     const parsedDates = dates
       .map((item) => {
         let incorrectDay = String(item.getDate());
-        const day = incorrectDay.length === 1 ? `0${incorrectDay}` : incorrectDay;
-        const month = item.getMonth() + 1;
-        const year = item.getFullYear();
+      let incorrectMonth = String(item.getMonth() + 1);
+      const year = item.getFullYear();
 
-        return `${day}.${month}.${year}`;
+      const day = incorrectDay.length === 1 ? `0${incorrectDay}` : incorrectDay;
+      let month = incorrectMonth.length === 1 ? `0${incorrectMonth}` : incorrectMonth;
+
+      return `${day}.${month}.${year}`;
       })
       .join(",");
-
+  
     const params = new URLSearchParams();
-
+  
     if (filterValues) {
       if (filterValues.price.from) {
         params.append("priceMin", filterValues.price.from);
@@ -90,19 +92,25 @@ export default class ChannelsService extends ApiService {
         params.append("subscribersMax", filterValues.subscribers.to);
       }
     }
+  
+    const queryParts: string[] = [];
+  if (parsedDates) queryParts.push(`dates=${parsedDates}`);
+  if (params.toString()) queryParts.push(params.toString());
+  if (paginationQuery) queryParts.push(paginationQuery);
+  if (getQueryCategories) {
+    if (getQueryCategories !== "categories=") {
+      queryParts.push(getQueryCategories);
+    }
+  }
 
-    const fullPath = getQueryCategories
-      ? `${paginationQuery}&${getQueryCategories}`
-      : paginationQuery;
-
-    const computedParsedDates = parsedDates ? `dates=${parsedDates}` : ''
-    const computedParams = String(params) ? `&${String(params)}` : ''
-    const fullUrl = `${this.apiUrl}all?${computedParsedDates}${computedParams}&${fullPath}`;
-
+  const fullQueryString = queryParts.join("&");
+  const fullUrl = `${this.apiUrl}all${fullQueryString ? `?${fullQueryString}` : ""}`;
+  
     return await this.$api<IGetAllResponse>(fullUrl, {
       method: "get",
     });
   }
+  
 
   async getMy(): Promise<IMyChannel[]> {
     const data = await this.$authApi<IApiChannelsListItem[]>(
