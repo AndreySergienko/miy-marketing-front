@@ -7,6 +7,14 @@ export interface ITelegramEditMainData {
   conditionCheck: string;
 }
 
+export interface ITelegramEditMainError {
+  category: string
+}
+
+export interface ITelegramEditMainExpose {
+  validateCategory: () => boolean;
+}
+
 export interface ITelegramEditMainProps extends ITelegramEditMainData {
   categories: OptionsItem[];
 }

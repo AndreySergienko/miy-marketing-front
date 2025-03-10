@@ -3,6 +3,7 @@
     <TelegramEditHeader title="Новый канал" @create="handleCreateEditChannel" />
     <div class="telegram-edit__content">
       <TelegramEditMain
+        ref="editMain"
         :name="editingChannel.title"
         :url="editingChannel.url"
         :category="editingChannel.categoryId"
@@ -30,7 +31,7 @@ import type {
   IMyChannel,
   IMyChannelDateSlot,
 } from "~/store/myChannels/myChannels.types";
-import type { ITelegramEditMainData } from "~/components/TelegramEditMain/TelegramEditMain.types";
+import type { ITelegramEditMainData, ITelegramEditMainExpose } from "~/components/TelegramEditMain/TelegramEditMain.types";
 
 import { useCategoriesStore } from "~/store/categories/categories.store";
 import { useFormatsStore } from "~/store/formats/formats.store";
@@ -122,7 +123,14 @@ const handleChangeDates = ({ dates }: { dates: string[] }) => {
   }
 };
 
+const editMain = ref<ITelegramEditMainExpose | null>(null);
+
 const handleCreateEditChannel = async () => {
+  const isCategoryValid = editMain.value?.validateCategory();
+  if (!isCategoryValid) {
+    return;
+  }
+
   if (!editingChannel.value) return;
 
   if (id.value) {
