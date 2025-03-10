@@ -18,6 +18,7 @@ export interface IRegistrationRequest {
   fio: string;
   password: string;
   uniqueBotId: string;
+  taxRateId: number;
 }
 
 export interface IRegistrationResponse extends ISuccessResponse {

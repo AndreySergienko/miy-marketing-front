@@ -95,6 +95,7 @@ export default class ChannelsService extends ApiService {
       method: "get",
     });
   }
+  
 
   async getMy(): Promise<IMyChannel[]> {
     const data = await this.$authApi<IApiChannelsListItem[]>(

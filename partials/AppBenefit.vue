@@ -5,12 +5,18 @@
         <div class="benefit__inner">
           <div class="benefit__text">
             <SharedTitle class="benefit__text-title"> Наши преимущества </SharedTitle>
-            <SharedText class="benefit__text-text">
-              Оплата и создание рекламы через ТГ-бота платформы. <br>
-              Фиксированный сервисный сбор для админов ТГ-канала обеспечивает:
-            </SharedText>
           </div>
           <SharedBenefit />
+        </div>
+        <div class="benefit__reference">
+          <SharedText class="benefit__reference-text">
+            *“Налоговый кэшбэк”- программа выплаты суммы налога с Вашей прибыли на платформе по&nbsp;итогам каждого месяца.<br> 
+            Поторопитесь! Количество мест ограничено.<br>
+            С условиями акции можно ознакомиться <br> 
+            <a class="tax__cash-back" href="/Politic confidential/public__offer.pdf" target="_blank">
+              по ссылке
+            </a>
+          </SharedText>
         </div>
       </shared-animation>
     </div>
@@ -49,9 +55,25 @@
       }
     }
 
+    &__reference {
+      display: flex;
+      justify-content: center;
+
+      &-text {
+        text-align: center;
+      }
+    }
+
     &__text {
       width: 80%;
       margin-bottom: var(--indent-4xl);
+
+      display: flex;
+      align-items: center;
+
+      @include media.media-breakpoint-down(l) {
+        display: initial;
+      }
 
       @include media.media-breakpoint-down(sm) {
         width: 95%;
@@ -68,5 +90,16 @@
       }
     }
   }
-  
+
+  br:last-child {
+    display: none;
+    @include media.media-breakpoint-down(sm) {
+      display: initial;
+    }
+  }
+
+  .tax__cash-back {
+    color: var(--color-blue);
+    text-decoration: underline;
+  }
 </style>

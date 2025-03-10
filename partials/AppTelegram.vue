@@ -5,8 +5,7 @@
         <div class="tg__text">
           <SharedTitle>Telegram-каналы</SharedTitle>
           <SharedText>
-            Выберите каналы для размещения вашей рекламы из списка на витрине. У нас вы найдете каналы по теме "экономика,
-            бизнес", где ваша реклама будет наиболее эффективной.
+            Выберите каналы для размещения вашей рекламы из списка на&nbsp;витрине.
           </SharedText>
         </div>
         <div class="tg__header">
@@ -70,6 +69,7 @@
            ...activeChannel,
            url: activeChannel.link
           }"
+          :image="activeChannel.avatar"
           :dates="getFormattedDates(activeChannel.channelDates)"
           :category="activeChannel.categories[0].description"
           @close="clearInfoChannel"
