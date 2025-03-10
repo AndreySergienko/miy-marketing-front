@@ -45,5 +45,4 @@ export default defineNuxtConfig({
   ignore: ["ecosystem.config.cjs"],
   devtools: { enabled: false },
   ssr: false,
-  plugins: ["~/plugins/taxRateFetch.ts"]
 });
