@@ -27,79 +27,65 @@ const input = computed({
 
 <style scoped lang="scss">
   @use 'assets/styles/media';
+  
   .field {
     position: relative;
     display: flex;
     flex-direction: column;
 
-    @include media.media-breakpoint-down(l) {
-        width: 100%;
-      }
-
     &__name {
       display: flex;
-      margin: 0 0 var(--indent-s) var(--indent-m);
-
+      align-items: center;
       font-size: var(--font-size-m);
       font-weight: var(--font-weight-medium);
-
-      @include media.media-breakpoint-down(sm) {
-        font-size: var(--font-size-s);
-      }
+      color: var(--new-black);
+      margin-left: var(--indent-m);
+      margin-bottom: var(--indent-s);
     }
 
     &__input {
-      font-size: var(--font-size-s);
-      padding-left: var(--indent-s);
-      height: 50px;
-      border: 1px solid var(--color-light-gray);
-      border-radius: 12px;
+      width: 100%;
+      padding: 18px 15px;
+      border-radius: 10px;
+      border: 1px solid;
+      border-color: var(--input-default-border);
+      height: 46px;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--new-black);
+      background: var(--new-white);
+      outline: none;
+      transition: 0.3s ease-in-out;
+
+      &::placeholder {
+        color: var(--input-placeholder);
+      }
 
       &:focus {
-        border: 1px solid var(--color-light-gray);
-        outline: none;
+        border-color: var(--new-primary);
       }
 
-      &-error {
-        border: 1px solid var(--color-blue);
-        outline: none;
-      }
-
-      &[type="number"]::-webkit-outer-spin-button,
-      &[type="number"]::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-      }
-
-      &[type='number'],
-      &[type="number"]:hover,
-      &[type="number"]:focus {
-        appearance: none;
-        -moz-appearance: textfield;
-      }
-
-      &.disabled {
-        opacity: .5;
+      &--disabled {
         pointer-events: none;
+        background: var(--input-disabled);
+        color: var(--input-placeholder);
+      }
+
+      &--error {
+        border-color: var(--error);
       }
     }
 
-    &__icon, &__icon-error {
+    &__icon {
       position: absolute;
-      z-index: 1;
-      top: 39px;
-      right: 10px;
-      cursor: pointer;
-      color: var(--color-blue);
-      font-size: 24px;
-
-      @include media.media-breakpoint-down(sm) {
-        top: 34px;
-      }
+      right: 15px;
+      bottom: 13px;
     }
 
     &__error {
-      margin: var(--indent-s) 0 0 var(--indent-m);
-      color: var(--color-blue);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--error);
     }
   }
 </style>

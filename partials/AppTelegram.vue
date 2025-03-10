@@ -17,13 +17,9 @@
             />
           </div>
           <div class="tg__filters">
-            <SharedFilter
-            v-for="filter in filters"
-            :key="filter.key"
-            :title="filter.title"
-            :type="filter.type"
-            v-model="filterValues[filter.key]"
-          />
+            <FilterAppTelegram
+              v-model="filterValues"
+            />
           </div>
         </div>
         <h1 class="tg__showcase">Витрина</h1>
@@ -101,8 +97,9 @@ import { useCalendarStore } from "~/store/filters/calendar.store";
 import FilterCalendarController from "~/controllers/FilterCalendarController/FilterCalendarController.vue";
 import {useFormatsStore} from "~/store/formats/formats.store";
 import { useDateFormatter } from "~/composables/useDateFormatter";
-import type { IFilter, IFilterValues } from "~/types/filters";
+import type {IFilterValues } from "~/types/filters";
 import { debounce } from "~/utils/debounce";
+import FilterAppTelegram from "~/components/FilterAppTelegram/FilterAppTelegram.vue";
 
 const channelStore = useChannelStore();
 const userStore = useUserStore();
@@ -149,24 +146,20 @@ const {
 } = useBuyChannel();
 
 /**filters */
-const filters: IFilter[] = [
-  { key: "price", title: "цена" },
-  { key: "time", title: "время" },
-  { key: "interval", title: "интервал" },
-  { key: "subscribers", title: "подписчики" },
-];
-
-const filterValues: IFilterValues = reactive({
-  price: { from: "", to: "" },
-  time: { from: "", to: "" },
-  interval: "",
-  subscribers: { from: "", to: "" },
+const filterValues = ref<IFilterValues>({
+  priceMin: "",
+  priceMax: "",
+  dateMin: "",
+  dateMax: "",
+  subscribersMin: "",
+  subscribersMax: "",
+  intervalId: "",
 });
 
 const fetchChannels = debounce(async () => {
   await channelStore.getAll({
     dates: dates.value,
-    filterValues: filterValues,
+    filterValues: filterValues.value,
     paginationQuery: paginationQuery.value,
     getQueryCategories: getQueryCategories.value,
     isMounted: true,
